@@ -1,38 +1,432 @@
-.App {
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(248, 243, 233);
+}
+
+h1 {
+  padding-bottom: 20px;
+}
+
+h2 {
   text-align: center;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h3 {
+  font-size: 20px;
+  padding: 0px;
+  margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App {
+  width: 100vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+}
+
+.Sidebar {
+  width: 250px;
+  height: 100%;
+  background-color: rgb(222, 223, 215);
+}
+
+.Switch {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.Switch:link {
+  text-align: center;
+  color: rgb(133, 130, 130);
+}
+
+.SidebarList {
+  height: 100%;
+  padding: 0;
+}
+
+.SidebarList .row {
+  height: 50px;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.SidebarList .row:hover {
+  cursor: pointer;
+  background-color: rgb(208, 209, 198);
+}
+
+.SidebarList .row .icon {
+  margin-left: 40px;
+  margin-right: 5px;
+}
+
+.Language {
+  padding-top: 180px;
+  padding-bottom: 30px;
+  cursor: pointer;
+}
+
+.LanguageSelected {
+  background-color: rgb(184, 185, 174);
+  padding: 5px;
+}
+
+.LanguageXSelected {
+  color:rgb(133, 130, 130);
+  padding: 5px;
+}
+
+.Account {
+  background-color: white;
+  text-align: center;
+  padding: 5px 25px;
+  border-radius: 5px;
+  color:rgb(133, 130, 130);
+  display: flex;
+  font-size: 15px;
+  align-items: center;
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.MyCircle {
+  background-color:red;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.Circle {
+  background-color:red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+
+
+
+
+.Learning {
+  display: flex;
+  padding: 50px;
+}
+
+.LearningLeft {
+  width: 500px;
+  height: 100%;
+}
+
+.LearningRight {
+  width: 500px;
+  height: 100%;
+}
+
+.Calendar {
+  text-align: center;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.CalendarHeader {
+  display: flex;
+}
+
+.CalendarMonth {
+  font-weight: bold;
+  font-size: 17px;
+  padding-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.CalendarDesc {
+  font-size: 11px;
+  padding-top: 4px;
+}
+
+.Calendar thead {
+  font-weight: bold;
+}
+
+.UpcomingStudent {
+  background-color: rgb(174, 174, 253);
+  border-radius: 5px;
+  margin: 0px 3px;
+  padding: 0px 2px;
+  color: white;
+  font-weight: bold;
+}
+
+.Date {
+  padding: 4px 0px;
+  font-size: 12px;
+  width: 50px;
+}
+
+.ScheduledDateOne {
+  background-color: rgb(174, 174, 253);
+  border-radius: 50%;
+  padding: 3px 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.ScheduledDateTwo {
+  background-color: rgb(174, 174, 253);
+  border-radius: 50%;
+  padding: 3px 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.ScheduledDateOneDark {
+  background-color: rgb(102, 102, 209);
+  border-radius: 50%;
+  padding: 3px 8px;
+  color: white;
+  font-weight: bold;
+}
+
+.ScheduledDateTwoDark {
+  background-color: rgb(102, 102, 209);
+  border-radius: 50%;
+  padding: 3px 4px;
+  color: white;
+  font-weight: bold;
+}
+
+.ScheduledStudent {
+  color: rgb(174, 174, 253);
+  font-size: 8px;
+  margin: 0px;
+}
+
+.ScheduledStudentDark {
+  color: rgb(102, 102, 209);
+  font-size: 8px;
+  margin: 0px;
+}
+
+
+
+
+
+
+.UserInfos {
+  display: flex;
+}
+
+.UserInfos .UserInfo {
+  background-color: white;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 12px;
+  width: 180px;
+  box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+}
+
+.UserInfoHead {
+  display: flex;
+  padding: 2px;
+}
+
+.WeekInfo {
+  background-color: rgb(186, 240, 240);
+  margin-left: 10px;
+  font-weight: bold;
+  color: blue;
+}
+
+.University {
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+.LocalTime {
+  margin-top: -7px;
+  font-weight: bold;
+}
+
+.ChatInfo {
+  align-items: center;
+  text-align: center;
+  color: rgb(255, 94, 0);
+  background-color:antiquewhite;
+  padding: 10px;
+  margin: 2px 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.Chat {
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SessionInfo {
+  align-items: center;
+  text-align: center;
+  color: rgb(104, 98, 98);
+  background-color:antiquewhite;
+  padding: 1px;
+  margin: 1px 5px;
+  border-radius: 5px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.StartSession {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+.StartSessionContents {
+  margin-left: 10px;
+}
+
+.UpcomingSession {
+  font-size: 13px;
+}
+
+
+
+
+.HowToMeetFlex {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  display: flex;
+}
+
+.HowToMeet {
+  background-color: rgb(186, 240, 240);
+  padding: 15px 0px;
+  border-radius: 7px;
+  font-size: 12px;
+  text-align: center;
+  color: rgb(114, 112, 112);
+  width: 400px;
+  margin-right: 20px;
+}
+
+.HowToMeetLink:link {
+  color: black;
+  font-weight: bold;
+}
+
+.InfoIcon {
+  margin-top: 10px;
+  color: grey;
+  cursor: pointer;
+}
+
+
+
+
+.CollegeLife {
+  margin-left: 20px;
+  font-weight: lighter;
+}
+
+.RecommendationContents {
+  font-size: 11px;
+  line-height: 25px;
+}
+
+.GreyContents {
+  color:rgb(107, 106, 106);
+  font-size: 11px;
+}
+
+.GoToDiscussion {
+  width: 100%;
+  background-color: blanchedalmond;
+  padding: 20px 10px;
+  text-align: center;
+  color:rgb(66, 65, 65);
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 40px;
+  cursor:pointer;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgb(208, 209, 198);
+}
+
+
+
+
+
+.FlipNote {
+  display:flex;
+}
+
+.ArrowCircle {
+  background-color:rgb(201, 177, 146);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: rgb(75, 73, 73);
+  justify-content: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.LanguageSelect {
+  margin-left: 20px;
+  font-weight: lighter;
+  color:rgb(66, 65, 65);
+  font-size: 13px;
+  display: flex;
+  margin-top: 5px;
+}
+
+
+
+
+.ItemsContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap:wrap;
+}
+
+.Item {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+  padding: 10px 10px;
+  font-size: 11px;
+  border-radius: 5px;
+  color: navy;
+  font-weight: bold;
+  cursor: pointer;
 }
