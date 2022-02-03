@@ -23,128 +23,128 @@ function Learning(props) {
     const [language, setLanguage] = useState("English");
 
     return (
-        <div className="Learning">
-            <div className="LearningLeft">
+        <div className="learning">
+            <div className="learningLeft">
                 <h1>Hello, Nahee!</h1>
                 <div>
-                    <div className="CalendarHeader">
-                        <div className="CalendarMonth">February 2021</div>
-                        <div className="CalendarDesc">Upcoming meeting with
-                            <span className="UpcomingStudent">{props.students[upcoming].name}</span>
+                    <div className="calendarHeader">
+                        <div className="calendarMonth">February 2021</div>
+                        <div className="calendarDesc">Upcoming meeting with
+                            <span className="upcomingStudent">{props.students[upcoming].name}</span>
                             in {props.students[upcoming].daysLeft} days
                         </div>
                     </div>
-                    <table className="Calendar">
+                    <table className="calendar">
                         <thead>
-                            <td className="Date">M</td>
-                            <td className="Date">T</td>
-                            <td className="Date">W</td>
-                            <td className="Date">T</td>
-                            <td className="Date">F</td>
-                            <td className="Date">S</td>
-                            <td className="Date">S</td>
+                            <td className="date">M</td>
+                            <td className="date">T</td>
+                            <td className="date">W</td>
+                            <td className="date">T</td>
+                            <td className="date">F</td>
+                            <td className="date">S</td>
+                            <td className="date">S</td>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className="Date">23</td>
-                                <td className="Date">24</td>
-                                <td className="Date"><span className="ScheduledDateTwo">25</span><p className="ScheduledStudent">Sam</p></td>
-                                <td className="Date">26</td>
-                                <td className="Date">27</td>
-                                <td className="Date"><span className="ScheduledDateTwoDark">28</span><p className="ScheduledStudentDark">Sungmin</p></td>
-                                <td className="Date">29</td>
+                                <td className="date">23</td>
+                                <td className="date">24</td>
+                                <td className="date"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></td>
+                                <td className="date">26</td>
+                                <td className="date">27</td>
+                                <td className="date"><span className="scheduledDateTwoDark">28</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                <td className="date">29</td>
                             </tr>
                             <tr>
-                                <td className="Date">30</td>
-                                <td className="Date">1</td>
-                                <td className="Date"><span className="ScheduledDateOne">2</span><p className="ScheduledStudent">Sam</p></td>
-                                <td className="Date">3</td>
-                                <td className="Date">4</td>
-                                <td className="Date"><span className="ScheduledDateOneDark">5</span><p className="ScheduledStudentDark">Sungmin</p></td>
-                                <td className="Date">6</td>
+                                <td className="date">30</td>
+                                <td className="date">1</td>
+                                <td className="date"><span className="scheduledDateOne">2</span><p className="scheduledStudent">Sam</p></td>
+                                <td className="date">3</td>
+                                <td className="date">4</td>
+                                <td className="date"><span className="scheduledDateOneDark">5</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                <td className="date">6</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div className="UserInfos">
-                    <div className="UserInfo">
-                        <div className="UserInfoHead">
-                            <div className="LanguageInfo">{props.students[0].language}</div>
-                            <div className="WeekInfo">week {props.students[0].week}</div>
+                <div className="userInfos">
+                    <div className="userInfo">
+                        <div className="userInfoHead">
+                            <div className="languageInfo">{props.students[0].language}</div>
+                            <div className="weekInfo">week {props.students[0].week}</div>
                         </div>
                         <h3>{props.students[0].name}</h3>
-                        <p className="University">{props.students[0].university}</p>
-                        <p className="LocalTimeDiff">{props.students[0].localTime}</p>
-                        <p className="LocalTime">{date.getHours() > 12 ? date.getHours() - 12 : date.getHours()}
+                        <p className="university">{props.students[0].university}</p>
+                        <p className="localTimeDiff">{props.students[0].localTime}</p>
+                        <p className="localTime">{date.getHours() > 12 ? date.getHours() - 12 : date.getHours()}
                             :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {date.getHours() > 12 ? "pm" : "am"}
                         </p>
-                        <div className="ChatInfo"><ChatBubbleOutlineIcon/><span className="Chat">Chat</span></div>
-                        <div className="SessionInfo">
-                            <div className="StartSession"><VideoCameraFrontIcon/><span className="StartSessionContents">Start Session</span></div>
-                            <p className="UpcomingSession">{props.students[0].schedule[0]}</p>
+                        <div className="chatInfo"><ChatBubbleOutlineIcon/><span className="chat">Chat</span></div>
+                        <div className="sessionInfo">
+                            <div className="startSession"><VideoCameraFrontIcon/><span className="startSessionContents">Start Session</span></div>
+                            <p className="upcomingSession">{props.students[0].schedule[0]}</p>
                             <p>{props.students[0].schedule[1]}</p>
                         </div>
                     </div>
-                    <div className="UserInfo">
-                        <div className="UserInfoHead">
-                            <div className="LanguageInfo">{props.students[1].language}</div>
-                            <div className="WeekInfo">week {props.students[1].week}</div>
+                    <div className="userInfo">
+                        <div className="userInfoHead">
+                            <div className="languageInfo">{props.students[1].language}</div>
+                            <div className="weekInfo">week {props.students[1].week}</div>
                         </div>
                         <h3>{props.students[1].name}</h3>
-                        <p className="University">{props.students[1].university}</p>
-                        <p className="LocalTimeDiff">{props.students[1].localTime}</p>
-                        <p className="LocalTime">{timeDiff > 12 ? timeDiff - 12 : timeDiff}
+                        <p className="university">{props.students[1].university}</p>
+                        <p className="localTimeDiff">{props.students[1].localTime}</p>
+                        <p className="localTime">{timeDiff > 12 ? timeDiff - 12 : timeDiff}
                             :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {timeDiff > 12 ? "pm" : "am"}
                         </p>
-                        <div className="ChatInfo"><ChatBubbleOutlineIcon/><span className="Chat">Chat</span></div>
-                        <div className="SessionInfo">
-                            <div className="StartSession"><VideoCameraFrontIcon/><span className="StartSessionContents">Start Session</span></div>
-                            <p className="UpcomingSession">{props.students[1].schedule[0]}</p>
+                        <div className="chatInfo"><ChatBubbleOutlineIcon/><span className="chat">Chat</span></div>
+                        <div className="sessionInfo">
+                            <div className="startSession"><VideoCameraFrontIcon/><span className="startSessionContents">Start Session</span></div>
+                            <p className="upcomingSession">{props.students[1].schedule[0]}</p>
                             <p>{props.students[1].schedule[1]}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="LearningRight">
-                <div className="HowToMeetFlex">
-                    <div className="HowToMeet">Check out <a className="HowToMeetLink" href="#">How to Meet</a> for instructions on how to meet your partner</div>
-                    <div className="InfoIcon"><InfoIcon/></div>
+            <div className="learningRight">
+                <div className="howToMeetFlex">
+                    <div className="howToMeet">Check out <a className="howToMeetLink" href="#">How to Meet</a> for instructions on how to meet your partner</div>
+                    <div className="infoIcon"><InfoIcon/></div>
                 </div>
                     
-                <h3>This Week's Recommendation<span className="CollegeLife">{props.recommendation.title}</span></h3>
-                <div className="RecommendationContents">
+                <h3>This Week's Recommendation<span className="collegeLife">{props.recommendation.title}</span></h3>
+                <div className="recommendationContents">
                     <p>{props.recommendation.contents}</p>
-                    <p className="GreyContents">{props.recommendation.discussion}</p>
+                    <p className="greyContents">{props.recommendation.discussion}</p>
                 </div>
-                <div className="GoToDiscussion">Go to this week's discussion topic</div>
-                <div className="FlipNote">
+                <div className="goToDiscussion">Go to this week's discussion topic</div>
+                <div className="flipNote">
                     <div>
                         <h3>This Week's FLIP notes</h3>
                     </div>
-                    <div className="LanguageSelect">
-                        <div className="ArrowCircle" onClick={() => {
+                    <div className="languageSelect">
+                        <div className="arrowCircle" onClick={() => {
                             setLanguage("Korean");
                         }}><ChevronLeftIcon/></div>
                         {language}
-                        <div className="ArrowCircle" onClick={() => {
+                        <div className="arrowCircle" onClick={() => {
                             setLanguage("English");
                         }}><ChevronRightIcon/></div>
                     </div>
                 </div>
-                <p className="GreyContents">Check out what other people are learning in their langauge exchange!</p>
-                <div class="ItemsContainer">
-                    <div class="Item"><div className="Circle">OS</div> clueless</div>
-                    <div class="Item"><div className="Circle">SJ</div> obviously</div>
-                    <div class="Item"><div className="Circle">CH</div> I don't think so</div>
-                    <div class="Item"><div className="Circle">HJ</div> as opposed to</div>
-                    <div class="Item"><div className="Circle">GH</div> commitment</div>
-                    <div class="Item"><div className="Circle">SJ</div> compatible</div>
-                    <div class="Item"><div className="Circle">YJ</div> looking forward to it</div>
-                    <div class="Item"><div className="Circle">NH</div> reel it in</div>
-                    <div class="Item"><div className="Circle">EF</div> agree to disagree</div>
-                    <div class="Item"><div className="Circle">RG</div> surprise surprise</div>
-                    <div class="Item"><div className="Circle">ML</div> excuse me</div>
+                <p className="greyContents">Check out what other people are learning in their langauge exchange!</p>
+                <div class="itemsContainer">
+                    <div class="item"><div className="circle">OS</div> clueless</div>
+                    <div class="item"><div className="circle">SJ</div> obviously</div>
+                    <div class="item"><div className="circle">CH</div> I don't think so</div>
+                    <div class="item"><div className="circle">HJ</div> as opposed to</div>
+                    <div class="item"><div className="circle">GH</div> commitment</div>
+                    <div class="item"><div className="circle">SJ</div> compatible</div>
+                    <div class="item"><div className="circle">YJ</div> looking forward to it</div>
+                    <div class="item"><div className="circle">NH</div> reel it in</div>
+                    <div class="item"><div className="circle">EF</div> agree to disagree</div>
+                    <div class="item"><div className="circle">RG</div> surprise surprise</div>
+                    <div class="item"><div className="circle">ML</div> excuse me</div>
                 </div>
             </div>
         </div>

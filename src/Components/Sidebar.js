@@ -4,10 +4,10 @@ import {SidebarData} from "./SidebarData";
 function Sidebar(props) {
     const [language, setLanguage] = useState(false);
     return (
-        <div className="Sidebar">
+        <div className="sidebar">
             <h2>FLIP</h2>
-            <center><a className="Switch" href="#">switch to FLIP Class</a></center>
-            <ul className="SidebarList">
+            <center><a className="switch" href="#">switch to FLIP Class</a></center>
+            <ul className="sidebarList">
                 {SidebarData.map((val, key) => {
                     return (
                         <li className="row" key={key} onClick={() => {window.location.pathname = val.link}}>
@@ -16,15 +16,15 @@ function Sidebar(props) {
                         </li>
                     );
                 })}
-                <center><table className="Language">
+                <center><table className="language">
                     <tbody>
                         <tr>
-                            <td className={language ? "LanguageSelected" : "LanguageXSelected"}>
+                            <td className={language ? "languageSelected" : "languageXSelected"}>
                                 <div onClick={() => {
                                     setLanguage(true);
                                 }}>Kor</div>
                             </td>
-                            <td className={language ? "LanguageXSelected" : "LanguageSelected"}>
+                            <td className={language ? "languageXSelected" : "languageSelected"}>
                                 <div onClick={() => {
                                     setLanguage(false);
                                 }}>Eng</div>
@@ -32,8 +32,8 @@ function Sidebar(props) {
                         </tr>
                     </tbody>
                 </table></center>
-                <center><div className="Account">
-                    <div className="MyCircle">NH</div><div>Nahee</div>
+                <center><div className="account">
+                    <div className="myCircle">NH</div><div>Nahee</div>
                 </div></center>
             </ul>
         </div>

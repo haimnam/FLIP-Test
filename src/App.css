@@ -27,61 +27,61 @@ h3 {
   display: flex;
 }
 
-.Sidebar {
+.sidebar {
   width: 250px;
   height: 100%;
   background-color: rgb(222, 223, 215);
 }
 
-.Switch {
+.switch {
   font-weight: bold;
   font-size: 12px;
 }
 
-.Switch:link {
+.switch:link {
   text-align: center;
   color: rgb(133, 130, 130);
 }
 
-.SidebarList {
+.sidebarList {
   height: 100%;
   padding: 0;
 }
 
-.SidebarList .row {
+.sidebarList .row {
   height: 50px;
   list-style-type: none;
   display: flex;
   align-items: center;
 }
 
-.SidebarList .row:hover {
+.sidebarList .row:hover {
   cursor: pointer;
   background-color: rgb(208, 209, 198);
 }
 
-.SidebarList .row .icon {
+.sidebarList .row .icon {
   margin-left: 40px;
   margin-right: 5px;
 }
 
-.Language {
+.language {
   padding-top: 180px;
   padding-bottom: 30px;
   cursor: pointer;
 }
 
-.LanguageSelected {
+.languageSelected {
   background-color: rgb(184, 185, 174);
   padding: 5px;
 }
 
-.LanguageXSelected {
+.languageXSelected {
   color:rgb(133, 130, 130);
   padding: 5px;
 }
 
-.Account {
+.account {
   background-color: white;
   text-align: center;
   padding: 5px 25px;
@@ -95,7 +95,7 @@ h3 {
   margin-right: 10px;
 }
 
-.MyCircle {
+.myCircle {
   background-color:red;
   width: 30px;
   height: 30px;
@@ -107,7 +107,7 @@ h3 {
   margin-right: 5px;
 }
 
-.Circle {
+.circle {
   background-color:red;
   width: 20px;
   height: 20px;
@@ -123,32 +123,32 @@ h3 {
 
 
 
-.Learning {
+.learning {
   display: flex;
   padding: 50px;
 }
 
-.LearningLeft {
+.learningLeft {
   width: 500px;
   height: 100%;
 }
 
-.LearningRight {
+.learningRight {
   width: 500px;
   height: 100%;
 }
 
-.Calendar {
+.calendar {
   text-align: center;
   margin-left: 40px;
   margin-bottom: 30px;
 }
 
-.CalendarHeader {
+.calendarHeader {
   display: flex;
 }
 
-.CalendarMonth {
+.calendarMonth {
   font-weight: bold;
   font-size: 17px;
   padding-left: 40px;
@@ -156,16 +156,16 @@ h3 {
   margin-bottom: 10px;
 }
 
-.CalendarDesc {
+.calendarDesc {
   font-size: 11px;
   padding-top: 4px;
 }
 
-.Calendar thead {
+.calendar thead {
   font-weight: bold;
 }
 
-.UpcomingStudent {
+.upcomingStudent {
   background-color: rgb(174, 174, 253);
   border-radius: 5px;
   margin: 0px 3px;
@@ -174,13 +174,13 @@ h3 {
   font-weight: bold;
 }
 
-.Date {
+.date {
   padding: 4px 0px;
   font-size: 12px;
   width: 50px;
 }
 
-.ScheduledDateOne {
+.scheduledDateOne {
   background-color: rgb(174, 174, 253);
   border-radius: 50%;
   padding: 3px 8px;
@@ -188,7 +188,7 @@ h3 {
   font-weight: bold;
 }
 
-.ScheduledDateTwo {
+.scheduledDateTwo {
   background-color: rgb(174, 174, 253);
   border-radius: 50%;
   padding: 3px 4px;
@@ -196,7 +196,7 @@ h3 {
   font-weight: bold;
 }
 
-.ScheduledDateOneDark {
+.scheduledDateOneDark {
   background-color: rgb(102, 102, 209);
   border-radius: 50%;
   padding: 3px 8px;
@@ -204,7 +204,7 @@ h3 {
   font-weight: bold;
 }
 
-.ScheduledDateTwoDark {
+.scheduledDateTwoDark {
   background-color: rgb(102, 102, 209);
   border-radius: 50%;
   padding: 3px 4px;
@@ -212,13 +212,13 @@ h3 {
   font-weight: bold;
 }
 
-.ScheduledStudent {
+.scheduledStudent {
   color: rgb(174, 174, 253);
   font-size: 8px;
   margin: 0px;
 }
 
-.ScheduledStudentDark {
+.scheduledStudentDark {
   color: rgb(102, 102, 209);
   font-size: 8px;
   margin: 0px;
@@ -229,11 +229,11 @@ h3 {
 
 
 
-.UserInfos {
+.userInfos {
   display: flex;
 }
 
-.UserInfos .UserInfo {
+.userInfos .userInfo {
   background-color: white;
   margin-right: 20px;
   border-radius: 10px;
@@ -243,29 +243,29 @@ h3 {
   box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
 }
 
-.UserInfoHead {
+.userInfoHead {
   display: flex;
   padding: 2px;
 }
 
-.WeekInfo {
+.weekInfo {
   background-color: rgb(186, 240, 240);
   margin-left: 10px;
   font-weight: bold;
   color: blue;
 }
 
-.University {
+.university {
   margin-top: 2px;
   font-weight: bold;
 }
 
-.LocalTime {
+.localTime {
   margin-top: -7px;
   font-weight: bold;
 }
 
-.ChatInfo {
+.chatInfo {
   align-items: center;
   text-align: center;
   color: rgb(255, 94, 0);
@@ -281,11 +281,11 @@ h3 {
   cursor: pointer;
 }
 
-.Chat {
+.chat {
   margin-left: 10px;
 }
 
-.SessionInfo {
+.sessionInfo {
   align-items: center;
   text-align: center;
   color: rgb(104, 98, 98);
@@ -297,7 +297,7 @@ h3 {
   cursor: pointer;
 }
 
-.StartSession {
+.startSession {
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -306,25 +306,25 @@ h3 {
   font-size: 15px;
 }
 
-.StartSessionContents {
+.startSessionContents {
   margin-left: 10px;
 }
 
-.UpcomingSession {
+.upcomingSession {
   font-size: 13px;
 }
 
 
 
 
-.HowToMeetFlex {
+.howToMeetFlex {
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: 30px;
   display: flex;
 }
 
-.HowToMeet {
+.howToMeet {
   background-color: rgb(186, 240, 240);
   padding: 15px 0px;
   border-radius: 7px;
@@ -335,12 +335,12 @@ h3 {
   margin-right: 20px;
 }
 
-.HowToMeetLink:link {
+.howToMeetLink:link {
   color: black;
   font-weight: bold;
 }
 
-.InfoIcon {
+.infoIcon {
   margin-top: 10px;
   color: grey;
   cursor: pointer;
@@ -349,22 +349,22 @@ h3 {
 
 
 
-.CollegeLife {
+.collegeLife {
   margin-left: 20px;
   font-weight: lighter;
 }
 
-.RecommendationContents {
+.recommendationContents {
   font-size: 11px;
   line-height: 25px;
 }
 
-.GreyContents {
+.greyContents {
   color:rgb(107, 106, 106);
   font-size: 11px;
 }
 
-.GoToDiscussion {
+.goToDiscussion {
   width: 100%;
   background-color: blanchedalmond;
   padding: 20px 10px;
@@ -382,11 +382,11 @@ h3 {
 
 
 
-.FlipNote {
+.flipNote {
   display:flex;
 }
 
-.ArrowCircle {
+.arrowCircle {
   background-color:rgb(201, 177, 146);
   width: 20px;
   height: 20px;
@@ -400,7 +400,7 @@ h3 {
   cursor: pointer;
 }
 
-.LanguageSelect {
+.languageSelect {
   margin-left: 20px;
   font-weight: lighter;
   color:rgb(66, 65, 65);
@@ -412,13 +412,13 @@ h3 {
 
 
 
-.ItemsContainer {
+.itemsContainer {
   display: flex;
   justify-content: flex-start;
   flex-wrap:wrap;
 }
 
-.Item {
+.item {
   margin: 5px;
   display: flex;
   align-items: center;
