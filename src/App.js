@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import Sidebar from "./Components/Sidebar";
+import Sidebar from "./Components/Sidebar/Sidebar";
 import Learning from "./Components/Learning";
 
 function App(props) {
-  const [students, setStudents] = useState(
+  const [students, setStudents] = useState([
     {
       id: 1,
       name: "Sam",
@@ -25,7 +25,7 @@ function App(props) {
       localTime: "New York +3hrs",
       schedule: ["Saturday 9:00am", "Saturday 12:00pm"]
     }
-  );
+  ]);
   const [recommendation, setRecommendation] = useState(
     {
       title: "College Life",
