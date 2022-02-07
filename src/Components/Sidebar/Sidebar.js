@@ -33,7 +33,7 @@ function Sidebar(props) {
                     </tbody>
                 </table></center>
                 <center><div className="account">
-                    <div className="myCircle">NH</div><div>Nahee</div>
+                    <div className="myCircle">{props.account.initial}</div><div>{props.account.name}</div>
                 </div></center>
             </ul>
         </div>

@@ -5,11 +5,9 @@ import Calendar from "./LearningLeft/Calendar";
 import UserInfo from "./LearningLeft/UserInfo";
 
 function LearningLeft(props) {
-    const name = "Nahee";
-
     return (
         <div className="learningLeft">
-            <HelloHeader name={name}/>
+            <HelloHeader account={props.account}/>
             <Calendar students={props.students} upcoming={props.upcoming}/>
             <UserInfo students={props.students} timeDiff={props.timeDiff}/>
         </div>

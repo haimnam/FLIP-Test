@@ -4,6 +4,7 @@ import Sidebar from "./Components/Sidebar/Sidebar";
 import Learning from "./Components/Learning";
 
 function App(props) {
+  const account = {initial: "NH", name: "Nahee"};
   const [students, setStudents] = useState([
     {
       id: 1,
@@ -36,8 +37,8 @@ function App(props) {
   
   return (
     <div className="App">
-      <Sidebar/>
-      <Learning students={students} recommendation={recommendation}/>
+      <Sidebar account={account}/>
+      <Learning account={account} students={students} recommendation={recommendation}/>
     </div>
   );
 }

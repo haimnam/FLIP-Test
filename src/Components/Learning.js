@@ -20,7 +20,7 @@ function Learning(props) {
 
     return (
         <div className="learning">
-            <LearningLeft students={props.students} upcoming={upcoming} timeDiff={timeDiff}/>
+            <LearningLeft account={props.account} students={props.students} upcoming={upcoming} timeDiff={timeDiff}/>
             <LearningRight recommendation={props.recommendation}/>
         </div>
     );

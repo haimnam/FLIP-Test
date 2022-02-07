@@ -2,6 +2,9 @@ import React from 'react';
 import "../Learning.css";
 
 function Calendar(props) {
+    const days = ["M", "T", "W", "T", "F", "S", "S"];
+    const firstWeekDate = [23, 24, 25, 26, 27, 28, 29];
+    const secondWeekDate = [30, 1, 2, 3, 4, 5, 6];
     return (
         <div>
             <div className="calendarHeader">
@@ -13,32 +16,46 @@ function Calendar(props) {
             </div>
             <table className="calendar">
                 <thead>
-                    <td className="date">M</td>
-                    <td className="date">T</td>
-                    <td className="date">W</td>
-                    <td className="date">T</td>
-                    <td className="date">F</td>
-                    <td className="date">S</td>
-                    <td className="date">S</td>
+                    {days.map((day) => {
+                        return (
+                            <td className="date">{day}</td>
+                        );
+                    })}
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="date">23</td>
-                        <td className="date">24</td>
-                        <td className="date"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></td>
-                        <td className="date">26</td>
-                        <td className="date">27</td>
-                        <td className="date"><span className="scheduledDateTwoDark">28</span><p className="scheduledStudentDark">Sungmin</p></td>
-                        <td className="date">29</td>
+                        {firstWeekDate.map((date) => {
+                            if (date == 25) {
+                                return (
+                                    <td className="date"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></td>
+                                );
+                            } else if (date == 28) {
+                                return (
+                                    <td className="date"><span className="scheduledDateTwoDark">28</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                );
+                            } else {
+                                return (
+                                    <td className="date">{date}</td>
+                                );
+                            }
+                        })}
                     </tr>
                     <tr>
-                        <td className="date">30</td>
-                        <td className="date">1</td>
-                        <td className="date"><span className="scheduledDateOne">2</span><p className="scheduledStudent">Sam</p></td>
-                        <td className="date">3</td>
-                        <td className="date">4</td>
-                        <td className="date"><span className="scheduledDateOneDark">5</span><p className="scheduledStudentDark">Sungmin</p></td>
-                        <td className="date">6</td>
+                        {secondWeekDate.map((date) => {
+                            if (date == 2) {
+                                return (
+                                    <td className="date"><span className="scheduledDateOne">2</span><p className="scheduledStudent">Sam</p></td>
+                                );
+                            } else if (date == 5) {
+                                return (
+                                    <td className="date"><span className="scheduledDateOneDark">5</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                );
+                            } else {
+                                return (
+                                    <td className="date">{date}</td>
+                                );
+                            }
+                        })}
                     </tr>
                 </tbody>
             </table>
