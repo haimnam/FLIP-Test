@@ -3,7 +3,7 @@ import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Learning from "./Components/Learning";
 
-function App(props) {
+const App = () => {
   const account = {initial: "NH", name: "Nahee"};
   const [students, setStudents] = useState([
     {
@@ -41,6 +41,6 @@ function App(props) {
       <Learning account={account} students={students} recommendation={recommendation}/>
     </div>
   );
-}
+};
 
 export default App;

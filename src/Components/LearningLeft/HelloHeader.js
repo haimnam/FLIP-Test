@@ -1,10 +1,10 @@
 import React from 'react';
 import "../Learning.css";
 
-function HelloHeader(props) {
+const HelloHeader = ({account}) => {
     return (
-        <h1>Hello, {props.account.name}!</h1>
+        <h1>Hello, {account.name}!</h1>
     );
-}
+};
 
 export default HelloHeader;

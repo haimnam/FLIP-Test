@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {SidebarData} from "./SidebarData";
 
-function Sidebar(props) {
+const Sidebar = ({account}) => {
     const [language, setLanguage] = useState(false);
     return (
         <div className="sidebar">
@@ -33,11 +33,11 @@ function Sidebar(props) {
                     </tbody>
                 </div></center>
                 <center><div className="account">
-                    <div className="myCircle">{props.account.initial}</div><div>{props.account.name}</div>
+                    <div className="myCircle">{account.initial}</div><div>{account.name}</div>
                 </div></center>
             </ul>
         </div>
     );
-}
+};
 
 export default Sidebar;

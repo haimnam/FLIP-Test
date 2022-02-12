@@ -47,6 +47,6 @@ const UserInfo = ({students, timeDiff}) => {
             {rendering()}
         </div>
     );
-}
+};
 
 export default UserInfo;
