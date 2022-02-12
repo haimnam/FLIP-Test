@@ -16,7 +16,7 @@ function Sidebar(props) {
                         </li>
                     );
                 })}
-                <center><table className="language">
+                <center><div className="language">
                     <tbody>
                         <tr>
                             <td className={language ? "languageSelected" : "languageXSelected"}>
@@ -31,7 +31,7 @@ function Sidebar(props) {
                             </td>
                         </tr>
                     </tbody>
-                </table></center>
+                </div></center>
                 <center><div className="account">
                     <div className="myCircle">{props.account.initial}</div><div>{props.account.name}</div>
                 </div></center>
