@@ -4,14 +4,14 @@ import HelloHeader from "./LearningLeft/HelloHeader";
 import Calendar from "./LearningLeft/Calendar";
 import UserInfo from "./LearningLeft/UserInfo";
 
-function LearningLeft(props) {
+const LearningLeft = ({account, students, upcoming, timeDiff}) => {
     return (
         <div className="learningLeft">
-            <HelloHeader account={props.account}/>
-            <Calendar students={props.students} upcoming={props.upcoming}/>
-            <UserInfo students={props.students} timeDiff={props.timeDiff}/>
+            <HelloHeader account={account}/>
+            <Calendar students={students} upcoming={upcoming}/>
+            <UserInfo students={students} timeDiff={timeDiff}/>
         </div>
     );
-}
+};
 
 export default LearningLeft;

@@ -3,7 +3,7 @@ import "../App.css";
 import LearningLeft from "./LearningLeft";
 import LearningRight from "./LearningRight";
 
-function Learning(props) {
+const Learning = ({account, students, recommendation}) => {
     const date = new Date();
     var timeDiff = date.getHours() - 14;
     if (timeDiff <= -12) {
@@ -13,17 +13,17 @@ function Learning(props) {
     }
         
     var upcoming = 0;
-    if (props.students[0].daysLeft > props.students[1].daysLeft) {
+    if (students[0].daysLeft > students[1].daysLeft) {
         console.log('yes');
         upcoming = 1;
     }
 
     return (
         <div className="learning">
-            <LearningLeft account={props.account} students={props.students} upcoming={upcoming} timeDiff={timeDiff}/>
-            <LearningRight recommendation={props.recommendation}/>
+            <LearningLeft account={account} students={students} upcoming={upcoming} timeDiff={timeDiff}/>
+            <LearningRight recommendation={recommendation}/>
         </div>
     );
-}
+};
 
 export default Learning;

@@ -3,7 +3,7 @@ import "../Learning.css";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-function FlipNote(props) {
+const FlipNote = () => {
     const [language, setLanguage] = useState("English");
     const [noteLanguage, setNoteLanguage] = useState(false);
     const notes = [
@@ -47,6 +47,6 @@ function FlipNote(props) {
             </div>
         </div>
     );
-}
+};
 
 export default FlipNote;
