@@ -14,7 +14,7 @@ function Calendar(props) {
                     in {props.students[props.upcoming].daysLeft} days
                 </div>
             </div>
-            <table className="calendar">
+            <div className="calendar">
                 <thead>
                     {days.map((day) => {
                         return (
@@ -58,7 +58,7 @@ function Calendar(props) {
                         })}
                     </tr>
                 </tbody>
-            </table>
+            </div>
         </div>
     );
 }
