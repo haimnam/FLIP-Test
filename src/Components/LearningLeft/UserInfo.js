@@ -3,7 +3,7 @@ import "../Learning.css";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 
-function UserInfo(props) {
+const UserInfo = ({students, timeDiff}) => {
     const rendering = () => {
         const date = new Date();
         const result = [];
@@ -14,8 +14,8 @@ function UserInfo(props) {
             </p>
         );
         localTime.push(
-            <p className="localTime">{props.timeDiff > 12 ? props.timeDiff - 12 : props.timeDiff}
-                :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {props.timeDiff > 12 ? "pm" : "am"}
+            <p className="localTime">{timeDiff > 12 ? timeDiff - 12 : timeDiff}
+                :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {timeDiff > 12 ? "pm" : "am"}
             </p>
         );
         
@@ -23,18 +23,18 @@ function UserInfo(props) {
             result.push(
                 <div className="userInfo">
                     <div className="userInfoHead">
-                        <div className="languageInfo">{props.students[i].language}</div>
-                        <div className="weekInfo">week {props.students[i].week}</div>
+                        <div className="languageInfo">{students[i].language}</div>
+                        <div className="weekInfo">week {students[i].week}</div>
                     </div>
-                    <h3>{props.students[i].name}</h3>
-                    <p className="university">{props.students[i].university}</p>
-                    <p className="localTimeDiff">{props.students[i].localTime}</p>
+                    <h3>{students[i].name}</h3>
+                    <p className="university">{students[i].university}</p>
+                    <p className="localTimeDiff">{students[i].localTime}</p>
                     {localTime[i]}
                     <div className="chatInfo"><ChatBubbleOutlineIcon/><span className="chat">Chat</span></div>
                     <div className="sessionInfo">
                         <div className="startSession"><VideoCameraFrontIcon/><span className="startSessionContents">Start Session</span></div>
-                        <p className="upcomingSession">{props.students[i].schedule[0]}</p>
-                        <p>{props.students[i].schedule[1]}</p>
+                        <p className="upcomingSession">{students[i].schedule[0]}</p>
+                        <p>{students[i].schedule[1]}</p>
                     </div>
                 </div>
             );
