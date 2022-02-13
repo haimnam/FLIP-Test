@@ -1,50 +1,32 @@
 import React from 'react';
 import "../Learning.css";
+import UserInfoData from "./UserInfoData";
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 
-const UserInfo = ({students, timeDiff}) => {
-    const rendering = () => {
-        const date = new Date();
-        const result = [];
-        const localTime = [];
-        localTime.push(
-            <p className="localTime">{date.getHours() > 12 ? date.getHours() - 12 : date.getHours()}
-                :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {date.getHours() > 12 ? "pm" : "am"}
-            </p>
-        );
-        localTime.push(
-            <p className="localTime">{timeDiff > 12 ? timeDiff - 12 : timeDiff}
-                :{date.getMinutes() < 10 ? "0" : ""}{date.getMinutes()} {timeDiff > 12 ? "pm" : "am"}
-            </p>
-        );
-        
-        for (let i = 0; i < 2; i++) {
-            result.push(
-                <div key={i} className="userInfo">
-                    <div className="userInfoHead">
-                        <div className="languageInfo">{students[i].language}</div>
-                        <div className="weekInfo">week {students[i].week}</div>
-                    </div>
-                    <h3>{students[i].name}</h3>
-                    <p className="university">{students[i].university}</p>
-                    <p className="localTimeDiff">{students[i].localTime}</p>
-                    {localTime[i]}
-                    <div className="chatInfo"><ChatBubbleOutlineIcon/><span className="chat">Chat</span></div>
-                    <div className="sessionInfo">
-                        <div className="startSession"><VideoCameraFrontIcon/><span className="startSessionContents">Start Session</span></div>
-                        <p className="upcomingSession">{students[i].schedule[0]}</p>
-                        <p>{students[i].schedule[1]}</p>
-                    </div>
-                </div>
-            );
-        }
-        return result;
-    };
-    
+const UserInfo = ({students}) => {
     return (
         <div className="userInfos">
-            {rendering()}
+            {UserInfoData(students={students}).map((val) => {
+                return (
+                    <div key={val.id} className="userInfo">
+                        <div className="userInfoHead">
+                            <div className="languageInfo">{val.language}</div>
+                            <div className="weekInfo">week {val.week}</div>
+                        </div>
+                        <h3>{val.name}</h3>
+                        <p className="university">{val.university}</p>
+                        <p className="localTimeDiff">{val.localTime}</p>
+                        <p className="curTime">{val.curHours}:{val.curMinutes} {val.curAMPM}</p>
+                        <div className="chatInfo"><ChatBubbleOutlineIcon/><span className="chat">Chat</span></div>
+                        <div className="sessionInfo">
+                            <div className="startSession"><VideoCameraFrontIcon/><span className="startSessionContents">Start Session</span></div>
+                            <p className="upcomingSession">{val.schedule[0]}</p>
+                            <p>{val.schedule[1]}</p>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
     );
 };

@@ -24,7 +24,7 @@ const Calendar = ({students, upcoming}) => {
                 </div>
                 <div>
                     <div className="calendarBody">
-                        {firstWeekDate.map((date ,index) => {
+                        {firstWeekDate.map((date, index) => {
                             if (date === 25) {
                                 return (
                                     <div key={index} className="selectedDate"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></div>
