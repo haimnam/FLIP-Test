@@ -21,7 +21,7 @@ const UserInfo = ({students, timeDiff}) => {
         
         for (let i = 0; i < 2; i++) {
             result.push(
-                <div className="userInfo">
+                <div key={i} className="userInfo">
                     <div className="userInfoHead">
                         <div className="languageInfo">{students[i].language}</div>
                         <div className="weekInfo">week {students[i].week}</div>

@@ -15,49 +15,49 @@ const Calendar = ({students, upcoming}) => {
                 </div>
             </div>
             <div className="calendar">
-                <thead>
-                    {days.map((day) => {
+                <div className="calendarHead">
+                    {days.map((day, index) => {
                         return (
-                            <td className="date">{day}</td>
+                            <div key={index} className="date">{day}</div>
                         );
                     })}
-                </thead>
-                <tbody>
-                    <tr>
-                        {firstWeekDate.map((date) => {
+                </div>
+                <div>
+                    <div className="calendarBody">
+                        {firstWeekDate.map((date ,index) => {
                             if (date === 25) {
                                 return (
-                                    <td className="date"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></td>
+                                    <div key={index} className="selectedDate"><span className="scheduledDateTwo">25</span><p className="scheduledStudent">Sam</p></div>
                                 );
                             } else if (date === 28) {
                                 return (
-                                    <td className="date"><span className="scheduledDateTwoDark">28</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                    <div key={index} className="selectedDate"><span className="scheduledDateTwoDark">28</span><p className="scheduledStudentDark">Sungmin</p></div>
                                 );
                             } else {
                                 return (
-                                    <td className="date">{date}</td>
+                                    <div key={index} className="date">{date}</div>
                                 );
                             }
                         })}
-                    </tr>
-                    <tr>
-                        {secondWeekDate.map((date) => {
+                    </div>
+                    <div className="calendarBody">
+                        {secondWeekDate.map((date, index) => {
                             if (date === 2) {
                                 return (
-                                    <td className="date"><span className="scheduledDateOne">2</span><p className="scheduledStudent">Sam</p></td>
+                                    <div key={index} className="selectedDate"><span className="scheduledDateOne">2</span><p className="scheduledStudent">Sam</p></div>
                                 );
                             } else if (date === 5) {
                                 return (
-                                    <td className="date"><span className="scheduledDateOneDark">5</span><p className="scheduledStudentDark">Sungmin</p></td>
+                                    <div key={index} className="selectedDate"><span className="scheduledDateOneDark">5</span><p className="scheduledStudentDark">Sungmin</p></div>
                                 );
                             } else {
                                 return (
-                                    <td className="date">{date}</td>
+                                    <div key={index} className="date">{date}</div>
                                 );
                             }
                         })}
-                    </tr>
-                </tbody>
+                    </div>
+                </div>
             </div>
         </div>
     );

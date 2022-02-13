@@ -17,20 +17,16 @@ const Sidebar = ({account}) => {
                     );
                 })}
                 <center><div className="language">
-                    <tbody>
-                        <tr>
-                            <td className={language ? "languageSelected" : "languageXSelected"}>
-                                <div onClick={() => {
-                                    setLanguage(true);
-                                }}>Kor</div>
-                            </td>
-                            <td className={language ? "languageXSelected" : "languageSelected"}>
-                                <div onClick={() => {
-                                    setLanguage(false);
-                                }}>Eng</div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <div className={language ? "languageSelected" : "languageXSelected"}>
+                        <div onClick={() => {
+                            setLanguage(true);
+                        }}>Kor</div>
+                    </div>
+                    <div className={language ? "languageXSelected" : "languageSelected"}>
+                        <div onClick={() => {
+                            setLanguage(false);
+                        }}>Eng</div>
+                    </div>
                 </div></center>
                 <center><div className="account">
                     <div className="myCircle">{account.initial}</div><div>{account.name}</div>
