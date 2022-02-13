@@ -36,8 +36,13 @@
     padding-top: 4px;
   }
   
-  .calendar thead {
+  .calendar .calendarHead {
     font-weight: bold;
+    display: flex;
+  }
+
+  .calendar .calendarBody {
+    display: flex;
   }
   
   .upcomingStudent {
@@ -49,8 +54,14 @@
     font-weight: bold;
   }
   
-  .date {
+  .selectedDate {
     padding: 4px 0px;
+    font-size: 12px;
+    width: 50px;
+  }
+
+  .date {
+    padding: 8px 0px;
     font-size: 12px;
     width: 50px;
   }

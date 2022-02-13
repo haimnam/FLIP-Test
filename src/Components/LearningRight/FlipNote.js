@@ -38,10 +38,10 @@ const FlipNote = () => {
                 </div>
             </div>
             <p className="greyContents">Check out what other people are learning in their langauge exchange!</p>
-            <div class="itemsContainer">
-                {notes.map((val) => {
+            <div className="itemsContainer">
+                {notes.map((val, index) => {
                     return (
-                        <div class="item"><div className="circle">{val.name}</div> {noteLanguage ? val.korean : val.english}</div>
+                        <div key={index} className="item"><div className="circle">{val.name}</div> {noteLanguage ? val.korean : val.english}</div>
                     );
                 })}
             </div>
