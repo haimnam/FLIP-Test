@@ -5,6 +5,7 @@ const Calendar = ({ students, upcoming }) => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const firstWeekDate = [23, 24, 25, 26, 27, 28, 29];
   const secondWeekDate = [30, 1, 2, 3, 4, 5, 6];
+
   return (
     <div>
       <div className="calendarHeader">
