@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Learning.css";
+import dayjs from "dayjs";
+import range from "lodash-es/range";
 
 const Calendar = ({ students, upcoming }) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "October",
+    "November",
+    "December",
+  ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
-  const firstWeekDate = [23, 24, 25, 26, 27, 28, 29];
-  const secondWeekDate = [30, 1, 2, 3, 4, 5, 6];
+  const [dayOfThisWeek, setDayObj] = useState(dayjs());
+  const thisYear = dayOfThisWeek.year();
+  const thisMonth = dayOfThisWeek.month();
+  const today = dayOfThisWeek.date();
+  const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${today + 7}`);
+
   return (
     <div>
       <div className="calendarHeader">
-        <div className="calendarMonth">February 2021</div>
+        <div className="calendarMonth">
+          {months[thisMonth]} {thisYear}
+        </div>
         <div className="calendarDesc">
           Upcoming meeting with
           <span className="upcomingStudent">{students[upcoming].name}</span>
@@ -27,50 +48,54 @@ const Calendar = ({ students, upcoming }) => {
         </div>
         <div>
           <div className="calendarBody">
-            {firstWeekDate.map((date, index) => {
-              if (date === 25) {
+            {range(7).map((i) => {
+              let curDay = dayOfThisWeek.add(i, "day").day();
+              let curDate = dayOfThisWeek.add(i, "day").date();
+              if (curDay === 3) {
                 return (
-                  <div key={index} className="selectedDate">
-                    <span className="scheduledDateTwo">25</span>
+                  <div key={i} className="selectedDate">
+                    <span className="scheduledDateTwo">{curDate}</span>
                     <p className="scheduledStudent">Sam</p>
                   </div>
                 );
-              } else if (date === 28) {
+              } else if (curDay === 6) {
                 return (
-                  <div key={index} className="selectedDate">
-                    <span className="scheduledDateTwoDark">28</span>
+                  <div key={i} className="selectedDate">
+                    <span className="scheduledDateTwoDark">{curDate}</span>
                     <p className="scheduledStudentDark">Sungmin</p>
                   </div>
                 );
               } else {
                 return (
-                  <div key={index} className="date">
-                    {date}
+                  <div key={i} className="date">
+                    {curDate}
                   </div>
                 );
               }
             })}
           </div>
           <div className="calendarBody">
-            {secondWeekDate.map((date, index) => {
-              if (date === 2) {
+            {range(7).map((i) => {
+              let curDay = dayOfNextWeek.add(i, "day").day();
+              let curDate = dayOfNextWeek.add(i, "day").date();
+              if (curDay === 3) {
                 return (
-                  <div key={index} className="selectedDate">
-                    <span className="scheduledDateOne">2</span>
+                  <div key={i} className="selectedDate">
+                    <span className="scheduledDateTwo">{curDate}</span>
                     <p className="scheduledStudent">Sam</p>
                   </div>
                 );
-              } else if (date === 5) {
+              } else if (curDay === 6) {
                 return (
-                  <div key={index} className="selectedDate">
-                    <span className="scheduledDateOneDark">5</span>
+                  <div key={i} className="selectedDate">
+                    <span className="scheduledDateTwoDark">{curDate}</span>
                     <p className="scheduledStudentDark">Sungmin</p>
                   </div>
                 );
               } else {
                 return (
-                  <div key={index} className="date">
-                    {date}
+                  <div key={i} className="date">
+                    {curDate}
                   </div>
                 );
               }
