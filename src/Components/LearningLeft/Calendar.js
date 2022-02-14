@@ -18,11 +18,16 @@ const Calendar = ({ students, upcoming }) => {
     "December",
   ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
+<<<<<<< HEAD
   const [dayOfThisWeek, setDayObj] = useState(dayjs());
   const thisYear = dayOfThisWeek.year();
   const thisMonth = dayOfThisWeek.month();
   const today = dayOfThisWeek.date();
   const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${today + 7}`);
+=======
+  const firstWeekDate = [23, 24, 25, 26, 27, 28, 29];
+  const secondWeekDate = [30, 1, 2, 3, 4, 5, 6];
+>>>>>>> c49142e8f61dbe495e394d513b234cc0cdc1399a
 
   return (
     <div>
