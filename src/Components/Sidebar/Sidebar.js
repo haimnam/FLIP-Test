@@ -6,11 +6,9 @@ const Sidebar = ({ account }) => {
   return (
     <div className="sidebar">
       <h2>FLIP</h2>
-      <center>
-        <a className="switch" href="#">
-          switch to FLIP Class
-        </a>
-      </center>
+      <a className="switch" href="#">
+        switch to FLIP Class
+      </a>
       <ul className="sidebarList">
         {SidebarData.map((val, key) => {
           return (
@@ -26,38 +24,30 @@ const Sidebar = ({ account }) => {
             </li>
           );
         })}
-        <center>
-          <div className="language">
+        <div className="language">
+          <div className={language ? "languageSelected" : "languageXSelected"}>
             <div
-              className={language ? "languageSelected" : "languageXSelected"}
+              onClick={() => {
+                setLanguage(true);
+              }}
             >
-              <div
-                onClick={() => {
-                  setLanguage(true);
-                }}
-              >
-                Kor
-              </div>
-            </div>
-            <div
-              className={language ? "languageXSelected" : "languageSelected"}
-            >
-              <div
-                onClick={() => {
-                  setLanguage(false);
-                }}
-              >
-                Eng
-              </div>
+              Kor
             </div>
           </div>
-        </center>
-        <center>
-          <div className="account">
-            <div className="myCircle">{account.initial}</div>
-            <div>{account.name}</div>
+          <div className={language ? "languageXSelected" : "languageSelected"}>
+            <div
+              onClick={() => {
+                setLanguage(false);
+              }}
+            >
+              Eng
+            </div>
           </div>
-        </center>
+        </div>
+        <div className="account">
+          <div className="myCircle">{account.initial}</div>
+          <div>{account.name}</div>
+        </div>
       </ul>
     </div>
   );
