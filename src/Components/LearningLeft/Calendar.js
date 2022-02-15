@@ -68,14 +68,28 @@ const Calendar = ({ students }) => {
               if (curDay === 3) {
                 return (
                   <div key={i} className="selectedDate">
-                    <span className="scheduledDateTwo">{curDate}</span>
+                    <span
+                      className={
+                        curDate > 9 ? "scheduledDate" : "scheduledDateShort"
+                      }
+                    >
+                      {curDate}
+                    </span>
                     <p className="scheduledStudent">Sam</p>
                   </div>
                 );
               } else if (curDay === 6) {
                 return (
                   <div key={i} className="selectedDate">
-                    <span className="scheduledDateTwoDark">{curDate}</span>
+                    <span
+                      className={
+                        curDate > 9
+                          ? "scheduledDateDark"
+                          : "scheduledDateDarkShort"
+                      }
+                    >
+                      {curDate}
+                    </span>
                     <p className="scheduledStudentDark">Sungmin</p>
                   </div>
                 );
@@ -95,14 +109,28 @@ const Calendar = ({ students }) => {
               if (curDay === 3) {
                 return (
                   <div key={i} className="selectedDate">
-                    <span className="scheduledDateTwo">{curDate}</span>
+                    <span
+                      className={
+                        curDate > 9 ? "scheduledDate" : "scheduledDateShort"
+                      }
+                    >
+                      {curDate}
+                    </span>
                     <p className="scheduledStudent">Sam</p>
                   </div>
                 );
               } else if (curDay === 6) {
                 return (
                   <div key={i} className="selectedDate">
-                    <span className="scheduledDateTwoDark">{curDate}</span>
+                    <span
+                      className={
+                        curDate > 9
+                          ? "scheduledDateDark"
+                          : "scheduledDateDarkShort"
+                      }
+                    >
+                      {curDate}
+                    </span>
                     <p className="scheduledStudentDark">Sungmin</p>
                   </div>
                 );
