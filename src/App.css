@@ -31,6 +31,7 @@ h3 {
   width: 250px;
   height: 100%;
   background-color: rgb(222, 223, 215);
+  text-align: center;
 }
 
 .switch {
@@ -79,7 +80,7 @@ h3 {
 }
 
 .languageXSelected {
-  color:rgb(133, 130, 130);
+  color: rgb(133, 130, 130);
   padding: 5px;
 }
 
@@ -88,7 +89,7 @@ h3 {
   text-align: center;
   padding: 5px 25px;
   border-radius: 5px;
-  color:rgb(133, 130, 130);
+  color: rgb(133, 130, 130);
   display: flex;
   font-size: 15px;
   align-items: center;
@@ -98,7 +99,7 @@ h3 {
 }
 
 .myCircle {
-  background-color:red;
+  background-color: red;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -110,7 +111,7 @@ h3 {
 }
 
 .circle {
-  background-color:red;
+  background-color: red;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -120,10 +121,6 @@ h3 {
   justify-content: center;
   margin-right: 5px;
 }
-
-
-
-
 
 .learning {
   display: flex;
