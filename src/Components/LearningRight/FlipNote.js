@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../css/Learning.css";
+import "../../scss/Learning.scss";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 

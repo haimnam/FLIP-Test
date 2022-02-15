@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/Learning.css";
+import "../../scss/Learning.scss";
 const HelloHeader = ({ account }) => {
   return <h1>Hello, {account.name}!</h1>;
 };
