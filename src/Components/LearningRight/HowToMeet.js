@@ -1,5 +1,5 @@
 import React from "react";
-import "../Learning.css";
+import "../../css/Learning.css";
 import InfoIcon from "@mui/icons-material/Info";
 
 const HowToMeet = () => {

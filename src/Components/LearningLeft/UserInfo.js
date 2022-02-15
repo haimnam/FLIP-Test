@@ -1,5 +1,5 @@
 import React from "react";
-import "../Learning.css";
+import "../../css/Learning.css";
 import UserInfoData from "./UserInfoData";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";

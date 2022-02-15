@@ -1,6 +1,5 @@
 import React from "react";
-import "../Learning.css";
-
+import "../../css/Learning.css";
 const HelloHeader = ({ account }) => {
   return <h1>Hello, {account.name}!</h1>;
 };

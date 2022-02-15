@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../css/App.css";
 import HowToMeet from "./LearningRight/HowToMeet";
 import Recommendation from "./LearningRight/Recommendation";
 import FlipNote from "./LearningRight/FlipNote";
