@@ -9,7 +9,6 @@ const App = () => {
     {
       id: 1,
       name: "Sam",
-      daysLeft: 2,
       language: "Korean - English",
       week: "3/6",
       university: "Seoul National University",
@@ -19,7 +18,6 @@ const App = () => {
     {
       id: 2,
       name: "Sungmin",
-      daysLeft: 5,
       language: "Korean - English",
       week: "5/8",
       university: "The Cooper Union",

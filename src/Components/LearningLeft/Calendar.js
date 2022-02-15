@@ -3,7 +3,7 @@ import "../Learning.css";
 import dayjs from "dayjs";
 import range from "lodash-es/range";
 
-const Calendar = ({ students, upcoming }) => {
+const Calendar = ({ students }) => {
   const months = [
     "January",
     "February",
@@ -18,16 +18,23 @@ const Calendar = ({ students, upcoming }) => {
     "December",
   ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
-<<<<<<< HEAD
   const [dayOfThisWeek, setDayObj] = useState(dayjs());
   const thisYear = dayOfThisWeek.year();
   const thisMonth = dayOfThisWeek.month();
   const today = dayOfThisWeek.date();
+  const curDay = dayOfThisWeek.day();
   const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${today + 7}`);
-=======
-  const firstWeekDate = [23, 24, 25, 26, 27, 28, 29];
-  const secondWeekDate = [30, 1, 2, 3, 4, 5, 6];
->>>>>>> c49142e8f61dbe495e394d513b234cc0cdc1399a
+  var upcoming = 0;
+  var daysLeft = 0;
+  if (curDay > 2 && curDay < 6) {
+    upcoming = 1;
+    daysLeft = 5 - curDay;
+  } else {
+    if (curDay == 6) {
+      daysLeft = 3;
+    }
+    daysLeft = 2 - curDay;
+  }
 
   return (
     <div>
@@ -37,8 +44,10 @@ const Calendar = ({ students, upcoming }) => {
         </div>
         <div className="calendarDesc">
           Upcoming meeting with
-          <span className="upcomingStudent">{students[upcoming].name}</span>
-          in {students[upcoming].daysLeft} days
+          <span className={upcoming ? "upcomingStudent2" : "upcomingStudent1"}>
+            {students[upcoming].name}
+          </span>
+          in {daysLeft} days
         </div>
       </div>
       <div className="calendar">

@@ -45,8 +45,17 @@
   display: flex;
 }
 
-.upcomingStudent {
+.upcomingStudent1 {
   background-color: rgb(174, 174, 253);
+  border-radius: 5px;
+  margin: 0px 3px;
+  padding: 0px 2px;
+  color: white;
+  font-weight: bold;
+}
+
+.upcomingStudent2 {
+  background-color: rgb(102, 102, 209);
   border-radius: 5px;
   margin: 0px 3px;
   padding: 0px 2px;
