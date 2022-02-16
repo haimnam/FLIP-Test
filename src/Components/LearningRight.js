@@ -1,12 +1,12 @@
 import React from "react";
-import "../scss/App.scss";
+import styles from "../scss/App.module.scss";
 import HowToMeet from "./LearningRight/HowToMeet";
 import Recommendation from "./LearningRight/Recommendation";
 import FlipNote from "./LearningRight/FlipNote";
 
 const LearningRight = ({ recommendation }) => {
   return (
-    <div className="learningRight">
+    <div className={styles.learningRight}>
       <HowToMeet />
       <Recommendation recommendation={recommendation} />
       <FlipNote />

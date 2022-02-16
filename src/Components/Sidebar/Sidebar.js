@@ -1,31 +1,36 @@
 import React, { useState } from "react";
+import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData";
 
 const Sidebar = ({ account }) => {
   const [language, setLanguage] = useState(false);
   return (
-    <div className="sidebar">
+    <div className={styles.sidebar}>
       <h2>FLIP</h2>
-      <a className="switch" href="#">
+      <a className={styles.switch} href="#">
         switch to FLIP Class
       </a>
-      <ul className="sidebarList">
+      <ul className={styles.sidebarList}>
         {SidebarData.map((val, key) => {
           return (
             <li
-              className="row"
+              className={styles.row}
               key={key}
               onClick={() => {
                 window.location.pathname = val.link;
               }}
             >
-              <div className="icon">{val.icon}</div>
-              <div className="title">{val.title}</div>
+              <div className={styles.icon}>{val.icon}</div>
+              <div className={styles.title}>{val.title}</div>
             </li>
           );
         })}
-        <div className="language">
-          <div className={language ? "languageSelected" : "languageXSelected"}>
+        <div className={styles.language}>
+          <div
+            className={
+              language ? styles.languageSelected : styles.languageXSelected
+            }
+          >
             <div
               onClick={() => {
                 setLanguage(true);
@@ -34,7 +39,11 @@ const Sidebar = ({ account }) => {
               Kor
             </div>
           </div>
-          <div className={language ? "languageXSelected" : "languageSelected"}>
+          <div
+            className={
+              language ? styles.languageXSelected : styles.languageSelected
+            }
+          >
             <div
               onClick={() => {
                 setLanguage(false);
@@ -44,8 +53,8 @@ const Sidebar = ({ account }) => {
             </div>
           </div>
         </div>
-        <div className="account">
-          <div className="myCircle">{account.initial}</div>
+        <div className={styles.account}>
+          <div className={styles.myCircle}>{account.initial}</div>
           <div>{account.name}</div>
         </div>
       </ul>

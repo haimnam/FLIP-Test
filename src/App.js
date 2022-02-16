@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./scss/App.scss";
+import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Learning from "./Components/Learning";
 
@@ -36,7 +36,7 @@ const App = () => {
   });
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Sidebar account={account} />
       <Learning
         account={account}

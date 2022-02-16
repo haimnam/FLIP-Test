@@ -1,5 +1,5 @@
 import React from "react";
-import "../../scss/Learning.scss";
+import styles from "../../scss/Learning.module.scss";
 import dayjs from "dayjs";
 import range from "lodash-es/range";
 
@@ -25,103 +25,113 @@ const Calendar = ({ students }) => {
 
   return (
     <div>
-      <div className="calendarHeader">
-        <div className="calendarMonth">{dayjs().format("MMMM YYYY")}</div>
-        <div className="calendarDesc">
+      <div className={styles.calendarHeader}>
+        <div className={styles.calendarMonth}>
+          {dayjs().format("MMMM YYYY")}
+        </div>
+        <div className={styles.calendarDesc}>
           Upcoming meeting with
-          <span className={upcoming ? "upcomingStudent2" : "upcomingStudent1"}>
+          <span
+            className={
+              upcoming ? styles.upcomingStudent2 : styles.upcomingStudent1
+            }
+          >
             {students[upcoming].name}
           </span>
           in {daysLeft} days
         </div>
       </div>
-      <div className="calendar">
-        <div className="calendarHead">
+      <div className={styles.calendar}>
+        <div className={styles.calendarHead}>
           {days.map((day, index) => {
             return (
-              <div key={index} className="date">
+              <div key={index} className={styles.date}>
                 {day}
               </div>
             );
           })}
         </div>
         <div>
-          <div className="calendarBody">
+          <div className={styles.calendarBody}>
             {range(7).map((i) => {
               let curDay = dayOfThisWeek.add(i - todayDay + 1, "day").day();
               let curDate = dayOfThisWeek.add(i - todayDay + 1, "day").date();
               if (curDay === 3) {
                 return (
-                  <div key={i} className="selectedDate">
+                  <div key={i} className={styles.selectedDate}>
                     <span
                       className={
-                        curDate > 9 ? "scheduledDate" : "scheduledDateShort"
+                        curDate > 9
+                          ? styles.scheduledDate
+                          : styles.scheduledDateShort
                       }
                     >
                       {curDate}
                     </span>
-                    <p className="scheduledStudent">Sam</p>
+                    <p className={styles.scheduledStudent}>Sam</p>
                   </div>
                 );
               } else if (curDay === 6) {
                 return (
-                  <div key={i} className="selectedDate">
+                  <div key={i} className={styles.selectedDate}>
                     <span
                       className={
                         curDate > 9
-                          ? "scheduledDateDark"
-                          : "scheduledDateDarkShort"
+                          ? styles.scheduledDateDark
+                          : styles.scheduledDateDarkShort
                       }
                     >
                       {curDate}
                     </span>
-                    <p className="scheduledStudentDark">Sungmin</p>
+                    <p className={styles.scheduledStudentDark}>Sungmin</p>
                   </div>
                 );
               } else {
                 return (
-                  <div key={i} className="date">
+                  <div key={i} className={styles.date}>
                     {curDate}
                   </div>
                 );
               }
             })}
           </div>
-          <div className="calendarBody">
+          <div className={styles.calendarBody}>
             {range(7).map((i) => {
               let curDay = dayOfNextWeek.add(i - todayDay + 1, "day").day();
               let curDate = dayOfNextWeek.add(i - todayDay + 1, "day").date();
               if (curDay === 3) {
                 return (
-                  <div key={i} className="selectedDate">
+                  <div key={i} className={styles.selectedDate}>
                     <span
                       className={
-                        curDate > 9 ? "scheduledDate" : "scheduledDateShort"
+                        curDate > 9
+                          ? styles.scheduledDate
+                          : styles.scheduledDateShort
                       }
                     >
                       {curDate}
                     </span>
-                    <p className="scheduledStudent">Sam</p>
+                    <p className={styles.scheduledStudent}>Sam</p>
                   </div>
                 );
               } else if (curDay === 6) {
                 return (
-                  <div key={i} className="selectedDate">
+                  <div key={i} className={styles.selectedDate}>
                     <span
                       className={
                         curDate > 9
-                          ? "scheduledDateDark"
-                          : "scheduledDateDarkShort"
+                          ? styles.scheduledDateDark
+                          : styles.scheduledDateDarkShort
                       }
                     >
                       {curDate}
                     </span>
-                    <p className="scheduledStudentDark">Sungmin</p>
+                    <p className={styles.scheduledStudentDark}>Sungmin</p>
                   </div>
                 );
               } else {
                 return (
-                  <div key={i} className="date">
+                  <div key={i} className={styles.date}>
                     {curDate}
                   </div>
                 );
