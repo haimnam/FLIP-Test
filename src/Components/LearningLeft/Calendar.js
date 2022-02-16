@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Learning.css";
+import "../../scss/Learning.scss";
 import dayjs from "dayjs";
 import range from "lodash-es/range";
 

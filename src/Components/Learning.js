@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../scss/App.scss";
 import LearningLeft from "./LearningLeft";
 import LearningRight from "./LearningRight";
 

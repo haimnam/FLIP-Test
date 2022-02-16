@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../scss/App.scss";
 import HelloHeader from "./LearningLeft/HelloHeader";
 import Calendar from "./LearningLeft/Calendar";
 import UserInfo from "./LearningLeft/UserInfo";

@@ -37,33 +37,33 @@ h3 {
 .switch {
   font-weight: bold;
   font-size: 12px;
-}
 
-.switch:link {
-  text-align: center;
-  color: rgb(133, 130, 130);
+  &:link {
+    text-align: center;
+    color: rgb(133, 130, 130);
+  }
 }
 
 .sidebarList {
   height: 100%;
   padding: 0;
-}
 
-.sidebarList .row {
-  height: 50px;
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-}
+  .row {
+    height: 50px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
 
-.sidebarList .row:hover {
-  cursor: pointer;
-  background-color: rgb(208, 209, 198);
-}
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(208, 209, 198);
+    }
 
-.sidebarList .row .icon {
-  margin-left: 40px;
-  margin-right: 5px;
+    .icon {
+      margin-left: 40px;
+      margin-right: 5px;
+    }
+  }
 }
 
 .language {
@@ -127,11 +127,7 @@ h3 {
   padding: 50px;
 }
 
-.learningLeft {
-  width: 500px;
-  height: 100%;
-}
-
+.learningLeft,
 .learningRight {
   width: 500px;
   height: 100%;

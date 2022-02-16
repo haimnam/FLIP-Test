@@ -3,11 +3,7 @@
   padding: 50px;
 }
 
-.learningLeft {
-  width: 500px;
-  height: 100%;
-}
-
+.learningLeft,
 .learningRight {
   width: 500px;
   height: 100%;
@@ -36,13 +32,15 @@
   padding-top: 4px;
 }
 
-.calendar .calendarHead {
-  font-weight: bold;
-  display: flex;
-}
+.calendar {
+  .calendarHead {
+    font-weight: bold;
+    display: flex;
+  }
 
-.calendar .calendarBody {
-  display: flex;
+  .calendarBody {
+    display: flex;
+  }
 }
 
 .upcomingStudent1 {
@@ -121,16 +119,16 @@
 
 .userInfos {
   display: flex;
-}
 
-.userInfos .userInfo {
-  background-color: white;
-  margin-right: 20px;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 12px;
-  width: 180px;
-  box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  .userInfo {
+    background-color: white;
+    margin-right: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 12px;
+    width: 180px;
+    box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  }
 }
 
 .userInfoHead {
