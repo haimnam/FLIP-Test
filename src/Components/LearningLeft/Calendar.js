@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../scss/Learning.scss";
 import dayjs from "dayjs";
 import range from "lodash-es/range";
@@ -18,7 +18,7 @@ const Calendar = ({ students }) => {
     "December",
   ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
-  const [dayOfThisWeek, setDayObj] = useState(dayjs());
+  const dayOfThisWeek = dayjs();
   const thisYear = dayOfThisWeek.year();
   const thisMonth = dayOfThisWeek.month();
   const todayDate = dayOfThisWeek.date();
