@@ -1,13 +1,18 @@
 import React from "react";
 import "../../scss/Learning.scss";
-import UserInfoData from "./UserInfoData";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 
 const UserInfo = ({ students }) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+
   return (
     <div className="userInfos">
-      {UserInfoData((students = { students })).map((val) => {
+      {students.map((val) => {
         return (
           <div key={val.id} className="userInfo">
             <div className="userInfoHead">
@@ -18,7 +23,7 @@ const UserInfo = ({ students }) => {
             <p className="university">{val.university}</p>
             <p className="localTimeDiff">{val.localTime}</p>
             <p className="curTime">
-              {val.curHours}:{val.curMinutes} {val.curAMPM}
+              {dayjs().tz(val.timeZone).format("h:mm a")}
             </p>
             <div className="chatInfo">
               <ChatBubbleOutlineIcon />

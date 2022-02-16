@@ -4,19 +4,6 @@ import dayjs from "dayjs";
 import range from "lodash-es/range";
 
 const Calendar = ({ students }) => {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "October",
-    "November",
-    "December",
-  ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const dayOfThisWeek = dayjs();
   const thisYear = dayOfThisWeek.year();
@@ -39,9 +26,7 @@ const Calendar = ({ students }) => {
   return (
     <div>
       <div className="calendarHeader">
-        <div className="calendarMonth">
-          {months[thisMonth]} {thisYear}
-        </div>
+        <div className="calendarMonth">{dayjs().format("MMMM YYYY")}</div>
         <div className="calendarDesc">
           Upcoming meeting with
           <span className={upcoming ? "upcomingStudent2" : "upcomingStudent1"}>
