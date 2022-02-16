@@ -21,19 +21,19 @@ const Calendar = ({ students }) => {
   const [dayOfThisWeek, setDayObj] = useState(dayjs());
   const thisYear = dayOfThisWeek.year();
   const thisMonth = dayOfThisWeek.month();
-  const today = dayOfThisWeek.date();
-  const curDay = dayOfThisWeek.day();
-  const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${today + 7}`);
+  const todayDate = dayOfThisWeek.date();
+  const todayDay = dayOfThisWeek.day();
+  const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${todayDate + 7}`);
   var upcoming = 0;
   var daysLeft = 0;
-  if (curDay > 2 && curDay < 6) {
+  if (todayDay > 2 && todayDay < 6) {
     upcoming = 1;
-    daysLeft = 5 - curDay;
+    daysLeft = 6 - todayDay;
   } else {
-    if (curDay == 6) {
-      daysLeft = 3;
+    if (todayDay > 5) {
+      daysLeft = 10 - todayDay;
     }
-    daysLeft = 2 - curDay;
+    daysLeft = 3 - todayDay;
   }
 
   return (
@@ -63,8 +63,8 @@ const Calendar = ({ students }) => {
         <div>
           <div className="calendarBody">
             {range(7).map((i) => {
-              let curDay = dayOfThisWeek.add(i, "day").day();
-              let curDate = dayOfThisWeek.add(i, "day").date();
+              let curDay = dayOfThisWeek.add(i - todayDay + 1, "day").day();
+              let curDate = dayOfThisWeek.add(i - todayDay + 1, "day").date();
               if (curDay === 3) {
                 return (
                   <div key={i} className="selectedDate">
@@ -104,8 +104,8 @@ const Calendar = ({ students }) => {
           </div>
           <div className="calendarBody">
             {range(7).map((i) => {
-              let curDay = dayOfNextWeek.add(i, "day").day();
-              let curDate = dayOfNextWeek.add(i, "day").date();
+              let curDay = dayOfNextWeek.add(i - todayDay + 1, "day").day();
+              let curDate = dayOfNextWeek.add(i - todayDay + 1, "day").date();
               if (curDay === 3) {
                 return (
                   <div key={i} className="selectedDate">
