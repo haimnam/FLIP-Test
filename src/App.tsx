@@ -5,7 +5,8 @@ import Learning from "./Components/Learning.tsx";
 
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
-  const [students, setStudents] = useState([
+  type studentsType = {id: number; name: string; language: string; week: string; university: string; localTime: string, timeZone: string, schedule: string};
+  const [students, setStudents] = useState<studentsType[]>([
     {
       id: 1,
       name: "Sam",

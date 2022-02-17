@@ -4,8 +4,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const FlipNote = () => {
-  const [language, setLanguage] = useState("English");
-  const [noteLanguage, setNoteLanguage] = useState(false);
+  const [language, setLanguage] = useState<string>("English");
+  const [noteLanguage, setNoteLanguage] = useState<boolean>(false);
   const notes = [
     { name: "OS", english: "clueless", korean: "...을 할 줄 모르는" },
     { name: "SJ", english: "obviously", korean: "분명히" },
@@ -31,6 +31,7 @@ const FlipNote = () => {
     },
     { name: "ML", english: "excuse me", korean: "실례합니다" },
   ];
+
   return (
     <div>
       <div className={styles.flipNote}>

@@ -3,7 +3,8 @@ import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
 
 const Sidebar = ({ account }) => {
-  const [language, setLanguage] = useState(false);
+  const [language, setLanguage] = useState<boolean>(false);
+  
   return (
     <div className={styles.sidebar}>
       <h2>FLIP</h2>
