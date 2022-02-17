@@ -305,3 +305,15 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.circle {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  margin-right: 5px;
+}

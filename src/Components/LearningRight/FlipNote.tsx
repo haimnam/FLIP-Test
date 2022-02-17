@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../scss/Learning.scss";
+import styles from "../../scss/Learning.module.scss";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
@@ -33,13 +33,13 @@ const FlipNote = () => {
   ];
   return (
     <div>
-      <div className="flipNote">
+      <div className={styles.flipNote}>
         <div>
           <h3>This Week's FLIP notes</h3>
         </div>
-        <div className="languageSelect">
+        <div className={styles.languageSelect}>
           <div
-            className="arrowCircle"
+            className={styles.arrowCircle}
             onClick={() => {
               setLanguage("Korean");
               setNoteLanguage(true);
@@ -49,7 +49,7 @@ const FlipNote = () => {
           </div>
           {language}
           <div
-            className="arrowCircle"
+            className={styles.arrowCircle}
             onClick={() => {
               setLanguage("English");
               setNoteLanguage(false);
@@ -59,14 +59,14 @@ const FlipNote = () => {
           </div>
         </div>
       </div>
-      <p className="greyContents">
+      <p className={styles.greyContents}>
         Check out what other people are learning in their langauge exchange!
       </p>
-      <div className="itemsContainer">
+      <div className={styles.itemsContainer}>
         {notes.map((val, index) => {
           return (
-            <div key={index} className="item">
-              <div className="circle">{val.name}</div>{" "}
+            <div key={index} className={styles.item}>
+              <div className={styles.circle}>{val.name}</div>{" "}
               {noteLanguage ? val.korean : val.english}
             </div>
           );

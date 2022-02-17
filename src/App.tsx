@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./scss/App.scss";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Learning from "./Components/Learning";
+import styles from "./scss/App.module.scss";
+import Sidebar from "./Components/Sidebar/Sidebar.tsx";
+import Learning from "./Components/Learning.tsx";
 
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
@@ -13,6 +13,7 @@ const App = () => {
       week: "3/6",
       university: "Seoul National University",
       localTime: "Seoul +17hrs",
+      timeZone: "Asia/Seoul",
       schedule: ["Wednesday 11:00pm", "Thursday 4:00am"],
     },
     {
@@ -22,6 +23,7 @@ const App = () => {
       week: "5/8",
       university: "The Cooper Union",
       localTime: "New York +3hrs",
+      timeZone: "America/New_York",
       schedule: ["Saturday 9:00am", "Saturday 12:00pm"],
     },
   ]);
@@ -34,7 +36,7 @@ const App = () => {
   });
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Sidebar account={account} />
       <Learning
         account={account}

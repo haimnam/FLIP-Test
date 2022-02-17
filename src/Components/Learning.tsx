@@ -1,11 +1,11 @@
 import React from "react";
-import "../scss/App.scss";
-import LearningLeft from "./LearningLeft";
-import LearningRight from "./LearningRight";
+import styles from "../scss/App.module.scss";
+import LearningLeft from "./LearningLeft.tsx";
+import LearningRight from "./LearningRight.tsx";
 
 const Learning = ({ account, students, recommendation }) => {
   return (
-    <div className="learning">
+    <div className={styles.learning}>
       <LearningLeft account={account} students={students} />
       <LearningRight recommendation={recommendation} />
     </div>
