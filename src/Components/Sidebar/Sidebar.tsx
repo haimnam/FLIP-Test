@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../scss/App.module.scss";
-import { SidebarData } from "./SidebarData";
+import { SidebarData } from "./SidebarData.tsx";
 
 const Sidebar = ({ account }) => {
   const [language, setLanguage] = useState(false);

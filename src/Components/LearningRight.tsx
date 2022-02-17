@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../scss/App.module.scss";
-import HowToMeet from "./LearningRight/HowToMeet";
-import Recommendation from "./LearningRight/Recommendation";
-import FlipNote from "./LearningRight/FlipNote";
+import HowToMeet from "./LearningRight/HowToMeet.tsx";
+import Recommendation from "./LearningRight/Recommendation.tsx";
+import FlipNote from "./LearningRight/FlipNote.tsx";
 
 const LearningRight = ({ recommendation }) => {
   return (

@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../scss/App.module.scss";
-import HelloHeader from "./LearningLeft/HelloHeader";
-import Calendar from "./LearningLeft/Calendar";
-import UserInfo from "./LearningLeft/UserInfo";
+import HelloHeader from "./LearningLeft/HelloHeader.tsx";
+import Calendar from "./LearningLeft/Calendar.tsx";
+import UserInfo from "./LearningLeft/UserInfo.tsx";
 
 const LearningLeft = ({ account, students }) => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./scss/App.module.scss";
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Learning from "./Components/Learning";
+import Sidebar from "./Components/Sidebar/Sidebar.tsx";
+import Learning from "./Components/Learning.tsx";
 
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
