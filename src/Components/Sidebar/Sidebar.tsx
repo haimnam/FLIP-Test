@@ -12,17 +12,17 @@ const Sidebar = ({ account }) => {
         switch to FLIP Class
       </a>
       <ul className={styles.sidebarList}>
-        {SidebarData.map((val, key) => {
+        {SidebarData.map((data, key) => {
           return (
             <li
               className={styles.row}
               key={key}
               onClick={() => {
-                window.location.pathname = val.link;
+                window.location.pathname = data.link;
               }}
             >
-              <div className={styles.icon}>{val.icon}</div>
-              <div className={styles.title}>{val.title}</div>
+              <div className={styles.icon}>{data.icon}</div>
+              <div className={styles.title}>{data.title}</div>
             </li>
           );
         })}
