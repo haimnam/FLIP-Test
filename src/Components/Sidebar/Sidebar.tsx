@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
 
@@ -6,60 +7,61 @@ const Sidebar = ({ account }) => {
   const [language, setLanguage] = useState<boolean>(false);
   
   return (
-    <div className={styles.sidebar}>
-      <h2>FLIP</h2>
-      <a className={styles.switch} href="#">
-        switch to FLIP Class
-      </a>
-      <ul className={styles.sidebarList}>
-        {SidebarData.map((data, key) => {
-          return (
-            <li
-              className={styles.row}
-              key={key}
-              onClick={() => {
-                window.location.pathname = data.link;
-              }}
-            >
-              <div className={styles.icon}>{data.icon}</div>
-              <div className={styles.title}>{data.title}</div>
-            </li>
-          );
-        })}
-        <div className={styles.language}>
-          <div
-            className={
-              language ? styles.languageSelected : styles.languageXSelected
-            }
-          >
+    <BrowserRouter>
+      <div className={styles.sidebar}>
+        <h2>FLIP</h2>
+        <Link className={styles.switch} to="/">
+          switch to FLIP Class
+        </Link>
+        <ul className={styles.sidebarList}>
+          {SidebarData.map((sidebar, key) => {
+            return (
+              <Link
+                className={styles.row}
+                key={key}
+                to={sidebar.link}
+              >
+                <div className={styles.icon}>{sidebar.icon}</div>
+                <div className={styles.title}>{sidebar.title}</div>
+              </Link>
+            );
+          })}
+          <div className={styles.language}>
             <div
-              onClick={() => {
-                setLanguage(true);
-              }}
+              className={
+                language ? styles.languageSelected : styles.languageXSelected
+              }
             >
-              Kor
+              <div
+                onClick={() => {
+                  setLanguage(true);
+                }}
+              >
+                Kor
+              </div>
+            </div>
+            <div
+              className={
+                language ? styles.languageXSelected : styles.languageSelected
+              }
+            >
+              <div
+                onClick={() => {
+                  setLanguage(false);
+                }}
+              >
+                Eng
+              </div>
             </div>
           </div>
-          <div
-            className={
-              language ? styles.languageXSelected : styles.languageSelected
-            }
-          >
-            <div
-              onClick={() => {
-                setLanguage(false);
-              }}
-            >
-              Eng
-            </div>
+          <div className={styles.account}>
+            <div className={styles.myCircle}>{account.initial}</div>
+            <div>{account.name}</div>
           </div>
-        </div>
-        <div className={styles.account}>
-          <div className={styles.myCircle}>{account.initial}</div>
-          <div>{account.name}</div>
-        </div>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    </BrowserRouter>
+    
   );
 };
 
