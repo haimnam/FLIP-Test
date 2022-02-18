@@ -11,8 +11,8 @@ const Calendar = ({ students }) => {
   const todayDate = dayOfThisWeek.date();
   const todayDay = dayOfThisWeek.day();
   const dayOfNextWeek = dayjs(`${thisYear}-${thisMonth + 1}-${todayDate + 7}`);
-  let upcoming : number = 0;
-  let daysLeft : number = 0;
+  let upcoming = 0;
+  let daysLeft = 0;
   if (todayDay > 2 && todayDay < 6) {
     upcoming = 1;
     daysLeft = 6 - todayDay;

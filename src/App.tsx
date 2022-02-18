@@ -3,10 +3,11 @@ import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar/Sidebar.tsx";
 import Learning from "./Components/Learning.tsx";
 
+type StudentsType = {id: number; name: string; language: string; week: string; university: string; localTime: string, timeZone: string, schedule: string};
+
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
-  type studentsType = {id: number; name: string; language: string; week: string; university: string; localTime: string, timeZone: string, schedule: string};
-  const [students, setStudents] = useState<studentsType[]>([
+  const [students, setStudents] = useState<StudentsType[]>([
     {
       id: 1,
       name: "Sam",
