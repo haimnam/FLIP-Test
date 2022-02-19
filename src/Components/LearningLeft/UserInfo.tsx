@@ -12,18 +12,18 @@ const UserInfo = ({ students }) => {
 
   return (
     <div className={styles.userInfos}>
-      {students.map((val) => {
+      {students.map((student) => {
         return (
-          <div key={val.id} className={styles.userInfo}>
+          <div key={student.id} className={styles.userInfo}>
             <div className={styles.userInfoHead}>
-              <div className={styles.languageInfo}>{val.language}</div>
-              <div className={styles.weekInfo}>week {val.week}</div>
+              <div className={styles.languageInfo}>{student.language}</div>
+              <div className={styles.weekInfo}>week {student.week}</div>
             </div>
-            <h3>{val.name}</h3>
-            <p className={styles.university}>{val.university}</p>
-            <p className={styles.localTimeDiff}>{val.localTime}</p>
+            <h3>{student.name}</h3>
+            <p className={styles.university}>{student.university}</p>
+            <p className={styles.localTimeDiff}>{student.localTime}</p>
             <p className={styles.curTime}>
-              {dayjs().tz(val.timeZone).format("h:mm a")}
+              {dayjs().tz(student.timeZone).format("h:mm a")}
             </p>
             <div className={styles.chatInfo}>
               <ChatBubbleOutlineIcon />
@@ -36,8 +36,8 @@ const UserInfo = ({ students }) => {
                   Start Session
                 </span>
               </div>
-              <p className={styles.upcomingSession}>{val.schedule[0]}</p>
-              <p>{val.schedule[1]}</p>
+              <p className={styles.upcomingSession}>{student.schedule[0]}</p>
+              <p>{student.schedule[1]}</p>
             </div>
           </div>
         );

@@ -41,6 +41,7 @@ h3 {
 
   &:link {
     text-align: center;
+    text-decoration: none;
     color: rgb(133, 130, 130);
   }
 }
@@ -51,9 +52,10 @@ h3 {
 
   .row {
     height: 50px;
-    list-style-type: none;
     display: flex;
     align-items: center;
+    color: black;
+    text-decoration: none;
 
     &:hover {
       cursor: pointer;

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar/Sidebar.tsx";
 import Learning from "./Components/Learning.tsx";
+import LanguageContext from "./Store/LanguageContext.tsx";
+
+type StudentsType = {id: number; name: string; language: string; week: string; university: string; localTime: string, timeZone: string, schedule: string};
 
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
-  const [students, setStudents] = useState([
+  const [students, setStudents] = useState<StudentsType[]>([
     {
       id: 1,
       name: "Sam",
@@ -37,12 +40,14 @@ const App = () => {
 
   return (
     <div className={styles.App}>
-      <Sidebar account={account} />
-      <Learning
-        account={account}
-        students={students}
-        recommendation={recommendation}
-      />
+      <LanguageContext>
+        <Sidebar account={account} />
+        <Learning
+          account={account}
+          students={students}
+          recommendation={recommendation}
+        />
+      </LanguageContext>
     </div>
   );
 };
