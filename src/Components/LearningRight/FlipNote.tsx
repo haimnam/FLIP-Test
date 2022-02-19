@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styles from "../../scss/Learning.module.scss";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -9,8 +9,8 @@ const FlipNote = () => {
   const {noteLanguage, clickLeft, clickRight} = useContext(NoteContext);
 
   function setLanguage(note, lan: string) {
-    if (lan == "Korean") { return note.ko }
-    else if (lan == "English") { return note.en }
+    if (lan === "Korean") { return note.ko }
+    else if (lan === "English") { return note.en }
   }
 
   return (

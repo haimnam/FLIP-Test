@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
+import { LanguageSettingContext } from "../../Store/LanguageContext.tsx";
 
 const Sidebar = ({ account }) => {
-  const [language, setLanguage] = useState<boolean>(false);
+  const {lan, selectKo, selectEn} = useContext(LanguageSettingContext);
+
+  function setLanguage(type: number, lan: string) {
+    if (type === 1 && lan === "ko" || type === 2 && lan === "en") { return styles.languageSelected; }
+    else if (type === 1 && lan === "en" || type === 2 && lan === "ko") { return styles.languageXSelected; }
+  }
   
   return (
     <BrowserRouter>
@@ -29,29 +35,23 @@ const Sidebar = ({ account }) => {
           <div className={styles.language}>
             <div
               className={
-                language ? styles.languageSelected : styles.languageXSelected
+                setLanguage(1, lan)
               }
+              onClick={() => {
+                selectKo();
+              }}
             >
-              <div
-                onClick={() => {
-                  setLanguage(true);
-                }}
-              >
-                Kor
-              </div>
+              Kor
             </div>
             <div
               className={
-                language ? styles.languageXSelected : styles.languageSelected
+                setLanguage(2, lan)
               }
+              onClick={() => {
+                selectEn();
+              }}
             >
-              <div
-                onClick={() => {
-                  setLanguage(false);
-                }}
-              >
-                Eng
-              </div>
+              Eng
             </div>
           </div>
           <div className={styles.account}>
@@ -61,7 +61,6 @@ const Sidebar = ({ account }) => {
         </ul>
       </div>
     </BrowserRouter>
-    
   );
 };
 
