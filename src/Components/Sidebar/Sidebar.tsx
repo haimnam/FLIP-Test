@@ -1,66 +1,64 @@
-import React, { useContext } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import React, { useState } from "react";
 import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
-import { LanguageSettingContext } from "../../Store/LanguageContext.tsx";
 
 const Sidebar = ({ account }) => {
-  const {lan, selectKo, selectEn} = useContext(LanguageSettingContext);
-
-  function setLanguage(type: number, lan: string) {
-    if (type === 1 && lan === "ko" || type === 2 && lan === "en") { return styles.languageSelected; }
-    else if (type === 1 && lan === "en" || type === 2 && lan === "ko") { return styles.languageXSelected; }
-  }
-  
+  const [language, setLanguage] = useState(false);
   return (
-    <BrowserRouter>
-      <div className={styles.sidebar}>
-        <h2>FLIP</h2>
-        <Link className={styles.switch} to="/">
-          switch to FLIP Class
-        </Link>
-        <ul className={styles.sidebarList}>
-          {SidebarData.map((sidebar, key) => {
-            return (
-              <Link
-                className={styles.row}
-                key={key}
-                to={sidebar.link}
-              >
-                <div className={styles.icon}>{sidebar.icon}</div>
-                <div className={styles.title}>{sidebar.title}</div>
-              </Link>
-            );
-          })}
-          <div className={styles.language}>
-            <div
-              className={
-                setLanguage(1, lan)
-              }
+    <div className={styles.sidebar}>
+      <h2>FLIP</h2>
+      <a className={styles.switch} href="#">
+        switch to FLIP Class
+      </a>
+      <ul className={styles.sidebarList}>
+        {SidebarData.map((val, key) => {
+          return (
+            <li
+              className={styles.row}
+              key={key}
               onClick={() => {
-                selectKo();
+                window.location.pathname = val.link;
+              }}
+            >
+              <div className={styles.icon}>{val.icon}</div>
+              <div className={styles.title}>{val.title}</div>
+            </li>
+          );
+        })}
+        <div className={styles.language}>
+          <div
+            className={
+              language ? styles.languageSelected : styles.languageXSelected
+            }
+          >
+            <div
+              onClick={() => {
+                setLanguage(true);
               }}
             >
               Kor
             </div>
+          </div>
+          <div
+            className={
+              language ? styles.languageXSelected : styles.languageSelected
+            }
+          >
             <div
-              className={
-                setLanguage(2, lan)
-              }
               onClick={() => {
-                selectEn();
+                setLanguage(false);
               }}
             >
               Eng
             </div>
           </div>
-          <div className={styles.account}>
-            <div className={styles.myCircle}>{account.initial}</div>
-            <div>{account.name}</div>
-          </div>
-        </ul>
-      </div>
-    </BrowserRouter>
+        </div>
+        <div className={styles.account}>
+          <div className={styles.myCircle}>{account.initial}</div>
+          <div>{account.name}</div>
+        </div>
+      </ul>
+    </div>
   );
 };
 
