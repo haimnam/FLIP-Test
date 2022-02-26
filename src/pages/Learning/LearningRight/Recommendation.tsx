@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/Learning.module.scss";
+import styles from "../../../scss/Learning.module.scss";
 
 const Recommendation = ({ recommendation }) => {
   return (

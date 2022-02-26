@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/Learning.module.scss";
+import styles from "../../../scss/Learning.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";

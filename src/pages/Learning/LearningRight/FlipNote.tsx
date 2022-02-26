@@ -1,9 +1,13 @@
 import React from "react";
-import styles from "../../scss/Learning.module.scss";
+import styles from "../../../scss/Learning.module.scss";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FlipNoteData } from "./FlipNoteData.tsx";
-import { useNoteLang, useClickLeft, useClickRight } from "../../Store/FlipNoteContext.tsx";
+import {
+  useNoteLang,
+  useClickLeft,
+  useClickRight,
+} from "../../../Store/FlipNoteContext.tsx";
 
 const FlipNote = () => {
   let noteLang = useNoteLang();
@@ -15,17 +19,11 @@ const FlipNote = () => {
           <h3>This Week's FLIP notes</h3>
         </div>
         <div className={styles.languageSelect}>
-          <div
-            className={styles.arrowCircle}
-            onClick={useClickLeft()}
-          >
+          <div className={styles.arrowCircle} onClick={useClickLeft()}>
             <ChevronLeftIcon />
           </div>
           {noteLang === "ko" ? "Korean" : "English"}
-          <div
-            className={styles.arrowCircle}
-            onClick={useClickRight()}
-          >
+          <div className={styles.arrowCircle} onClick={useClickRight()}>
             <ChevronRightIcon />
           </div>
         </div>
@@ -37,8 +35,7 @@ const FlipNote = () => {
         {FlipNoteData.map((note, index) => {
           return (
             <div key={index} className={styles.item}>
-              <div className={styles.circle}>{note.name}</div>{" "}
-              {note[noteLang]}
+              <div className={styles.circle}>{note.name}</div> {note[noteLang]}
             </div>
           );
         })}
