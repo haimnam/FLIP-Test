@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import styles from "../../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
-import { LanguageSettingContext } from "../../Store/LanguageContext.tsx";
+import { useLang, useSelectKo, useSelectEn } from "../../Store/LanguageContext.tsx";
 
 const Sidebar = ({ account }) => {
-  const {lan, selectKo, selectEn} = useContext(LanguageSettingContext);
+  let lang = useLang();
 
-  function setLanguage(type: number, lan: string) {
-    if (type === 1 && lan === "ko" || type === 2 && lan === "en") { return styles.languageSelected; }
-    else if (type === 1 && lan === "en" || type === 2 && lan === "ko") { return styles.languageXSelected; }
+  const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
+    if (lan === lang) { return styles.languageSelected; }
+    else { return styles.languages; }
   }
   
   return (
@@ -35,21 +35,17 @@ const Sidebar = ({ account }) => {
           <div className={styles.language}>
             <div
               className={
-                setLanguage(1, lan)
+                setLanguage("ko", lang)
               }
-              onClick={() => {
-                selectKo();
-              }}
+              onClick={useSelectKo()}
             >
               Kor
             </div>
             <div
               className={
-                setLanguage(2, lan)
+                setLanguage("en", lang)
               }
-              onClick={() => {
-                selectEn();
-              }}
+              onClick={useSelectEn()}
             >
               Eng
             </div>

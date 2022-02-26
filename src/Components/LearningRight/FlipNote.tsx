@@ -1,17 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../../scss/Learning.module.scss";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { FlipNoteData } from "./FlipNoteData.tsx";
-import { NoteContext } from "../../Store/FlipNoteContext.tsx";
+import { useNoteLang, useClickLeft, useClickRight } from "../../Store/FlipNoteContext.tsx";
 
 const FlipNote = () => {
-  const {noteLanguage, clickLeft, clickRight} = useContext(NoteContext);
-
-  function setLanguage(note, lan: string) {
-    if (lan === "Korean") { return note.ko }
-    else if (lan === "English") { return note.en }
-  }
+  let noteLang = useNoteLang();
 
   return (
     <div>
@@ -22,18 +17,14 @@ const FlipNote = () => {
         <div className={styles.languageSelect}>
           <div
             className={styles.arrowCircle}
-            onClick={() => {
-              clickLeft();
-            }}
+            onClick={useClickLeft()}
           >
             <ChevronLeftIcon />
           </div>
-          {noteLanguage}
+          {noteLang === "ko" ? "Korean" : "English"}
           <div
             className={styles.arrowCircle}
-            onClick={() => {
-              clickRight();
-            }}
+            onClick={useClickRight()}
           >
             <ChevronRightIcon />
           </div>
@@ -47,7 +38,7 @@ const FlipNote = () => {
           return (
             <div key={index} className={styles.item}>
               <div className={styles.circle}>{note.name}</div>{" "}
-              {setLanguage(note, noteLanguage)}
+              {note[noteLang]}
             </div>
           );
         })}
