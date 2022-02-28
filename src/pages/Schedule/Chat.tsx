@@ -1,5 +1,8 @@
+import { time } from "console";
 import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
+import { PartnerInfoData } from "./PartnerInfoData.tsx";
+import { ChatPartnerData, ChatMyData } from "./ChatData.tsx";
 
 const Chat = () => {
   return (
@@ -7,91 +10,69 @@ const Chat = () => {
       <div className={styles.chatInfo}>
         <div className={styles.partnerInfo}>
           <div className={styles.partnerMain}>
-            <h3>Samuel Jeong</h3>
-            <div>Seoul +14hrs 4:20pm</div>
+            <h3>{PartnerInfoData[0].name}</h3>
+            <div>{PartnerInfoData[0].localTime}</div>
           </div>
           <div className={styles.partnerSub}>
-            <div>Korean</div>
-            <div>sammy98@snu.ac.kr</div>
+            <div>{PartnerInfoData[0].nationality}</div>
+            <div>{PartnerInfoData[0].email}</div>
           </div>
           <div className={styles.partnerUniv}>
-            <div>Seoul National University</div>
-            <div>German Education</div>
+            <div>{PartnerInfoData[0].univ}</div>
+            <div>{PartnerInfoData[0].major}</div>
           </div>
           <div className={styles.partnerTaste}>
-            <div className={styles.partnerTasteItem}>reading</div>
-            <div className={styles.partnerTasteItem}>for</div>
-            <div className={styles.partnerTasteItem}>fun</div>
-            <div className={styles.partnerTasteItemLighter}>interests</div>
-            <div className={styles.partnerTasteItemLighter}>are</div>
-            <div className={styles.partnerTasteItem}>various</div>
-            <div className={styles.partnerTasteItem}>are</div>
-            <div className={styles.partnerTasteItemLighter}>various</div>
-            <div className={styles.partnerTasteItem}>fields</div>
+            {PartnerInfoData[0].taste.map((taste, index) => {
+              return (
+                <div
+                  key={index}
+                  className={
+                    taste.isValid
+                      ? styles.partnerTasteItem
+                      : styles.partnerTasteItemLighter
+                  }
+                >
+                  {taste.taste}
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className={styles.regularMeeting}>
           <div>Regular meetings on</div>
           <div className={styles.meetingContainer}>
-            <div className={styles.meetingItem}>
-              <div>
-                <h3>Tuesday 3:00 pm</h3>
-              </div>
-              <div>Wednesday 5:00 am KST</div>
-            </div>
-            <div className={styles.meetingItem}>
-              <div>
-                <h3>Tuesday 3:00 pm</h3>
-              </div>
-              <div>Wednesday 5:00 am KST</div>
-            </div>
+            {PartnerInfoData[0].meetingTimes.map((time, index) => {
+              return (
+                <div key={index} className={styles.meetingItem}>
+                  <h3>{time.main}</h3>
+                  <div>{time.sub}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
       <div className={styles.chatScreen}>
         <div className={styles.chatContainer}>
-          <div className={styles.chatItem}>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>
-                hello! how are you doing?
+          {ChatPartnerData.map((chat, index) => {
+            return (
+              <div key={index} className={styles.chatItem}>
+                <div className={styles.chatBox}>
+                  <div className={styles.chatMessage}>{chat}</div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className={styles.chatItem}>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>
-                it is really nice to meet you!
+            );
+          })}
+          {ChatMyData.map((chat, index) => {
+            return (
+              <div key={index} className={styles.chatMyItem}>
+                <div className={styles.chatBox}>
+                  <div className={styles.chatMessage}>{chat}</div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className={styles.chatItem}>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>
-                im looking forward to meeting you soon!!
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.chatMyItem}>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>
-                im good, its nice to meet you!
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.chatMyItem}>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>
-                when would you like to meet for our first session?
-              </div>
-              <div className={styles.chatTime}>12/26 3:00 pm</div>
-            </div>
-          </div>
+            );
+          })}
         </div>
-
         <div className={styles.chatInput}>
           <input type="text" placeholder="write message..."></input>
         </div>
