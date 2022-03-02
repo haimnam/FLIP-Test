@@ -3,7 +3,7 @@ import styles from "../../scss/ScheduleAndChat.module.scss";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
-const Updown = ({ width, height }) => {
+const Updown = ({ width, height, setUp, setDown }) => {
   return (
     <div className={styles.upDown}>
       <div style={{ height }}>
@@ -13,6 +13,7 @@ const Updown = ({ width, height }) => {
             overflow: "hidden",
             marginTop: "-50%",
           }}
+          onClick={setUp}
         />
       </div>
       <div style={{ height: height }}>
@@ -22,6 +23,7 @@ const Updown = ({ width, height }) => {
             overflow: "hidden",
             marginTop: "-50%",
           }}
+          onClick={setDown}
         />
       </div>
     </div>
