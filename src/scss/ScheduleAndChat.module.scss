@@ -198,7 +198,7 @@ h3 {
     justify-content: center;
     gap: 5px;
     padding: 5px;
-    margin-top: 10px;
+    margin-top: 5px;
     .converterItemColored {
       border-radius: 10px;
       border: 2px solid black;
@@ -225,7 +225,7 @@ h3 {
         font-size: 20px;
         font-weight: bold;
         padding: 2px;
-        gap: 20px;
+        gap: 5px;
         margin-left: 10px;
         .ampm {
           font-size: 12px;
@@ -238,7 +238,7 @@ h3 {
       .date {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: 3px;
         font-size: 13px;
         font-weight: bold;
         .day {
@@ -261,8 +261,8 @@ h3 {
         align-items: center;
         font-size: 20px;
         font-weight: bold;
-        padding: 2px;
-        gap: 20px;
+        padding: 3px;
+        gap: 5px;
         margin-left: 10px;
         .ampm {
           font-size: 12px;
@@ -275,7 +275,7 @@ h3 {
       .date {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: 3px;
         font-size: 13px;
         font-weight: bold;
         .day {
@@ -285,6 +285,11 @@ h3 {
       }
     }
   }
+}
+
+.upDown {
+  cursor: pointer;
+  color: grey;
 }
 
 .preferredTimes {
