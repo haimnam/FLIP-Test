@@ -153,15 +153,21 @@ h3 {
 
     .chatInput {
       height: 30px;
-      text-align: center;
+      display: flex;
       input {
         width: 95%;
         height: 100%;
-        border-radius: 5px;
+        border-radius: 5px 0px 0px 5px;
         background-color: rgb(248, 243, 233);
         border-style: none;
         padding: 0px 10px;
         font-weight: bold;
+      }
+      .sendIcon {
+        color: orange;
+        border: none;
+        background-color: rgb(248, 243, 233);
+        cursor: pointer;
       }
     }
   }
