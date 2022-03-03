@@ -216,6 +216,8 @@ h3 {
         }
         .now {
           margin-left: auto;
+          cursor: pointer;
+          text-decoration: underline;
         }
       }
       .time {
@@ -296,18 +298,18 @@ h3 {
   height: 350px;
   background-color: white;
   border-radius: 10px;
-  padding: 15px 20px;
+  padding: 20px 20px;
   box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
   .timeTable {
     width: 100%;
     font-weight: bold;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     .tableHead {
       display: flex;
       font-size: 13px;
       align-items: center;
-      padding: 5px;
+      padding: 3px;
       .overlappingTimes {
         width: 45%;
       }
@@ -328,14 +330,26 @@ h3 {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 7px;
-        background-color: rgb(248, 243, 233);
+        border: 2px solid white;
+        padding: 6px;
         border-radius: 10px;
         .overlappingTimes {
           width: 45%;
         }
         .partnerPick {
           width: 15%;
+          .circle {
+            color: white;
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: lightblue;
+            font-size: 12px;
+          }
         }
         .myPick {
           width: 15%;
