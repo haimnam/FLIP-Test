@@ -9,156 +9,54 @@ const Timezone = () => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const [hourUpDown, setHourUpDown] = useState(0);
-  const [minUpDown, setMinUpDown] = useState(0);
-  const [monthUpDown, setMonthUpDown] = useState(0);
-  const [dateUpDown, setDateUpDown] = useState(0);
-
-  const [hourNY, setHourNY] = useState(
-    dayjs().tz("America/New_York").format("hh")
-  );
-  const [minNY, setMinNY] = useState(
-    dayjs().tz("America/New_York").format("mm")
-  );
-  const [ampmNY, setAmpmNY] = useState(
-    dayjs().tz("America/New_York").format("a")
-  );
-  const [monthNY, setMonthNY] = useState(
-    dayjs().tz("America/New_York").format("MM")
-  );
-  const [dateNY, setDateNY] = useState(
-    dayjs().tz("America/New_York").format("DD")
-  );
-  const [dayNY, setDayNY] = useState(
-    dayjs().tz("America/New_York").format("dddd")
-  );
-  const [hourS, setHourS] = useState(dayjs().format("hh"));
-  const [minS, setMinS] = useState(dayjs().format("mm"));
-  const [ampmS, setAmpmS] = useState(dayjs().format("a"));
-  const [monthS, setMonthS] = useState(dayjs().format("MM"));
-  const [dateS, setDateS] = useState(dayjs().format("DD"));
-  const [dayS, setDayS] = useState(dayjs().format("dddd"));
-
-  var nowNY = dayjs().tz("America/New_York");
-  var nowS = dayjs();
+  const [nowNY, setNowNY] = useState(dayjs().tz("America/New_York"));
+  const [nowS, setNowS] = useState(dayjs());
+  let upDownController = [0, 0, 0, 0];
 
   const setNow = () => {
-    setHourUpDown(0);
-    setMinUpDown(0);
-    setMonthUpDown(0);
-    setDateUpDown(0);
-    setHourNY(dayjs().tz("America/New_York").format("hh"));
-    setMinNY(dayjs().tz("America/New_York").format("mm"));
-    setAmpmNY(dayjs().tz("America/New_York").format("a"));
-    setMonthNY(dayjs().tz("America/New_York").format("MM"));
-    setDateNY(dayjs().tz("America/New_York").format("DD"));
-    setDayNY(dayjs().tz("America/New_York").format("dddd"));
-    setHourS(dayjs().format("hh"));
-    setMinS(dayjs().format("mm"));
-    setAmpmS(dayjs().format("a"));
-    setMonthS(dayjs().format("MM"));
-    setDateS(dayjs().format("DD"));
-    setDayS(dayjs().format("dddd"));
+    upDownController.fill(0);
+    setNowNY(dayjs().tz("America/New_York"));
+    setNowS(dayjs());
   };
 
-  const setHour = () => {
-    setHourNY(nowNY.add(hourUpDown, "h").format("hh"));
-    setMinNY(nowNY.add(hourUpDown, "h").format("mm"));
-    setAmpmNY(nowNY.add(hourUpDown, "h").format("a"));
-    setMonthNY(nowNY.add(hourUpDown, "h").format("MM"));
-    setDateNY(nowNY.add(hourUpDown, "h").format("DD"));
-    setDayNY(nowNY.add(hourUpDown, "h").format("dddd"));
-    setHourS(nowS.add(hourUpDown, "h").format("hh"));
-    setMinS(nowS.add(hourUpDown, "h").format("mm"));
-    setAmpmS(nowS.add(hourUpDown, "h").format("a"));
-    setMonthS(nowS.add(hourUpDown, "h").format("MM"));
-    setDateS(nowS.add(hourUpDown, "h").format("DD"));
-    setDayS(nowS.add(hourUpDown, "h").format("dddd"));
+  const setHour = (dir) => {
+    if (dir === "up") {
+      upDownController[0]++;
+    } else {
+      upDownController[0]--;
+    }
+    setNowNY(nowNY.add(upDownController[0], "h"));
+    setNowS(nowS.add(upDownController[0], "h"));
   };
 
-  const setMin = () => {
-    setHourNY(nowNY.add(minUpDown, "m").format("hh"));
-    setMinNY(nowNY.add(minUpDown, "m").format("mm"));
-    setAmpmNY(nowNY.add(minUpDown, "m").format("a"));
-    setMonthNY(nowNY.add(minUpDown, "m").format("MM"));
-    setDateNY(nowNY.add(minUpDown, "m").format("DD"));
-    setDayNY(nowNY.add(minUpDown, "m").format("dddd"));
-    setHourS(nowS.add(minUpDown, "m").format("hh"));
-    setMinS(nowS.add(minUpDown, "m").format("mm"));
-    setAmpmS(nowS.add(minUpDown, "m").format("a"));
-    setMonthS(nowS.add(minUpDown, "m").format("MM"));
-    setDateS(nowS.add(minUpDown, "m").format("DD"));
-    setDayS(nowS.add(minUpDown, "m").format("dddd"));
+  const setMin = (dir) => {
+    if (dir === "up") {
+      upDownController[1]++;
+    } else {
+      upDownController[1]--;
+    }
+    setNowNY(nowNY.add(upDownController[1], "m"));
+    setNowS(nowS.add(upDownController[1], "m"));
   };
 
-  const setMonth = () => {
-    setHourNY(nowNY.add(monthUpDown, "M").format("hh"));
-    setMinNY(nowNY.add(monthUpDown, "M").format("mm"));
-    setAmpmNY(nowNY.add(monthUpDown, "M").format("a"));
-    setMonthNY(nowNY.add(monthUpDown, "M").format("MM"));
-    setDateNY(nowNY.add(monthUpDown, "M").format("DD"));
-    setDayNY(nowNY.add(monthUpDown, "M").format("dddd"));
-    setHourS(nowS.add(monthUpDown, "M").format("hh"));
-    setMinS(nowS.add(monthUpDown, "M").format("mm"));
-    setAmpmS(nowS.add(monthUpDown, "M").format("a"));
-    setMonthS(nowS.add(monthUpDown, "M").format("MM"));
-    setDateS(nowS.add(monthUpDown, "M").format("DD"));
-    setDayS(nowS.add(monthUpDown, "M").format("dddd"));
+  const setMonth = (dir) => {
+    if (dir === "up") {
+      upDownController[2]++;
+    } else {
+      upDownController[2]--;
+    }
+    setNowNY(nowNY.add(upDownController[2], "M"));
+    setNowS(nowS.add(upDownController[2], "M"));
   };
 
-  const setDate = () => {
-    setHourNY(nowNY.add(dateUpDown, "d").format("hh"));
-    setMinNY(nowNY.add(dateUpDown, "d").format("mm"));
-    setAmpmNY(nowNY.add(dateUpDown, "d").format("a"));
-    setMonthNY(nowNY.add(dateUpDown, "d").format("MM"));
-    setDateNY(nowNY.add(dateUpDown, "d").format("DD"));
-    setDayNY(nowNY.add(dateUpDown, "d").format("dddd"));
-    setHourS(nowS.add(dateUpDown, "d").format("hh"));
-    setMinS(nowS.add(dateUpDown, "d").format("mm"));
-    setAmpmS(nowS.add(dateUpDown, "d").format("a"));
-    setMonthS(nowS.add(dateUpDown, "d").format("MM"));
-    setDateS(nowS.add(dateUpDown, "d").format("DD"));
-    setDayS(nowS.add(dateUpDown, "d").format("dddd"));
-  };
-
-  const setHourUp = () => {
-    setHourUpDown(hourUpDown + 1);
-    setHour();
-  };
-
-  const setHourDown = () => {
-    setHourUpDown(hourUpDown - 1);
-    setHour();
-  };
-
-  const setMinUp = () => {
-    setMinUpDown(minUpDown + 1);
-    setMin();
-  };
-
-  const setMinDown = () => {
-    setMinUpDown(minUpDown - 1);
-    setMin();
-  };
-
-  const setMonthUp = () => {
-    setMonthUpDown(monthUpDown + 1);
-    setMonth();
-  };
-
-  const setMonthDown = () => {
-    setMonthUpDown(monthUpDown - 1);
-    setMonth();
-  };
-
-  const setDateUp = () => {
-    setDateUpDown(dateUpDown + 1);
-    setDate();
-  };
-
-  const setDateDown = () => {
-    setDateUpDown(dateUpDown - 1);
-    setDate();
+  const setDate = (dir) => {
+    if (dir === "up") {
+      upDownController[3]++;
+    } else {
+      upDownController[3]--;
+    }
+    setNowNY(nowNY.add(upDownController[3], "D"));
+    setNowS(nowS.add(upDownController[3], "D"));
   };
 
   return (
@@ -173,39 +71,39 @@ const Timezone = () => {
             </div>
           </div>
           <div className={styles.time}>
-            <div>{hourNY}</div>
+            <div>{nowNY.format("hh")}</div>
             <Updown
               width="17px"
               height="15px"
-              setUp={setHourUp}
-              setDown={setHourDown}
+              setUp={() => setHour("up")}
+              setDown={() => setHour("down")}
             />
-            <div>{minNY}</div>
+            <div>{nowNY.format("mm")}</div>
             <Updown
               width="17px"
               height="15px"
-              setUp={setMinUp}
-              setDown={setMinDown}
+              setUp={() => setMin("up")}
+              setDown={() => setMin("down")}
             />
-            <div className={styles.ampm}>{ampmNY}</div>
+            <div className={styles.ampm}>{nowNY.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{monthNY}</div>
+            <div>{nowNY.format("MM")}</div>
             <Updown
               width="15px"
               height="10px"
-              setUp={setMonthUp}
-              setDown={setMonthDown}
+              setUp={() => setMonth("up")}
+              setDown={() => setMonth("down")}
             />
             <div>/</div>
-            <div>{dateNY}</div>
+            <div>{nowNY.format("DD")}</div>
             <Updown
               width="15px"
               height="10px"
-              setUp={setDateUp}
-              setDown={setDateDown}
+              setUp={() => setDate("up")}
+              setDown={() => setDate("down")}
             />
-            <div className={styles.day}>{dayNY}</div>
+            <div className={styles.day}>{nowNY.format("dddd")}</div>
           </div>
         </div>
         <div className={styles.converterItem}>
@@ -213,39 +111,39 @@ const Timezone = () => {
             <div className={styles.cityName}>Seoul +14hrs</div>
           </div>
           <div className={styles.time}>
-            <div>{hourS}</div>
+            <div>{nowS.format("hh")}</div>
             <Updown
               width="17px"
               height="15px"
-              setUp={setHourUp}
-              setDown={setHourDown}
+              setUp={() => setHour("up")}
+              setDown={() => setHour("down")}
             />
-            <div>{minS}</div>
+            <div>{nowS.format("mm")}</div>
             <Updown
               width="17px"
               height="15px"
-              setUp={setMinUp}
-              setDown={setMinDown}
+              setUp={() => setMin("up")}
+              setDown={() => setMin("down")}
             />
-            <div className={styles.ampm}>{ampmS}</div>
+            <div className={styles.ampm}>{nowS.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{monthS}</div>
+            <div>{nowS.format("MM")}</div>
             <Updown
               width="15px"
               height="10px"
-              setUp={setMonthUp}
-              setDown={setMonthDown}
+              setUp={() => setMonth("up")}
+              setDown={() => setMonth("down")}
             />
             <div>/</div>
-            <div>{dateS}</div>
+            <div>{nowS.format("DD")}</div>
             <Updown
               width="15px"
               height="10px"
-              setUp={setDateUp}
-              setDown={setDateDown}
+              setUp={() => setDate("up")}
+              setDown={() => setDate("down")}
             />
-            <div className={styles.day}>{dayS}</div>
+            <div className={styles.day}>{nowS.format("dddd")}</div>
           </div>
         </div>
       </div>
