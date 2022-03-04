@@ -1,5 +1,3 @@
-import React from "react";
-
 export const FlipNoteData = [
   { name: "OS", en: "clueless", ko: "...을 할 줄 모르는" },
   { name: "SJ", en: "obviously", ko: "분명히" },

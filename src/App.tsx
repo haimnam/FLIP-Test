@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import styles from "./scss/App.module.scss";
-import Sidebar from "./Components/Sidebar/Sidebar.tsx";
-import Learning from "./Components/Learning.tsx";
+import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
 
-type StudentsType = {id: number; name: string; language: string; week: string; university: string; localTime: string, timeZone: string, schedule: string};
+type StudentsType = {
+  id: number;
+  name: string;
+  language: string;
+  week: string;
+  university: string;
+  localTime: string;
+  timeZone: string;
+  schedule: string[];
+};
 
 const App = () => {
   const account = { initial: "NH", name: "Nahee" };
@@ -41,8 +49,7 @@ const App = () => {
   return (
     <div className={styles.App}>
       <LanguageContext>
-        <Sidebar account={account} />
-        <Learning
+        <Sidebar
           account={account}
           students={students}
           recommendation={recommendation}

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/Learning.module.scss";
+import styles from "../../../scss/Learning.module.scss";
 import dayjs from "dayjs";
 import range from "lodash-es/range";
 
