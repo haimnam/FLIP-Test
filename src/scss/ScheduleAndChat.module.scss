@@ -353,9 +353,19 @@ h3 {
         }
         .myPick {
           width: 15%;
+          input {
+            width: 20px;
+            height: 20px;
+          }
         }
         .state {
           width: 25%;
+          color: rgb(172, 172, 172);
+        }
+        .stateFinalized {
+          @extend .state;
+          color: black;
+          font-weight: bold;
         }
       }
     }

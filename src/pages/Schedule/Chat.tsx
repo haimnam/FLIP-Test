@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 import ChatInfo from "./ChatInfo.tsx";
 import ChatScreen from "./ChatScreen.tsx";
 
-const Chat = () => {
+const Chat = ({ partnerInfoData }) => {
   return (
     <div className={styles.chatBody}>
-      <ChatInfo />
+      <ChatInfo partnerInfoData={partnerInfoData} />
       <ChatScreen />
     </div>
   );

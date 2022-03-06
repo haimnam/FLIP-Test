@@ -1,55 +1,30 @@
 import React, { useState } from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 
-const PreferredTimes = () => {
-  const [timesData, setTimesData] = useState([
-    {
-      id: 1,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
-      isPartnerPick: false,
-      myPick: "sq",
-      state: "Finalize",
-    },
-    {
-      id: 2,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
-      isPartnerPick: true,
-      myPick: "sq",
-      state: "Finalize",
-    },
-    {
-      id: 3,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
-      isPartnerPick: true,
-      myPick: "sq",
-      state: "Finalize",
-    },
-    {
-      id: 4,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
-      isPartnerPick: true,
-      myPick: "sq",
-      state: "Finalize",
-    },
-    {
-      id: 5,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
-      isPartnerPick: true,
-      myPick: "sq",
-      state: "Finalize",
-    },
+const PreferredTimes = ({
+  partnerInfoData,
+  addMeeting,
+  removeMeeting,
+  timesData,
+  changeTimeState,
+}) => {
+  const [checkList, setCheckList] = useState([
+    { id: 1, isChecked: false },
+    { id: 2, isChecked: false },
+    { id: 3, isChecked: false },
+    { id: 4, isChecked: false },
+    { id: 5, isChecked: false },
   ]);
-
-  const [isChecked, setIsChecked] = useState(false);
   const [checkedItems, setCheckedItems] = useState(new Set());
 
   const checkHandler = ({ target }) => {
-    setIsChecked(!isChecked);
+    setCheckList(
+      checkList.map((check) =>
+        check.id === target.value * 1
+          ? { ...check, isChecked: !check.isChecked }
+          : check
+      )
+    );
     checkedItemHandler(
       target.parentNode.parentNode,
       target.value,
@@ -61,24 +36,36 @@ const PreferredTimes = () => {
     if (isChecked) {
       box.style.backgroundColor = "rgb(248, 243, 233)";
       box.style.border = "2px solid black";
-      checkedItems.add(id);
-      setTimesData(
-        timesData.map((time) =>
-          time.id == id ? { ...time, state: "Undo" } : time
-        )
-      );
-    } else if (checkedItems.has(id)) {
+      checkedItems.add(id * 1);
+      changeTimeState(id, "FINALIZE");
+    } else if (checkedItems.has(id * 1)) {
       box.style.backgroundColor = "white";
       box.style.border = "2px solid white";
-      checkedItems.delete(id);
-      setTimesData(
-        timesData.map((time) =>
-          time.id == id ? { ...time, state: "Finalize" } : time
-        )
-      );
+      checkedItems.delete(id * 1);
+      changeTimeState(id, "Finalize");
     }
     setCheckedItems(checkedItems);
     return checkedItems;
+  };
+
+  const timeStateHandler = ({ target }, id, state) => {
+    if (state === "FINALIZE") {
+      changeTimeState(id, "Undo");
+      let newMeeting = {
+        id: id * 1,
+        main: timesData[0].main,
+        sub: timesData[0].sub,
+      };
+      addMeeting(1, partnerInfoData[0].meetingTimes.concat(newMeeting));
+    } else if (state === "Undo") {
+      checkedItemHandler(target.parentNode, id, false);
+      removeMeeting(id, 1);
+      setCheckList(
+        checkList.map((check) =>
+          check.id === id * 1 ? { ...check, isChecked: false } : check
+        )
+      );
+    }
   };
 
   return (
@@ -108,9 +95,23 @@ const PreferredTimes = () => {
                     type="checkbox"
                     value={time.id}
                     onChange={(e) => checkHandler(e)}
+                    checked={
+                      checkList.find((check) => check.id === time.id * 1)
+                        .isChecked
+                    }
                   ></input>
+                  <label />
                 </label>
-                <div className={styles.state}>{time.state}</div>
+                <div
+                  className={
+                    time.state === "Finalize"
+                      ? styles.state
+                      : styles.stateFinalized
+                  }
+                  onClick={(e) => timeStateHandler(e, time.id, time.state)}
+                >
+                  {time.state}
+                </div>
               </div>
             );
           })}

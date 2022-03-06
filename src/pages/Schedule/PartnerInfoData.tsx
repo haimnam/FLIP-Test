@@ -18,9 +18,6 @@ export const PartnerInfoData = [
       { isValid: false, taste: "various" },
       { isValid: true, taste: "fields" },
     ],
-    meetingTimes: [
-      { main: "Tuesday 3:00 pm", sub: "Wednesday 5:00 am KST" },
-      { main: "Tuesday 3:00 pm", sub: "Wednesday 5:00 am KST" },
-    ],
+    meetingTimes: [],
   },
 ];
