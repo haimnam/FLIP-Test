@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
-import { ChatPartnerData, ChatMyData } from "./ChatData.tsx";
+import { PartnerInfoData } from "./PartnerInfoData.tsx";
 
-const ChatScreen = ({ chat }) => {
+const ChatScreen = ({ chat, selectedPartner }) => {
   return (
     <div className={styles.chatContainer}>
-      {ChatPartnerData.map((chat, index) => {
+      {PartnerInfoData.find(
+        (partner) => partner.id === selectedPartner
+      ).partnerChat.map((chat, index) => {
         return (
           <div key={index} className={styles.chatItem}>
             <div className={styles.chatBox}>
@@ -14,7 +16,9 @@ const ChatScreen = ({ chat }) => {
           </div>
         );
       })}
-      {ChatMyData.map((chat, index) => {
+      {PartnerInfoData.find(
+        (partner) => partner.id === selectedPartner
+      ).myChat.map((chat, index) => {
         return (
           <div key={index} className={styles.chatMyItem}>
             <div className={styles.chatBox}>

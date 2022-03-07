@@ -2,29 +2,16 @@ import React, { useState } from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 
 const PreferredTimes = ({
+  selectedPartner,
   partnerInfoData,
   addMeeting,
   removeMeeting,
   timesData,
   changeTimeState,
 }) => {
-  const [checkList, setCheckList] = useState([
-    { id: 1, isChecked: false },
-    { id: 2, isChecked: false },
-    { id: 3, isChecked: false },
-    { id: 4, isChecked: false },
-    { id: 5, isChecked: false },
-  ]);
   const [checkedItems, setCheckedItems] = useState(new Set());
 
   const checkHandler = ({ target }) => {
-    setCheckList(
-      checkList.map((check) =>
-        check.id === target.value * 1
-          ? { ...check, isChecked: !check.isChecked }
-          : check
-      )
-    );
     checkedItemHandler(
       target.parentNode.parentNode,
       target.value,
@@ -50,21 +37,16 @@ const PreferredTimes = ({
 
   const timeStateHandler = ({ target }, id, state) => {
     if (state === "FINALIZE") {
-      changeTimeState(id, "Undo");
       let newMeeting = {
         id: id * 1,
         main: timesData[0].main,
         sub: timesData[0].sub,
       };
       addMeeting(1, partnerInfoData[0].meetingTimes.concat(newMeeting));
+      changeTimeState(id, "Undo");
     } else if (state === "Undo") {
-      checkedItemHandler(target.parentNode, id, false);
       removeMeeting(id, 1);
-      setCheckList(
-        checkList.map((check) =>
-          check.id === id * 1 ? { ...check, isChecked: false } : check
-        )
-      );
+      checkedItemHandler(target.parentNode, id, false);
     }
   };
 
@@ -96,11 +78,9 @@ const PreferredTimes = ({
                     value={time.id}
                     onChange={(e) => checkHandler(e)}
                     checked={
-                      checkList.find((check) => check.id === time.id * 1)
-                        .isChecked
+                      timesData.find((data) => data.id == time.id).isChecked
                     }
                   ></input>
-                  <label />
                 </label>
                 <div
                   className={

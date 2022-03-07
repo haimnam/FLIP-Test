@@ -4,7 +4,7 @@ export const TimesData = [
     main: "Tuesday 3:00 pm",
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: false,
-    myPick: "sq",
+    isChecked: false,
     state: "Finalize",
   },
   {
@@ -12,7 +12,7 @@ export const TimesData = [
     main: "Tuesday 3:00 pm",
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: true,
-    myPick: "sq",
+    isChecked: false,
     state: "Finalize",
   },
   {
@@ -20,7 +20,7 @@ export const TimesData = [
     main: "Tuesday 3:00 pm",
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: true,
-    myPick: "sq",
+    isChecked: false,
     state: "Finalize",
   },
   {
@@ -28,7 +28,7 @@ export const TimesData = [
     main: "Tuesday 3:00 pm",
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: true,
-    myPick: "sq",
+    isChecked: false,
     state: "Finalize",
   },
   {
@@ -36,7 +36,7 @@ export const TimesData = [
     main: "Tuesday 3:00 pm",
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: true,
-    myPick: "sq",
+    isChecked: false,
     state: "Finalize",
   },
 ];

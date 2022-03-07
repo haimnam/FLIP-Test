@@ -4,7 +4,7 @@ import ChatInfo from "./ChatInfo.tsx";
 import ChatScreen from "./ChatScreen.tsx";
 import ChatInput from "./ChatInput.tsx";
 
-const Chat = ({ partnerInfoData }) => {
+const Chat = ({ selectedPartner, partnerInfoData }) => {
   const [chat, setChat] = useState({ input: "", chats: [] });
 
   const onChangeChat = (e) => {
@@ -23,7 +23,7 @@ const Chat = ({ partnerInfoData }) => {
     <div className={styles.chatBody}>
       <ChatInfo partnerInfoData={partnerInfoData} />
       <div className={styles.chatScreen}>
-        <ChatScreen chat={chat} />
+        <ChatScreen chat={chat} selectedPartner={selectedPartner} />
         <ChatInput
           chat={chat}
           onChangeChat={onChangeChat}

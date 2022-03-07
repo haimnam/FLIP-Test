@@ -10,6 +10,7 @@ import { TimesData } from "./TimesData.tsx";
 const Schedule = () => {
   const [partnerInfoData, setPartnerInfoData] = useState(PartnerInfoData);
   const [timesData, setTimesData] = useState(TimesData);
+  const [selectedPartner, setSelectedPartner] = useState(1);
 
   const addMeeting = (partnerId, meeting) => {
     setPartnerInfoData(
@@ -35,25 +36,36 @@ const Schedule = () => {
   };
 
   const changeTimeState = (id, state) => {
-    setTimesData(
-      timesData.map((time) =>
-        time.id == id ? { ...time, state: state } : time
-      )
-    );
+    if (state == "FINALIZE" || state == "Finalize") {
+      setTimesData(
+        timesData.map((t) =>
+          t.id == id * 1 ? { ...t, isChecked: !t.isChecked, state: state } : t
+        )
+      );
+    } else {
+      setTimesData(
+        timesData.map((t) => (t.id == id ? { ...t, state: state } : t))
+      );
+    }
   };
 
   return (
     <div className={styles.scheduleAndChat}>
-      <ScheduleHead />
+      <ScheduleHead selectedPartner={selectedPartner} />
       <div className={styles.scheduleAndChatBody}>
-        <Chat partnerInfoData={partnerInfoData} />
+        <Chat
+          selectedPartner={selectedPartner}
+          partnerInfoData={partnerInfoData}
+        />
         <div className={styles.scheduleBody}>
-          <Timezone />
+          <Timezone selectedPartner={selectedPartner} />
           <PreferredTimes
+            selectedPartner={selectedPartner}
             partnerInfoData={partnerInfoData}
             addMeeting={addMeeting}
             removeMeeting={removeMeeting}
             timesData={timesData}
+            setTimesData={setTimesData}
             changeTimeState={changeTimeState}
           />
         </div>

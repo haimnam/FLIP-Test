@@ -19,5 +19,14 @@ export const PartnerInfoData = [
       { isValid: true, taste: "fields" },
     ],
     meetingTimes: [],
+    partnerChat: [
+      "hello! how are you doing?",
+      "it is really nice to meet you!",
+      "im looking forward to meeting you soon!!",
+    ],
+    myChat: [
+      "im good, its nice to meet you!",
+      "when would you like to meet for our first session?",
+    ],
   },
 ];

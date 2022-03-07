@@ -5,7 +5,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Updown from "./Updown.tsx";
 
-const Timezone = () => {
+const Timezone = ({ selectedPartner }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
