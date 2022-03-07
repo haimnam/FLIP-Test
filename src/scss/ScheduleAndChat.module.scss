@@ -300,6 +300,15 @@ h3 {
   border-radius: 10px;
   padding: 20px 20px;
   box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  .preferredTimesHead {
+    display: flex;
+    justify-content: space-between;
+    .addBtn {
+      color: rgb(208, 209, 198);
+      cursor: pointer;
+      font-size: 30px;
+    }
+  }
   .timeTable {
     width: 100%;
     font-weight: bold;

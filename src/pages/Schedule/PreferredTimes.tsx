@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const PreferredTimes = ({
   selectedPartner,
@@ -7,6 +8,7 @@ const PreferredTimes = ({
   addMeeting,
   removeMeeting,
   timesData,
+  setTimesData,
   changeTimeState,
 }) => {
   const [checkedItems, setCheckedItems] = useState(new Set());
@@ -50,9 +52,29 @@ const PreferredTimes = ({
     }
   };
 
+  const addTime = (id) => {
+    let newTime = {
+      id: nextId++,
+      main: "Tuesday 3:00 pm",
+      sub: "Wednesday 5:00 am KST",
+      isPartnerPick: false,
+      isChecked: false,
+      state: "Finalize",
+    };
+    setTimesData(timesData.concat(newTime));
+  };
+
+  let nextId = 4;
+
   return (
     <div className={styles.preferredTimes}>
-      <h2>Select your preferred times</h2>
+      <div className={styles.preferredTimesHead}>
+        <h2>Select your preferred times</h2>
+        <AddCircleOutlineIcon
+          className={styles.addBtn}
+          onClick={() => addTime(nextId)}
+        />
+      </div>
       <div className={styles.timeTable}>
         <div className={styles.tableHead}>
           <div className={styles.overlappingTimes}>Overlapping times</div>
@@ -78,7 +100,7 @@ const PreferredTimes = ({
                     value={time.id}
                     onChange={(e) => checkHandler(e)}
                     checked={
-                      timesData.find((data) => data.id == time.id).isChecked
+                      timesData.find((data) => data.id === time.id).isChecked
                     }
                   ></input>
                 </label>

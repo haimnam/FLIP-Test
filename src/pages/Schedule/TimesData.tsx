@@ -23,20 +23,4 @@ export const TimesData = [
     isChecked: false,
     state: "Finalize",
   },
-  {
-    id: 4,
-    main: "Tuesday 3:00 pm",
-    sub: "Wednesday 5:00 am KST",
-    isPartnerPick: true,
-    isChecked: false,
-    state: "Finalize",
-  },
-  {
-    id: 5,
-    main: "Tuesday 3:00 pm",
-    sub: "Wednesday 5:00 am KST",
-    isPartnerPick: true,
-    isChecked: false,
-    state: "Finalize",
-  },
 ];

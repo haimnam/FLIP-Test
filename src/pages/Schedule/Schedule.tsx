@@ -15,7 +15,7 @@ const Schedule = () => {
   const addMeeting = (partnerId, meeting) => {
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
-        partner.id == partnerId
+        partner.id === partnerId
           ? { ...partner, meetingTimes: meeting }
           : partner
       )
@@ -28,7 +28,7 @@ const Schedule = () => {
     );
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
-        partner.id == partnerId
+        partner.id === partnerId
           ? { ...partner, meetingTimes: meeting }
           : partner
       )
@@ -36,15 +36,15 @@ const Schedule = () => {
   };
 
   const changeTimeState = (id, state) => {
-    if (state == "FINALIZE" || state == "Finalize") {
+    if (state === "FINALIZE" || state === "Finalize") {
       setTimesData(
         timesData.map((t) =>
-          t.id == id * 1 ? { ...t, isChecked: !t.isChecked, state: state } : t
+          t.id === id * 1 ? { ...t, isChecked: !t.isChecked, state: state } : t
         )
       );
     } else {
       setTimesData(
-        timesData.map((t) => (t.id == id ? { ...t, state: state } : t))
+        timesData.map((t) => (t.id === id ? { ...t, state: state } : t))
       );
     }
   };
