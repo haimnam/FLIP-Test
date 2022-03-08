@@ -39,12 +39,22 @@ const Schedule = () => {
     if (state === "FINALIZE" || state === "Finalize") {
       setTimesData(
         timesData.map((t) =>
-          t.id === id * 1 ? { ...t, isChecked: !t.isChecked, state: state } : t
+          t.id === id * 1
+            ? { ...t, isChecked: !t.isChecked, state: state, print: "Finalize" }
+            : t
+        )
+      );
+    } else if (state === "Undo") {
+      setTimesData(
+        timesData.map((t) =>
+          t.id === id ? { ...t, state: state, print: state } : t
         )
       );
     } else {
       setTimesData(
-        timesData.map((t) => (t.id === id ? { ...t, state: state } : t))
+        timesData.map((t) =>
+          t.id === id * 1 ? { ...t, isChecked: !t.isChecked } : t
+        )
       );
     }
   };

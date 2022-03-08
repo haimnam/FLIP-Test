@@ -26,12 +26,20 @@ const PreferredTimes = ({
       box.style.backgroundColor = "rgb(248, 243, 233)";
       box.style.border = "2px solid black";
       checkedItems.add(id * 1);
-      changeTimeState(id, "FINALIZE");
+      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
+        changeTimeState(id, "FINALIZE");
+      } else {
+        changeTimeState(id, "");
+      }
     } else if (checkedItems.has(id * 1)) {
       box.style.backgroundColor = "white";
       box.style.border = "2px solid white";
       checkedItems.delete(id * 1);
-      changeTimeState(id, "Finalize");
+      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
+        changeTimeState(id, "Finalize");
+      } else {
+        changeTimeState(id, "");
+      }
     }
     setCheckedItems(checkedItems);
     return checkedItems;
@@ -52,7 +60,8 @@ const PreferredTimes = ({
     }
   };
 
-  const addTime = (id) => {
+  let nextId = 4;
+  const addTime = () => {
     let newTime = {
       id: nextId++,
       main: "Tuesday 3:00 pm",
@@ -64,16 +73,11 @@ const PreferredTimes = ({
     setTimesData(timesData.concat(newTime));
   };
 
-  let nextId = 4;
-
   return (
     <div className={styles.preferredTimes}>
       <div className={styles.preferredTimesHead}>
         <h2>Select your preferred times</h2>
-        <AddCircleOutlineIcon
-          className={styles.addBtn}
-          onClick={() => addTime(nextId)}
-        />
+        <AddCircleOutlineIcon className={styles.addBtn} onClick={addTime} />
       </div>
       <div className={styles.timeTable}>
         <div className={styles.tableHead}>
@@ -112,7 +116,7 @@ const PreferredTimes = ({
                   }
                   onClick={(e) => timeStateHandler(e, time.id, time.state)}
                 >
-                  {time.state}
+                  {time.print}
                 </div>
               </div>
             );

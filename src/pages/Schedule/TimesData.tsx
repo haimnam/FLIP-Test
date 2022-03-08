@@ -5,7 +5,8 @@ export const TimesData = [
     sub: "Wednesday 5:00 am KST",
     isPartnerPick: false,
     isChecked: false,
-    state: "Finalize",
+    state: "",
+    print: "",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const TimesData = [
     isPartnerPick: true,
     isChecked: false,
     state: "Finalize",
+    print: "Finalize",
   },
   {
     id: 3,
@@ -22,5 +24,6 @@ export const TimesData = [
     isPartnerPick: true,
     isChecked: false,
     state: "Finalize",
+    print: "Finalize",
   },
 ];
