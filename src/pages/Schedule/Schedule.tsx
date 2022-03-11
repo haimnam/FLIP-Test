@@ -114,6 +114,31 @@ const Schedule = () => {
     );
   };
 
+  const uncheck = (partnerId, timeId) => {
+    const currentPartner = partnerInfoData.find(
+      (partner) => partner.id === partnerId
+    );
+    setPartnerInfoData(
+      partnerInfoData.map((partner) =>
+        partner.id === partnerId
+          ? {
+              ...partner,
+              timesData: currentPartner.timesData.map((t) =>
+                t.id === timeId * 1
+                  ? {
+                      ...t,
+                      isChecked: !t.isChecked,
+                      state: "Finalize",
+                      print: "Finalize",
+                    }
+                  : t
+              ),
+            }
+          : partner
+      )
+    );
+  };
+
   return (
     <div className={styles.scheduleAndChat}>
       <ScheduleHead selectedPartner={selectedPartner} />
@@ -131,6 +156,7 @@ const Schedule = () => {
             removeMeeting={removeMeeting}
             changeTimeState={changeTimeState}
             addNewTime={addNewTime}
+            uncheck={uncheck}
           />
         </div>
       </div>

@@ -9,6 +9,7 @@ const PreferredTimes = ({
   removeMeeting,
   changeTimeState,
   addNewTime,
+  uncheck,
 }) => {
   const [checkedItems, setCheckedItems] = useState(new Set());
   const [nextId, setNextId] = useState(4);
@@ -17,11 +18,12 @@ const PreferredTimes = ({
     checkedItemHandler(
       target.parentNode.parentNode,
       target.value,
-      target.checked
+      target.checked,
+      true
     );
   };
 
-  const checkedItemHandler = (box, id, isChecked) => {
+  const checkedItemHandler = (box, id, isChecked, isClicked) => {
     if (isChecked) {
       box.style.backgroundColor = "rgb(248, 243, 233)";
       box.style.border = "2px solid black";
@@ -39,6 +41,9 @@ const PreferredTimes = ({
       box.style.backgroundColor = "white";
       box.style.border = "2px solid white";
       checkedItems.delete(id * 1);
+      if (isClicked) {
+        uncheck(selectedPartner, id);
+      }
     }
     setCheckedItems(checkedItems);
     return checkedItems;
@@ -60,7 +65,7 @@ const PreferredTimes = ({
       );
     } else if (state === "Undo") {
       removeMeeting(id, selectedPartner);
-      checkedItemHandler(target.parentNode, id, false);
+      checkedItemHandler(target.parentNode, id, false, false);
     }
   };
 

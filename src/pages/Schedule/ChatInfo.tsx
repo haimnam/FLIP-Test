@@ -41,8 +41,6 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
       <div className={styles.regularMeeting}>
         <div>Regular meetings on</div>
         <div className={styles.meetingContainer}>
-          {console.log("=>")}
-          {console.log(currentPartner)}
           {currentPartner.meetingTimes.map((time) => {
             return (
               <div key={time.id} className={styles.meetingItem}>
