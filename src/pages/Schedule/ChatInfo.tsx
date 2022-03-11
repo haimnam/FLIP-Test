@@ -3,7 +3,7 @@ import styles from "../../scss/ScheduleAndChat.module.scss";
 
 const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
   const currentPartner = partnerInfoData.find(
-    (partner) => partner.id == selectedPartner
+    (partner) => partner.id === selectedPartner
   );
 
   return (
@@ -22,10 +22,10 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
           <div>{currentPartner.major}</div>
         </div>
         <div className={styles.partnerTaste}>
-          {currentPartner.taste.map((taste, index) => {
+          {currentPartner.taste.map((taste) => {
             return (
               <div
-                key={index}
+                key={taste.id}
                 className={
                   taste.isValid
                     ? styles.partnerTasteItem
@@ -43,9 +43,9 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
         <div className={styles.meetingContainer}>
           {console.log("=>")}
           {console.log(currentPartner)}
-          {currentPartner.meetingTimes.map((time, index) => {
+          {currentPartner.meetingTimes.map((time) => {
             return (
-              <div key={index} className={styles.meetingItem}>
+              <div key={time.id} className={styles.meetingItem}>
                 <h3>{time.main}</h3>
                 <div>{time.sub}</div>
               </div>

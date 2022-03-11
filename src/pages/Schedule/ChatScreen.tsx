@@ -7,31 +7,31 @@ const ChatScreen = ({ chat, selectedPartner }) => {
     <div className={styles.chatContainer}>
       {PartnerInfoData.find(
         (partner) => partner.id === selectedPartner
-      ).partnerChat.map((chat, index) => {
+      ).partnerChat.map((c) => {
         return (
-          <div key={index} className={styles.chatItem}>
+          <div key={c.id} className={styles.chatItem}>
             <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>{chat}</div>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
           </div>
         );
       })}
       {PartnerInfoData.find(
         (partner) => partner.id === selectedPartner
-      ).myChat.map((chat, index) => {
+      ).myChat.map((c) => {
         return (
-          <div key={index} className={styles.chatMyItem}>
+          <div key={c.id} className={styles.chatMyItem}>
             <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>{chat}</div>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
           </div>
         );
       })}
-      {chat.chats.map((ch, index) => {
+      {chat.chats.map((c) => {
         return (
-          <div key={index} className={styles.chatMyItem}>
+          <div key={c.id} className={styles.chatMyItem}>
             <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>{ch}</div>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
           </div>
         );

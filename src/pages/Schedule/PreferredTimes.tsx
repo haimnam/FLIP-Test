@@ -11,6 +11,7 @@ const PreferredTimes = ({
   addNewTime,
 }) => {
   const [checkedItems, setCheckedItems] = useState(new Set());
+  const [nextId, setNextId] = useState(4);
 
   const checkHandler = ({ target }) => {
     checkedItemHandler(
@@ -63,16 +64,16 @@ const PreferredTimes = ({
     }
   };
 
-  let nextId = 4;
   const addTime = () => {
     let newTime = {
-      id: nextId++,
+      id: nextId,
       main: "Tuesday 3:00 pm",
       sub: "Wednesday 5:00 am KST",
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",
     };
+    setNextId(nextId + 1);
     addNewTime(selectedPartner, newTime);
   };
 

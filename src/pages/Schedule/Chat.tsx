@@ -5,13 +5,17 @@ import ChatScreen from "./ChatScreen.tsx";
 import ChatInput from "./ChatInput.tsx";
 
 const Chat = ({ selectedPartner, partnerInfoData }) => {
+  const [nextId, setNextId] = useState(1);
   const [chat, setChat] = useState({ input: "", chats: [] });
-
   const onChangeChat = (e) => {
     setChat({ input: e.target.value, chats: chat.chats });
   };
   const onClickChat = (e) => {
-    setChat({ input: "", chats: chat.chats.concat(chat.input) });
+    setChat({
+      input: "",
+      chats: chat.chats.concat({ id: nextId, chat: chat.input }),
+    });
+    setNextId(nextId + 1);
   };
   const onKeyPressChat = (e) => {
     if (e.key === "Enter") {
