@@ -21,7 +21,10 @@ const Chat = ({ selectedPartner, partnerInfoData }) => {
 
   return (
     <div className={styles.chatBody}>
-      <ChatInfo partnerInfoData={partnerInfoData} />
+      <ChatInfo
+        partnerInfoData={partnerInfoData}
+        selectedPartner={selectedPartner}
+      />
       <div className={styles.chatScreen}>
         <ChatScreen chat={chat} selectedPartner={selectedPartner} />
         <ChatInput

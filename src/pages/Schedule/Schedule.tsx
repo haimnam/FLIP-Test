@@ -5,58 +5,113 @@ import Chat from "./Chat.tsx";
 import Timezone from "./Timezone.tsx";
 import PreferredTimes from "./PreferredTimes.tsx";
 import { PartnerInfoData } from "./PartnerInfoData.tsx";
-import { TimesData } from "./TimesData.tsx";
 
 const Schedule = () => {
   const [partnerInfoData, setPartnerInfoData] = useState(PartnerInfoData);
-  const [timesData, setTimesData] = useState(TimesData);
   const [selectedPartner, setSelectedPartner] = useState(1);
 
-  const addMeeting = (partnerId, meeting) => {
+  const addMeeting = (timeId, partnerId, meeting) => {
+    const currentPartner = partnerInfoData.find(
+      (partner) => partner.id === partnerId
+    );
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
-          ? { ...partner, meetingTimes: meeting }
+          ? {
+              ...partner,
+              meetingTimes: meeting,
+              timesData: currentPartner.timesData.map((t) =>
+                t.id === timeId ? { ...t, state: "Undo", print: "Undo" } : t
+              ),
+            }
           : partner
       )
     );
   };
 
   const removeMeeting = (meetingId, partnerId) => {
-    let meeting = partnerInfoData[0].meetingTimes.filter(
-      (meeting) => meeting.id != meetingId
+    const currentPartner = partnerInfoData.find(
+      (partner) => partner.id === partnerId
+    );
+    let meeting = currentPartner.meetingTimes.filter(
+      (meeting) => meeting.id !== meetingId
     );
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
-          ? { ...partner, meetingTimes: meeting }
+          ? {
+              ...partner,
+              meetingTimes: meeting,
+              timesData: currentPartner.timesData.map((t) =>
+                t.id === meetingId * 1
+                  ? {
+                      ...t,
+                      isChecked: !t.isChecked,
+                      state: "Finalize",
+                      print: "Finalize",
+                    }
+                  : t
+              ),
+            }
           : partner
       )
     );
   };
 
-  const changeTimeState = (id, state) => {
-    if (state === "FINALIZE" || state === "Finalize") {
-      setTimesData(
-        timesData.map((t) =>
-          t.id === id * 1
-            ? { ...t, isChecked: !t.isChecked, state: state, print: "Finalize" }
-            : t
-        )
-      );
-    } else if (state === "Undo") {
-      setTimesData(
-        timesData.map((t) =>
-          t.id === id ? { ...t, state: state, print: state } : t
+  const changeTimeState = (timeId, partnerId, state) => {
+    const currentPartner = partnerInfoData.find(
+      (partner) => partner.id === partnerId
+    );
+    if (state === "FINALIZE") {
+      setPartnerInfoData(
+        partnerInfoData.map((partner) =>
+          partner.id === partnerId
+            ? {
+                ...partner,
+                timesData: currentPartner.timesData.map((t) =>
+                  t.id === timeId * 1
+                    ? {
+                        ...t,
+                        isChecked: !t.isChecked,
+                        state: state,
+                        print: "Finalize",
+                      }
+                    : t
+                ),
+              }
+            : partner
         )
       );
     } else {
-      setTimesData(
-        timesData.map((t) =>
-          t.id === id * 1 ? { ...t, isChecked: !t.isChecked } : t
+      setPartnerInfoData(
+        partnerInfoData.map((partner) =>
+          partner.id === partnerId
+            ? {
+                ...partner,
+                timesData: currentPartner.timesData.map((t) =>
+                  t.id === timeId * 1 ? { ...t, isChecked: !t.isChecked } : t
+                ),
+              }
+            : partner
         )
       );
     }
+  };
+
+  const addNewTime = (partnerId, newTime) => {
+    const currentPartner = partnerInfoData.find(
+      (partner) => partner.id === partnerId
+    );
+    setPartnerInfoData(
+      partnerInfoData.map((partner) =>
+        partner.id === partnerId
+          ? {
+              ...partner,
+              timesData: currentPartner.timesData.concat(newTime),
+            }
+          : partner
+      )
+    );
   };
 
   return (
@@ -74,9 +129,8 @@ const Schedule = () => {
             partnerInfoData={partnerInfoData}
             addMeeting={addMeeting}
             removeMeeting={removeMeeting}
-            timesData={timesData}
-            setTimesData={setTimesData}
             changeTimeState={changeTimeState}
+            addNewTime={addNewTime}
           />
         </div>
       </div>

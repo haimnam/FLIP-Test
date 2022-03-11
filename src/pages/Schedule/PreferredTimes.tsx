@@ -7,9 +7,8 @@ const PreferredTimes = ({
   partnerInfoData,
   addMeeting,
   removeMeeting,
-  timesData,
-  setTimesData,
   changeTimeState,
+  addNewTime,
 }) => {
   const [checkedItems, setCheckedItems] = useState(new Set());
 
@@ -26,20 +25,19 @@ const PreferredTimes = ({
       box.style.backgroundColor = "rgb(248, 243, 233)";
       box.style.border = "2px solid black";
       checkedItems.add(id * 1);
-      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
-        changeTimeState(id, "FINALIZE");
+      if (
+        partnerInfoData
+          .find((partner) => partner.id === selectedPartner)
+          .timesData.find((data) => data.id === id * 1).isPartnerPick
+      ) {
+        changeTimeState(id, selectedPartner, "FINALIZE");
       } else {
-        changeTimeState(id, "");
+        changeTimeState(id, selectedPartner, "");
       }
     } else if (checkedItems.has(id * 1)) {
       box.style.backgroundColor = "white";
       box.style.border = "2px solid white";
       checkedItems.delete(id * 1);
-      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
-        changeTimeState(id, "Finalize");
-      } else {
-        changeTimeState(id, "");
-      }
     }
     setCheckedItems(checkedItems);
     return checkedItems;
@@ -49,13 +47,18 @@ const PreferredTimes = ({
     if (state === "FINALIZE") {
       let newMeeting = {
         id: id * 1,
-        main: timesData[0].main,
-        sub: timesData[0].sub,
+        main: partnerInfoData[0].timesData[1].main,
+        sub: partnerInfoData[0].timesData[1].sub,
       };
-      addMeeting(1, partnerInfoData[0].meetingTimes.concat(newMeeting));
-      changeTimeState(id, "Undo");
+      addMeeting(
+        id,
+        1,
+        partnerInfoData
+          .find((partner) => partner.id === selectedPartner)
+          .meetingTimes.concat(newMeeting)
+      );
     } else if (state === "Undo") {
-      removeMeeting(id, 1);
+      removeMeeting(id, selectedPartner);
       checkedItemHandler(target.parentNode, id, false);
     }
   };
@@ -70,7 +73,7 @@ const PreferredTimes = ({
       isChecked: false,
       state: "Finalize",
     };
-    setTimesData(timesData.concat(newTime));
+    addNewTime(selectedPartner, newTime);
   };
 
   return (
@@ -86,41 +89,46 @@ const PreferredTimes = ({
           <div className={styles.myPick}>Your pick</div>
         </div>
         <div className={styles.tableBody}>
-          {timesData.map((time) => {
-            return (
-              <div key={time.id} className={styles.row}>
-                <div className={styles.overlappingTimes}>
-                  <h3>{time.main}</h3>
-                  <div>{time.sub}</div>
-                </div>
-                <div className={styles.partnerPick}>
-                  <div className={time.isPartnerPick ? styles.circle : ""}>
-                    {time.isPartnerPick ? "SJ" : ""}
+          {partnerInfoData
+            .find((partner) => partner.id === selectedPartner)
+            .timesData.map((time) => {
+              return (
+                <div key={time.id} className={styles.row}>
+                  <div className={styles.overlappingTimes}>
+                    <h3>{time.main}</h3>
+                    <div>{time.sub}</div>
+                  </div>
+                  <div className={styles.partnerPick}>
+                    <div className={time.isPartnerPick ? styles.circle : ""}>
+                      {time.isPartnerPick ? "SJ" : ""}
+                    </div>
+                  </div>
+                  <label className={styles.myPick}>
+                    <input
+                      type="checkbox"
+                      value={time.id}
+                      onChange={(e) => checkHandler(e)}
+                      checked={
+                        partnerInfoData
+                          .find((partner) => partner.id === selectedPartner)
+                          .timesData.find((data) => data.id === time.id)
+                          .isChecked
+                      }
+                    ></input>
+                  </label>
+                  <div
+                    className={
+                      time.state === "Finalize"
+                        ? styles.state
+                        : styles.stateFinalized
+                    }
+                    onClick={(e) => timeStateHandler(e, time.id, time.state)}
+                  >
+                    {time.print}
                   </div>
                 </div>
-                <label className={styles.myPick}>
-                  <input
-                    type="checkbox"
-                    value={time.id}
-                    onChange={(e) => checkHandler(e)}
-                    checked={
-                      timesData.find((data) => data.id === time.id).isChecked
-                    }
-                  ></input>
-                </label>
-                <div
-                  className={
-                    time.state === "Finalize"
-                      ? styles.state
-                      : styles.stateFinalized
-                  }
-                  onClick={(e) => timeStateHandler(e, time.id, time.state)}
-                >
-                  {time.print}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>

@@ -1,24 +1,28 @@
 import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 
-const ChatInfo = ({ partnerInfoData }) => {
+const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
+  const currentPartner = partnerInfoData.find(
+    (partner) => partner.id == selectedPartner
+  );
+
   return (
     <div className={styles.chatInfo}>
       <div className={styles.partnerInfo}>
         <div className={styles.partnerMain}>
-          <h3>{partnerInfoData[0].name}</h3>
-          <div>{partnerInfoData[0].localTime}</div>
+          <h3>{currentPartner.name}</h3>
+          <div>{currentPartner.localTime}</div>
         </div>
         <div className={styles.partnerSub}>
-          <div>{partnerInfoData[0].nationality}</div>
-          <div>{partnerInfoData[0].email}</div>
+          <div>{currentPartner.nationality}</div>
+          <div>{currentPartner.email}</div>
         </div>
         <div className={styles.partnerUniv}>
-          <div>{partnerInfoData[0].univ}</div>
-          <div>{partnerInfoData[0].major}</div>
+          <div>{currentPartner.univ}</div>
+          <div>{currentPartner.major}</div>
         </div>
         <div className={styles.partnerTaste}>
-          {partnerInfoData[0].taste.map((taste, index) => {
+          {currentPartner.taste.map((taste, index) => {
             return (
               <div
                 key={index}
@@ -37,7 +41,9 @@ const ChatInfo = ({ partnerInfoData }) => {
       <div className={styles.regularMeeting}>
         <div>Regular meetings on</div>
         <div className={styles.meetingContainer}>
-          {partnerInfoData[0].meetingTimes.map((time, index) => {
+          {console.log("=>")}
+          {console.log(currentPartner)}
+          {currentPartner.meetingTimes.map((time, index) => {
             return (
               <div key={index} className={styles.meetingItem}>
                 <h3>{time.main}</h3>
