@@ -141,7 +141,7 @@ const Schedule = () => {
 
   return (
     <div className={styles.scheduleAndChat}>
-      <ScheduleHead selectedPartner={selectedPartner} />
+      <ScheduleHead setSelectedPartner={setSelectedPartner} />
       <div className={styles.scheduleAndChatBody}>
         <Chat
           selectedPartner={selectedPartner}

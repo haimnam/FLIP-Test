@@ -16,7 +16,6 @@ h3 {
     margin-right: 50px;
   }
   .circle {
-    color: white;
     margin: 30px 0px 0px 10px;
     cursor: pointer;
     .red {
@@ -27,6 +26,8 @@ h3 {
       justify-content: center;
       border-radius: 50%;
       background-color: red;
+      text-decoration: none;
+      color: white;
     }
   }
 }
@@ -320,7 +321,7 @@ h3 {
       align-items: center;
       padding: 3px;
       .overlappingTimes {
-        width: 45%;
+        width: 50%;
       }
       .partnerPick {
         width: 15%;
@@ -343,7 +344,7 @@ h3 {
         padding: 6px;
         border-radius: 10px;
         .overlappingTimes {
-          width: 45%;
+          width: 50%;
         }
         .partnerPick {
           width: 15%;

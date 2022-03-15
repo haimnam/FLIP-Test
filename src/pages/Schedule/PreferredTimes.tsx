@@ -53,12 +53,16 @@ const PreferredTimes = ({
     if (state === "FINALIZE") {
       let newMeeting = {
         id: id * 1,
-        main: partnerInfoData[0].timesData[1].main,
-        sub: partnerInfoData[0].timesData[1].sub,
+        main: partnerInfoData
+          .find((partner) => partner.id === selectedPartner)
+          .timesData.find((time) => time.id === id).main,
+        sub: partnerInfoData
+          .find((partner) => partner.id === selectedPartner)
+          .timesData.find((time) => time.id === id).sub,
       };
       addMeeting(
         id,
-        1,
+        selectedPartner,
         partnerInfoData
           .find((partner) => partner.id === selectedPartner)
           .meetingTimes.concat(newMeeting)
@@ -72,8 +76,8 @@ const PreferredTimes = ({
   const addTime = () => {
     let newTime = {
       id: nextId,
-      main: "Tuesday 3:00 pm",
-      sub: "Wednesday 5:00 am KST",
+      main: "Tuesday 4:00 pm",
+      sub: "Wednesday 6:00 am KST",
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",
