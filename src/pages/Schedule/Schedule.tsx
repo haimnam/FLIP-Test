@@ -5,8 +5,32 @@ import Chat from "./Chat.tsx";
 import Timezone from "./Timezone.tsx";
 import PreferredTimes from "./PreferredTimes.tsx";
 import { PartnerInfoData } from "./PartnerInfoData.tsx";
+import { useLocation } from "react-router-dom";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
 const Schedule = () => {
+  const location = useLocation();
+  const URLSearch = new URLSearchParams(location.search);
+
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  const [nowPartner, setNowPartner] = useState(dayjs());
+  const [cityPartner, setCityPartner] = useState("Seoul +14hrs");
+
+  const selectAccount = (id) => {
+    setSelectedPartner(id);
+    URLSearch.set("id", id);
+    if (id === 1) {
+      setNowPartner(dayjs());
+      setCityPartner("Seoul +14hrs");
+    } else {
+      setNowPartner(dayjs().tz("America/New_York"));
+      setCityPartner("New York");
+    }
+  };
+
   const [partnerInfoData, setPartnerInfoData] = useState(PartnerInfoData);
   const [selectedPartner, setSelectedPartner] = useState(1);
 
@@ -141,14 +165,19 @@ const Schedule = () => {
 
   return (
     <div className={styles.scheduleAndChat}>
-      <ScheduleHead setSelectedPartner={setSelectedPartner} />
+      <ScheduleHead selectAccount={selectAccount} />
       <div className={styles.scheduleAndChatBody}>
         <Chat
           selectedPartner={selectedPartner}
           partnerInfoData={partnerInfoData}
         />
         <div className={styles.scheduleBody}>
-          <Timezone selectedPartner={selectedPartner} />
+          <Timezone
+            selectedPartner={selectedPartner}
+            nowPartner={nowPartner}
+            setNowPartner={setNowPartner}
+            cityPartner={cityPartner}
+          />
           <PreferredTimes
             selectedPartner={selectedPartner}
             partnerInfoData={partnerInfoData}

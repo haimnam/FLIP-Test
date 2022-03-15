@@ -1,17 +1,9 @@
 import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 import { AccountData } from "./AccountData.tsx";
-import { Link, Routes, Route, useLocation } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 
-const ScheduleHead = ({ setSelectedPartner }) => {
-  const location = useLocation();
-  const URLSearch = new URLSearchParams(location.search);
-
-  const selectAccount = (id) => {
-    setSelectedPartner(id);
-    URLSearch.set("id", id);
-  };
-
+const ScheduleHead = ({ selectAccount }) => {
   return (
     <div className={styles.scheduleAndChatHead}>
       <h1>Schedule And Chat</h1>

@@ -5,18 +5,28 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Updown from "./Updown.tsx";
 
-const Timezone = ({ selectedPartner }) => {
+const Timezone = ({
+  selectedPartner,
+  nowPartner,
+  setNowPartner,
+  cityPartner,
+}) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const [nowNY, setNowNY] = useState(dayjs().tz("America/New_York"));
-  const [nowS, setNowS] = useState(dayjs());
+  const [nowUser, setNowUser] = useState(dayjs().tz("America/New_York"));
+
   let upDownController = [0, 0, 0, 0];
 
   const setNow = () => {
     upDownController.fill(0);
-    setNowNY(dayjs().tz("America/New_York"));
-    setNowS(dayjs());
+    setNowUser(dayjs().tz("America/New_York"));
+
+    if (selectedPartner === 1) {
+      setNowPartner(dayjs());
+    } else {
+      setNowPartner(dayjs().tz("America/New_York"));
+    }
   };
 
   const setHour = (dir) => {
@@ -25,8 +35,8 @@ const Timezone = ({ selectedPartner }) => {
     } else {
       upDownController[0]--;
     }
-    setNowNY(nowNY.add(upDownController[0], "h"));
-    setNowS(nowS.add(upDownController[0], "h"));
+    setNowPartner(nowPartner.add(upDownController[0], "h"));
+    setNowUser(nowUser.add(upDownController[0], "h"));
   };
 
   const setMin = (dir) => {
@@ -35,8 +45,8 @@ const Timezone = ({ selectedPartner }) => {
     } else {
       upDownController[1]--;
     }
-    setNowNY(nowNY.add(upDownController[1], "m"));
-    setNowS(nowS.add(upDownController[1], "m"));
+    setNowPartner(nowPartner.add(upDownController[1], "m"));
+    setNowUser(nowUser.add(upDownController[1], "m"));
   };
 
   const setMonth = (dir) => {
@@ -45,8 +55,8 @@ const Timezone = ({ selectedPartner }) => {
     } else {
       upDownController[2]--;
     }
-    setNowNY(nowNY.add(upDownController[2], "M"));
-    setNowS(nowS.add(upDownController[2], "M"));
+    setNowPartner(nowPartner.add(upDownController[2], "M"));
+    setNowUser(nowUser.add(upDownController[2], "M"));
   };
 
   const setDate = (dir) => {
@@ -55,8 +65,8 @@ const Timezone = ({ selectedPartner }) => {
     } else {
       upDownController[3]--;
     }
-    setNowNY(nowNY.add(upDownController[3], "D"));
-    setNowS(nowS.add(upDownController[3], "D"));
+    setNowPartner(nowPartner.add(upDownController[3] * 24, "h"));
+    setNowUser(nowUser.add(upDownController[3] * 24, "h"));
   };
 
   return (
@@ -71,24 +81,24 @@ const Timezone = ({ selectedPartner }) => {
             </div>
           </div>
           <div className={styles.time}>
-            <div>{nowNY.format("hh")}</div>
+            <div>{nowUser.format("hh")}</div>
             <Updown
               width="17px"
               height="15px"
               setUp={() => setHour("up")}
               setDown={() => setHour("down")}
             />
-            <div>{nowNY.format("mm")}</div>
+            <div>{nowUser.format("mm")}</div>
             <Updown
               width="17px"
               height="15px"
               setUp={() => setMin("up")}
               setDown={() => setMin("down")}
             />
-            <div className={styles.ampm}>{nowNY.format("a")}</div>
+            <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{nowNY.format("MM")}</div>
+            <div>{nowUser.format("MM")}</div>
             <Updown
               width="15px"
               height="10px"
@@ -96,39 +106,39 @@ const Timezone = ({ selectedPartner }) => {
               setDown={() => setMonth("down")}
             />
             <div>/</div>
-            <div>{nowNY.format("DD")}</div>
+            <div>{nowUser.format("DD")}</div>
             <Updown
               width="15px"
               height="10px"
               setUp={() => setDate("up")}
               setDown={() => setDate("down")}
             />
-            <div className={styles.day}>{nowNY.format("dddd")}</div>
+            <div className={styles.day}>{nowUser.format("dddd")}</div>
           </div>
         </div>
         <div className={styles.converterItem}>
           <div className={styles.city}>
-            <div className={styles.cityName}>Seoul +14hrs</div>
+            <div className={styles.cityName}>{cityPartner}</div>
           </div>
           <div className={styles.time}>
-            <div>{nowS.format("hh")}</div>
+            <div>{nowPartner.format("hh")}</div>
             <Updown
               width="17px"
               height="15px"
               setUp={() => setHour("up")}
               setDown={() => setHour("down")}
             />
-            <div>{nowS.format("mm")}</div>
+            <div>{nowPartner.format("mm")}</div>
             <Updown
               width="17px"
               height="15px"
               setUp={() => setMin("up")}
               setDown={() => setMin("down")}
             />
-            <div className={styles.ampm}>{nowS.format("a")}</div>
+            <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{nowS.format("MM")}</div>
+            <div>{nowPartner.format("MM")}</div>
             <Updown
               width="15px"
               height="10px"
@@ -136,14 +146,14 @@ const Timezone = ({ selectedPartner }) => {
               setDown={() => setMonth("down")}
             />
             <div>/</div>
-            <div>{nowS.format("DD")}</div>
+            <div>{nowPartner.format("DD")}</div>
             <Updown
               width="15px"
               height="10px"
               setUp={() => setDate("up")}
               setDown={() => setDate("down")}
             />
-            <div className={styles.day}>{nowS.format("dddd")}</div>
+            <div className={styles.day}>{nowPartner.format("dddd")}</div>
           </div>
         </div>
       </div>
