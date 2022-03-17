@@ -4,6 +4,7 @@ import ScheduleHead from "./ScheduleHead.tsx";
 import Chat from "./Chat.tsx";
 import Timezone from "./Timezone.tsx";
 import PreferredTimes from "./PreferredTimes.tsx";
+import PreferredTimesInsert from "./PreferredTimesInsert.tsx";
 import { PartnerInfoData } from "./PartnerInfoData.tsx";
 import { useLocation } from "react-router-dom";
 import dayjs from "dayjs";
@@ -163,6 +164,52 @@ const Schedule = () => {
     );
   };
 
+  const [insertToggle, setInsertToggle] = useState(false);
+  const onInsertToggle = () => {
+    setInsertToggle((prev) => !prev);
+  };
+
+  const [nextId, setNextId] = useState(4);
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const addTime = (day, hour, ampm) => {
+    if (ampm === "pm") {
+      hour += 12;
+    }
+    let today = dayjs().set("day", day).set("hour", hour);
+    let todayConverted = today.add(13, "h");
+    let newTime = {
+      id: nextId,
+      main:
+        today.format("dddd") +
+        " " +
+        today.format("h") +
+        ":00" +
+        " " +
+        today.format("a"),
+      sub:
+        todayConverted.format("dddd") +
+        " " +
+        todayConverted.format("h") +
+        ":00" +
+        " " +
+        todayConverted.format("a") +
+        " KST",
+      isPartnerPick: false,
+      isChecked: false,
+      state: "Finalize",
+    };
+    setNextId(nextId + 1);
+    addNewTime(selectedPartner, newTime);
+  };
+
   return (
     <div className={styles.scheduleAndChat}>
       <ScheduleHead selectAccount={selectAccount} />
@@ -186,7 +233,9 @@ const Schedule = () => {
             changeTimeState={changeTimeState}
             addNewTime={addNewTime}
             uncheck={uncheck}
+            onInsertToggle={onInsertToggle}
           />
+          {insertToggle && <PreferredTimesInsert addTime={addTime} />}
         </div>
       </div>
     </div>

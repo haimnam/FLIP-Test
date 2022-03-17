@@ -32,7 +32,7 @@ export const PartnerInfoData = [
       {
         id: 2,
         main: "Tuesday 2:00 pm",
-        sub: "Wednesday 4:00 am KST",
+        sub: "Wednesday 3:00 am KST",
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -41,7 +41,7 @@ export const PartnerInfoData = [
       {
         id: 3,
         main: "Tuesday 3:00 pm",
-        sub: "Wednesday 5:00 am KST",
+        sub: "Wednesday 4:00 am KST",
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",

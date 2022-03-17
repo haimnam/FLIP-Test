@@ -10,9 +10,9 @@ const PreferredTimes = ({
   changeTimeState,
   addNewTime,
   uncheck,
+  onInsertToggle,
 }) => {
   const [checkedItems, setCheckedItems] = useState(new Set());
-  const [nextId, setNextId] = useState(4);
 
   const checkHandler = ({ target }) => {
     checkedItemHandler(
@@ -73,24 +73,14 @@ const PreferredTimes = ({
     }
   };
 
-  const addTime = () => {
-    let newTime = {
-      id: nextId,
-      main: "Tuesday 4:00 pm",
-      sub: "Wednesday 6:00 am KST",
-      isPartnerPick: false,
-      isChecked: false,
-      state: "Finalize",
-    };
-    setNextId(nextId + 1);
-    addNewTime(selectedPartner, newTime);
-  };
-
   return (
     <div className={styles.preferredTimes}>
       <div className={styles.preferredTimesHead}>
         <h2>Select your preferred times</h2>
-        <AddCircleOutlineIcon className={styles.addBtn} onClick={addTime} />
+        <AddCircleOutlineIcon
+          className={styles.addBtn}
+          onClick={onInsertToggle}
+        />
       </div>
       <div className={styles.timeTable}>
         <div className={styles.tableHead}>
