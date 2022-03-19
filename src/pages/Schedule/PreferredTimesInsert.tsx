@@ -1,56 +1,43 @@
 import React, { useState } from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
+import dayjs from "dayjs";
 
 const PreferredTimesInsert = ({ addTime }) => {
   const [newDay, setNewDay] = useState(0);
   const [newHour, setNewHour] = useState(0);
   const [newAmpm, setNewAmpm] = useState("am");
+  const dayIndex = [1, 2, 3, 4, 5, 6, 0];
 
-  const setDay = (day) => {
-    setNewDay(day);
-  };
-
-  const setHour = (hour) => {
-    setNewHour(hour);
-  };
-
-  const setAmpm = (ampm) => {
-    setNewAmpm(ampm);
+  const renderingSetHour = (startIdx, endIdx) => {
+    const result = [];
+    for (let i = startIdx; i < endIdx; i++) {
+      result.push(
+        <button key={i} onClick={() => setNewHour(i)}>
+          {i}
+        </button>
+      );
+    }
+    return result;
   };
 
   return (
     <div className={styles.preferredTimesInsert}>
       <div className={styles.daysRow}>
-        <button onClick={() => setDay(1)}>M</button>
-        <button onClick={() => setDay(2)}>T</button>
-        <button onClick={() => setDay(3)}>W</button>
-        <button onClick={() => setDay(4)}>T</button>
-        <button onClick={() => setDay(5)}>F</button>
-        <button onClick={() => setDay(6)}>S</button>
-        <button onClick={() => setDay(0)}>S</button>
+        {dayIndex.map((dayNum, index) => {
+          return (
+            <button key={index} onClick={() => setNewDay(dayNum)}>
+              {dayjs().day(dayNum).format("dd")[0]}
+            </button>
+          );
+        })}
       </div>
       <hr></hr>
-      <div className={styles.hoursRow}>
-        <button onClick={() => setHour(0)}>0</button>
-        <button onClick={() => setHour(1)}>1</button>
-        <button onClick={() => setHour(2)}>2</button>
-        <button onClick={() => setHour(3)}>3</button>
-        <button onClick={() => setHour(4)}>4</button>
-        <button onClick={() => setHour(5)}>5</button>
-        <button onClick={() => setHour(6)}>6</button>
-      </div>
-      <div className={styles.hoursRow}>
-        <button onClick={() => setHour(7)}>7</button>
-        <button onClick={() => setHour(8)}>8</button>
-        <button onClick={() => setHour(9)}>9</button>
-        <button onClick={() => setHour(10)}>10</button>
-        <button onClick={() => setHour(11)}>11</button>
-        <button onClick={() => setHour(12)}>12</button>
-      </div>
+      <div className={styles.hoursRow}>{renderingSetHour(0, 7)}</div>
+      <div className={styles.hoursRow}>{renderingSetHour(7, 13)}</div>
       <hr></hr>
       <div className={styles.ampmRow}>
-        <button onClick={() => setAmpm("am")}>am</button>
-        <button onClick={() => setAmpm("pm")}>pm</button>
+        <button onClick={() => setNewAmpm("am")}>am</button>
+        <button onClick={() => setNewAmpm("pm")}>pm</button>
       </div>
       <hr></hr>
       <button

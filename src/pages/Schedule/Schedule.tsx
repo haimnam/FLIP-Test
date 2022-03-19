@@ -170,15 +170,6 @@ const Schedule = () => {
   };
 
   const [nextId, setNextId] = useState(4);
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
   const addTime = (day, hour, ampm) => {
     if (ampm === "pm") {
       hour += 12;
@@ -187,21 +178,8 @@ const Schedule = () => {
     let todayConverted = today.add(13, "h");
     let newTime = {
       id: nextId,
-      main:
-        today.format("dddd") +
-        " " +
-        today.format("h") +
-        ":00" +
-        " " +
-        today.format("a"),
-      sub:
-        todayConverted.format("dddd") +
-        " " +
-        todayConverted.format("h") +
-        ":00" +
-        " " +
-        todayConverted.format("a") +
-        " KST",
+      main: today.format("dddd h:00 a"),
+      sub: todayConverted.format("dddd h:00 a KST"),
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",

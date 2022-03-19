@@ -16,7 +16,7 @@ const Updown = ({ width, height, setUp, setDown }) => {
           onClick={setUp}
         />
       </div>
-      <div style={{ height: height }}>
+      <div style={{ height }}>
         <KeyboardArrowDown
           style={{
             width,

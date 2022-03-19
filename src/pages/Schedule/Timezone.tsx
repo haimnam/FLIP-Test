@@ -16,12 +16,8 @@ const Timezone = ({
 
   const [nowUser, setNowUser] = useState(dayjs().tz("America/New_York"));
 
-  let upDownController = [0, 0, 0, 0];
-
   const setNow = () => {
-    upDownController.fill(0);
     setNowUser(dayjs().tz("America/New_York"));
-
     if (selectedPartner === 1) {
       setNowPartner(dayjs());
     } else {
@@ -29,44 +25,25 @@ const Timezone = ({
     }
   };
 
-  const setHour = (dir) => {
-    if (dir === "up") {
-      upDownController[0]++;
+  const changeTime = (unit, dir) => {
+    if (unit === "D") {
+      setNowPartner(nowPartner.add(dir * 24, "h"));
+      setNowUser(nowUser.add(dir * 24, "h"));
     } else {
-      upDownController[0]--;
+      setNowPartner(nowPartner.add(dir, unit));
+      setNowUser(nowUser.add(dir, unit));
     }
-    setNowPartner(nowPartner.add(upDownController[0], "h"));
-    setNowUser(nowUser.add(upDownController[0], "h"));
   };
 
-  const setMin = (dir) => {
-    if (dir === "up") {
-      upDownController[1]++;
-    } else {
-      upDownController[1]--;
-    }
-    setNowPartner(nowPartner.add(upDownController[1], "m"));
-    setNowUser(nowUser.add(upDownController[1], "m"));
-  };
-
-  const setMonth = (dir) => {
-    if (dir === "up") {
-      upDownController[2]++;
-    } else {
-      upDownController[2]--;
-    }
-    setNowPartner(nowPartner.add(upDownController[2], "M"));
-    setNowUser(nowUser.add(upDownController[2], "M"));
-  };
-
-  const setDate = (dir) => {
-    if (dir === "up") {
-      upDownController[3]++;
-    } else {
-      upDownController[3]--;
-    }
-    setNowPartner(nowPartner.add(upDownController[3] * 24, "h"));
-    setNowUser(nowUser.add(upDownController[3] * 24, "h"));
+  const converterElements = {
+    time: [
+      { id: 1, format: "hh", unit: "h" },
+      { id: 2, format: "mm", unit: "m" },
+    ],
+    date: [
+      { id: 1, format: "MM", unit: "M", slash: "/" },
+      { id: 2, format: "DD", unit: "D", slash: "" },
+    ],
   };
 
   return (
@@ -81,38 +58,36 @@ const Timezone = ({
             </div>
           </div>
           <div className={styles.time}>
-            <div>{nowUser.format("hh")}</div>
-            <Updown
-              width="17px"
-              height="15px"
-              setUp={() => setHour("up")}
-              setDown={() => setHour("down")}
-            />
-            <div>{nowUser.format("mm")}</div>
-            <Updown
-              width="17px"
-              height="15px"
-              setUp={() => setMin("up")}
-              setDown={() => setMin("down")}
-            />
+            {converterElements.time.map((t) => {
+              return (
+                <React.Fragment key={t.id}>
+                  <div>{nowUser.format(t.format)}</div>
+                  <Updown
+                    width="17px"
+                    height="15px"
+                    setUp={() => changeTime(t.unit, 1)}
+                    setDown={() => changeTime(t.unit, -1)}
+                  />
+                </React.Fragment>
+              );
+            })}
             <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{nowUser.format("MM")}</div>
-            <Updown
-              width="15px"
-              height="10px"
-              setUp={() => setMonth("up")}
-              setDown={() => setMonth("down")}
-            />
-            <div>/</div>
-            <div>{nowUser.format("DD")}</div>
-            <Updown
-              width="15px"
-              height="10px"
-              setUp={() => setDate("up")}
-              setDown={() => setDate("down")}
-            />
+            {converterElements.date.map((d) => {
+              return (
+                <React.Fragment key={d.id}>
+                  <div>{nowUser.format(d.format)}</div>
+                  <Updown
+                    width="15px"
+                    height="10px"
+                    setUp={() => changeTime(d.unit, 1)}
+                    setDown={() => changeTime(d.unit, -1)}
+                  />
+                  <div>{d.slash}</div>
+                </React.Fragment>
+              );
+            })}
             <div className={styles.day}>{nowUser.format("dddd")}</div>
           </div>
         </div>
@@ -121,38 +96,36 @@ const Timezone = ({
             <div className={styles.cityName}>{cityPartner}</div>
           </div>
           <div className={styles.time}>
-            <div>{nowPartner.format("hh")}</div>
-            <Updown
-              width="17px"
-              height="15px"
-              setUp={() => setHour("up")}
-              setDown={() => setHour("down")}
-            />
-            <div>{nowPartner.format("mm")}</div>
-            <Updown
-              width="17px"
-              height="15px"
-              setUp={() => setMin("up")}
-              setDown={() => setMin("down")}
-            />
+            {converterElements.time.map((t) => {
+              return (
+                <React.Fragment key={t.id}>
+                  <div>{nowPartner.format(t.format)}</div>
+                  <Updown
+                    width="17px"
+                    height="15px"
+                    setUp={() => changeTime(t.unit, 1)}
+                    setDown={() => changeTime(t.unit, -1)}
+                  />
+                </React.Fragment>
+              );
+            })}
             <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
           <div className={styles.date}>
-            <div>{nowPartner.format("MM")}</div>
-            <Updown
-              width="15px"
-              height="10px"
-              setUp={() => setMonth("up")}
-              setDown={() => setMonth("down")}
-            />
-            <div>/</div>
-            <div>{nowPartner.format("DD")}</div>
-            <Updown
-              width="15px"
-              height="10px"
-              setUp={() => setDate("up")}
-              setDown={() => setDate("down")}
-            />
+            {converterElements.date.map((d) => {
+              return (
+                <React.Fragment key={d.id}>
+                  <div>{nowPartner.format(d.format)}</div>
+                  <Updown
+                    width="15px"
+                    height="10px"
+                    setUp={() => changeTime(d.unit, 1)}
+                    setDown={() => changeTime(d.unit, -1)}
+                  />
+                  <div>{d.slash}</div>
+                </React.Fragment>
+              );
+            })}
             <div className={styles.day}>{nowPartner.format("dddd")}</div>
           </div>
         </div>
