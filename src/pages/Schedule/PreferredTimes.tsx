@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
 
 const PreferredTimes = ({
   selectedPartner,
@@ -8,10 +11,12 @@ const PreferredTimes = ({
   addMeeting,
   removeMeeting,
   changeTimeState,
-  addNewTime,
   uncheck,
   onInsertToggle,
 }) => {
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+
   const [checkedItems, setCheckedItems] = useState(new Set());
 
   const checkHandler = ({ target }) => {
@@ -53,12 +58,9 @@ const PreferredTimes = ({
     if (state === "FINALIZE") {
       let newMeeting = {
         id: id * 1,
-        main: partnerInfoData
+        time: partnerInfoData
           .find((partner) => partner.id === selectedPartner)
-          .timesData.find((time) => time.id === id).main,
-        sub: partnerInfoData
-          .find((partner) => partner.id === selectedPartner)
-          .timesData.find((time) => time.id === id).sub,
+          .timesData.find((time) => time.id === id).time,
       };
       addMeeting(
         id,
@@ -95,8 +97,10 @@ const PreferredTimes = ({
               return (
                 <div key={time.id} className={styles.row}>
                   <div className={styles.overlappingTimes}>
-                    <h3>{time.main}</h3>
-                    <div>{time.sub}</div>
+                    <h3>{time.time.format("dddd h:mm a")}</h3>
+                    <div>
+                      {time.time.tz("Asia/Seoul").format("dddd h:mm a KST")}
+                    </div>
                   </div>
                   <div className={styles.partnerPick}>
                     <div className={time.isPartnerPick ? styles.circle : ""}>

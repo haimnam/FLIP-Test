@@ -174,12 +174,13 @@ const Schedule = () => {
     if (ampm === "pm") {
       hour += 12;
     }
-    let today = dayjs().set("day", day).set("hour", hour);
-    let todayConverted = today.add(13, "h");
     let newTime = {
       id: nextId,
-      main: today.format("dddd h:00 a"),
-      sub: todayConverted.format("dddd h:00 a KST"),
+      time: dayjs()
+        .tz("America/New_York")
+        .set("day", day)
+        .set("hour", hour)
+        .set("minute", 0),
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",
@@ -209,7 +210,6 @@ const Schedule = () => {
             addMeeting={addMeeting}
             removeMeeting={removeMeeting}
             changeTimeState={changeTimeState}
-            addNewTime={addNewTime}
             uncheck={uncheck}
             onInsertToggle={onInsertToggle}
           />
