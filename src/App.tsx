@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
@@ -47,15 +48,17 @@ const App = () => {
   });
 
   return (
-    <div className={styles.App}>
-      <LanguageContext>
-        <Sidebar
-          account={account}
-          students={students}
-          recommendation={recommendation}
-        />
-      </LanguageContext>
-    </div>
+    <BrowserRouter>
+      <div className={styles.App}>
+        <LanguageContext>
+          <Sidebar
+            account={account}
+            students={students}
+            recommendation={recommendation}
+          />
+        </LanguageContext>
+      </div>
+    </BrowserRouter>
   );
 };
 

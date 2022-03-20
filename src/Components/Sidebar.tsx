@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import styles from "../scss/App.module.scss";
 import { SidebarData } from "./SidebarData.tsx";
 import {
@@ -7,7 +7,13 @@ import {
   useSelectKo,
   useSelectEn,
 } from "../Store/LanguageContext.tsx";
-import { Home, Learning, Schedule, Session } from "../pages/pageIndex.tsx";
+import {
+  Home,
+  Learning,
+  Schedule,
+  Session,
+  Login,
+} from "../pages/pageIndex.tsx";
 
 const Sidebar = ({ account, students, recommendation }) => {
   let lang = useLang();
@@ -20,10 +26,10 @@ const Sidebar = ({ account, students, recommendation }) => {
   };
 
   return (
-    <BrowserRouter>
+    <>
       <div className={styles.sidebar}>
         <h2>FLIP</h2>
-        <Link className={styles.switch} to="/">
+        <Link className={styles.switch} to="/home">
           switch to FLIP Class
         </Link>
         <ul className={styles.sidebarList}>
@@ -43,6 +49,9 @@ const Sidebar = ({ account, students, recommendation }) => {
               Eng
             </div>
           </div>
+          <Link className={styles.login} to="/login">
+            LOGIN
+          </Link>
           <div className={styles.account}>
             <div className={styles.myCircle}>{account.initial}</div>
             <div>{account.name}</div>
@@ -63,8 +72,9 @@ const Sidebar = ({ account, students, recommendation }) => {
         />
         <Route path="/schedule/*" element={<Schedule />} />
         <Route path="/session" element={<Session />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 

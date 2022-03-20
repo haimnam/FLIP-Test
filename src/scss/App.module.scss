@@ -70,7 +70,7 @@ h3 {
 
 .language {
   margin-top: 160px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -87,6 +87,15 @@ h3 {
   }
 }
 
+.login {
+  font-weight: bold;
+
+  &:link {
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
 .account {
   background-color: white;
   text-align: center;
@@ -97,6 +106,7 @@ h3 {
   font-size: 15px;
   align-items: center;
   width: 100px;
+  margin-top: 25px;
   margin-left: 10px;
   margin-right: 10px;
 }
