@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import dayjs from "dayjs";
 
 const PreferredTimesInsert = ({ addTime }) => {
@@ -31,15 +31,15 @@ const PreferredTimesInsert = ({ addTime }) => {
           );
         })}
       </div>
-      <hr></hr>
+      <hr />
       <div className={styles.hoursRow}>{renderingSetHour(0, 7)}</div>
       <div className={styles.hoursRow}>{renderingSetHour(7, 13)}</div>
-      <hr></hr>
+      <hr />
       <div className={styles.ampmRow}>
         <button onClick={() => setNewAmpm("am")}>am</button>
         <button onClick={() => setNewAmpm("pm")}>pm</button>
       </div>
-      <hr></hr>
+      <hr />
       <button
         className={styles.addTime}
         onClick={() => addTime(newDay, newHour, newAmpm)}

@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../../../scss/Learning.module.scss";
+import { Routes, Route, Link } from "react-router-dom";
+import { ScheduleAndChat, Session } from "../../pageIndex.tsx";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -25,23 +27,27 @@ const UserInfo = ({ students }) => {
             <p className={styles.curTime}>
               {dayjs().tz(student.timeZone).format("h:mm a")}
             </p>
-            <div className={styles.chatInfo}>
+            <Link className={styles.chatInfo} to="/schedule">
               <ChatBubbleOutlineIcon />
               <span className={styles.chat}>Chat</span>
-            </div>
+            </Link>
             <div className={styles.sessionInfo}>
-              <div className={styles.startSession}>
+              <Link className={styles.startSession} to="/session">
                 <VideoCameraFrontIcon />
                 <span className={styles.startSessionContents}>
                   Start Session
                 </span>
-              </div>
+              </Link>
               <p className={styles.upcomingSession}>{student.schedule[0]}</p>
               <p>{student.schedule[1]}</p>
             </div>
           </div>
         );
       })}
+      <Routes>
+        <Route path="/schedule/*" element={<ScheduleAndChat />} />
+        <Route path="/session" element={<Session />} />
+      </Routes>
     </div>
   );
 };

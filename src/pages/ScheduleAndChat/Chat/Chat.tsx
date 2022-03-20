@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import ChatInfo from "./ChatInfo.tsx";
 import ChatScreen from "./ChatScreen.tsx";
 import ChatInput from "./ChatInput.tsx";

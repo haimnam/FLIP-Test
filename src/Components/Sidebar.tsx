@@ -10,7 +10,7 @@ import {
 import {
   Home,
   Learning,
-  Schedule,
+  ScheduleAndChat,
   Session,
   Login,
 } from "../pages/pageIndex.tsx";
@@ -26,7 +26,7 @@ const Sidebar = ({ account, students, recommendation }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <div className={styles.sidebar}>
         <h2>FLIP</h2>
         <Link className={styles.switch} to="/home">
@@ -70,11 +70,11 @@ const Sidebar = ({ account, students, recommendation }) => {
             />
           }
         />
-        <Route path="/schedule/*" element={<Schedule />} />
+        <Route path="/schedule/*" element={<ScheduleAndChat />} />
         <Route path="/session" element={<Session />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-    </>
+    </React.Fragment>
   );
 };
 

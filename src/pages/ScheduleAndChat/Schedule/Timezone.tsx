@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -15,7 +15,6 @@ const Timezone = ({
   dayjs.extend(timezone);
 
   const [nowUser, setNowUser] = useState(dayjs().tz("America/New_York"));
-
   const setNow = () => {
     setNowUser(dayjs().tz("America/New_York"));
     if (selectedPartner === 1) {
@@ -24,7 +23,6 @@ const Timezone = ({
       setNowPartner(dayjs().tz("America/New_York"));
     }
   };
-
   const changeTime = (unit, dir) => {
     if (unit === "D") {
       setNowPartner(nowPartner.add(dir * 24, "h"));
@@ -34,7 +32,6 @@ const Timezone = ({
       setNowUser(nowUser.add(dir, unit));
     }
   };
-
   const converterElements = {
     time: [
       { id: 1, format: "hh", unit: "h" },

@@ -5,9 +5,8 @@ import styles from "../scss/Login.module.scss";
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
-
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -17,7 +16,7 @@ const Login = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd]);
+  }, [userName, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ const Login = () => {
       await axios
         .post(
           "https://test.flipnow.net/login",
-          { userName: user, password: pwd },
+          { userName, password },
           {
             headers: { "Content-Type": "application/json" },
             withCredentials: true,
@@ -34,19 +33,11 @@ const Login = () => {
         .then((res) => {
           console.log(res);
         });
-      setUser("");
-      setPwd("");
+      setUserName("");
+      setPassword("");
       setSuccess(true);
     } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
+      console.log(err);
       errRef.current.focus();
     }
   };
@@ -67,35 +58,27 @@ const Login = () => {
             </div>
             <form className={styles.loginSection} onSubmit={handleSubmit}>
               <div className={styles.username}>
-                <label htmlFor="username"></label>
                 <input
                   placeholder="Username"
                   type="text"
-                  id="username"
                   ref={userRef}
                   autoComplete="off"
-                  onChange={(e) => setUser(e.target.value)}
-                  required
-                  value={user}
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={userName}
                 ></input>
               </div>
               <div className={styles.password}>
-                <label htmlFor="password"></label>
                 <input
                   placeholder="Password"
                   type="password"
-                  id="password"
-                  onChange={(e) => setPwd(e.target.value)}
-                  required
-                  value={pwd}
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 ></input>
               </div>
               <div className={styles.signUp}>
                 <button>Sign in</button>
               </div>
-              <div className={styles.footer}>
-                <div>Forgot password?</div>
-              </div>
+              <div className={styles.footer}>Forgot password?</div>
             </form>
           </div>
         </div>

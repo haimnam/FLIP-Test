@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";

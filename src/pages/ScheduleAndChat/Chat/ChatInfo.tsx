@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 
 const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
   const currentPartner = partnerInfoData.find(

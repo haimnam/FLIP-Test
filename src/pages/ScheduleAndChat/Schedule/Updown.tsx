@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
