@@ -61,7 +61,7 @@ const Sidebar = ({ account, students, recommendation }) => {
             />
           }
         />
-        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/schedule/*" element={<Schedule />} />
         <Route path="/session" element={<Session />} />
       </Routes>
     </BrowserRouter>

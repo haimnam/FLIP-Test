@@ -3,6 +3,10 @@ h3 {
   color: black;
 }
 
+body {
+  position: relative;
+}
+
 .scheduleAndChat {
   display: flex;
   padding: 30px 50px;
@@ -16,7 +20,6 @@ h3 {
     margin-right: 50px;
   }
   .circle {
-    color: white;
     margin: 30px 0px 0px 10px;
     cursor: pointer;
     .red {
@@ -27,6 +30,8 @@ h3 {
       justify-content: center;
       border-radius: 50%;
       background-color: red;
+      text-decoration: none;
+      color: white;
     }
   }
 }
@@ -300,6 +305,15 @@ h3 {
   border-radius: 10px;
   padding: 20px 20px;
   box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  .preferredTimesHead {
+    display: flex;
+    justify-content: space-between;
+    .addBtn {
+      color: rgb(208, 209, 198);
+      cursor: pointer;
+      font-size: 30px;
+    }
+  }
   .timeTable {
     width: 100%;
     font-weight: bold;
@@ -311,7 +325,7 @@ h3 {
       align-items: center;
       padding: 3px;
       .overlappingTimes {
-        width: 45%;
+        width: 50%;
       }
       .partnerPick {
         width: 15%;
@@ -334,7 +348,7 @@ h3 {
         padding: 6px;
         border-radius: 10px;
         .overlappingTimes {
-          width: 45%;
+          width: 50%;
         }
         .partnerPick {
           width: 15%;
@@ -353,11 +367,87 @@ h3 {
         }
         .myPick {
           width: 15%;
+          input {
+            width: 20px;
+            height: 20px;
+          }
         }
         .state {
           width: 25%;
+          color: rgb(172, 172, 172);
+        }
+        .stateFinalized {
+          @extend .state;
+          color: black;
+          font-weight: bold;
         }
       }
     }
+  }
+}
+
+.preferredTimesInsert {
+  background-color: white;
+  position: absolute;
+  margin-left: 75px;
+  top: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  width: 280px;
+  height: 200px;
+  padding: 10px;
+  box-shadow: 1px 1px 5px 1px rgb(160, 160, 160);
+  hr {
+    width: 280px;
+  }
+  .daysRow {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 5px;
+  }
+  .hoursRow {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 5px 0px 5px 5px;
+  }
+  .ampmRow {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 5px;
+  }
+  .addTime {
+    background-color: lightgrey;
+    width: 80px;
+    border: 1px solid rgb(160, 160, 160);
+    margin-left: 200px;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  button {
+    background-color: white;
+    border: none;
+    font-size: 18px;
+    width: 30px;
+    color: rgb(160, 160, 160);
+    font-weight: bold;
+  }
+  button:hover {
+    color: black;
+  }
+  button:focus {
+    color: black;
   }
 }

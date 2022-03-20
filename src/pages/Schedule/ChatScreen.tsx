@@ -1,60 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
-import { ChatPartnerData, ChatMyData } from "./ChatData.tsx";
-import SendIcon from "@mui/icons-material/Send";
+import { PartnerInfoData } from "./PartnerInfoData.tsx";
 
-const ChatScreen = () => {
-  const [chat, setChat] = useState({ input: "", chats: [] });
-
-  const onChangeChat = (e) => {
-    setChat({ input: e.target.value, chats: chat.chats });
-  };
-  const onClickChat = (e) => {
-    setChat({ input: "", chats: chat.chats.concat(chat.input) });
-  };
-
+const ChatScreen = ({ chat, selectedPartner }) => {
   return (
-    <div className={styles.chatScreen}>
-      <div className={styles.chatContainer}>
-        {ChatPartnerData.map((chat, index) => {
-          return (
-            <div key={index} className={styles.chatItem}>
-              <div className={styles.chatBox}>
-                <div className={styles.chatMessage}>{chat}</div>
-              </div>
+    <div className={styles.chatContainer}>
+      {PartnerInfoData.find(
+        (partner) => partner.id === selectedPartner
+      ).partnerChat.map((c) => {
+        return (
+          <div key={c.id} className={styles.chatItem}>
+            <div className={styles.chatBox}>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
-          );
-        })}
-        {ChatMyData.map((chat, index) => {
-          return (
-            <div key={index} className={styles.chatMyItem}>
-              <div className={styles.chatBox}>
-                <div className={styles.chatMessage}>{chat}</div>
-              </div>
+          </div>
+        );
+      })}
+      {PartnerInfoData.find(
+        (partner) => partner.id === selectedPartner
+      ).myChat.map((c) => {
+        return (
+          <div key={c.id} className={styles.chatMyItem}>
+            <div className={styles.chatBox}>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
-          );
-        })}
-        {chat.chats.map((ch, index) => {
-          return (
-            <div key={index} className={styles.chatMyItem}>
-              <div className={styles.chatBox}>
-                <div className={styles.chatMessage}>{ch}</div>
-              </div>
+          </div>
+        );
+      })}
+      {chat.chats.map((c) => {
+        return (
+          <div key={c.id} className={styles.chatMyItem}>
+            <div className={styles.chatBox}>
+              <div className={styles.chatMessage}>{c.chat}</div>
             </div>
-          );
-        })}
-      </div>
-      <div className={styles.chatInput}>
-        <input
-          type="text"
-          placeholder="write message..."
-          value={chat.input}
-          onChange={onChangeChat}
-        ></input>
-        <button type="submit" onClick={onClickChat} className={styles.sendIcon}>
-          <SendIcon />
-        </button>
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

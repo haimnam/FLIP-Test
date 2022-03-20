@@ -19,8 +19,9 @@ const Calendar = ({ students }) => {
   } else {
     if (todayDay > 5) {
       daysLeft = 10 - todayDay;
+    } else {
+      daysLeft = 3 - todayDay;
     }
-    daysLeft = 3 - todayDay;
   }
 
   return (

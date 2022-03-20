@@ -1,28 +1,31 @@
 import React from "react";
 import styles from "../../scss/ScheduleAndChat.module.scss";
-import { PartnerInfoData } from "./PartnerInfoData.tsx";
 
-const ChatInfo = () => {
+const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
+  const currentPartner = partnerInfoData.find(
+    (partner) => partner.id === selectedPartner
+  );
+
   return (
     <div className={styles.chatInfo}>
       <div className={styles.partnerInfo}>
         <div className={styles.partnerMain}>
-          <h3>{PartnerInfoData[0].name}</h3>
-          <div>{PartnerInfoData[0].localTime}</div>
+          <h3>{currentPartner.name}</h3>
+          <div>{currentPartner.localTime}</div>
         </div>
         <div className={styles.partnerSub}>
-          <div>{PartnerInfoData[0].nationality}</div>
-          <div>{PartnerInfoData[0].email}</div>
+          <div>{currentPartner.nationality}</div>
+          <div>{currentPartner.email}</div>
         </div>
         <div className={styles.partnerUniv}>
-          <div>{PartnerInfoData[0].univ}</div>
-          <div>{PartnerInfoData[0].major}</div>
+          <div>{currentPartner.univ}</div>
+          <div>{currentPartner.major}</div>
         </div>
         <div className={styles.partnerTaste}>
-          {PartnerInfoData[0].taste.map((taste, index) => {
+          {currentPartner.taste.map((taste) => {
             return (
               <div
-                key={index}
+                key={taste.id}
                 className={
                   taste.isValid
                     ? styles.partnerTasteItem
@@ -38,9 +41,9 @@ const ChatInfo = () => {
       <div className={styles.regularMeeting}>
         <div>Regular meetings on</div>
         <div className={styles.meetingContainer}>
-          {PartnerInfoData[0].meetingTimes.map((time, index) => {
+          {currentPartner.meetingTimes.map((time) => {
             return (
-              <div key={index} className={styles.meetingItem}>
+              <div key={time.id} className={styles.meetingItem}>
                 <h3>{time.main}</h3>
                 <div>{time.sub}</div>
               </div>

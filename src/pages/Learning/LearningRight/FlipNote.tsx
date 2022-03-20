@@ -32,9 +32,9 @@ const FlipNote = () => {
         Check out what other people are learning in their langauge exchange!
       </p>
       <div className={styles.itemsContainer}>
-        {FlipNoteData.map((note, index) => {
+        {FlipNoteData.map((note) => {
           return (
-            <div key={index} className={styles.item}>
+            <div key={note.id} className={styles.item}>
               <div className={styles.circle}>{note.name}</div> {note[noteLang]}
             </div>
           );
