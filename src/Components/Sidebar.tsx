@@ -15,7 +15,7 @@ import {
   Login,
 } from "../pages/pageIndex.tsx";
 
-const Sidebar = ({ account, students, recommendation }) => {
+const Sidebar = ({ account, students, user }) => {
   let lang = useLang();
   const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
     if (lan === lang) {
@@ -62,17 +62,11 @@ const Sidebar = ({ account, students, recommendation }) => {
         <Route path="/home" element={<Home />} />
         <Route
           path="/learning"
-          element={
-            <Learning
-              account={account}
-              students={students}
-              recommendation={recommendation}
-            />
-          }
+          element={<Learning account={account} students={students} />}
         />
         <Route path="/schedule/*" element={<ScheduleAndChat />} />
         <Route path="/session" element={<Session />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login user={user} />} />
       </Routes>
     </React.Fragment>
   );

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
+import { AuthContext } from "./Store/AuthProvider.tsx";
 
 type StudentsType = {
   id: number;
@@ -16,6 +17,13 @@ type StudentsType = {
 };
 
 const App = () => {
+  const [authTokens, setAuthTokens] = useState(
+    localStorage.getItem("access_token") || ""
+  );
+  const setTokens = (data) => {
+    localStorage.setItem("access_token", JSON.stringify(data));
+    setAuthTokens(data);
+  };
   const account = { initial: "NH", name: "Nahee" };
   const [students, setStudents] = useState<StudentsType[]>([
     {
@@ -41,13 +49,15 @@ const App = () => {
   ]);
 
   return (
-    <BrowserRouter>
-      <div className={styles.App}>
-        <LanguageContext>
-          <Sidebar account={account} students={students} />
-        </LanguageContext>
-      </div>
-    </BrowserRouter>
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+      <BrowserRouter>
+        <div className={styles.App}>
+          <LanguageContext>
+            <Sidebar account={account} students={students} />
+          </LanguageContext>
+        </div>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 };
 

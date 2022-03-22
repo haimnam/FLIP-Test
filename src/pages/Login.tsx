@@ -1,14 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "../api/axios.tsx";
+import axios from "axios";
 import styles from "../scss/Login.module.scss";
+import { useAuth } from "../Store/AuthProvider.tsx";
 
 const Login = () => {
-  const userRef = useRef();
-  const errRef = useRef();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuthTokens } = useAuth();
+
+  const userRef = useRef();
+  const errRef = useRef();
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("access_token");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
   useEffect(() => {
     userRef.current.focus();
@@ -18,10 +30,10 @@ const Login = () => {
     setErrMsg("");
   }, [userName, password]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      await axios
+      axios
         .post(
           "https://test.flipnow.net/login",
           { userName, password },
@@ -32,10 +44,20 @@ const Login = () => {
         )
         .then((res) => {
           console.log(res);
+          let token = res.data.accessToken;
+          localStorage.setItem("access_token", token);
+          let config = {
+            headers: {
+              "access-token": token,
+            },
+          };
+          setAuthTokens(res.data);
+          setUser(res.data);
+          console.log(token);
+          console.log(config);
         });
       setUserName("");
       setPassword("");
-      setSuccess(true);
     } catch (err) {
       console.log(err);
       errRef.current.focus();
@@ -44,7 +66,7 @@ const Login = () => {
 
   return (
     <div>
-      {success ? (
+      {user ? (
         <div className={styles.success}>
           <span>Login Success</span>
           <div>Click the menu on the sidebar.</div>
