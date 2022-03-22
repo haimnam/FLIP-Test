@@ -13,4 +13,5 @@ export const SidebarData = [
     link: "/schedule/account?id=1",
   },
   { icon: <VideoCameraFrontIcon />, title: "Session", link: "/session" },
+  { icon: <HomeIcon />, title: "My Page", link: "/myPage" },
 ];

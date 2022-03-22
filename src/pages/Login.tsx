@@ -46,6 +46,7 @@ const Login = () => {
           console.log(res);
           let token = res.data.accessToken;
           localStorage.setItem("access_token", token);
+          localStorage.setItem("firstName", res.data.firstName);
           let config = {
             headers: {
               "access-token": token,
