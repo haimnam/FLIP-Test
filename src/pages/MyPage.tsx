@@ -5,7 +5,7 @@ import { useAuth } from "../Store/AuthProvider.tsx";
 const MyPage = () => {
   const { authTokens } = useAuth();
   let firstName = localStorage.getItem("firstName");
-  if (authTokens) {
+  if (authTokens && localStorage.getItem("access_token")) {
     return (
       <div className={styles.contents}>
         <h1>Hello, {firstName}!</h1>

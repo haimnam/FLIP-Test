@@ -14,4 +14,5 @@ export const SidebarData = [
   },
   { icon: <VideoCameraFrontIcon />, title: "Session", link: "/session" },
   { icon: <HomeIcon />, title: "My Page", link: "/myPage" },
+  { icon: <ArticleIcon />, title: "Words", link: "./word" },
 ];
