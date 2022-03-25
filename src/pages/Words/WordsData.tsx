@@ -1,3 +1,3 @@
 import React from "react";
 
-export const WordsData = [{ id: 1, term: "", definition: "" }];
+export const WordsData = [{ id: 0, term: "", definition: "", ellipsis: false }];
