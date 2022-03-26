@@ -3,28 +3,47 @@ import styles from "../../scss/Words.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import dayjs from "dayjs";
 
+type WordType = {
+  id: number;
+  term: string;
+  definition: string;
+  ellipsis: boolean;
+};
+
+type BookType = {
+  id: number;
+  language: string;
+  date: string;
+  wordData: WordType[];
+  ellipsis: boolean;
+};
+
 const Words = () => {
-  const [voca, setVoca] = useState(false);
-  const [addSet, setAddSet] = useState(false);
-  const [selectedBookId, setSelectedBookId] = useState(0);
+  const [voca, setVoca] = useState<boolean>(false);
+  const [addSet, setAddSet] = useState<boolean>(false);
+  const [selectedBookId, setSelectedBookId] = useState<number>(0);
 
-  const [bookData, setBookData] = useState([]);
+  const [bookData, setBookData] = useState<BookType[]>([]);
 
-  const [nextBookId, setNextBookId] = useState(1);
-  const [nextWordId, setNextWordId] = useState(1);
+  const [nextBookId, setNextBookId] = useState<number>(1);
+  const [nextWordId, setNextWordId] = useState<number>(1);
 
-  const [background, setBackground] = useState(false);
+  const [background, setBackground] = useState<boolean>(false);
+  const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
+
+  const [isListView, setIsListView] = useState<boolean>(true);
 
   const clickBackground = () => {
-    setBackground(false);
-    setAddSet(false);
     setBookData(
       bookData.map((book) => {
-        book.wordData.ellipsis = false;
+        book.wordData.map((word) => (word.ellipsis = false));
         book.ellipsis = false;
         return book;
       })
     );
+    setBackground(false);
+    setAddSet(false);
+    setIsMoveClicked(false);
   };
 
   const clickStudySets = () => {
@@ -32,7 +51,7 @@ const Words = () => {
     setBackground(true);
   };
 
-  const addStudySets = (language) => {
+  const addStudySets = (language: string) => {
     setBookData(
       bookData.concat({
         id: nextBookId,
@@ -47,10 +66,10 @@ const Words = () => {
     setBackground(false);
   };
 
-  const clickFolderEllipsis = (bookId) => {
+  const clickFolderEllipsis = (bookId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
+        book.id === bookId
           ? {
               ...book,
               ellipsis: true,
@@ -62,7 +81,7 @@ const Words = () => {
     setSelectedBookId(bookId);
   };
 
-  const editStudySet = (bookId) => {
+  const editStudySet = (bookId: number) => {
     setBookData(
       bookData.map((book) => {
         book.ellipsis = false;
@@ -74,20 +93,20 @@ const Words = () => {
     setSelectedBookId(bookId);
   };
 
-  const deleteStudySet = (bookId) => {
-    setBookData(bookData.filter((book) => book.id != bookId));
+  const deleteStudySet = (bookId: number) => {
+    setBookData(bookData.filter((book) => book.id !== bookId));
     setBackground(false);
     setVoca(false);
   };
 
-  const clickWordEllipsis = (bookId, wordId) => {
+  const clickWordEllipsis = (bookId: number, wordId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
+        book.id === bookId
           ? {
               ...book,
               wordData: book.wordData.map((word) =>
-                word.id == wordId
+                word.id === wordId
                   ? {
                       ...word,
                       ellipsis: true,
@@ -101,10 +120,10 @@ const Words = () => {
     setBackground(true);
   };
 
-  const addWord = (bookId) => {
+  const addWord = (bookId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
+        book.id === bookId
           ? {
               ...book,
               wordData: book.wordData.concat({
@@ -120,50 +139,65 @@ const Words = () => {
     setNextWordId(nextWordId + 1);
   };
 
-  const moveWord = (bookId, wordId) => {
+  const clickMove = () => {
+    setIsMoveClicked(true);
+  };
+
+  const moveWord = (srcBookId: number, desBookId: number, wordId: number) => {
+    console.log(bookData.find((book) => book.id === desBookId).wordData.length);
+    console.log(bookData.find((book) => book.id === srcBookId).wordData);
+    let newWord = {
+      id: nextWordId,
+      term: bookData
+        .find((book) => book.id === srcBookId)
+        .wordData.find((word) => word.id === wordId).term,
+      definition: bookData
+        .find((book) => book.id === srcBookId)
+        .wordData.find((word) => word.id === wordId).definition,
+      ellipsis: false,
+    };
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
+        book.id === srcBookId || book.id === desBookId
+          ? book.id === srcBookId
+            ? {
+                ...book,
+                wordData: book.wordData.filter((word) => word.id !== wordId),
+              }
+            : book.id === desBookId
+            ? {
+                ...book,
+                wordData: book.wordData.concat(newWord),
+              }
+            : book
+          : book
+      )
+    );
+    setNextWordId(nextWordId + 1);
+  };
+
+  const deleteWord = (bookId: number, wordId: number) => {
+    setBookData(
+      bookData.map((book) =>
+        book.id === bookId
           ? {
               ...book,
-              wordData: book.wordData.map((word) =>
-                word.id == wordId
-                  ? {
-                      ...word,
-                      ellipsis: false,
-                    }
-                  : word
-              ),
+              wordData: book.wordData.filter((word) => word.id !== wordId),
             }
           : book
       )
     );
-    setVoca(true);
     setBackground(false);
   };
 
-  const deleteWord = (bookId, wordId) => {
+  const putTextTerm = (e, bookId: number, wordId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
-          ? {
-              ...book,
-              wordData: book.wordData.filter((word) => word.id != wordId),
-            }
-          : book
-      )
-    );
-    setBackground(false);
-  };
-
-  const putTextTerm = (e, bookId, wordId) => {
-    setBookData(
-      bookData.map((book) =>
-        book.id == bookId
+        book.id === bookId
           ? {
               ...book,
               wordData: book.wordData.map((word) =>
-                word.id == wordId
+                word.id === wordId
                   ? {
                       ...word,
                       term: e,
@@ -176,14 +210,14 @@ const Words = () => {
     );
   };
 
-  const putTextDef = (e, bookId, wordId) => {
+  const putTextDef = (e, bookId: number, wordId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id == bookId
+        book.id === bookId
           ? {
               ...book,
               wordData: book.wordData.map((word) =>
-                word.id == wordId
+                word.id === wordId
                   ? {
                       ...word,
                       definition: e,
@@ -200,9 +234,7 @@ const Words = () => {
     <div className={styles.contents}>
       {background ? (
         <div className={styles.background} onClick={clickBackground}></div>
-      ) : (
-        ""
-      )}
+      ) : null}
       <div className={styles.studySets}>
         <div className={styles.studySetsHead}>
           <div className={styles.studySetsTitle}>My Study Sets</div>
@@ -237,9 +269,7 @@ const Words = () => {
               German
             </button>
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
         <div className={styles.studySetsBody}>
           {bookData.map((book) => {
             return (
@@ -275,9 +305,7 @@ const Words = () => {
                       delete
                     </button>
                   </div>
-                ) : (
-                  ""
-                )}
+                ) : null}
               </div>
             );
           })}
@@ -289,13 +317,16 @@ const Words = () => {
           <div className={styles.wordsHead}>
             <div className={styles.wordsTitle}>
               <div className={styles.wordsTitleName}>
-                {bookData.find((book) => book.id == selectedBookId).language}{" "}
-                {bookData.find((book) => book.id == selectedBookId).date}
+                {bookData.find((book) => book.id === selectedBookId).language}{" "}
+                {bookData.find((book) => book.id === selectedBookId).date}
               </div>
             </div>
             <div className={styles.wordsTitleLanguage}>
-              {bookData.find((book) => book.id == selectedBookId).language}
+              {bookData.find((book) => book.id === selectedBookId).language}
             </div>
+            <button onClick={() => setIsListView((prev) => !prev)}>
+              Change View
+            </button>
           </div>
           <div className={styles.wordsList}>
             <div className={styles.wordsListHead}>
@@ -303,62 +334,129 @@ const Words = () => {
               <div>Definition</div>
             </div>
           </div>
-          <div className={styles.wordsListFolder}>folder title</div>
-          {bookData
-            .find((book) => book.id == selectedBookId)
-            .wordData.map((word) => {
-              return (
-                <div key={word.id} className={styles.wordsListRow}>
-                  <div className={styles.wordsListId}>{word.id}</div>
-                  <textarea
-                    className={styles.wordsListTerm}
-                    placeholder="Write down the words"
-                    onChange={(e) =>
-                      putTextTerm(e.target.value, selectedBookId, word.id)
-                    }
-                    defaultValue={word.term}
-                  ></textarea>
-                  <textarea
-                    className={styles.wordsListDefinition}
-                    placeholder="Write down the definition"
-                    onChange={(e) =>
-                      putTextDef(e.target.value, selectedBookId, word.id)
-                    }
-                    defaultValue={word.definition}
-                  ></textarea>
-                  <button
-                    className={styles.wordsListEllipsis}
-                    onClick={() => clickWordEllipsis(selectedBookId, word.id)}
-                  >
-                    ···
-                  </button>
-                  {word.ellipsis ? (
-                    <div className={styles.wordsListEllipsisBox}>
-                      <button
-                        className={styles.wordsListMove}
-                        onClick={() => moveWord(selectedBookId, word.id)}
-                      >
-                        move
-                      </button>
-                      <button
-                        className={styles.wordsListDelete}
-                        onClick={() => deleteWord(selectedBookId, word.id)}
-                      >
-                        delete
-                      </button>
+          {isListView ? (
+            <>
+              <div className={styles.wordsListView}>
+                {bookData
+                  .find((book) => book.id === selectedBookId)
+                  .wordData.map((word, index) => {
+                    return (
+                      <div key={word.id} className={styles.wordsListRow}>
+                        <div className={styles.wordsListId}>{index + 1}</div>
+                        <textarea
+                          className={styles.wordsListTerm}
+                          placeholder="Write down the words"
+                          onChange={(e) =>
+                            putTextTerm(e.target.value, selectedBookId, word.id)
+                          }
+                          defaultValue={word.term}
+                        ></textarea>
+                        <textarea
+                          className={styles.wordsListDefinition}
+                          placeholder="Write down the definition"
+                          onChange={(e) =>
+                            putTextDef(e.target.value, selectedBookId, word.id)
+                          }
+                          defaultValue={word.definition}
+                        ></textarea>
+                        <button
+                          className={styles.wordsListEllipsis}
+                          onClick={() =>
+                            clickWordEllipsis(selectedBookId, word.id)
+                          }
+                        >
+                          ···
+                        </button>
+                        {word.ellipsis ? (
+                          <div className={styles.wordsListEllipsisBox}>
+                            <button
+                              className={styles.wordsListMove}
+                              onClick={() => clickMove()}
+                            >
+                              move
+                            </button>
+                            {isMoveClicked ? (
+                              <div className={styles.wordsListMoveScreen}>
+                                <h4>Move to...</h4>
+                                <span>My Study Sets</span>
+                                {bookData.map((book) => {
+                                  if (book.id === selectedBookId) {
+                                    return (
+                                      <button
+                                        key={book.id}
+                                        onClick={(e) =>
+                                          moveWord(
+                                            selectedBookId,
+                                            book.id,
+                                            word.id
+                                          )
+                                        }
+                                        disabled
+                                      >
+                                        <FolderOutlinedIcon /> {book.language}{" "}
+                                        {book.date}
+                                      </button>
+                                    );
+                                  }
+                                  return (
+                                    <button
+                                      key={book.id}
+                                      onClick={(e) =>
+                                        moveWord(
+                                          selectedBookId,
+                                          book.id,
+                                          word.id
+                                        )
+                                      }
+                                    >
+                                      <FolderOutlinedIcon /> {book.language}{" "}
+                                      {book.date}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
+                            <button
+                              className={styles.wordsListDelete}
+                              onClick={() =>
+                                deleteWord(selectedBookId, word.id)
+                              }
+                            >
+                              delete
+                            </button>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+              <button
+                className={styles.wordsAddBtn}
+                onClick={() => addWord(selectedBookId)}
+              >
+                +
+              </button>
+            </>
+          ) : (
+            <div className={styles.wordsCardView}>
+              {bookData
+                .find((book) => book.id === selectedBookId)
+                .wordData.map((word) => {
+                  return (
+                    <div key={word.id} className={styles.wordsListCard}>
+                      <div className={styles.wordCard}>
+                        <div className={styles.wordCardTerm}>{word.term}</div>
+                        <div className={styles.wordCardDefinition}>
+                          {word.definition}
+                        </div>
+                      </div>
                     </div>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              );
-            })}
-          <button
-            className={styles.wordsAddBtn}
-            onClick={() => addWord(selectedBookId)}
-          >
-            +
-          </button>
+                  );
+                })}
+            </div>
+          )}
         </div>
       ) : (
         <div className={styles.noWords}>

@@ -13,7 +13,7 @@ textarea {
   .background {
     position: fixed;
     z-index: 10;
-    background-color: yellow;
+    background-color: transparent;
     opacity: 50%;
     width: 100%;
     height: 100%;
@@ -116,7 +116,7 @@ textarea {
     padding: 50px;
     .wordsHead {
       display: flex;
-      width: 500px;
+      width: 550px;
       gap: 20px;
       margin-bottom: 50px;
       .wordsTitle {
@@ -136,19 +136,21 @@ textarea {
     .wordsList {
       .wordsListHead {
         display: flex;
-        margin-left: 55px;
-        gap: 220px;
+        margin: 0px 0px 10px 60px;
+        gap: 240px;
       }
     }
-    .wordsListFolder {
-      margin: 20px 0px 20px 0px;
+    .wordsListView {
+    }
+    .wordsCardView {
+      display: flex;
     }
     .wordsListRow {
       display: flex;
       .wordsListId {
         display: flex;
         width: 50px;
-        background-color: white;
+        background-color: yellow;
         border: 1px solid black;
         justify-content: center;
         align-items: center;
@@ -180,6 +182,92 @@ textarea {
           border-bottom: 1px solid black;
           width: 100%;
           padding: 10px 30px 10px 30px;
+        }
+        .wordsListMoveScreen {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-left: -300px;
+          background-color: white;
+          position: absolute;
+          width: 380px;
+          height: 300px;
+          padding: 10px;
+          border-radius: 10px;
+          border: 2px solid black;
+          button {
+            text-align: left;
+            font-weight: bold;
+          }
+        }
+        .wordsListDelete {
+          padding: 10px 30px 10px 30px;
+        }
+      }
+    }
+    .wordsListCard {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      .wordCard {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: white;
+        padding: 20px 40px 20px 20px;
+        border-radius: 10px;
+        border: 2px solid black;
+        box-shadow: 0px 4px 4px 0px rgb(208, 209, 198);
+        .wordCardTerm {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+      .wordsListTerm {
+        padding: 15px 0px 0px 15px;
+        width: 250px;
+      }
+      .wordsListDefinition {
+        padding: 15px 0px 0px 15px;
+        width: 250px;
+      }
+      .wordsListEllipsis {
+        font-size: 25px;
+        font-weight: bold;
+        color: grey;
+      }
+      .wordsListEllipsisBox {
+        display: flex;
+        z-index: 20;
+        flex-direction: column;
+        background-color: rgb(168, 168, 168);
+        position: absolute;
+        margin-left: 520px;
+        margin-top: 35px;
+        gap: 0px;
+        .wordsListMove {
+          border-bottom: 1px solid black;
+          width: 100%;
+          padding: 10px 30px 10px 30px;
+        }
+        .wordsListMoveScreen {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-left: -300px;
+          background-color: white;
+          position: absolute;
+          width: 380px;
+          height: 300px;
+          padding: 10px;
+          border-radius: 10px;
+          border: 2px solid black;
+          button {
+            text-align: left;
+            font-weight: bold;
+          }
         }
         .wordsListDelete {
           padding: 10px 30px 10px 30px;
