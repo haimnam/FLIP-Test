@@ -133,14 +133,14 @@ textarea {
       }
     }
 
-    .wordsList {
-      .wordsListHead {
-        display: flex;
-        margin: 0px 0px 10px 60px;
-        gap: 240px;
-      }
-    }
     .wordsListView {
+      .wordsList {
+        .wordsListHead {
+          display: flex;
+          margin: 0px 0px 10px 60px;
+          gap: 240px;
+        }
+      }
     }
     .wordsCardView {
       display: flex;
