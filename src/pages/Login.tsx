@@ -45,17 +45,11 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           let token = res.data.accessToken;
-          localStorage.setItem("access_token", token);
+          localStorage.setItem("access_token", res.data.accessToken);
           localStorage.setItem("firstName", res.data.firstName);
-          let config = {
-            headers: {
-              "access-token": token,
-            },
-          };
           setAuthTokens(res.data);
           setUser(res.data);
           console.log(token);
-          console.log(config);
         });
       setUserName("");
       setPassword("");
