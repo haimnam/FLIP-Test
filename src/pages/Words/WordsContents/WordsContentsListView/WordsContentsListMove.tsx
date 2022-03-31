@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "../../../../scss/Words.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
+import axios from "axios";
+import { useAuth } from "../../../../Store/AuthProvider.tsx";
 
 const WordsContentsListMove = ({
   bookData,
@@ -9,32 +11,88 @@ const WordsContentsListMove = ({
   word,
 }) => {
   const [nextWordId, setNextWordId] = useState<number>(1);
+  const { authTokens } = useAuth();
+  let accessToken = authTokens.accessToken;
 
-  const moveWord = (srcBookId: number, desBookId: number, wordId: number) => {
-    console.log(bookData.find((book) => book.id === desBookId).wordData.length);
-    console.log(bookData.find((book) => book.id === srcBookId).wordData);
+  const moveWord = async (
+    srcBookId: number,
+    desBookId: number,
+    wordId: number
+  ) => {
+    try {
+      await axios.post(
+        `https://test.flipnow.net/word/book/${desBookId}`,
+        {
+          wordInfo: [
+            {
+              text: bookData
+                .find((book) => book._id === srcBookId)
+                .words.find((word) => word._id === wordId).text,
+              meaning: bookData
+                .find((book) => book._id === srcBookId)
+                .words.find((word) => word._id === wordId).meaning,
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      await axios.delete(
+        `https://test.flipnow.net/word/${srcBookId}/${wordId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+    try {
+      const response = await axios.get(
+        `https://test.flipnow.net/word/book/${desBookId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("-------------");
+      console.log(response.data);
+      console.log("------------");
+    } catch (e) {
+      console.log(e);
+    }
+
     let newWord = {
-      id: nextWordId,
-      term: bookData
-        .find((book) => book.id === srcBookId)
-        .wordData.find((word) => word.id === wordId).term,
-      definition: bookData
-        .find((book) => book.id === srcBookId)
-        .wordData.find((word) => word.id === wordId).definition,
+      _id: nextWordId,
+      text: bookData
+        .find((book) => book._id === srcBookId)
+        .words.find((word) => word._id === wordId).text,
+      meaning: bookData
+        .find((book) => book._id === srcBookId)
+        .words.find((word) => word._id === wordId).meaning,
       ellipsis: false,
     };
     setBookData(
       bookData.map((book) =>
-        book.id === srcBookId || book.id === desBookId
-          ? book.id === srcBookId
+        book._id === srcBookId || book._id === desBookId
+          ? book._id === srcBookId
             ? {
                 ...book,
-                wordData: book.wordData.filter((word) => word.id !== wordId),
+                words: book.words.filter((word) => word._id !== wordId),
               }
-            : book.id === desBookId
+            : book._id === desBookId
             ? {
                 ...book,
-                wordData: book.wordData.concat(newWord),
+                words: book.words.concat(newWord),
               }
             : book
           : book
@@ -50,11 +108,11 @@ const WordsContentsListMove = ({
       {bookData.map((book) => {
         return (
           <button
-            key={book.id}
-            onClick={(e) => moveWord(selectedBookId, book.id, word.id)}
-            disabled={book.id === selectedBookId ? true : false}
+            key={book._id}
+            onClick={(e) => moveWord(selectedBookId, book._id, word._id)}
+            disabled={book._id === selectedBookId ? true : false}
           >
-            <FolderOutlinedIcon /> {book.language} {book.date}
+            <FolderOutlinedIcon /> {book.title}
           </button>
         );
       })}

@@ -13,8 +13,6 @@ const WordsStudySets = ({
   setVoca,
   selectedBookId,
   setSelectedBookId,
-  nextBookId,
-  setNextBookId,
 }) => {
   return (
     <div className={styles.studySets}>
@@ -25,8 +23,6 @@ const WordsStudySets = ({
           setBackground={setBackground}
           bookData={bookData}
           setBookData={setBookData}
-          nextBookId={nextBookId}
-          setNextBookId={setNextBookId}
         />
       )}
       <WordsStudySetsBody

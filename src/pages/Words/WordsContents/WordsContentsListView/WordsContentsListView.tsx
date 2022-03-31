@@ -11,17 +11,16 @@ const WordsContentsListView = ({
   setIsMoveClicked,
 }) => {
   const [nextWordId, setNextWordId] = useState<number>(1);
-
   const addWord = (bookId: number) => {
     setBookData(
       bookData.map((book) =>
-        book.id === bookId
+        book._id === bookId
           ? {
               ...book,
-              wordData: book.wordData.concat({
-                id: nextWordId,
-                term: "",
-                definition: "",
+              words: book.words.concat({
+                _id: nextWordId,
+                text: "",
+                meaning: "",
                 ellipsis: false,
               }),
             }
@@ -41,8 +40,8 @@ const WordsContentsListView = ({
           </div>
         </div>
         {bookData
-          .find((book) => book.id === selectedBookId)
-          .wordData.map((word, index) => {
+          .find((book) => book._id === selectedBookId)
+          .words.map((word, index) => {
             return (
               <WordsContentsList
                 setBackground={setBackground}

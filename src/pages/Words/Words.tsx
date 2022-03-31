@@ -6,18 +6,19 @@ import axios from "axios";
 import { useAuth } from "../../Store/AuthProvider.tsx";
 
 type WordType = {
-  id: number;
-  term: string;
-  definition: string;
+  _id: string;
+  text: string;
+  meaning: string;
   ellipsis: boolean;
 };
-
 type BookType = {
-  id: number;
+  memberId: string;
+  _id: string;
+  title: string;
   language: string;
-  date: string;
-  wordData: WordType[];
+  words: WordType[];
   ellipsis: boolean;
+  isEdit: boolean;
 };
 
 const Words = () => {
@@ -32,24 +33,24 @@ const Words = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-
-        response.data.data.map((data, index) => {
+        response.data.data.map((data) => {
           let wordsArr = [];
           data.words.map((word) => {
             wordsArr.push({
-              id: word._id,
-              term: word.text,
-              definition: word.meaning,
+              _id: word._id,
+              text: word.text,
+              meaning: word.meaning,
               ellipsis: false,
             });
           });
-          let titleArr = data.title.split(" ");
           BookData.push({
-            id: index,
-            language: titleArr[0],
-            date: titleArr[1],
-            wordData: wordsArr,
+            memberId: data.memberId,
+            _id: data._id,
+            title: data.title,
+            language: data.language,
+            words: data.words,
             ellipsis: false,
+            isEdit: false,
           });
         });
       } catch (e) {
@@ -58,24 +59,26 @@ const Words = () => {
     };
     fetchGet();
   }, []);
+
   const [bookData, setBookData] = useState<BookType[]>(BookData);
   const [selectedBookId, setSelectedBookId] = useState<number>(0);
   const [background, setBackground] = useState<boolean>(false);
   const [addSet, setAddSet] = useState<boolean>(false);
+  const [isEditLanguage, setIsEditLanguage] = useState(false);
   const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
   const [voca, setVoca] = useState<boolean>(false);
-  const [nextBookId, setNextBookId] = useState<number>(4);
 
   const clickBackground = () => {
     setBookData(
       bookData.map((book) => {
-        book.wordData.map((word) => (word.ellipsis = false));
+        book.words.map((word) => (word.ellipsis = false));
         book.ellipsis = false;
         return book;
       })
     );
     setBackground(false);
     setAddSet(false);
+    setIsEditLanguage(false);
     setIsMoveClicked(false);
   };
 
@@ -93,8 +96,6 @@ const Words = () => {
         setVoca={setVoca}
         selectedBookId={selectedBookId}
         setSelectedBookId={setSelectedBookId}
-        nextBookId={nextBookId}
-        setNextBookId={setNextBookId}
       />
       <hr />
       {voca ? (
@@ -105,6 +106,8 @@ const Words = () => {
           selectedBookId={selectedBookId}
           isMoveClicked={isMoveClicked}
           setIsMoveClicked={setIsMoveClicked}
+          isEditLanguage={isEditLanguage}
+          setIsEditLanguage={setIsEditLanguage}
         />
       ) : (
         <div className={styles.noWords}>

@@ -11,15 +11,21 @@ const WordsContents = ({
   selectedBookId,
   isMoveClicked,
   setIsMoveClicked,
+  isEditLanguage,
+  setIsEditLanguage,
 }) => {
   const [isListView, setIsListView] = useState<boolean>(true);
 
   return (
     <div className={styles.words}>
       <WordsContentsHead
+        setBackground={setBackground}
         bookData={bookData}
+        setBookData={setBookData}
         selectedBookId={selectedBookId}
         setIsListView={setIsListView}
+        isEditLanguage={isEditLanguage}
+        setIsEditLanguage={setIsEditLanguage}
       />
       {isListView ? (
         <WordsContentsListView

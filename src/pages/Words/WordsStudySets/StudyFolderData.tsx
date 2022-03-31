@@ -1,12 +1,12 @@
 type StudyFolderType = {
   id: number;
-  style: string;
-  studyLanguage: string;
+  language: string;
+  title: string;
 };
 
 export const StudyFolderData: StudyFolderType[] = [
-  { id: 1, style: "ko", studyLanguage: "Korean" },
-  { id: 2, style: "en", studyLanguage: "English" },
-  { id: 3, style: "zh", studyLanguage: "Chinese" },
-  { id: 4, style: "de", studyLanguage: "German" },
+  { id: 1, language: "ko", title: "Korean" },
+  { id: 2, language: "en", title: "English" },
+  { id: 3, language: "zh", title: "Chinese" },
+  { id: 4, language: "de", title: "German" },
 ];

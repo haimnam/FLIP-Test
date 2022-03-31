@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../../../scss/Words.module.scss";
 import WordsContentsListMove from "./WordsContentsListMove.tsx";
+import axios from "axios";
+import { useAuth } from "../../../../Store/AuthProvider.tsx";
 
 const WordsContentsListEllipsis = ({
   setBackground,
@@ -15,13 +17,24 @@ const WordsContentsListEllipsis = ({
     setIsMoveClicked(true);
   };
 
-  const deleteWord = (bookId: number, wordId: number) => {
+  const { authTokens } = useAuth();
+  let accessToken = authTokens.accessToken;
+  const deleteWord = async (bookId: string, wordId: string) => {
+    try {
+      await axios.delete(`https://test.flipnow.net/word/${bookId}/${wordId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
     setBookData(
       bookData.map((book) =>
-        book.id === bookId
+        book._id === bookId
           ? {
               ...book,
-              wordData: book.wordData.filter((word) => word.id !== wordId),
+              words: book.words.filter((word) => word._id !== wordId),
             }
           : book
       )
@@ -44,7 +57,7 @@ const WordsContentsListEllipsis = ({
       )}
       <button
         className={styles.wordsListDelete}
-        onClick={() => deleteWord(selectedBookId, word.id)}
+        onClick={() => deleteWord(selectedBookId, word._id)}
       >
         delete
       </button>

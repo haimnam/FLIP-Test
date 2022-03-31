@@ -46,7 +46,7 @@ const Login = () => {
           console.log(res);
           let token = res.data.accessToken;
           localStorage.setItem("access_token", res.data.accessToken);
-          localStorage.setItem("firstName", res.data.firstName);
+          // localStorage.setItem("firstName", res.data.firstName);
           setAuthTokens(res.data);
           setUser(res.data);
           console.log(token);
@@ -59,12 +59,17 @@ const Login = () => {
     }
   };
 
+  const logOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <div>
       {user ? (
         <div className={styles.success}>
           <span>Login Success</span>
           <div>Click the menu on the sidebar.</div>
+          <button onClick={logOut}>Log Out</button>
         </div>
       ) : (
         <div className={styles.container}>
