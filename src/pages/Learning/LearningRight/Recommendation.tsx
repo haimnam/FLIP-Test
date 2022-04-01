@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../scss/Learning.module.scss";
 
-const Recommendation = ({ recommendation }) => {
+const Recommendation = () => {
+  const [recommendation, setRecommendation] = useState({
+    title: "College Life",
+    contents:
+      "한국의 대학생과 직장인 대상으로 한 설문조사에 따르면, 대학 시절을 후회 없이 보내기 위해 해야 할 활동으로 해외여행, 연애와 알바(아르바이트)가 가장 많은 선택을 받았습니다. 이 설문조사에 대해 어떻게 생각하시나요?",
+    discussion:
+      "서로의 국가간 우선순위의 차이가 있다면 왜 그러한 차이가 있는지 같이 이야기해보세요!",
+  });
+
   return (
-    <div>
+    <div className={styles.recommendation}>
       <h3>
         This Week's Recommendation
         <span className={styles.collegeLife}>{recommendation.title}</span>

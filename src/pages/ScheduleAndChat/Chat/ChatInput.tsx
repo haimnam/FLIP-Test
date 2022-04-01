@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import SendIcon from "@mui/icons-material/Send";
 
 const ChatInput = ({ chat, onChangeChat, onClickChat, onKeyPressChat }) => {

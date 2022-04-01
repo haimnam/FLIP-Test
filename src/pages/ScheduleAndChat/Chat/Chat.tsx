@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import ChatInfo from "./ChatInfo.tsx";
 import ChatScreen from "./ChatScreen.tsx";
 import ChatInput from "./ChatInput.tsx";
@@ -10,7 +10,7 @@ const Chat = ({ selectedPartner, partnerInfoData }) => {
   const onChangeChat = (e) => {
     setChat({ input: e.target.value, chats: chat.chats });
   };
-  const onClickChat = (e) => {
+  const onClickChat = () => {
     setChat({
       input: "",
       chats: chat.chats.concat({ id: nextId, chat: chat.input }),
@@ -19,7 +19,7 @@ const Chat = ({ selectedPartner, partnerInfoData }) => {
   };
   const onKeyPressChat = (e) => {
     if (e.key === "Enter") {
-      onClickChat(e);
+      onClickChat();
     }
   };
 

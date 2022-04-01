@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
+import { AuthContext } from "./Store/AuthProvider.tsx";
 
 type StudentsType = {
   id: number;
@@ -15,6 +17,13 @@ type StudentsType = {
 };
 
 const App = () => {
+  const [authTokens, setAuthTokens] = useState(
+    localStorage.getItem("access_token") || ""
+  );
+  const setTokens = (data) => {
+    localStorage.setItem("access_token", JSON.stringify(data));
+    setAuthTokens(data);
+  };
   const account = { initial: "NH", name: "Nahee" };
   const [students, setStudents] = useState<StudentsType[]>([
     {
@@ -38,24 +47,17 @@ const App = () => {
       schedule: ["Saturday 9:00am", "Saturday 12:00pm"],
     },
   ]);
-  const [recommendation, setRecommendation] = useState({
-    title: "College Life",
-    contents:
-      "한국의 대학생과 직장인 대상으로 한 설문조사에 따르면, 대학 시절을 후회 없이 보내기 위해 해야 할 활동으로 해외여행, 연애와 알바(아르바이트)가 가장 많은 선택을 받았습니다. 이 설문조사에 대해 어떻게 생각하시나요?",
-    discussion:
-      "서로의 국가간 우선순위의 차이가 있다면 왜 그러한 차이가 있는지 같이 이야기해보세요!",
-  });
 
   return (
-    <div className={styles.App}>
-      <LanguageContext>
-        <Sidebar
-          account={account}
-          students={students}
-          recommendation={recommendation}
-        />
-      </LanguageContext>
-    </div>
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+      <BrowserRouter>
+        <div className={styles.App}>
+          <LanguageContext>
+            <Sidebar account={account} students={students} />
+          </LanguageContext>
+        </div>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
 };
 

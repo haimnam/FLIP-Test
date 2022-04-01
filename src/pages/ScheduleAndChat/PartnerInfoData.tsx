@@ -1,3 +1,9 @@
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 export const PartnerInfoData = [
   {
     id: 1,
@@ -22,8 +28,11 @@ export const PartnerInfoData = [
     timesData: [
       {
         id: 1,
-        main: "Tuesday 1:00 pm",
-        sub: "Wednesday 2:00 am KST",
+        time: dayjs()
+          .set("day", 1)
+          .set("hour", 12)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: false,
         isChecked: false,
         state: "",
@@ -31,8 +40,11 @@ export const PartnerInfoData = [
       },
       {
         id: 2,
-        main: "Tuesday 2:00 pm",
-        sub: "Wednesday 3:00 am KST",
+        time: dayjs()
+          .set("day", 1)
+          .set("hour", 13)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -40,8 +52,11 @@ export const PartnerInfoData = [
       },
       {
         id: 3,
-        main: "Tuesday 3:00 pm",
-        sub: "Wednesday 4:00 am KST",
+        time: dayjs()
+          .set("day", 1)
+          .set("hour", 14)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -82,8 +97,11 @@ export const PartnerInfoData = [
     timesData: [
       {
         id: 1,
-        main: "Wednesday 1:00 pm",
-        sub: "Thursday 2:00 am KST",
+        time: dayjs()
+          .set("day", 3)
+          .set("hour", 8)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: false,
         isChecked: false,
         state: "",
@@ -91,8 +109,11 @@ export const PartnerInfoData = [
       },
       {
         id: 2,
-        main: "Wednesday 2:00 pm",
-        sub: "Thursday 4:00 am KST",
+        time: dayjs()
+          .set("day", 3)
+          .set("hour", 9)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -100,8 +121,11 @@ export const PartnerInfoData = [
       },
       {
         id: 3,
-        main: "Wednesday 3:00 pm",
-        sub: "Thursday 5:00 am KST",
+        time: dayjs()
+          .set("day", 3)
+          .set("hour", 10)
+          .set("minute", 0)
+          .tz("America/New_York"),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",

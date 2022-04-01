@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
@@ -16,7 +16,7 @@ const Updown = ({ width, height, setUp, setDown }) => {
           onClick={setUp}
         />
       </div>
-      <div style={{ height: height }}>
+      <div style={{ height }}>
         <KeyboardArrowDown
           style={{
             width,

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
 
 const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
   const currentPartner = partnerInfoData.find(
@@ -44,8 +44,10 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
           {currentPartner.meetingTimes.map((time) => {
             return (
               <div key={time.id} className={styles.meetingItem}>
-                <h3>{time.main}</h3>
-                <div>{time.sub}</div>
+                <h3>{time.time.format("dddd h:mm a")}</h3>
+                <div>
+                  {time.time.tz("Asia/Seoul").format("dddd h:mm a KST")}
+                </div>
               </div>
             );
           })}

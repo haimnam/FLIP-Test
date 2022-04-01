@@ -5,12 +5,12 @@ import Recommendation from "./LearningRight/Recommendation.tsx";
 import FlipNote from "./LearningRight/FlipNote.tsx";
 import FlipNoteContext from "../../Store/FlipNoteContext.tsx";
 
-const LearningRight = ({ recommendation }) => {
+const LearningRight = () => {
   return (
     <FlipNoteContext>
       <div className={styles.learningRight}>
         <HowToMeet />
-        <Recommendation recommendation={recommendation} />
+        <Recommendation />
         <FlipNote />
       </div>
     </FlipNoteContext>

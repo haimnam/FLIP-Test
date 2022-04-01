@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../../scss/ScheduleAndChat.module.scss";
-import { PartnerInfoData } from "./PartnerInfoData.tsx";
+import styles from "../../../scss/ScheduleAndChat.module.scss";
+import { PartnerInfoData } from "../PartnerInfoData.tsx";
 
 const ChatScreen = ({ chat, selectedPartner }) => {
   return (
