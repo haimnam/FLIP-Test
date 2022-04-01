@@ -43,18 +43,14 @@ const Login = () => {
           }
         )
         .then((res) => {
-          console.log(res);
-          let token = res.data.accessToken;
           localStorage.setItem("access_token", res.data.accessToken);
-          // localStorage.setItem("firstName", res.data.firstName);
           setAuthTokens(res.data);
           setUser(res.data);
-          console.log(token);
         });
       setUserName("");
       setPassword("");
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      console.log(e);
       errRef.current.focus();
     }
   };

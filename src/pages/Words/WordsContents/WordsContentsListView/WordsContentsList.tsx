@@ -14,7 +14,7 @@ const WordsContentsList = ({
   index,
 }) => {
   return (
-    <div key={word._id} className={styles.wordsListRow}>
+    <div className={styles.wordsListRow}>
       <WordsContentsListText
         setBackground={setBackground}
         bookData={bookData}

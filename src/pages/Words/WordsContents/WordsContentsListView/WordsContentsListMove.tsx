@@ -15,9 +15,9 @@ const WordsContentsListMove = ({
   let accessToken = authTokens.accessToken;
 
   const moveWord = async (
-    srcBookId: number,
-    desBookId: number,
-    wordId: number
+    srcBookId: string,
+    desBookId: string,
+    wordId: string
   ) => {
     try {
       await axios.post(
@@ -52,21 +52,6 @@ const WordsContentsListMove = ({
           },
         }
       );
-    } catch (e) {
-      console.log(e);
-    }
-    try {
-      const response = await axios.get(
-        `https://test.flipnow.net/word/book/${desBookId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      console.log("-------------");
-      console.log(response.data);
-      console.log("------------");
     } catch (e) {
       console.log(e);
     }
@@ -109,7 +94,7 @@ const WordsContentsListMove = ({
         return (
           <button
             key={book._id}
-            onClick={(e) => moveWord(selectedBookId, book._id, word._id)}
+            onClick={() => moveWord(selectedBookId, book._id, word._id)}
             disabled={book._id === selectedBookId ? true : false}
           >
             <FolderOutlinedIcon /> {book.title}

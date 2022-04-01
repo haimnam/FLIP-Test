@@ -22,7 +22,6 @@ type BookType = {
 };
 
 const Words = () => {
-  const BookData = [];
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
   useEffect(() => {
@@ -33,6 +32,7 @@ const Words = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
+        let bookArr = [];
         response.data.data.map((data) => {
           let wordsArr = [];
           data.words.map((word) => {
@@ -43,7 +43,7 @@ const Words = () => {
               ellipsis: false,
             });
           });
-          BookData.push({
+          bookArr.push({
             memberId: data.memberId,
             _id: data._id,
             title: data.title,
@@ -53,6 +53,7 @@ const Words = () => {
             isEdit: false,
           });
         });
+        setBookData(bookArr);
       } catch (e) {
         console.log(e);
       }
@@ -60,7 +61,7 @@ const Words = () => {
     fetchGet();
   }, []);
 
-  const [bookData, setBookData] = useState<BookType[]>(BookData);
+  const [bookData, setBookData] = useState<BookType[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<number>(0);
   const [background, setBackground] = useState<boolean>(false);
   const [addSet, setAddSet] = useState<boolean>(false);

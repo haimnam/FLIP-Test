@@ -44,6 +44,7 @@ const WordsContentsListView = ({
           .words.map((word, index) => {
             return (
               <WordsContentsList
+                key={word._id}
                 setBackground={setBackground}
                 bookData={bookData}
                 setBookData={setBookData}
