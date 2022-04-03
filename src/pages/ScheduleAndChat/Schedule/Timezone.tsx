@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Updown from "./Updown.tsx";
+import { ConverterData } from "./ConverterData.tsx";
 
 const Timezone = ({
   selectedPartner,
@@ -23,7 +24,7 @@ const Timezone = ({
       setNowPartner(dayjs().tz("America/New_York"));
     }
   };
-  const changeTime = (unit, dir) => {
+  const changeTime = (unit: string, dir: number) => {
     if (unit === "D") {
       setNowPartner(nowPartner.add(dir * 24, "h"));
       setNowUser(nowUser.add(dir * 24, "h"));
@@ -31,16 +32,6 @@ const Timezone = ({
       setNowPartner(nowPartner.add(dir, unit));
       setNowUser(nowUser.add(dir, unit));
     }
-  };
-  const converterElements = {
-    time: [
-      { id: 1, format: "hh", unit: "h" },
-      { id: 2, format: "mm", unit: "m" },
-    ],
-    date: [
-      { id: 1, format: "MM", unit: "M", slash: "/" },
-      { id: 2, format: "DD", unit: "D", slash: "" },
-    ],
   };
 
   return (
@@ -55,7 +46,7 @@ const Timezone = ({
             </div>
           </div>
           <div className={styles.time}>
-            {converterElements.time.map((t) => {
+            {ConverterData.time.map((t) => {
               return (
                 <React.Fragment key={t.id}>
                   <div>{nowUser.format(t.format)}</div>
@@ -71,7 +62,7 @@ const Timezone = ({
             <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {converterElements.date.map((d) => {
+            {ConverterData.date.map((d) => {
               return (
                 <React.Fragment key={d.id}>
                   <div>{nowUser.format(d.format)}</div>
@@ -93,7 +84,7 @@ const Timezone = ({
             <div className={styles.cityName}>{cityPartner}</div>
           </div>
           <div className={styles.time}>
-            {converterElements.time.map((t) => {
+            {ConverterData.time.map((t) => {
               return (
                 <React.Fragment key={t.id}>
                   <div>{nowPartner.format(t.format)}</div>
@@ -109,7 +100,7 @@ const Timezone = ({
             <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {converterElements.date.map((d) => {
+            {ConverterData.date.map((d) => {
               return (
                 <React.Fragment key={d.id}>
                   <div>{nowPartner.format(d.format)}</div>

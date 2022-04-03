@@ -4,7 +4,43 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export const PartnerInfoData = [
+type TasteType = {
+  id: number;
+  isValid: boolean;
+  taste: string;
+};
+export type MeetingTimesType = {
+  id: number;
+  time: object;
+};
+export type TimesType = {
+  id: number;
+  time: object;
+  isPartnerPick: boolean;
+  isChecked: boolean;
+  state: string;
+  print: string;
+};
+type ChatType = {
+  id: number;
+  chat: string;
+};
+type PartnerType = {
+  id: number;
+  name: string;
+  localTime: string;
+  nationality: string;
+  email: string;
+  univ: string;
+  major: string;
+  taste: TasteType[];
+  meetingTimes: MeetingTimesType[];
+  timesData: TimesType[];
+  partnerChat: ChatType[];
+  myChat: ChatType[];
+};
+
+export const PartnerInfoData: PartnerType[] = [
   {
     id: 1,
     name: "Samuel Jeong",

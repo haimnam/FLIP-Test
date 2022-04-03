@@ -17,13 +17,13 @@ const Schedule = ({
   uncheck,
   addNewTime,
 }) => {
-  const [insertToggle, setInsertToggle] = useState(false);
+  const [insertToggle, setInsertToggle] = useState<boolean>(false);
   const onInsertToggle = () => {
     setInsertToggle((prev) => !prev);
   };
 
-  const [nextId, setNextId] = useState(4);
-  const addTime = (day, hour, ampm) => {
+  const [nextId, setNextId] = useState<number>(4);
+  const addTime = (day: number, hour: number, ampm: string) => {
     if (ampm === "pm") {
       hour += 12;
     }
@@ -37,6 +37,7 @@ const Schedule = ({
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",
+      print: "Finalize",
     };
     setNextId(nextId + 1);
     addNewTime(selectedPartner, newTime);

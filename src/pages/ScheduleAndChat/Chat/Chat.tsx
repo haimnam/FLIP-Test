@@ -4,9 +4,19 @@ import ChatInfo from "./ChatInfo.tsx";
 import ChatScreen from "./ChatScreen.tsx";
 import ChatInput from "./ChatInput.tsx";
 
+type ChatsType = {
+  id: number;
+  chat: string;
+};
+type ChatType = {
+  input: string;
+  chats: Array<ChatsType>;
+};
+
 const Chat = ({ selectedPartner, partnerInfoData }) => {
-  const [nextId, setNextId] = useState(1);
-  const [chat, setChat] = useState({ input: "", chats: [] });
+  const [nextId, setNextId] = useState<number>(1);
+  const [chat, setChat] = useState<ChatType>({ input: "", chats: [] });
+
   const onChangeChat = (e) => {
     setChat({ input: e.target.value, chats: chat.chats });
   };

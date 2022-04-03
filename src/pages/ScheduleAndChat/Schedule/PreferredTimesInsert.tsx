@@ -3,12 +3,12 @@ import styles from "../../../scss/ScheduleAndChat.module.scss";
 import dayjs from "dayjs";
 
 const PreferredTimesInsert = ({ addTime }) => {
-  const [newDay, setNewDay] = useState(0);
-  const [newHour, setNewHour] = useState(0);
-  const [newAmpm, setNewAmpm] = useState("am");
+  const [newDay, setNewDay] = useState<number>(0);
+  const [newHour, setNewHour] = useState<number>(0);
+  const [newAmpm, setNewAmpm] = useState<string>("am");
   const dayIndex = [1, 2, 3, 4, 5, 6, 0];
 
-  const renderingSetHour = (startIdx, endIdx) => {
+  const renderingSetHour = (startIdx: number, endIdx: number) => {
     const result = [];
     for (let i = startIdx; i < endIdx; i++) {
       result.push(

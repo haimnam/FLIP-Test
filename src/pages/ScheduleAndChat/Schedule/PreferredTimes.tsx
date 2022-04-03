@@ -28,10 +28,13 @@ const PreferredTimes = ({
     );
   };
 
-  const checkedItemHandler = (box, id, isChecked, isClicked) => {
+  const checkedItemHandler = (
+    box,
+    id: number,
+    isChecked: boolean,
+    isClicked: boolean
+  ) => {
     if (isChecked) {
-      box.style.backgroundColor = "rgb(248, 243, 233)";
-      box.style.border = "2px solid black";
       checkedItems.add(id * 1);
       if (
         partnerInfoData
@@ -43,8 +46,6 @@ const PreferredTimes = ({
         changeTimeState(id, selectedPartner, "");
       }
     } else if (checkedItems.has(id * 1)) {
-      box.style.backgroundColor = "white";
-      box.style.border = "2px solid white";
       checkedItems.delete(id * 1);
       if (isClicked) {
         uncheck(selectedPartner, id);
@@ -54,7 +55,7 @@ const PreferredTimes = ({
     return checkedItems;
   };
 
-  const timeStateHandler = ({ target }, id, state) => {
+  const timeStateHandler = ({ target }, id: number, state: string) => {
     if (state === "FINALIZE") {
       let newMeeting = {
         id: id * 1,
@@ -95,7 +96,10 @@ const PreferredTimes = ({
             .find((partner) => partner.id === selectedPartner)
             .timesData.map((time) => {
               return (
-                <div key={time.id} className={styles.row}>
+                <div
+                  key={time.id}
+                  className={time.isChecked ? styles.rowChecked : styles.row}
+                >
                   <div className={styles.overlappingTimes}>
                     <h3>{time.time.format("dddd h:mm a")}</h3>
                     <div>
@@ -118,6 +122,7 @@ const PreferredTimes = ({
                           .timesData.find((data) => data.id === time.id)
                           .isChecked
                       }
+                      disabled={time.state === "Undo" ? true : false}
                     ></input>
                   </label>
                   <div

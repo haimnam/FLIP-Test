@@ -16,8 +16,8 @@ const WordsContentsList = ({
   word,
   index,
 }) => {
-  const [tempText, setTempText] = useState("");
-  const [tempMeaning, setTempMeaning] = useState("");
+  const [tempText, setTempText] = useState<string>("");
+  const [tempMeaning, setTempMeaning] = useState<string>("");
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
   useEffect(() => {
