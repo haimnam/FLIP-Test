@@ -7,27 +7,33 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
+import { PartnerInfoData } from "../../ScheduleAndChat/PartnerInfoData.tsx";
 
-const UserInfo = ({ students }) => {
+const UserInfo = () => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
   return (
     <div className={styles.userInfos}>
-      {students.map((student) => {
+      {PartnerInfoData.map((partner) => {
         return (
-          <div key={student.id} className={styles.userInfo}>
+          <div key={partner.id} className={styles.userInfo}>
             <div className={styles.userInfoHead}>
-              <div className={styles.languageInfo}>{student.language}</div>
-              <div className={styles.weekInfo}>week {student.week}</div>
+              <div className={styles.languageInfo}>{partner.course}</div>
+              <div className={styles.weekInfo}>
+                week {partner.curWeek}/{partner.totalWeeks}
+              </div>
             </div>
-            <h3>{student.name}</h3>
-            <p className={styles.university}>{student.university}</p>
-            <p className={styles.localTimeDiff}>{student.localTime}</p>
+            <h3>{partner.nickname}</h3>
+            <p className={styles.university}>{partner.univ}</p>
+            <p className={styles.localTimeDiff}>{partner.localTime}</p>
             <p className={styles.curTime}>
-              {dayjs().tz(student.timeZone).format("h:mm a")}
+              {dayjs().tz(partner.timeZone).format("h:mm a")}
             </p>
-            <Link className={styles.chatInfo} to="/schedule">
+            <Link
+              className={styles.chatInfo}
+              to={`/schedule/account?id=${partner.id}`}
+            >
               <ChatBubbleOutlineIcon />
               <span className={styles.chat}>Chat</span>
             </Link>
@@ -38,8 +44,10 @@ const UserInfo = ({ students }) => {
                   Start Session
                 </span>
               </Link>
-              <p className={styles.upcomingSession}>{student.schedule[0]}</p>
-              <p>{student.schedule[1]}</p>
+              <p className={styles.upcomingSession}>
+                {partner.meetingTimes[0]}
+              </p>
+              <p>{partner.meetingTimes[1]}</p>
             </div>
           </div>
         );

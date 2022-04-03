@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import range from "lodash-es/range";
 import CalendarHeader from "./CalendarHeader.tsx";
 
-const Calendar = ({ students }) => {
+const Calendar = () => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const dayOfNextWeek = dayjs(
     `${dayjs().year()}-${dayjs().month() + 1}-${dayjs().date() + 7}`
@@ -12,7 +12,7 @@ const Calendar = ({ students }) => {
 
   return (
     <div>
-      <CalendarHeader students={students} />
+      <CalendarHeader />
       <div className={styles.calendar}>
         <div className={styles.calendarHead}>
           {days.map((day, index) => {

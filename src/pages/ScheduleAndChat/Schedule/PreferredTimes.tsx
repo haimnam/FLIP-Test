@@ -6,6 +6,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
 const PreferredTimes = ({
+  myInfo,
   selectedPartner,
   partnerInfoData,
   addMeeting,
@@ -101,9 +102,17 @@ const PreferredTimes = ({
                   className={time.isChecked ? styles.rowChecked : styles.row}
                 >
                   <div className={styles.overlappingTimes}>
-                    <h3>{time.time.format("dddd h:mm a")}</h3>
+                    <h3>
+                      {time.time.tz(myInfo.timeZone).format("dddd h:mm a")}
+                    </h3>
                     <div>
-                      {time.time.tz("Asia/Seoul").format("dddd h:mm a KST")}
+                      {time.time
+                        .tz(
+                          partnerInfoData.find(
+                            (partner) => partner.id === selectedPartner
+                          ).timeZone
+                        )
+                        .format("dddd h:mm a KST")}
                     </div>
                   </div>
                   <div className={styles.partnerPick}>

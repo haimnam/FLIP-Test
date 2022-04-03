@@ -17,7 +17,7 @@ import {
   Login,
 } from "../pages/pageIndex.tsx";
 
-const Sidebar = ({ account, students, user }) => {
+const Sidebar = ({ myInfo, user }) => {
   let lang = useLang();
   const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
     if (lan === lang) {
@@ -55,18 +55,18 @@ const Sidebar = ({ account, students, user }) => {
             LOGIN
           </Link>
           <div className={styles.account}>
-            <div className={styles.myCircle}>{account.initial}</div>
-            <div>{account.name}</div>
+            <div className={styles.myCircle}>{myInfo.initial}</div>
+            <div>{myInfo.name}</div>
           </div>
         </ul>
       </div>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/learning/*" element={<Learning myInfo={myInfo} />} />
         <Route
-          path="/learning"
-          element={<Learning account={account} students={students} />}
+          path="/schedule/*"
+          element={<ScheduleAndChat myInfo={myInfo} />}
         />
-        <Route path="/schedule/*" element={<ScheduleAndChat />} />
         <Route path="/session" element={<Session />} />
         <Route path="/myPage" element={<MyPage />} />
         <Route path="/word" element={<Words />} />

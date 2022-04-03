@@ -13,24 +13,25 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
-const ScheduleAndChat = () => {
+const ScheduleAndChat = ({ myInfo }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
   const location = useLocation();
   const URLSearch = new URLSearchParams(location.search);
   const [nowPartner, setNowPartner] = useState(dayjs());
-  const [cityPartner, setCityPartner] = useState<string>("Seoul +14hrs");
+  const [cityPartner, setCityPartner] = useState<string>(
+    PartnerInfoData[0].localTime
+  );
   const selectAccount = (id: number) => {
     setSelectedPartner(id);
     URLSearch.set("id", id.toString());
-    if (id === 1) {
-      setNowPartner(dayjs());
-      setCityPartner("Seoul +14hrs");
-    } else {
-      setNowPartner(dayjs().tz("America/New_York"));
-      setCityPartner("New York");
-    }
+    setNowPartner(
+      dayjs().tz(PartnerInfoData.find((partner) => partner.id === id).timeZone)
+    );
+    setCityPartner(
+      PartnerInfoData.find((partner) => partner.id === id).localTime
+    );
   };
 
   const [partnerInfoData, setPartnerInfoData] = useState(PartnerInfoData);
@@ -173,6 +174,7 @@ const ScheduleAndChat = () => {
           partnerInfoData={partnerInfoData}
         />
         <Schedule
+          myInfo={myInfo}
           selectedPartner={selectedPartner}
           partnerInfoData={partnerInfoData}
           nowPartner={nowPartner}

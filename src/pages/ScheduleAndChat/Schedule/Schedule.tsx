@@ -6,6 +6,7 @@ import PreferredTimesInsert from "./PreferredTimesInsert.tsx";
 import dayjs from "dayjs";
 
 const Schedule = ({
+  myInfo,
   selectedPartner,
   partnerInfoData,
   nowPartner,
@@ -30,7 +31,7 @@ const Schedule = ({
     let newTime = {
       id: nextId,
       time: dayjs()
-        .tz("America/New_York")
+        .tz(myInfo.timeZone)
         .set("day", day)
         .set("hour", hour)
         .set("minute", 0),
@@ -46,12 +47,14 @@ const Schedule = ({
   return (
     <div className={styles.scheduleBody}>
       <Timezone
+        myInfo={myInfo}
         selectedPartner={selectedPartner}
         nowPartner={nowPartner}
         setNowPartner={setNowPartner}
         cityPartner={cityPartner}
       />
       <PreferredTimes
+        myInfo={myInfo}
         selectedPartner={selectedPartner}
         partnerInfoData={partnerInfoData}
         addMeeting={addMeeting}

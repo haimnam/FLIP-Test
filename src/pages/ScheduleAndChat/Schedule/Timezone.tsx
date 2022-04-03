@@ -7,6 +7,7 @@ import Updown from "./Updown.tsx";
 import { ConverterData } from "./ConverterData.tsx";
 
 const Timezone = ({
+  myInfo,
   selectedPartner,
   nowPartner,
   setNowPartner,
@@ -15,13 +16,13 @@ const Timezone = ({
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const [nowUser, setNowUser] = useState(dayjs().tz("America/New_York"));
+  const [nowUser, setNowUser] = useState(dayjs().tz(myInfo.timeZone));
   const setNow = () => {
-    setNowUser(dayjs().tz("America/New_York"));
+    setNowUser(dayjs().tz(myInfo.timeZone));
     if (selectedPartner === 1) {
       setNowPartner(dayjs());
     } else {
-      setNowPartner(dayjs().tz("America/New_York"));
+      setNowPartner(dayjs().tz(myInfo.timeZone));
     }
   };
   const changeTime = (unit: string, dir: number) => {
@@ -40,7 +41,7 @@ const Timezone = ({
       <div className={styles.converterContainer}>
         <div className={styles.converterItemColored}>
           <div className={styles.city}>
-            <div className={styles.cityName}>New York</div>
+            <div className={styles.cityName}>{myInfo.city}</div>
             <div className={styles.now} onClick={setNow}>
               now
             </div>

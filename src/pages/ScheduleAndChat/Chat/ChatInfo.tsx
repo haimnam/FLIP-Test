@@ -46,7 +46,9 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
               <div key={time.id} className={styles.meetingItem}>
                 <h3>{time.time.format("dddd h:mm a")}</h3>
                 <div>
-                  {time.time.tz("Asia/Seoul").format("dddd h:mm a KST")}
+                  {time.time
+                    .tz(currentPartner.timeZone)
+                    .format("dddd h:mm a KST")}
                 </div>
               </div>
             );
