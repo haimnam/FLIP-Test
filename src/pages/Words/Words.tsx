@@ -4,6 +4,7 @@ import WordsStudySets from "./WordsStudySets/WordsStudySets.tsx";
 import WordsContents from "./WordsContents/WordsContents.tsx";
 import axios from "axios";
 import { useAuth } from "../../Store/AuthProvider.tsx";
+import { useGetWord } from "../../Store/UserContext.tsx";
 
 type WordType = {
   _id: string;
@@ -85,6 +86,7 @@ const Words = () => {
 
   return (
     <div className={styles.contents}>
+      {/*<button onClick={useGetWord()}>click</button>*/}
       {background && (
         <div className={styles.background} onClick={clickBackground}></div>
       )}
