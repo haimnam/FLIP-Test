@@ -4,6 +4,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 
 const PreferredTimes = ({
   myInfo,
@@ -17,6 +18,7 @@ const PreferredTimes = ({
 }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
+  dayjs.extend(advancedFormat);
 
   const [checkedItems, setCheckedItems] = useState(new Set());
 
@@ -112,7 +114,7 @@ const PreferredTimes = ({
                             (partner) => partner.id === selectedPartner
                           ).timeZone
                         )
-                        .format("dddd h:mm a KST")}
+                        .format("dddd h:mm a z")}
                     </div>
                   </div>
                   <div className={styles.partnerPick}>

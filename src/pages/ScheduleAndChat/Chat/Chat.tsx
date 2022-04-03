@@ -23,7 +23,10 @@ const Chat = ({ selectedPartner, partnerInfoData }) => {
   const onClickChat = () => {
     setChat({
       input: "",
-      chats: chat.chats.concat({ id: nextId, chat: chat.input }),
+      chats: chat.chats.concat({
+        id: nextId,
+        chat: JSON.parse(JSON.stringify(chat.input)),
+      }),
     });
     setNextId(nextId + 1);
   };
