@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../../scss/Words.module.scss";
 
-const WordsStudySetsHead = ({ setAddSet, setBackground }) => {
+const WordsStudySetsHead = ({ setIsOpenModal, setAddSet }) => {
   const clickStudySets = () => {
     setAddSet(true);
-    setBackground(true);
+    setIsOpenModal(true);
   };
 
   return (

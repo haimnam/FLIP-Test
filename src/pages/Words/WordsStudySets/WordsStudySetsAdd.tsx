@@ -4,11 +4,13 @@ import { useAuth } from "../../../Store/AuthProvider.tsx";
 import styles from "../../../scss/Words.module.scss";
 import dayjs from "dayjs";
 import { StudyFolderData } from "./StudyFolderData.tsx";
+import Modal from "../../../Components/Modal.tsx";
 
 const WordsStudySetsAdd = ({
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   setAddSet,
-  setBackground,
-  bookData,
   setBookData,
 }) => {
   const { authTokens } = useAuth();
@@ -50,23 +52,32 @@ const WordsStudySetsAdd = ({
       console.log(e);
     }
     setAddSet(false);
-    setBackground(false);
   };
 
   return (
-    <div className={styles.studySetsSelect}>
-      {StudyFolderData.map((data) => {
-        return (
-          <button
-            key={data.id}
-            className={styles[data.language]}
-            onClick={() => addStudySets(data.title, data.language)}
-          >
-            {data.title}
-          </button>
-        );
-      })}
-    </div>
+    <React.Fragment>
+      {isOpenModal && (
+        <Modal
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        >
+          <div className={styles.studySetsSelect}>
+            {StudyFolderData.map((data) => {
+              return (
+                <button
+                  key={data.id}
+                  className={styles[data.language]}
+                  onClick={() => addStudySets(data.title, data.language)}
+                >
+                  {data.title}
+                </button>
+              );
+            })}
+          </div>
+        </Modal>
+      )}
+    </React.Fragment>
   );
 };
 

@@ -4,9 +4,12 @@ import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import { StudyFolderData } from "../WordsStudySets/StudyFolderData.tsx";
+import Modal from "../../../Components/Modal.tsx";
 
 const WordsContentsHead = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -25,7 +28,7 @@ const WordsContentsHead = ({
 
   const clickLanguage = () => {
     setIsEditLanguage(true);
-    setBackground(true);
+    setIsOpenModal(true);
   };
 
   const selectLanguage = async (title: string, language: string) => {
@@ -74,21 +77,27 @@ const WordsContentsHead = ({
           ]
         }
       </button>
-      {isEditLanguage ? (
-        <div className={styles.studySetsSelect}>
-          {StudyFolderData.map((data) => {
-            return (
-              <button
-                key={data.id}
-                className={styles[data.language]}
-                onClick={() => selectLanguage(data.title, data.language)}
-              >
-                {data.title}
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
+      {isEditLanguage && isOpenModal && (
+        <Modal
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        >
+          <div className={styles.languageSelect}>
+            {StudyFolderData.map((data) => {
+              return (
+                <button
+                  key={data.id}
+                  className={styles[data.language]}
+                  onClick={() => selectLanguage(data.title, data.language)}
+                >
+                  {data.title}
+                </button>
+              );
+            })}
+          </div>
+        </Modal>
+      )}
       <button className={styles.wordsChangeView} onClick={changeView}>
         <CompareArrowsIcon />
         {view ? " Card View" : " List View"}

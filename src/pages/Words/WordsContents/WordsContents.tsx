@@ -5,7 +5,9 @@ import WordsContentsListView from "./WordsContentsListView/WordsContentsListView
 import WordsContentsCardView from "./WordsContentsCardView.tsx";
 
 const WordsContents = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -19,7 +21,9 @@ const WordsContents = ({
   return (
     <div className={styles.words}>
       <WordsContentsHead
-        setBackground={setBackground}
+        clickBackground={clickBackground}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
         bookData={bookData}
         setBookData={setBookData}
         selectedBookId={selectedBookId}
@@ -29,7 +33,9 @@ const WordsContents = ({
       />
       {isListView ? (
         <WordsContentsListView
-          setBackground={setBackground}
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
           bookData={bookData}
           setBookData={setBookData}
           selectedBookId={selectedBookId}

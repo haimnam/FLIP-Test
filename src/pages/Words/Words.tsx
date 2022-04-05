@@ -64,7 +64,7 @@ const Words = () => {
 
   const [bookData, setBookData] = useState<BookType[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<number>(0);
-  const [background, setBackground] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState(true);
   const [addSet, setAddSet] = useState<boolean>(false);
   const [isEditLanguage, setIsEditLanguage] = useState(false);
   const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
@@ -78,7 +78,7 @@ const Words = () => {
         return book;
       })
     );
-    setBackground(false);
+    setIsOpenModal(false);
     setAddSet(false);
     setIsEditLanguage(false);
     setIsMoveClicked(false);
@@ -87,13 +87,12 @@ const Words = () => {
   return (
     <div className={styles.contents}>
       {/*<button onClick={useGetWord()}>click</button>*/}
-      {background && (
-        <div className={styles.background} onClick={clickBackground}></div>
-      )}
       <WordsStudySets
+        clickBackground={clickBackground}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
         addSet={addSet}
         setAddSet={setAddSet}
-        setBackground={setBackground}
         bookData={bookData}
         setBookData={setBookData}
         setVoca={setVoca}
@@ -103,7 +102,9 @@ const Words = () => {
       <hr />
       {voca ? (
         <WordsContents
-          setBackground={setBackground}
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
           bookData={bookData}
           setBookData={setBookData}
           selectedBookId={selectedBookId}

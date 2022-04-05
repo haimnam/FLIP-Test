@@ -3,9 +3,12 @@ import styles from "../../../../scss/Words.module.scss";
 import WordsContentsListMove from "./WordsContentsListMove.tsx";
 import axios from "axios";
 import { useAuth } from "../../../../Store/AuthProvider.tsx";
+import Modal from "../../../../Components/Modal.tsx";
 
 const WordsContentsListEllipsis = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -15,6 +18,7 @@ const WordsContentsListEllipsis = ({
 }) => {
   const clickMove = () => {
     setIsMoveClicked(true);
+    setIsOpenModal(true);
   };
 
   const { authTokens } = useAuth();
@@ -39,7 +43,6 @@ const WordsContentsListEllipsis = ({
           : book
       )
     );
-    setBackground(false);
   };
 
   return (
@@ -47,13 +50,19 @@ const WordsContentsListEllipsis = ({
       <button className={styles.wordsListMove} onClick={() => clickMove()}>
         move
       </button>
-      {isMoveClicked && (
-        <WordsContentsListMove
-          bookData={bookData}
-          setBookData={setBookData}
-          selectedBookId={selectedBookId}
-          word={word}
-        />
+      {isMoveClicked && isOpenModal && (
+        <Modal
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        >
+          <WordsContentsListMove
+            bookData={bookData}
+            setBookData={setBookData}
+            selectedBookId={selectedBookId}
+            word={word}
+          />
+        </Modal>
       )}
       <button
         className={styles.wordsListDelete}

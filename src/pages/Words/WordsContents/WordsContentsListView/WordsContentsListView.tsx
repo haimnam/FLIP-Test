@@ -3,7 +3,9 @@ import styles from "../../../../scss/Words.module.scss";
 import WordsContentsList from "./WordsContentsList.tsx";
 
 const WordsContentsListView = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -45,7 +47,9 @@ const WordsContentsListView = ({
             return (
               <WordsContentsList
                 key={word._id}
-                setBackground={setBackground}
+                clickBackground={clickBackground}
+                isOpenModal={isOpenModal}
+                setIsOpenModal={setIsOpenModal}
                 bookData={bookData}
                 setBookData={setBookData}
                 selectedBookId={selectedBookId}

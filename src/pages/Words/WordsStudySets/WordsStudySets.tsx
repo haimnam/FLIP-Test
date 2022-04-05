@@ -5,9 +5,11 @@ import WordsStudySetsAdd from "./WordsStudySetsAdd.tsx";
 import WordsStudySetsBody from "./WordsStudySetsBody.tsx";
 
 const WordsStudySets = ({
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   addSet,
   setAddSet,
-  setBackground,
   bookData,
   setBookData,
   setVoca,
@@ -16,17 +18,23 @@ const WordsStudySets = ({
 }) => {
   return (
     <div className={styles.studySets}>
-      <WordsStudySetsHead setAddSet={setAddSet} setBackground={setBackground} />
+      <WordsStudySetsHead
+        setIsOpenModal={setIsOpenModal}
+        setAddSet={setAddSet}
+      />
       {addSet && (
         <WordsStudySetsAdd
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
           setAddSet={setAddSet}
-          setBackground={setBackground}
-          bookData={bookData}
           setBookData={setBookData}
         />
       )}
       <WordsStudySetsBody
-        setBackground={setBackground}
+        clickBackground={clickBackground}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
         bookData={bookData}
         setBookData={setBookData}
         setVoca={setVoca}

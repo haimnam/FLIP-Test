@@ -9,7 +9,7 @@ type BookArrType = {
 };
 
 const WordsContentsList = ({
-  setBackground,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -135,7 +135,7 @@ const WordsContentsList = ({
           : book
       )
     );
-    setBackground(true);
+    setIsOpenModal(true);
   };
 
   return (

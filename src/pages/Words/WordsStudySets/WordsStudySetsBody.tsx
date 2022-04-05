@@ -3,9 +3,12 @@ import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
 import styles from "../../../scss/Words.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
+import Modal from "../../../Components/Modal.tsx";
 
 const WordsStudySetsBody = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   setVoca,
@@ -26,7 +29,7 @@ const WordsStudySetsBody = ({
           : book
       )
     );
-    setBackground(true);
+    setIsOpenModal(true);
     setSelectedBookId(bookId);
   };
 
@@ -38,7 +41,6 @@ const WordsStudySetsBody = ({
       })
     );
     setVoca(true);
-    setBackground(false);
     setSelectedBookId(bookId);
   };
 
@@ -112,7 +114,6 @@ const WordsStudySetsBody = ({
       console.log(e);
     }
     setBookData(bookData.filter((book) => book._id !== bookId));
-    setBackground(false);
     setVoca(false);
   };
 
@@ -148,21 +149,27 @@ const WordsStudySetsBody = ({
             >
               <div>···</div>
             </button>
-            {book.ellipsis && (
-              <div className={styles.studySetsEllipsisBox}>
-                <button
-                  className={styles.studySetsEdit}
-                  onClick={() => editStudySet(book._id, book.title)}
-                >
-                  edit
-                </button>
-                <button
-                  className={styles.studySetsDelete}
-                  onClick={() => deleteStudySet(selectedBookId)}
-                >
-                  delete
-                </button>
-              </div>
+            {book.ellipsis && isOpenModal && (
+              <Modal
+                clickBackground={clickBackground}
+                isOpenModal={isOpenModal}
+                setIsOpenModal={setIsOpenModal}
+              >
+                <div className={styles.studySetsEllipsisBox}>
+                  <button
+                    className={styles.studySetsEdit}
+                    onClick={() => editStudySet(book._id, book.title)}
+                  >
+                    edit
+                  </button>
+                  <button
+                    className={styles.studySetsDelete}
+                    onClick={() => deleteStudySet(selectedBookId)}
+                  >
+                    delete
+                  </button>
+                </div>
+              </Modal>
             )}
           </div>
         );

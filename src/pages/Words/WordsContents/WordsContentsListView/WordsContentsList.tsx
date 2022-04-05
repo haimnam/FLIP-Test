@@ -2,9 +2,12 @@ import React from "react";
 import styles from "../../../../scss/Words.module.scss";
 import WordsContentsListEllipsis from "./WordsContentsListEllipsis.tsx";
 import WordsContentsListText from "./WordsContentsListText.tsx";
+import Modal from "../../../../Components/Modal.tsx";
 
 const WordsContentsList = ({
-  setBackground,
+  clickBackground,
+  isOpenModal,
+  setIsOpenModal,
   bookData,
   setBookData,
   selectedBookId,
@@ -16,23 +19,31 @@ const WordsContentsList = ({
   return (
     <div className={styles.wordsListRow}>
       <WordsContentsListText
-        setBackground={setBackground}
+        setIsOpenModal={setIsOpenModal}
         bookData={bookData}
         setBookData={setBookData}
         selectedBookId={selectedBookId}
         word={word}
         index={index}
       />
-      {word.ellipsis && (
-        <WordsContentsListEllipsis
-          setBackground={setBackground}
-          bookData={bookData}
-          setBookData={setBookData}
-          selectedBookId={selectedBookId}
-          isMoveClicked={isMoveClicked}
-          setIsMoveClicked={setIsMoveClicked}
-          word={word}
-        />
+      {word.ellipsis && isOpenModal && (
+        <Modal
+          clickBackground={clickBackground}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+        >
+          <WordsContentsListEllipsis
+            clickBackground={clickBackground}
+            isOpenModal={isOpenModal}
+            setIsOpenModal={setIsOpenModal}
+            bookData={bookData}
+            setBookData={setBookData}
+            selectedBookId={selectedBookId}
+            isMoveClicked={isMoveClicked}
+            setIsMoveClicked={setIsMoveClicked}
+            word={word}
+          />
+        </Modal>
       )}
     </div>
   );
