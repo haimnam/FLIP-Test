@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import styles from "../../scss/Words.module.scss";
 import WordsStudySets from "./WordsStudySets/WordsStudySets.tsx";
 import WordsContents from "./WordsContents/WordsContents.tsx";
-import axios from "axios";
 import { useAuth } from "../../Store/AuthProvider.tsx";
-import { useGetWord } from "../../Store/UserContext.tsx";
+import {
+  useUserState,
+  useUserDispatch,
+  getBooks,
+} from "../../Store/UserContext.tsx";
 
 type WordType = {
   _id: string;
@@ -24,6 +27,19 @@ type BookType = {
 
 const Words = () => {
   const { authTokens } = useAuth();
+  const accessToken = authTokens.accessToken;
+  const state = useUserState();
+  const dispatch = useUserDispatch();
+  const { data: books, loading, error } = state.books;
+  const fetchData = () => {
+    getBooks(dispatch, accessToken);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  /*const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
   useEffect(() => {
     const fetchGet = async () => {
@@ -60,7 +76,7 @@ const Words = () => {
       }
     };
     fetchGet();
-  }, []);
+  }, []);*/
 
   const [bookData, setBookData] = useState<BookType[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<number>(0);
@@ -84,9 +100,14 @@ const Words = () => {
     setIsMoveClicked(false);
   };
 
+  /*if (loading) return <div>loading...</div>;
+  if (error) return <div>error</div>;
+  if (!user) return <button onClick={fetchData}>fetching</button>;*/
+
   return (
     <div className={styles.contents}>
-      {/*<button onClick={useGetWord()}>click</button>*/}
+      {<button onClick={fetchData}>fetch again</button>}
+      {console.log(books)}
       <WordsStudySets
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}

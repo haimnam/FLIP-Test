@@ -13,7 +13,7 @@ type LoginType = {
 
 const Login = () => {
   const { setAuthTokens } = useAuth();
-  const [user, setUser] = useState<object>();
+  const [userLogin, setUserLogin] = useState<object>();
   const [account, setAccount] = useState<LoginType>({
     userName: "",
     password: "",
@@ -24,7 +24,7 @@ const Login = () => {
     const loggedInUser = localStorage.getItem("access_token");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
+      setUserLogin(foundUser);
     }
   }, []);
 
@@ -42,7 +42,7 @@ const Login = () => {
       console.log(response.data);
       localStorage.setItem("access_token", response.data.accessToken);
       setAuthTokens(response.data);
-      setUser(response.data);
+      setUserLogin(response.data);
       setAccount({ userName: "", password: "" });
       navigate("/home");
     } catch (e) {
@@ -68,12 +68,12 @@ const Login = () => {
 
   const logOut = () => {
     localStorage.removeItem("access_token");
-    setUser(null);
+    setUserLogin(null);
   };
 
   return (
     <div>
-      {user ? (
+      {userLogin ? (
         <div className={styles.success}>
           <span>Login Success</span>
           <div>Click the menu on the sidebar.</div>

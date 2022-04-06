@@ -4,7 +4,7 @@ import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
 import { AuthProvider } from "./Store/AuthProvider.tsx";
-import UserContext from "./Store/UserContext.tsx";
+import { UserProvider } from "./Store/UserContext.tsx";
 
 const App = () => {
   const myInfo = {
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <UserContext>
+      <UserProvider>
         <BrowserRouter>
           <div className={styles.App}>
             <LanguageContext>
@@ -24,7 +24,7 @@ const App = () => {
             </LanguageContext>
           </div>
         </BrowserRouter>
-      </UserContext>
+      </UserProvider>
     </AuthProvider>
   );
 };
