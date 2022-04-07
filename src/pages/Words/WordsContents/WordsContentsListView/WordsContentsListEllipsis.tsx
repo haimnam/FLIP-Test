@@ -6,15 +6,15 @@ import { useAuth } from "../../../../Store/AuthProvider.tsx";
 import Modal from "../../../../Components/Modal.tsx";
 
 const WordsContentsListEllipsis = ({
+  books,
   clickBackground,
   isOpenModal,
   setIsOpenModal,
-  bookData,
-  setBookData,
   selectedBookId,
   isMoveClicked,
   setIsMoveClicked,
   word,
+  setFetch,
 }) => {
   const clickMove = () => {
     setIsMoveClicked(true);
@@ -30,19 +30,10 @@ const WordsContentsListEllipsis = ({
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      setFetch((prev) => !prev);
     } catch (e) {
       console.log(e);
     }
-    setBookData(
-      bookData.map((book) =>
-        book._id === bookId
-          ? {
-              ...book,
-              words: book.words.filter((word) => word._id !== wordId),
-            }
-          : book
-      )
-    );
   };
 
   return (
@@ -57,10 +48,10 @@ const WordsContentsListEllipsis = ({
           setIsOpenModal={setIsOpenModal}
         >
           <WordsContentsListMove
-            bookData={bookData}
-            setBookData={setBookData}
+            books={books}
             selectedBookId={selectedBookId}
             word={word}
+            setFetch={setFetch}
           />
         </Modal>
       )}

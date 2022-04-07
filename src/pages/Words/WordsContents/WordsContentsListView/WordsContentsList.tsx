@@ -1,50 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../../scss/Words.module.scss";
 import WordsContentsListEllipsis from "./WordsContentsListEllipsis.tsx";
 import WordsContentsListText from "./WordsContentsListText.tsx";
 import Modal from "../../../../Components/Modal.tsx";
+import Ellipsis from "./Ellipsis.tsx";
 
 const WordsContentsList = ({
+  books,
   clickBackground,
   isOpenModal,
   setIsOpenModal,
-  bookData,
-  setBookData,
   selectedBookId,
   isMoveClicked,
   setIsMoveClicked,
   word,
   index,
+  setFetch,
 }) => {
+  const [isEllipsis, setIsEllipsis] = useState(false);
   return (
     <div className={styles.wordsListRow}>
       <WordsContentsListText
+        books={books}
         setIsOpenModal={setIsOpenModal}
-        bookData={bookData}
-        setBookData={setBookData}
         selectedBookId={selectedBookId}
+        isEllipsis={isEllipsis}
+        setIsEllipsis={setIsEllipsis}
         word={word}
         index={index}
+        setFetch={setFetch}
       />
-      {word.ellipsis && isOpenModal && (
-        <Modal
-          clickBackground={clickBackground}
-          isOpenModal={isOpenModal}
-          setIsOpenModal={setIsOpenModal}
-        >
-          <WordsContentsListEllipsis
-            clickBackground={clickBackground}
-            isOpenModal={isOpenModal}
-            setIsOpenModal={setIsOpenModal}
-            bookData={bookData}
-            setBookData={setBookData}
-            selectedBookId={selectedBookId}
-            isMoveClicked={isMoveClicked}
-            setIsMoveClicked={setIsMoveClicked}
-            word={word}
-          />
-        </Modal>
-      )}
+      <Ellipsis
+        books={books}
+        clickBackground={clickBackground}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+        selectedBookId={selectedBookId}
+        isMoveClicked={isMoveClicked}
+        setIsMoveClicked={setIsMoveClicked}
+        isEllipsis={isEllipsis}
+        setIsEllipsis={setIsEllipsis}
+        word={word}
+        index={index}
+        setFetch={setFetch}
+      />
     </div>
   );
 };

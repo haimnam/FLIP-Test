@@ -11,7 +11,7 @@ const WordsStudySetsAdd = ({
   isOpenModal,
   setIsOpenModal,
   setAddSet,
-  setBookData,
+  setFetch,
 }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
@@ -31,23 +31,12 @@ const WordsStudySetsAdd = ({
       console.log(e);
     }
     try {
-      const response = await axios.get("https://test.flipnow.net/word", {
+      await axios.get("https://test.flipnow.net/word", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      let newBookData = [];
-      response.data.data.map((data) => {
-        newBookData.push({
-          memberId: data.memberId,
-          _id: data._id,
-          title: data.title,
-          language: data.language,
-          words: data.words,
-          ellipsis: false,
-        });
-      });
-      setBookData(newBookData);
+      setFetch((prev) => !prev);
     } catch (e) {
       console.log(e);
     }

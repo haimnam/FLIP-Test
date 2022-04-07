@@ -7,15 +7,15 @@ import { StudyFolderData } from "../WordsStudySets/StudyFolderData.tsx";
 import Modal from "../../../Components/Modal.tsx";
 
 const WordsContentsHead = ({
+  books,
   clickBackground,
   isOpenModal,
   setIsOpenModal,
-  bookData,
-  setBookData,
   selectedBookId,
   setIsListView,
   isEditLanguage,
   setIsEditLanguage,
+  setFetch,
 }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
@@ -42,16 +42,8 @@ const WordsContentsHead = ({
           },
         }
       );
-      setBookData(
-        bookData.map((book) =>
-          book._id === selectedBookId
-            ? {
-                ...book,
-                language,
-              }
-            : book
-        )
-      );
+      setFetch((prev) => !prev);
+      setIsEditLanguage(false);
     } catch (e) {
       console.log(e);
     }
@@ -67,13 +59,13 @@ const WordsContentsHead = ({
     <div className={styles.wordsHead}>
       <div className={styles.wordsTitle}>
         <div className={styles.wordsTitleName}>
-          {bookData.find((book) => book._id === selectedBookId)?.title}
+          {books.data.find((book) => book._id === selectedBookId).title}
         </div>
       </div>
       <button className={styles.wordsTitleLanguage} onClick={clickLanguage}>
         {
           languageSet[
-            bookData.find((book) => book._id === selectedBookId).language
+            books.data.find((book) => book._id === selectedBookId).language
           ]
         }
       </button>

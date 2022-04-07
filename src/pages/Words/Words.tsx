@@ -31,54 +31,15 @@ const Words = () => {
   const state = useUserState();
   const dispatch = useUserDispatch();
   const { data: books, loading, error } = state.books;
+  const [fetch, setFetch] = useState(true);
   const fetchData = () => {
     getBooks(dispatch, accessToken);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetch]);
 
-  /*const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
-  useEffect(() => {
-    const fetchGet = async () => {
-      try {
-        const response = await axios.get("https://test.flipnow.net/word", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        let bookArr = [];
-        response.data.data.map((data) => {
-          let wordsArr = [];
-          data.words.map((word) => {
-            wordsArr.push({
-              _id: word._id,
-              text: word.text,
-              meaning: word.meaning,
-              ellipsis: false,
-            });
-          });
-          bookArr.push({
-            memberId: data.memberId,
-            _id: data._id,
-            title: data.title,
-            language: data.language,
-            words: data.words,
-            ellipsis: false,
-            isEdit: false,
-          });
-        });
-        setBookData(bookArr);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchGet();
-  }, []);*/
-
-  const [bookData, setBookData] = useState<BookType[]>([]);
   const [selectedBookId, setSelectedBookId] = useState<number>(0);
   const [isOpenModal, setIsOpenModal] = useState(true);
   const [addSet, setAddSet] = useState<boolean>(false);
@@ -87,52 +48,44 @@ const Words = () => {
   const [voca, setVoca] = useState<boolean>(false);
 
   const clickBackground = () => {
-    setBookData(
-      bookData.map((book) => {
-        book.words.map((word) => (word.ellipsis = false));
-        book.ellipsis = false;
-        return book;
-      })
-    );
     setIsOpenModal(false);
     setAddSet(false);
     setIsEditLanguage(false);
     setIsMoveClicked(false);
   };
 
-  /*if (loading) return <div>loading...</div>;
+  if (loading) return <div>loading...</div>;
   if (error) return <div>error</div>;
-  if (!user) return <button onClick={fetchData}>fetching</button>;*/
+  if (!books) return <button onClick={fetchData}>fetching</button>;
 
   return (
     <div className={styles.contents}>
       {<button onClick={fetchData}>fetch again</button>}
       {console.log(books)}
       <WordsStudySets
+        books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         addSet={addSet}
         setAddSet={setAddSet}
-        bookData={bookData}
-        setBookData={setBookData}
         setVoca={setVoca}
-        selectedBookId={selectedBookId}
         setSelectedBookId={setSelectedBookId}
+        setFetch={setFetch}
       />
       <hr />
       {voca ? (
         <WordsContents
+          books={books}
           clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
-          bookData={bookData}
-          setBookData={setBookData}
           selectedBookId={selectedBookId}
           isMoveClicked={isMoveClicked}
           setIsMoveClicked={setIsMoveClicked}
           isEditLanguage={isEditLanguage}
           setIsEditLanguage={setIsEditLanguage}
+          setFetch={setFetch}
         />
       ) : (
         <div className={styles.noWords}>

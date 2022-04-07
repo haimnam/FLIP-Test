@@ -5,48 +5,45 @@ import WordsContentsListView from "./WordsContentsListView/WordsContentsListView
 import WordsContentsCardView from "./WordsContentsCardView.tsx";
 
 const WordsContents = ({
+  books,
   clickBackground,
   isOpenModal,
   setIsOpenModal,
-  bookData,
-  setBookData,
   selectedBookId,
   isMoveClicked,
   setIsMoveClicked,
   isEditLanguage,
   setIsEditLanguage,
+  setFetch,
 }) => {
   const [isListView, setIsListView] = useState<boolean>(true);
 
   return (
     <div className={styles.words}>
       <WordsContentsHead
+        books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
-        bookData={bookData}
-        setBookData={setBookData}
         selectedBookId={selectedBookId}
         setIsListView={setIsListView}
         isEditLanguage={isEditLanguage}
         setIsEditLanguage={setIsEditLanguage}
+        setFetch={setFetch}
       />
       {isListView ? (
         <WordsContentsListView
+          books={books}
           clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
-          bookData={bookData}
-          setBookData={setBookData}
           selectedBookId={selectedBookId}
           isMoveClicked={isMoveClicked}
           setIsMoveClicked={setIsMoveClicked}
+          setFetch={setFetch}
         />
       ) : (
-        <WordsContentsCardView
-          bookData={bookData}
-          selectedBookId={selectedBookId}
-        />
+        <WordsContentsCardView books={books} selectedBookId={selectedBookId} />
       )}
     </div>
   );

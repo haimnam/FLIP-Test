@@ -3,49 +3,46 @@ import styles from "../../../../scss/Words.module.scss";
 import axios from "axios";
 import { useAuth } from "../../../../Store/AuthProvider.tsx";
 
-type BookArrType = {
-  text: string;
-  meaning: string;
-};
-
-const WordsContentsList = ({
+const WordsContentsListText = ({
+  books,
   setIsOpenModal,
-  bookData,
-  setBookData,
   selectedBookId,
+  isEllipsis,
+  setIsEllipsis,
   word,
   index,
+  setFetch,
 }) => {
   const [tempText, setTempText] = useState<string>("");
   const [tempMeaning, setTempMeaning] = useState<string>("");
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
   useEffect(() => {
-    const bookArr: BookArrType[] = [];
-    bookArr.push({ text: tempText, meaning: tempMeaning });
+    console.log("word =>");
+    console.log(word);
     const fetchGet = async () => {
-      if (tempText != "" && tempMeaning != "") {
-        if (isEditText.bool || isEditMeaning.bool) {
+      if (tempText !== "" || tempMeaning !== "") {
+        if (tempText !== "") {
+          console.log("text: ", tempText, " mean: ", word.meaning);
           try {
             await axios.put(
               `https://test.flipnow.net/word/${selectedBookId}/${word._id}`,
-              { text: tempText, meaning: tempMeaning },
+              { wordInfo: { text: tempText, meaning: word.meaning } },
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
                 },
               }
             );
-            setIsEditText({ bool: false, id: isEditText.id });
-            setIsEditMeaning({ bool: false, id: isEditMeaning.id });
           } catch (e) {
             console.log(e);
           }
-        } else {
+        } else if (tempMeaning !== "") {
+          console.log("text: ", word.text, " mean: ", tempMeaning);
           try {
-            await axios.post(
-              `https://test.flipnow.net/word/book/${selectedBookId}`,
-              { wordInfo: [{ text: tempText, meaning: tempMeaning }] },
+            await axios.put(
+              `https://test.flipnow.net/word/${selectedBookId}/${word._id}`,
+              { wordInfo: { text: word.text, meaning: tempMeaning } },
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
@@ -56,85 +53,26 @@ const WordsContentsList = ({
             console.log(e);
           }
         }
+        setTempText("");
+        setTempMeaning("");
+        setFetch((prev) => !prev);
       }
-      setTempText("");
-      setTempMeaning("");
     };
     fetchGet();
-  }, [tempText && tempMeaning]);
+  }, [tempText, tempMeaning]);
 
   const inputWord = async (e, bookId: number, wordId: number, unit: string) => {
     if (unit === "text") {
-      setBookData(
-        bookData.map((book) =>
-          book._id === bookId
-            ? {
-                ...book,
-                words: book.words.map((word) =>
-                  word._id === wordId
-                    ? {
-                        ...word,
-                        text: e,
-                      }
-                    : word
-                ),
-              }
-            : book
-        )
-      );
+      console.log("TEXT INPUT SUCCESS: ", e);
       setTempText(e);
     } else {
-      setBookData(
-        bookData.map((book) =>
-          book._id === bookId
-            ? {
-                ...book,
-                words: book.words.map((word) =>
-                  word._id === wordId
-                    ? {
-                        ...word,
-                        meaning: e,
-                      }
-                    : word
-                ),
-              }
-            : book
-        )
-      );
+      console.log("MEAN INPUT SUCCESS: ", e);
       setTempMeaning(e);
     }
   };
 
-  const [isEditText, setIsEditText] = useState({ bool: false, id: "0" });
-  const [isEditMeaning, setIsEditMeaning] = useState({ bool: false, id: "0" });
-  const editWord = async (e, wordId: string, unit: string) => {
-    if (e !== "") {
-      if (unit === "text") {
-        setIsEditText({ bool: true, id: wordId });
-      } else {
-        setIsEditMeaning({ bool: true, id: wordId });
-      }
-    }
-  };
-
   const clickWordEllipsis = (bookId: number, wordId: number) => {
-    setBookData(
-      bookData.map((book) =>
-        book._id === bookId
-          ? {
-              ...book,
-              words: book.words.map((word) =>
-                word._id === wordId
-                  ? {
-                      ...word,
-                      ellipsis: true,
-                    }
-                  : word
-              ),
-            }
-          : book
-      )
-    );
+    setIsEllipsis(true);
     setIsOpenModal(true);
   };
 
@@ -144,7 +82,6 @@ const WordsContentsList = ({
       <textarea
         className={styles.wordsListTerm}
         placeholder="Write down the words"
-        onFocus={(e) => editWord(e.target.value, word._id, "text")}
         onBlur={(e) =>
           inputWord(e.target.value, selectedBookId, word._id, "text")
         }
@@ -153,7 +90,6 @@ const WordsContentsList = ({
       <textarea
         className={styles.wordsListDefinition}
         placeholder="Write down the definition"
-        onFocus={(e) => editWord(e.target.value, word._id, "meaning")}
         onBlur={(e) =>
           inputWord(e.target.value, selectedBookId, word._id, "meaning")
         }
@@ -169,4 +105,4 @@ const WordsContentsList = ({
   );
 };
 
-export default WordsContentsList;
+export default WordsContentsListText;

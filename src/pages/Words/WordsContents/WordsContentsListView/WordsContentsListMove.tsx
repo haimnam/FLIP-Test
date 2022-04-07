@@ -4,13 +4,7 @@ import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import axios from "axios";
 import { useAuth } from "../../../../Store/AuthProvider.tsx";
 
-const WordsContentsListMove = ({
-  bookData,
-  setBookData,
-  selectedBookId,
-  word,
-}) => {
-  const [nextWordId, setNextWordId] = useState<number>(1);
+const WordsContentsListMove = ({ books, selectedBookId, word, setFetch }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
 
@@ -25,10 +19,10 @@ const WordsContentsListMove = ({
         {
           wordInfo: [
             {
-              text: bookData
+              text: books.data
                 .find((book) => book._id === srcBookId)
                 .words.find((word) => word._id === wordId).text,
-              meaning: bookData
+              meaning: books.data
                 .find((book) => book._id === srcBookId)
                 .words.find((word) => word._id === wordId).meaning,
             },
@@ -52,45 +46,17 @@ const WordsContentsListMove = ({
           },
         }
       );
+      setFetch((prev) => !prev);
     } catch (e) {
       console.log(e);
     }
-
-    let newWord = {
-      _id: nextWordId,
-      text: bookData
-        .find((book) => book._id === srcBookId)
-        .words.find((word) => word._id === wordId).text,
-      meaning: bookData
-        .find((book) => book._id === srcBookId)
-        .words.find((word) => word._id === wordId).meaning,
-      ellipsis: false,
-    };
-    setBookData(
-      bookData.map((book) =>
-        book._id === srcBookId || book._id === desBookId
-          ? book._id === srcBookId
-            ? {
-                ...book,
-                words: book.words.filter((word) => word._id !== wordId),
-              }
-            : book._id === desBookId
-            ? {
-                ...book,
-                words: book.words.concat(newWord),
-              }
-            : book
-          : book
-      )
-    );
-    setNextWordId(nextWordId + 1);
   };
 
   return (
     <div className={styles.wordsListMoveScreen}>
       <h4>Move to...</h4>
       <span>My Study Sets</span>
-      {bookData.map((book) => {
+      {books.data.map((book) => {
         return (
           <button
             key={book._id}
