@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "../../../../scss/Words.module.scss";
-import WordsContentsListMove from "./WordsContentsListMove.tsx";
+import styles from "../../../scss/Notes.module.scss";
+import WordsListEllipsisMove from "./WordsListEllipsisMove.tsx";
 import axios from "axios";
-import { useAuth } from "../../../../Store/AuthProvider.tsx";
-import Modal from "../../../../Components/Modal.tsx";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
+import Modal from "../../../Components/Modal.tsx";
 
-const WordsContentsListEllipsis = ({
+const WordsListEllipsisFunc = ({
   books,
   clickBackground,
   isOpenModal,
@@ -47,7 +47,7 @@ const WordsContentsListEllipsis = ({
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
         >
-          <WordsContentsListMove
+          <WordsListEllipsisMove
             books={books}
             selectedBookId={selectedBookId}
             word={word}
@@ -65,4 +65,4 @@ const WordsContentsListEllipsis = ({
   );
 };
 
-export default WordsContentsListEllipsis;
+export default WordsListEllipsisFunc;

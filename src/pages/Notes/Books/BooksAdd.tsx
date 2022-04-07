@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
-import styles from "../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 import dayjs from "dayjs";
 import { StudyFolderData } from "./StudyFolderData.tsx";
 import Modal from "../../../Components/Modal.tsx";
 
-const WordsStudySetsAdd = ({
+const BooksAdd = ({
   clickBackground,
   isOpenModal,
   setIsOpenModal,
@@ -70,4 +70,4 @@ const WordsStudySetsAdd = ({
   );
 };
 
-export default WordsStudySetsAdd;
+export default BooksAdd;

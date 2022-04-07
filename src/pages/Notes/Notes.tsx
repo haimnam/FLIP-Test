@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../scss/Words.module.scss";
-import WordsStudySets from "./WordsStudySets/WordsStudySets.tsx";
-import WordsContents from "./WordsContents/WordsContents.tsx";
+import styles from "../../scss/Notes.module.scss";
+import Books from "./Books/Books.tsx";
+import WordsContents from "./Words/Words.tsx";
 import { useAuth } from "../../Store/AuthProvider.tsx";
 import {
   useUserState,
   useUserDispatch,
   getBooks,
 } from "../../Store/UserContext.tsx";
-
-type WordType = {
-  _id: string;
-  text: string;
-  meaning: string;
-  ellipsis: boolean;
-};
-type BookType = {
-  memberId: string;
-  _id: string;
-  title: string;
-  language: string;
-  words: WordType[];
-  ellipsis: boolean;
-  isEdit: boolean;
-};
 
 const Words = () => {
   const { authTokens } = useAuth();
@@ -62,7 +46,7 @@ const Words = () => {
     <div className={styles.contents}>
       {<button onClick={fetchData}>fetch again</button>}
       {console.log(books)}
-      <WordsStudySets
+      <Books
         books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}

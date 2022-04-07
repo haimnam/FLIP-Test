@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import styles from "../../../scss/Words.module.scss";
-import WordsContentsHead from "./WordsContentsHead.tsx";
-import WordsContentsListView from "./WordsContentsListView/WordsContentsListView.tsx";
-import WordsContentsCardView from "./WordsContentsCardView.tsx";
+import styles from "../../../scss/Notes.module.scss";
+import WordsHead from "./WordsHead.tsx";
+import WordsList from "./WordsList.tsx";
+import WordsCard from "./WordsCard.tsx";
 
-const WordsContents = ({
+const Words = ({
   books,
   clickBackground,
   isOpenModal,
@@ -20,7 +20,7 @@ const WordsContents = ({
 
   return (
     <div className={styles.words}>
-      <WordsContentsHead
+      <WordsHead
         books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}
@@ -32,7 +32,7 @@ const WordsContents = ({
         setFetch={setFetch}
       />
       {isListView ? (
-        <WordsContentsListView
+        <WordsList
           books={books}
           clickBackground={clickBackground}
           isOpenModal={isOpenModal}
@@ -43,10 +43,10 @@ const WordsContents = ({
           setFetch={setFetch}
         />
       ) : (
-        <WordsContentsCardView books={books} selectedBookId={selectedBookId} />
+        <WordsCard books={books} selectedBookId={selectedBookId} />
       )}
     </div>
   );
 };
 
-export default WordsContents;
+export default Words;

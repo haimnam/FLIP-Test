@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../../../scss/Words.module.scss";
-import Ellipsis from "./Ellipsis.tsx";
+import styles from "../../../scss/Notes.module.scss";
+import Ellipsis from "./BooksList.tsx";
 
-const WordsStudySetsBody = ({
+const BooksBody = ({
   books,
   clickBackground,
   isOpenModal,
@@ -32,4 +32,4 @@ const WordsStudySetsBody = ({
   );
 };
 
-export default WordsStudySetsBody;
+export default BooksBody;

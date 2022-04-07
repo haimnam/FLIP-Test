@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styles from "../../../../scss/Words.module.scss";
-import WordsContentsList from "./WordsContentsList.tsx";
+import React from "react";
+import styles from "../../../scss/Notes.module.scss";
+import WordsListBody from "./WordsListBody.tsx";
 import axios from "axios";
-import { useAuth } from "../../../../Store/AuthProvider.tsx";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
 
-const WordsContentsListView = ({
+const WordsList = ({
   books,
   clickBackground,
   isOpenModal,
@@ -48,7 +48,7 @@ const WordsContentsListView = ({
           .find((book) => book._id === selectedBookId)
           .words.map((word, index) => {
             return (
-              <WordsContentsList
+              <WordsListBody
                 key={word._id}
                 books={books}
                 clickBackground={clickBackground}
@@ -74,4 +74,4 @@ const WordsContentsListView = ({
   );
 };
 
-export default WordsContentsListView;
+export default WordsList;

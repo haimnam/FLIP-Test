@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "../../../scss/Words.module.scss";
-import WordsStudySetsHead from "./WordsStudySetsHead.tsx";
-import WordsStudySetsAdd from "./WordsStudySetsAdd.tsx";
-import WordsStudySetsBody from "./WordsStudySetsBody.tsx";
+import styles from "../../../scss/Notes.module.scss";
+import BooksHead from "./BooksHead.tsx";
+import BooksAdd from "./BooksAdd.tsx";
+import BooksBody from "./BooksBody.tsx";
 
-const WordsStudySets = ({
+const Books = ({
   books,
   clickBackground,
   isOpenModal,
@@ -18,12 +18,9 @@ const WordsStudySets = ({
   return (
     <div className={styles.studySets}>
       {console.log(books)}
-      <WordsStudySetsHead
-        setIsOpenModal={setIsOpenModal}
-        setAddSet={setAddSet}
-      />
+      <BooksHead setIsOpenModal={setIsOpenModal} setAddSet={setAddSet} />
       {addSet && (
-        <WordsStudySetsAdd
+        <BooksAdd
           clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
@@ -31,7 +28,7 @@ const WordsStudySets = ({
           setFetch={setFetch}
         />
       )}
-      <WordsStudySetsBody
+      <BooksBody
         books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}
@@ -44,4 +41,4 @@ const WordsStudySets = ({
   );
 };
 
-export default WordsStudySets;
+export default Books;

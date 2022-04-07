@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import styles from "../../../../scss/Words.module.scss";
+import React from "react";
+import styles from "../../../scss/Notes.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import axios from "axios";
-import { useAuth } from "../../../../Store/AuthProvider.tsx";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
 
-const WordsContentsListMove = ({ books, selectedBookId, word, setFetch }) => {
+const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
 
@@ -71,4 +71,4 @@ const WordsContentsListMove = ({ books, selectedBookId, word, setFetch }) => {
   );
 };
 
-export default WordsContentsListMove;
+export default WordsListEllipsisMove;

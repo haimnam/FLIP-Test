@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 
-const WordsContentsCard = ({ books, selectedBookId }) => {
+const WordsCard = ({ books, selectedBookId }) => {
   return (
     <div className={styles.wordsCardView}>
       {books.data
@@ -20,4 +20,4 @@ const WordsContentsCard = ({ books, selectedBookId }) => {
   );
 };
 
-export default WordsContentsCard;
+export default WordsCard;

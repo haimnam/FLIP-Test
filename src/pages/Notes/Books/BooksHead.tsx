@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 
-const WordsStudySetsHead = ({ setIsOpenModal, setAddSet }) => {
+const BooksHead = ({ setIsOpenModal, setAddSet }) => {
   const clickStudySets = () => {
     setAddSet(true);
     setIsOpenModal(true);
@@ -17,4 +17,4 @@ const WordsStudySetsHead = ({ setIsOpenModal, setAddSet }) => {
   );
 };
 
-export default WordsStudySetsHead;
+export default BooksHead;

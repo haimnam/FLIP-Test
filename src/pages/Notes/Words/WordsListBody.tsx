@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import styles from "../../../../scss/Words.module.scss";
-import WordsContentsListEllipsis from "./WordsContentsListEllipsis.tsx";
-import WordsContentsListText from "./WordsContentsListText.tsx";
-import Modal from "../../../../Components/Modal.tsx";
-import Ellipsis from "./Ellipsis.tsx";
+import styles from "../../../scss/Notes.module.scss";
+import WordsListText from "./WordsListText.tsx";
+import WordsListEllipsis from "./WordsListEllipsis.tsx";
 
-const WordsContentsList = ({
+const WordsListBody = ({
   books,
   clickBackground,
   isOpenModal,
@@ -20,7 +18,7 @@ const WordsContentsList = ({
   const [isEllipsis, setIsEllipsis] = useState(false);
   return (
     <div className={styles.wordsListRow}>
-      <WordsContentsListText
+      <WordsListText
         books={books}
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
@@ -30,7 +28,7 @@ const WordsContentsList = ({
         index={index}
         setFetch={setFetch}
       />
-      <Ellipsis
+      <WordsListEllipsis
         books={books}
         clickBackground={clickBackground}
         isOpenModal={isOpenModal}
@@ -48,4 +46,4 @@ const WordsContentsList = ({
   );
 };
 
-export default WordsContentsList;
+export default WordsListBody;

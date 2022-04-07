@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 import axios from "axios";
-import { useAuth } from "../../../../Store/AuthProvider.tsx";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
 
-const WordsContentsListText = ({
+const WordsListText = ({
   books,
   setIsOpenModal,
   selectedBookId,
@@ -105,4 +105,4 @@ const WordsContentsListText = ({
   );
 };
 
-export default WordsContentsListText;
+export default WordsListText;

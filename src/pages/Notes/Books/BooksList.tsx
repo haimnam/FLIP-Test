@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
-import styles from "../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import Modal from "../../../Components/Modal.tsx";
 
@@ -50,10 +50,6 @@ const Ellipsis = ({
     setTempTitle(e.target.value);
     console.log(e.target.value);
   };
-
-  /*const editStudySet = () => {
-    setIsEdit(true);
-  };*/
 
   const deleteStudySet = async () => {
     try {

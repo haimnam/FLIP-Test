@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import styles from "../../../../scss/Words.module.scss";
-import WordsContentsListEllipsis from "./WordsContentsListEllipsis.tsx";
-import WordsContentsListText from "./WordsContentsListText.tsx";
-import Modal from "../../../../Components/Modal.tsx";
+import React from "react";
+import WordsListEllipsisFunc from "./WordsListEllipsisFunc.tsx";
+import Modal from "../../../Components/Modal.tsx";
 
-const Ellipsis = ({
+const WordsListEllipsis = ({
   books,
   clickBackground,
   isOpenModal,
@@ -27,7 +25,7 @@ const Ellipsis = ({
           setIsOpenModal={setIsOpenModal}
           setIsEllipsis={setIsEllipsis}
         >
-          <WordsContentsListEllipsis
+          <WordsListEllipsisFunc
             books={books}
             clickBackground={clickBackground}
             isOpenModal={isOpenModal}
@@ -44,4 +42,4 @@ const Ellipsis = ({
   );
 };
 
-export default Ellipsis;
+export default WordsListEllipsis;

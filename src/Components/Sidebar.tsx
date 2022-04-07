@@ -13,7 +13,7 @@ import {
   ScheduleAndChat,
   Session,
   MyPage,
-  Words,
+  Notes,
   Login,
 } from "../pages/pageIndex.tsx";
 
@@ -69,7 +69,7 @@ const Sidebar = ({ myInfo, user }) => {
         />
         <Route path="/session" element={<Session />} />
         <Route path="/myPage" element={<MyPage />} />
-        <Route path="/word" element={<Words />} />
+        <Route path="/notes" element={<Notes />} />
         <Route path="/login" element={<Login user={user} />} />
       </Routes>
     </React.Fragment>
