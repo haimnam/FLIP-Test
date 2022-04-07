@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useReducer } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 
-export const getUser = async (dispatch, accessToken) => {
-  console.log("get books");
-  console.log(accessToken);
+export const getBooks = async (dispatch, accessToken) => {
   dispatch({ type: "GET_BOOKS" });
   try {
     const response = await axios.get("https://test.flipnow.net/word", {
@@ -11,27 +10,165 @@ export const getUser = async (dispatch, accessToken) => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(response.data);
     dispatch({ type: "GET_BOOKS_SUCCESS", data: response.data });
   } catch (e) {
     dispatch({ type: "GET_BOOKS_ERROR", error: e });
   }
 };
 
-export const getBooks = async (dispatch, accessToken) => {
-  console.log("get books");
-  console.log(accessToken);
-  dispatch({ type: "GET_BOOKS" });
+export const addBook = async (accessToken, title, language, setFetch) => {
   try {
-    const response = await axios.get("https://test.flipnow.net/word", {
+    await axios.post(
+      "https://test.flipnow.net/word",
+      { title: title + " " + dayjs().format("MM/DD"), language },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const putBook = async (accessToken, title, bookId, setFetch) => {
+  try {
+    await axios.put(
+      `https://test.flipnow.net/word/book/${bookId}`,
+      { title },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const putLanguage = async (accessToken, language, bookId, setFetch) => {
+  try {
+    await axios.put(
+      `https://test.flipnow.net/word/language/${bookId}`,
+      { language },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteBook = async (accessToken, bookId, setFetch) => {
+  try {
+    await axios.delete(`https://test.flipnow.net/word/book/${bookId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(response.data);
-    dispatch({ type: "GET_BOOKS_SUCCESS", data: response.data });
+    setFetch((prev) => !prev);
   } catch (e) {
-    dispatch({ type: "GET_BOOKS_ERROR", error: e });
+    console.log(e);
+  }
+};
+
+export const postWord = async (accessToken, bookId, setFetch) => {
+  try {
+    await axios.post(
+      `https://test.flipnow.net/word/book/${bookId}`,
+      {
+        wordInfo: [{ text: "", meaning: "" }],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const putWord = async (
+  accessToken,
+  bookId,
+  wordId,
+  text,
+  meaning,
+  setFetch
+) => {
+  try {
+    await axios.put(
+      `https://test.flipnow.net/word/${bookId}/${wordId}`,
+      { wordInfo: { text, meaning } },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const moveWord = async (
+  accessToken,
+  srcBookId,
+  desBookId,
+  wordId,
+  text,
+  meaning,
+  setFetch
+) => {
+  try {
+    await axios.post(
+      `https://test.flipnow.net/word/book/${desBookId}`,
+      {
+        wordInfo: [{ text, meaning }],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+  try {
+    await axios.delete(`https://test.flipnow.net/word/${srcBookId}/${wordId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteWord = async (accessToken, bookId, wordId, setFetch) => {
+  try {
+    await axios.delete(`https://test.flipnow.net/word/${bookId}/${wordId}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
   }
 };
 

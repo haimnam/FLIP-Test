@@ -1,10 +1,9 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
-import Ellipsis from "./BooksList.tsx";
+import BooksList from "./BooksList.tsx";
 
 const BooksBody = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   setVoca,
@@ -12,13 +11,12 @@ const BooksBody = ({
   setFetch,
 }) => {
   return (
-    <div className={styles.studySetsBody}>
+    <div className={styles.booksBody}>
       {books.data.map((book) => {
         return (
-          <div key={book._id} className={styles.studySetsList}>
-            <Ellipsis
+          <div key={book._id} className={styles.booksList}>
+            <BooksList
               book={book}
-              clickBackground={clickBackground}
               isOpenModal={isOpenModal}
               setIsOpenModal={setIsOpenModal}
               setSelectedBookId={setSelectedBookId}

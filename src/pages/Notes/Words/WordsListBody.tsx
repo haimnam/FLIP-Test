@@ -5,7 +5,6 @@ import WordsListEllipsis from "./WordsListEllipsis.tsx";
 
 const WordsListBody = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -19,10 +18,8 @@ const WordsListBody = ({
   return (
     <div className={styles.wordsListRow}>
       <WordsListText
-        books={books}
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
-        isEllipsis={isEllipsis}
         setIsEllipsis={setIsEllipsis}
         word={word}
         index={index}
@@ -30,7 +27,6 @@ const WordsListBody = ({
       />
       <WordsListEllipsis
         books={books}
-        clickBackground={clickBackground}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
@@ -39,7 +35,6 @@ const WordsListBody = ({
         isEllipsis={isEllipsis}
         setIsEllipsis={setIsEllipsis}
         word={word}
-        index={index}
         setFetch={setFetch}
       />
     </div>

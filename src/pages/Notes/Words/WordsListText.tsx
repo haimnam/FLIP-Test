@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../scss/Notes.module.scss";
-import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { putWord } from "../../../Store/UserContext.tsx";
 
 const WordsListText = ({
-  books,
   setIsOpenModal,
   selectedBookId,
-  isEllipsis,
   setIsEllipsis,
   word,
   index,
@@ -18,60 +16,41 @@ const WordsListText = ({
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
   useEffect(() => {
-    console.log("word =>");
-    console.log(word);
     const fetchGet = async () => {
-      if (tempText !== "" || tempMeaning !== "") {
-        if (tempText !== "") {
-          console.log("text: ", tempText, " mean: ", word.meaning);
-          try {
-            await axios.put(
-              `https://test.flipnow.net/word/${selectedBookId}/${word._id}`,
-              { wordInfo: { text: tempText, meaning: word.meaning } },
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
-            );
-          } catch (e) {
-            console.log(e);
-          }
-        } else if (tempMeaning !== "") {
-          console.log("text: ", word.text, " mean: ", tempMeaning);
-          try {
-            await axios.put(
-              `https://test.flipnow.net/word/${selectedBookId}/${word._id}`,
-              { wordInfo: { text: word.text, meaning: tempMeaning } },
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                },
-              }
-            );
-          } catch (e) {
-            console.log(e);
-          }
-        }
-        setTempText("");
-        setTempMeaning("");
-        setFetch((prev) => !prev);
+      if (tempText !== "") {
+        putWord(
+          accessToken,
+          selectedBookId,
+          word._id,
+          tempText,
+          word.meaning,
+          setFetch
+        );
+      } else if (tempMeaning !== "") {
+        putWord(
+          accessToken,
+          selectedBookId,
+          word._id,
+          word.text,
+          tempMeaning,
+          setFetch
+        );
       }
+      setTempText("");
+      setTempMeaning("");
     };
-    fetchGet();
+    if (tempText !== "" || tempMeaning !== "") {
+      fetchGet();
+    }
   }, [tempText, tempMeaning]);
-
-  const inputWord = async (e, bookId: number, wordId: number, unit: string) => {
+  const inputWord = async (e, unit: string) => {
     if (unit === "text") {
-      console.log("TEXT INPUT SUCCESS: ", e);
       setTempText(e);
     } else {
-      console.log("MEAN INPUT SUCCESS: ", e);
       setTempMeaning(e);
     }
   };
-
-  const clickWordEllipsis = (bookId: number, wordId: number) => {
+  const clickWordEllipsis = () => {
     setIsEllipsis(true);
     setIsOpenModal(true);
   };
@@ -82,23 +61,16 @@ const WordsListText = ({
       <textarea
         className={styles.wordsListTerm}
         placeholder="Write down the words"
-        onBlur={(e) =>
-          inputWord(e.target.value, selectedBookId, word._id, "text")
-        }
+        onBlur={(e) => inputWord(e.target.value, "text")}
         defaultValue={word.text}
       ></textarea>
       <textarea
         className={styles.wordsListDefinition}
         placeholder="Write down the definition"
-        onBlur={(e) =>
-          inputWord(e.target.value, selectedBookId, word._id, "meaning")
-        }
+        onBlur={(e) => inputWord(e.target.value, "meaning")}
         defaultValue={word.meaning}
       ></textarea>
-      <button
-        className={styles.wordsListEllipsis}
-        onClick={() => clickWordEllipsis(selectedBookId, word._id)}
-      >
+      <button className={styles.wordsListEllipsis} onClick={clickWordEllipsis}>
         ···
       </button>
     </React.Fragment>

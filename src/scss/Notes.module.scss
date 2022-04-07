@@ -17,21 +17,21 @@ textarea {
     width: 100%;
     height: 100%;
   }
-  .studySets {
+  .books {
     padding: 70px 50px 50px 50px;
     display: flex;
     flex-direction: column;
     width: 300px;
-    .studySetsHead {
+    .booksHead {
       display: flex;
       width: 280px;
       gap: 120px;
       margin-bottom: 20px;
-      .studySetsTitle {
+      .booksTitle {
         font-weight: bold;
         font-size: 20px;
       }
-      .studySetsBtn {
+      .booksBtn {
         font-size: 25px;
         color: grey;
         &:hover {
@@ -40,13 +40,13 @@ textarea {
       }
     }
 
-    .studySetsBody {
+    .booksBody {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      .studySetsList {
+      .booksList {
         display: flex;
-        .studySetsFolder {
+        .booksFolder {
           display: flex;
           width: 200px;
           font-size: 18px;
@@ -54,13 +54,13 @@ textarea {
           align-items: center;
           font-weight: bold;
         }
-        .studySetsEllipsis {
+        .booksEllipsis {
           color: grey;
           font-weight: bold;
           font-size: 30px;
           margin-left: 45px;
         }
-        .studySetsEllipsisBox {
+        .booksEllipsisBox {
           display: flex;
           z-index: 20;
           flex-direction: column;
@@ -69,12 +69,12 @@ textarea {
           margin-left: 0px;
           margin-top: 0px;
           gap: 0px;
-          .studySetsEdit {
+          .booksEdit {
             border-bottom: 1px solid black;
             width: 100%;
             padding: 10px 30px 10px 30px;
           }
-          .studySetsDelete {
+          .booksDelete {
             padding: 10px 30px 10px 30px;
           }
         }
@@ -82,7 +82,7 @@ textarea {
     }
   }
 
-  .studySetsSelect {
+  .booksSelect {
     position: absolute;
     background-color: white;
     margin-left: 250px;

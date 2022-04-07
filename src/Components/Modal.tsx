@@ -1,14 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styles from "../scss/App.module.scss";
 
-const Modal = ({
-  clickBackground,
-  setIsEllipsisClicked,
-  isOpenModal,
-  setIsOpenModal,
-  setIsEllipsis,
-  children,
-}) => {
+const Modal = ({ isOpenModal, setIsOpenModal, action, children }) => {
   const wrapperRef = useRef();
 
   useEffect(() => {
@@ -20,10 +13,8 @@ const Modal = ({
 
   const handleClickOutside = (e) => {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+      action(false);
       setIsOpenModal(false);
-      clickBackground();
-      setIsEllipsisClicked(false);
-      setIsEllipsis(false);
     } else {
       setIsOpenModal(true);
     }

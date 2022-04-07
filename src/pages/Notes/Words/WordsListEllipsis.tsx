@@ -4,7 +4,6 @@ import Modal from "../../../Components/Modal.tsx";
 
 const WordsListEllipsis = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -13,21 +12,18 @@ const WordsListEllipsis = ({
   isEllipsis,
   setIsEllipsis,
   word,
-  index,
   setFetch,
 }) => {
   return (
     <React.Fragment>
       {isEllipsis && isOpenModal && (
         <Modal
-          clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
-          setIsEllipsis={setIsEllipsis}
+          action={setIsEllipsis}
         >
           <WordsListEllipsisFunc
             books={books}
-            clickBackground={clickBackground}
             isOpenModal={isOpenModal}
             setIsOpenModal={setIsOpenModal}
             selectedBookId={selectedBookId}

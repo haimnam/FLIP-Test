@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListEllipsisMove from "./WordsListEllipsisMove.tsx";
-import axios from "axios";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import Modal from "../../../Components/Modal.tsx";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { deleteWord } from "../../../Store/UserContext.tsx";
 
 const WordsListEllipsisFunc = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -16,24 +15,14 @@ const WordsListEllipsisFunc = ({
   word,
   setFetch,
 }) => {
+  const { authTokens } = useAuth();
+  let accessToken = authTokens.accessToken;
   const clickMove = () => {
     setIsMoveClicked(true);
     setIsOpenModal(true);
   };
-
-  const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
-  const deleteWord = async (bookId: string, wordId: string) => {
-    try {
-      await axios.delete(`https://test.flipnow.net/word/${bookId}/${wordId}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setFetch((prev) => !prev);
-    } catch (e) {
-      console.log(e);
-    }
+  const deleteWordData = (wordId: string) => {
+    deleteWord(accessToken, selectedBookId, wordId, setFetch);
   };
 
   return (
@@ -43,9 +32,9 @@ const WordsListEllipsisFunc = ({
       </button>
       {isMoveClicked && isOpenModal && (
         <Modal
-          clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          action={setIsMoveClicked}
         >
           <WordsListEllipsisMove
             books={books}
@@ -57,7 +46,7 @@ const WordsListEllipsisFunc = ({
       )}
       <button
         className={styles.wordsListDelete}
-        onClick={() => deleteWord(selectedBookId, word._id)}
+        onClick={() => deleteWordData(word._id)}
       >
         delete
       </button>

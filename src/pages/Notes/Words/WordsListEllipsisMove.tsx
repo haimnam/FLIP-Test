@@ -1,55 +1,30 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
-import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { moveWord } from "../../../Store/UserContext.tsx";
 
 const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
-
-  const moveWord = async (
+  const moveWordData = async (
     srcBookId: string,
     desBookId: string,
     wordId: string
   ) => {
-    try {
-      await axios.post(
-        `https://test.flipnow.net/word/book/${desBookId}`,
-        {
-          wordInfo: [
-            {
-              text: books.data
-                .find((book) => book._id === srcBookId)
-                .words.find((word) => word._id === wordId).text,
-              meaning: books.data
-                .find((book) => book._id === srcBookId)
-                .words.find((word) => word._id === wordId).meaning,
-            },
-          ],
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-    } catch (e) {
-      console.log(e);
-    }
-    try {
-      await axios.delete(
-        `https://test.flipnow.net/word/${srcBookId}/${wordId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setFetch((prev) => !prev);
-    } catch (e) {
-      console.log(e);
-    }
+    moveWord(
+      accessToken,
+      srcBookId,
+      desBookId,
+      wordId,
+      books.data
+        .find((book) => book._id === srcBookId)
+        .words.find((word) => word._id === wordId).text,
+      books.data
+        .find((book) => book._id === srcBookId)
+        .words.find((word) => word._id === wordId).meaning,
+      setFetch
+    );
   };
 
   return (
@@ -60,7 +35,7 @@ const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
         return (
           <button
             key={book._id}
-            onClick={() => moveWord(selectedBookId, book._id, word._id)}
+            onClick={() => moveWordData(selectedBookId, book._id, word._id)}
             disabled={book._id === selectedBookId ? true : false}
           >
             <FolderOutlinedIcon /> {book.title}

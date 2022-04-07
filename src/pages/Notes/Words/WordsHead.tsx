@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
-import axios from "axios";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
-import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
-import { StudyFolderData } from "../Books/StudyFolderData.tsx";
 import Modal from "../../../Components/Modal.tsx";
+import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { putLanguage } from "../../../Store/UserContext.tsx";
+import { StudyFolderData } from "../Books/StudyFolderData.tsx";
 
 const WordsHead = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -17,36 +16,22 @@ const WordsHead = ({
   setIsEditLanguage,
   setFetch,
 }) => {
-  const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
   const languageSet = {
     ko: "Korean",
     en: "English",
     zh: "Chinese",
     de: "German",
   };
-
   const clickLanguage = () => {
     setIsEditLanguage(true);
     setIsOpenModal(true);
   };
 
-  const selectLanguage = async (title: string, language: string) => {
-    try {
-      await axios.put(
-        `https://test.flipnow.net/word/language/${selectedBookId}`,
-        { language },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setFetch((prev) => !prev);
-      setIsEditLanguage(false);
-    } catch (e) {
-      console.log(e);
-    }
+  const { authTokens } = useAuth();
+  let accessToken = authTokens.accessToken;
+  const selectLanguage = (language: string) => {
+    putLanguage(accessToken, language, selectedBookId, setFetch);
+    setIsEditLanguage(false);
   };
 
   const [view, setView] = useState(true);
@@ -71,9 +56,9 @@ const WordsHead = ({
       </button>
       {isEditLanguage && isOpenModal && (
         <Modal
-          clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          action={setIsEditLanguage}
         >
           <div className={styles.languageSelect}>
             {StudyFolderData.map((data) => {
@@ -81,7 +66,7 @@ const WordsHead = ({
                 <button
                   key={data.id}
                   className={styles[data.language]}
-                  onClick={() => selectLanguage(data.title, data.language)}
+                  onClick={() => selectLanguage(data.language)}
                 >
                   {data.title}
                 </button>

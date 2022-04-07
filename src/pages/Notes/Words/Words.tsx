@@ -6,7 +6,6 @@ import WordsCard from "./WordsCard.tsx";
 
 const Words = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -22,7 +21,6 @@ const Words = ({
     <div className={styles.words}>
       <WordsHead
         books={books}
-        clickBackground={clickBackground}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
@@ -34,7 +32,6 @@ const Words = ({
       {isListView ? (
         <WordsList
           books={books}
-          clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import styles from "../../../scss/Notes.module.scss";
-import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import Modal from "../../../Components/Modal.tsx";
+import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
+import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { putBook, deleteBook } from "../../../Store/UserContext.tsx";
 
-const Ellipsis = ({
+const BooksList = ({
   book,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   setSelectedBookId,
@@ -16,59 +15,29 @@ const Ellipsis = ({
 }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
-
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
+  const [tempTitle, setTempTitle] = useState(book.title);
 
   const getStudySet = () => {
     setIsEllipsisClicked(false);
     setVoca(true);
     setSelectedBookId(book._id);
   };
-
-  const [tempTitle, setTempTitle] = useState(book.title);
-  const editOnBlur = async () => {
+  const editOnBlur = () => {
+    putBook(accessToken, tempTitle, book._id, setFetch);
     setIsEdit(false);
-    try {
-      console.log("try start");
-      await axios.put(
-        `https://test.flipnow.net/word/book/${book._id}`,
-        { title: tempTitle },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      console.log("try finish");
-      setFetch((prev) => !prev);
-    } catch (e) {
-      console.log(e);
-    }
   };
   const textOnChange = (e) => {
     setTempTitle(e.target.value);
-    console.log(e.target.value);
   };
-
-  const deleteStudySet = async () => {
-    try {
-      await axios.delete(`https://test.flipnow.net/word/book/${book._id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setFetch((prev) => !prev);
-    } catch (e) {
-      console.log(e);
-    }
+  const deleteStudySet = () => {
+    deleteBook(accessToken, book._id, setFetch);
     setVoca(false);
   };
-
   const onClickEllipsis = () => {
     setIsEllipsisClicked(true);
     setIsOpenModal(true);
-    console.log(isEllipsisClicked);
   };
 
   return (
@@ -81,7 +50,7 @@ const Ellipsis = ({
           onBlur={editOnBlur}
         ></input>
       ) : (
-        <button className={styles.studySetsFolder} onClick={getStudySet}>
+        <button className={styles.booksFolder} onClick={getStudySet}>
           <div>
             <FolderOutlinedIcon />
           </div>
@@ -90,27 +59,25 @@ const Ellipsis = ({
       )}
       <button
         key={book._id}
-        className={styles.studySetsEllipsis}
+        className={styles.booksEllipsis}
         onClick={onClickEllipsis}
       >
         <div>···</div>
       </button>
-      {console.log(isEllipsisClicked + " " + isOpenModal)}
       {isEllipsisClicked && isOpenModal && (
         <Modal
-          clickBackground={clickBackground}
-          setIsEllipsisClicked={setIsEllipsisClicked}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          action={setIsEllipsisClicked}
         >
-          <div className={styles.studySetsEllipsisBox}>
+          <div className={styles.booksEllipsisBox}>
             <button
-              className={styles.studySetsEdit}
+              className={styles.booksEdit}
               onClick={() => setIsEdit(true)}
             >
               edit
             </button>
-            <button className={styles.studySetsDelete} onClick={deleteStudySet}>
+            <button className={styles.booksDelete} onClick={deleteStudySet}>
               delete
             </button>
           </div>
@@ -120,4 +87,4 @@ const Ellipsis = ({
   );
 };
 
-export default Ellipsis;
+export default BooksList;

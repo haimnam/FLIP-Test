@@ -6,7 +6,6 @@ import BooksBody from "./BooksBody.tsx";
 
 const Books = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   addSet,
@@ -16,12 +15,10 @@ const Books = ({
   setFetch,
 }) => {
   return (
-    <div className={styles.studySets}>
-      {console.log(books)}
+    <div className={styles.books}>
       <BooksHead setIsOpenModal={setIsOpenModal} setAddSet={setAddSet} />
       {addSet && (
         <BooksAdd
-          clickBackground={clickBackground}
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           setAddSet={setAddSet}
@@ -30,7 +27,6 @@ const Books = ({
       )}
       <BooksBody
         books={books}
-        clickBackground={clickBackground}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         setVoca={setVoca}

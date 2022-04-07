@@ -8,9 +8,9 @@ const BooksHead = ({ setIsOpenModal, setAddSet }) => {
   };
 
   return (
-    <div className={styles.studySetsHead}>
-      <div className={styles.studySetsTitle}>My Study Sets</div>
-      <button className={styles.studySetsBtn} onClick={clickStudySets}>
+    <div className={styles.booksHead}>
+      <div className={styles.booksTitle}>My Study Sets</div>
+      <button className={styles.booksBtn} onClick={clickStudySets}>
         +
       </button>
     </div>

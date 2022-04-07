@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListBody from "./WordsListBody.tsx";
-import axios from "axios";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
+import { postWord } from "../../../Store/UserContext.tsx";
 
 const WordsList = ({
   books,
-  clickBackground,
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
@@ -16,23 +15,8 @@ const WordsList = ({
 }) => {
   const { authTokens } = useAuth();
   let accessToken = authTokens.accessToken;
-  const addWord = async (bookId: number) => {
-    try {
-      await axios.post(
-        `https://test.flipnow.net/word/book/${bookId}`,
-        {
-          wordInfo: [{ text: "", meaning: "" }],
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      setFetch((prev) => !prev);
-    } catch (e) {
-      console.log(e);
-    }
+  const addWord = () => {
+    postWord(accessToken, selectedBookId, setFetch);
   };
 
   return (
@@ -51,7 +35,6 @@ const WordsList = ({
               <WordsListBody
                 key={word._id}
                 books={books}
-                clickBackground={clickBackground}
                 isOpenModal={isOpenModal}
                 setIsOpenModal={setIsOpenModal}
                 selectedBookId={selectedBookId}
@@ -64,10 +47,7 @@ const WordsList = ({
             );
           })}
       </div>
-      <button
-        className={styles.wordsAddBtn}
-        onClick={() => addWord(selectedBookId)}
-      >
+      <button className={styles.wordsAddBtn} onClick={addWord}>
         +
       </button>
     </React.Fragment>
