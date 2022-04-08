@@ -28,7 +28,7 @@ const Schedule = ({
     if (ampm === "pm") {
       hour += 12;
     }
-    let newTime = {
+    const newTime = {
       id: nextId,
       time: dayjs()
         .tz(myInfo.timeZone)

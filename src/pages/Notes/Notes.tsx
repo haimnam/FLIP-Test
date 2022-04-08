@@ -15,20 +15,16 @@ const Notes = () => {
   const state = useUserState();
   const dispatch = useUserDispatch();
   const { data: books, loading, error } = state.books;
-  const [fetch, setFetch] = useState(true);
+  const [fetch, setFetch] = useState<boolean>(true);
   const fetchData = () => {
     getBooks(dispatch, accessToken);
   };
-
   useEffect(() => {
     fetchData();
   }, [fetch]);
 
   const [selectedBookId, setSelectedBookId] = useState<string>("0");
-  const [isOpenModal, setIsOpenModal] = useState(true);
-  const [addSet, setAddSet] = useState<boolean>(false);
-  const [isEditLanguage, setIsEditLanguage] = useState(false);
-  const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
   const [voca, setVoca] = useState<boolean>(false);
 
   if (loading) return <div>loading...</div>;
@@ -41,8 +37,6 @@ const Notes = () => {
         books={books}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
-        addSet={addSet}
-        setAddSet={setAddSet}
         setVoca={setVoca}
         setSelectedBookId={setSelectedBookId}
         setFetch={setFetch}
@@ -54,10 +48,6 @@ const Notes = () => {
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          isMoveClicked={isMoveClicked}
-          setIsMoveClicked={setIsMoveClicked}
-          isEditLanguage={isEditLanguage}
-          setIsEditLanguage={setIsEditLanguage}
           setFetch={setFetch}
         />
       ) : (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import BooksHead from "./BooksHead.tsx";
 import BooksAdd from "./BooksAdd.tsx";
@@ -8,12 +8,12 @@ const Books = ({
   books,
   isOpenModal,
   setIsOpenModal,
-  addSet,
-  setAddSet,
   setVoca,
   setSelectedBookId,
   setFetch,
 }) => {
+  const [addSet, setAddSet] = useState<boolean>(false);
+
   return (
     <div className={styles.books}>
       <BooksHead setIsOpenModal={setIsOpenModal} setAddSet={setAddSet} />

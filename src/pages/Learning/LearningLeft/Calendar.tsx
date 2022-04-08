@@ -26,10 +26,10 @@ const Calendar = () => {
         <div>
           <div className={styles.calendarBody}>
             {range(7).map((i) => {
-              let curDay = dayjs()
+              const curDay = dayjs()
                 .add(i - dayjs().day() + 1, "day")
                 .day();
-              let curDate = dayjs()
+              const curDate = dayjs()
                 .add(i - dayjs().day() + 1, "day")
                 .date();
               if (curDay === 3) {
@@ -73,10 +73,10 @@ const Calendar = () => {
           </div>
           <div className={styles.calendarBody}>
             {range(7).map((i) => {
-              let curDay = dayOfNextWeek
+              const curDay = dayOfNextWeek
                 .add(i - dayjs().day() + 1, "day")
                 .day();
-              let curDate = dayOfNextWeek
+              const curDate = dayOfNextWeek
                 .add(i - dayjs().day() + 1, "day")
                 .date();
               if (curDay === 3) {

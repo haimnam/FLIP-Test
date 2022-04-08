@@ -14,7 +14,7 @@ const BooksList = ({
   setFetch,
 }) => {
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
   const [tempTitle, setTempTitle] = useState(book.title);

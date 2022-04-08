@@ -7,8 +7,6 @@ const WordsListEllipsis = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  isMoveClicked,
-  setIsMoveClicked,
   isEllipsis,
   setIsEllipsis,
   word,
@@ -27,8 +25,6 @@ const WordsListEllipsis = ({
             isOpenModal={isOpenModal}
             setIsOpenModal={setIsOpenModal}
             selectedBookId={selectedBookId}
-            isMoveClicked={isMoveClicked}
-            setIsMoveClicked={setIsMoveClicked}
             word={word}
             setFetch={setFetch}
           />

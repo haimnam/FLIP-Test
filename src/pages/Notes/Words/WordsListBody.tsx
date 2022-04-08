@@ -8,13 +8,11 @@ const WordsListBody = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  isMoveClicked,
-  setIsMoveClicked,
   word,
   index,
   setFetch,
 }) => {
-  const [isEllipsis, setIsEllipsis] = useState(false);
+  const [isEllipsis, setIsEllipsis] = useState<boolean>(false);
   return (
     <div className={styles.wordsListRow}>
       <WordsListText
@@ -30,8 +28,6 @@ const WordsListBody = ({
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
-        isMoveClicked={isMoveClicked}
-        setIsMoveClicked={setIsMoveClicked}
         isEllipsis={isEllipsis}
         setIsEllipsis={setIsEllipsis}
         word={word}

@@ -9,10 +9,6 @@ const Words = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  isMoveClicked,
-  setIsMoveClicked,
-  isEditLanguage,
-  setIsEditLanguage,
   setFetch,
 }) => {
   const [isListView, setIsListView] = useState<boolean>(true);
@@ -25,8 +21,6 @@ const Words = ({
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
         setIsListView={setIsListView}
-        isEditLanguage={isEditLanguage}
-        setIsEditLanguage={setIsEditLanguage}
         setFetch={setFetch}
       />
       {isListView ? (
@@ -35,8 +29,6 @@ const Words = ({
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          isMoveClicked={isMoveClicked}
-          setIsMoveClicked={setIsMoveClicked}
           setFetch={setFetch}
         />
       ) : (

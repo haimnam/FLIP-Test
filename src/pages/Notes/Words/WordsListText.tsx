@@ -14,7 +14,7 @@ const WordsListText = ({
   const [tempText, setTempText] = useState<string>("");
   const [tempMeaning, setTempMeaning] = useState<string>("");
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   useEffect(() => {
     const fetchGet = async () => {
       if (tempText !== "") {

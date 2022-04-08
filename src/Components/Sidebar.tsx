@@ -18,7 +18,7 @@ import {
 } from "../pages/pageIndex.tsx";
 
 const Sidebar = ({ myInfo, user }) => {
-  let lang = useLang();
+  const lang = useLang();
   const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
     if (lan === lang) {
       return styles.languageSelected;

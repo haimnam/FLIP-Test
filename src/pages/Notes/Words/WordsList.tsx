@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListBody from "./WordsListBody.tsx";
 import { useAuth } from "../../../Store/AuthProvider.tsx";
@@ -9,12 +9,10 @@ const WordsList = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  isMoveClicked,
-  setIsMoveClicked,
   setFetch,
 }) => {
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   const addWord = () => {
     postWord(accessToken, selectedBookId, setFetch);
   };
@@ -38,8 +36,6 @@ const WordsList = ({
                 isOpenModal={isOpenModal}
                 setIsOpenModal={setIsOpenModal}
                 selectedBookId={selectedBookId}
-                isMoveClicked={isMoveClicked}
-                setIsMoveClicked={setIsMoveClicked}
                 word={word}
                 index={index}
                 setFetch={setFetch}

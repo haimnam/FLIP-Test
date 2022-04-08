@@ -6,7 +6,7 @@ import { moveWord } from "../../../Store/UserContext.tsx";
 
 const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   const moveWordData = async (
     srcBookId: string,
     desBookId: string,

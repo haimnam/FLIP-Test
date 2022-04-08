@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListEllipsisMove from "./WordsListEllipsisMove.tsx";
 import Modal from "../../../Components/Modal.tsx";
@@ -10,13 +10,12 @@ const WordsListEllipsisFunc = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  isMoveClicked,
-  setIsMoveClicked,
   word,
   setFetch,
 }) => {
+  const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   const clickMove = () => {
     setIsMoveClicked(true);
     setIsOpenModal(true);

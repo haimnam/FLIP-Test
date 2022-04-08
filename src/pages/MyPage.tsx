@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../Store/AuthProvider.tsx";
 
+type MyInfoType = {
+  firstName: string;
+  lastName: string;
+  school: string;
+  schoolEmail: string;
+};
+
 const MyPage = () => {
-  const [myInfo, setMyInfo] = useState({
+  const [myInfo, setMyInfo] = useState<MyInfoType>({
     firstName: "",
     lastName: "",
     school: "",
     schoolEmail: "",
   });
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
 
   useEffect(() => {
     const fetchGet = async () => {
@@ -23,7 +30,7 @@ const MyPage = () => {
             },
           }
         );
-        let myData = response.data.myInfo;
+        const myData = response.data.myInfo;
         setMyInfo({
           firstName: myData.firstName,
           lastName: myData.lastName,

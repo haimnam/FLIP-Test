@@ -6,8 +6,15 @@ import LanguageContext from "./Store/LanguageContext.tsx";
 import { AuthProvider } from "./Store/AuthProvider.tsx";
 import { UserProvider } from "./Store/UserContext.tsx";
 
+type MyInfoType = {
+  initial: string;
+  name: string;
+  city: string;
+  timeZone: string;
+};
+
 const App = () => {
-  const myInfo = {
+  const myInfo: MyInfoType = {
     initial: "NH",
     name: "Nahee",
     city: "New York",

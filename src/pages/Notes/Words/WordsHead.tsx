@@ -12,10 +12,9 @@ const WordsHead = ({
   setIsOpenModal,
   selectedBookId,
   setIsListView,
-  isEditLanguage,
-  setIsEditLanguage,
   setFetch,
 }) => {
+  const [isEditLanguage, setIsEditLanguage] = useState(false);
   const languageSet = {
     ko: "Korean",
     en: "English",
@@ -28,13 +27,13 @@ const WordsHead = ({
   };
 
   const { authTokens } = useAuth();
-  let accessToken = authTokens.accessToken;
+  const accessToken = authTokens.accessToken;
   const selectLanguage = (language: string) => {
     putLanguage(accessToken, language, selectedBookId, setFetch);
     setIsEditLanguage(false);
   };
 
-  const [view, setView] = useState(true);
+  const [view, setView] = useState<boolean>(true);
   const changeView = () => {
     setIsListView((prev) => !prev);
     setView((prev) => !prev);

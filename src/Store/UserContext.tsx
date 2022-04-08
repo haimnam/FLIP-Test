@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useReducer } from "react";
 import axios from "axios";
-import dayjs from "dayjs";
 
-export const getBooks = async (dispatch, accessToken) => {
+const instance = axios.create({
+  baseURL: "https://test.flipnow.net/word",
+});
+
+export const getBooks = async (dispatch: Function, accessToken: string) => {
   dispatch({ type: "GET_BOOKS" });
   try {
-    const response = await axios.get("https://test.flipnow.net/word", {
+    const response = await instance.get("", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -16,11 +19,16 @@ export const getBooks = async (dispatch, accessToken) => {
   }
 };
 
-export const addBook = async (accessToken, title, language, setFetch) => {
+export const addBook = async (
+  accessToken: string,
+  title: string,
+  language: string,
+  setFetch: Function
+) => {
   try {
-    await axios.post(
-      "https://test.flipnow.net/word",
-      { title: title + " " + dayjs().format("MM/DD"), language },
+    await instance.post(
+      "",
+      { title, language },
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -33,10 +41,15 @@ export const addBook = async (accessToken, title, language, setFetch) => {
   }
 };
 
-export const putBook = async (accessToken, title, bookId, setFetch) => {
+export const putBook = async (
+  accessToken: string,
+  title: string,
+  bookId: string,
+  setFetch: Function
+) => {
   try {
-    await axios.put(
-      `https://test.flipnow.net/word/book/${bookId}`,
+    await instance.put(
+      `/book/${bookId}`,
       { title },
       {
         headers: {
@@ -50,10 +63,15 @@ export const putBook = async (accessToken, title, bookId, setFetch) => {
   }
 };
 
-export const putLanguage = async (accessToken, language, bookId, setFetch) => {
+export const putLanguage = async (
+  accessToken: string,
+  language: string,
+  bookId: string,
+  setFetch: Function
+) => {
   try {
-    await axios.put(
-      `https://test.flipnow.net/word/language/${bookId}`,
+    await instance.put(
+      `/language/${bookId}`,
       { language },
       {
         headers: {
@@ -67,9 +85,13 @@ export const putLanguage = async (accessToken, language, bookId, setFetch) => {
   }
 };
 
-export const deleteBook = async (accessToken, bookId, setFetch) => {
+export const deleteBook = async (
+  accessToken: string,
+  bookId: string,
+  setFetch: Function
+) => {
   try {
-    await axios.delete(`https://test.flipnow.net/word/book/${bookId}`, {
+    await instance.delete(`/book/${bookId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -80,10 +102,14 @@ export const deleteBook = async (accessToken, bookId, setFetch) => {
   }
 };
 
-export const postWord = async (accessToken, bookId, setFetch) => {
+export const postWord = async (
+  accessToken: string,
+  bookId: string,
+  setFetch: Function
+) => {
   try {
-    await axios.post(
-      `https://test.flipnow.net/word/book/${bookId}`,
+    await instance.post(
+      `/book/${bookId}`,
       {
         wordInfo: [{ text: "", meaning: "" }],
       },
@@ -100,16 +126,16 @@ export const postWord = async (accessToken, bookId, setFetch) => {
 };
 
 export const putWord = async (
-  accessToken,
-  bookId,
-  wordId,
-  text,
-  meaning,
-  setFetch
+  accessToken: string,
+  bookId: string,
+  wordId: string,
+  text: string,
+  meaning: string,
+  setFetch: Function
 ) => {
   try {
-    await axios.put(
-      `https://test.flipnow.net/word/${bookId}/${wordId}`,
+    await instance.put(
+      `/${bookId}/${wordId}`,
       { wordInfo: { text, meaning } },
       {
         headers: {
@@ -124,20 +150,18 @@ export const putWord = async (
 };
 
 export const moveWord = async (
-  accessToken,
-  srcBookId,
-  desBookId,
-  wordId,
-  text,
-  meaning,
-  setFetch
+  accessToken: string,
+  srcBookId: string,
+  desBookId: string,
+  wordId: string,
+  text: string,
+  meaning: string,
+  setFetch: Function
 ) => {
   try {
-    await axios.post(
-      `https://test.flipnow.net/word/book/${desBookId}`,
-      {
-        wordInfo: [{ text, meaning }],
-      },
+    await instance.post(
+      `/book/${desBookId}`,
+      { wordInfo: [{ text, meaning }] },
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -148,7 +172,7 @@ export const moveWord = async (
     console.log(e);
   }
   try {
-    await axios.delete(`https://test.flipnow.net/word/${srcBookId}/${wordId}`, {
+    await instance.delete(`/${srcBookId}/${wordId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -159,9 +183,14 @@ export const moveWord = async (
   }
 };
 
-export const deleteWord = async (accessToken, bookId, wordId, setFetch) => {
+export const deleteWord = async (
+  accessToken: string,
+  bookId: string,
+  wordId: string,
+  setFetch: Function
+) => {
   try {
-    await axios.delete(`https://test.flipnow.net/word/${bookId}/${wordId}`, {
+    await instance.delete(`/${bookId}/${wordId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -201,6 +230,8 @@ const error = (error) => ({
 });
 
 const userReducer = (state, action) => {
+  console.log(state);
+  console.log(action);
   switch (action.type) {
     case "GET_BOOKS":
       return {

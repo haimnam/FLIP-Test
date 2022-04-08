@@ -23,16 +23,10 @@ const PreferredTimes = ({
   const [checkedItems, setCheckedItems] = useState(new Set());
 
   const checkHandler = ({ target }) => {
-    checkedItemHandler(
-      target.parentNode.parentNode,
-      target.value,
-      target.checked,
-      true
-    );
+    checkedItemHandler(target.value, target.checked, true);
   };
 
   const checkedItemHandler = (
-    box,
     id: number,
     isChecked: boolean,
     isClicked: boolean
@@ -58,9 +52,9 @@ const PreferredTimes = ({
     return checkedItems;
   };
 
-  const timeStateHandler = ({ target }, id: number, state: string) => {
+  const timeStateHandler = (id: number, state: string) => {
     if (state === "FINALIZE") {
-      let newMeeting = {
+      const newMeeting = {
         id: id * 1,
         time: partnerInfoData
           .find((partner) => partner.id === selectedPartner)
@@ -75,7 +69,7 @@ const PreferredTimes = ({
       );
     } else if (state === "Undo") {
       removeMeeting(id, selectedPartner);
-      checkedItemHandler(target.parentNode, id, false, false);
+      checkedItemHandler(id, false, false);
     }
   };
 
@@ -142,7 +136,7 @@ const PreferredTimes = ({
                         ? styles.state
                         : styles.stateFinalized
                     }
-                    onClick={(e) => timeStateHandler(e, time.id, time.state)}
+                    onClick={() => timeStateHandler(time.id, time.state)}
                   >
                     {time.print}
                   </div>
