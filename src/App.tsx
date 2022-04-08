@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import React from "react";
 import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
+import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./Store/AuthProvider.tsx";
 import { UserProvider } from "./Store/UserContext.tsx";
 
@@ -11,6 +11,7 @@ type MyInfoType = {
   name: string;
   city: string;
   timeZone: string;
+  color: string;
 };
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
     name: "Nahee",
     city: "New York",
     timeZone: "America/New_York",
+    color: "green",
   };
 
   return (

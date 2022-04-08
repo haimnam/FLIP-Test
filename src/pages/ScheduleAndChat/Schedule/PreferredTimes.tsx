@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { AccountData } from "../AccountData.tsx";
 
 const PreferredTimes = ({
   myInfo,
@@ -112,8 +113,20 @@ const PreferredTimes = ({
                     </div>
                   </div>
                   <div className={styles.partnerPick}>
-                    <div className={time.isPartnerPick ? styles.circle : ""}>
-                      {time.isPartnerPick ? "SJ" : ""}
+                    <div
+                      className={
+                        time.isPartnerPick
+                          ? styles[
+                              AccountData.find(
+                                (acc) => acc.id === selectedPartner
+                              ).color
+                            ]
+                          : ""
+                      }
+                    >
+                      {time.isPartnerPick &&
+                        AccountData.find((acc) => acc.id === selectedPartner)
+                          .initial}
                     </div>
                   </div>
                   <label className={styles.myPick}>

@@ -106,10 +106,9 @@ textarea {
       background-color: orange;
     }
     .zh {
-      background-color: rgb(216, 216, 2);
+      background-color: lightblue;
     }
     .de {
-      background-color: lightblue;
       background-color: black;
     }
   }
@@ -138,10 +137,9 @@ textarea {
       background-color: orange;
     }
     .zh {
-      background-color: rgb(216, 216, 2);
+      background-color: lightblue;
     }
     .de {
-      background-color: lightblue;
       background-color: black;
     }
   }
@@ -160,10 +158,25 @@ textarea {
       .wordsTitleLanguage {
         margin-left: 15px;
         font-size: 35px;
-        background-color: orange;
         color: white;
         padding: 5px;
         border-radius: 30px;
+      }
+      .koHead {
+        @extend .wordsTitleLanguage;
+        background-color: blue;
+      }
+      .enHead {
+        @extend .wordsTitleLanguage;
+        background-color: orange;
+      }
+      .zhHead {
+        @extend .wordsTitleLanguage;
+        background-color: lightblue;
+      }
+      .deHead {
+        @extend .wordsTitleLanguage;
+        background-color: black;
       }
       .wordsChangeView {
         margin-left: 15px;

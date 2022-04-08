@@ -55,7 +55,7 @@ const Sidebar = ({ myInfo, user }) => {
             LOGIN
           </Link>
           <div className={styles.account}>
-            <div className={styles.myCircle}>{myInfo.initial}</div>
+            <div className={styles[myInfo.color]}>{myInfo.initial}</div>
             <div>{myInfo.name}</div>
           </div>
         </ul>

@@ -42,7 +42,7 @@ const MyPage = () => {
       }
     };
     fetchGet();
-  }, []);
+  }, [accessToken]);
   if (authTokens && localStorage.getItem("access_token")) {
     return (
       <div>

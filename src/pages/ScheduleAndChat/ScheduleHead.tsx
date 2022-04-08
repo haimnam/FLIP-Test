@@ -12,7 +12,7 @@ const ScheduleHead = ({ selectAccount }) => {
           <div key={account.id} className={styles.circle}>
             <Link
               to={`/schedule/account?id=${account.id}`}
-              className={styles.red}
+              className={styles[account.color]}
               onClick={() => selectAccount(account.id)}
             >
               {account.initial}

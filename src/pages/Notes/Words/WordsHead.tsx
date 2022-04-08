@@ -46,7 +46,16 @@ const WordsHead = ({
           {books.data.find((book) => book._id === selectedBookId).title}
         </div>
       </div>
-      <button className={styles.wordsTitleLanguage} onClick={clickLanguage}>
+      <button
+        className={
+          styles[
+            `${
+              books.data.find((book) => book._id === selectedBookId).language
+            }Head`
+          ]
+        }
+        onClick={clickLanguage}
+      >
         {
           languageSet[
             books.data.find((book) => book._id === selectedBookId).language
