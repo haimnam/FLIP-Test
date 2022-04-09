@@ -28,17 +28,15 @@ const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet, setFetch }) => {
           action={setAddSet}
         >
           <div className={styles.booksSelect}>
-            {StudyFolderData.map((data) => {
-              return (
-                <button
-                  key={data.id}
-                  className={styles[data.language]}
-                  onClick={() => addStudySet(data.title, data.language)}
-                >
-                  {data.title}
-                </button>
-              );
-            })}
+            {StudyFolderData.map((data) => (
+              <button
+                key={data.id}
+                className={styles[data.language]}
+                onClick={() => addStudySet(data.title, data.language)}
+              >
+                {data.title}
+              </button>
+            ))}
           </div>
         </Modal>
       )}

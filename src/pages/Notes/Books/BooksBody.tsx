@@ -12,20 +12,18 @@ const BooksBody = ({
 }) => {
   return (
     <div className={styles.booksBody}>
-      {books.data.map((book) => {
-        return (
-          <div key={book._id} className={styles.booksList}>
-            <BooksList
-              book={book}
-              isOpenModal={isOpenModal}
-              setIsOpenModal={setIsOpenModal}
-              setSelectedBookId={setSelectedBookId}
-              setVoca={setVoca}
-              setFetch={setFetch}
-            />
-          </div>
-        );
-      })}
+      {books.data.map((book) => (
+        <div key={book._id} className={styles.booksList}>
+          <BooksList
+            book={book}
+            isOpenModal={isOpenModal}
+            setIsOpenModal={setIsOpenModal}
+            setSelectedBookId={setSelectedBookId}
+            setVoca={setVoca}
+            setFetch={setFetch}
+          />
+        </div>
+      ))}
     </div>
   );
 };

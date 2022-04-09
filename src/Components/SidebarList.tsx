@@ -20,14 +20,12 @@ const SidebarList = ({ userLogin, myInfo }) => {
 
   return (
     <ul className={styles.sidebarList}>
-      {SidebarData.map((sidebar, key) => {
-        return (
-          <Link className={styles.row} key={key} to={sidebar.link}>
-            <div className={styles.icon}>{sidebar.icon}</div>
-            <div className={styles.title}>{sidebar.title}</div>
-          </Link>
-        );
-      })}
+      {SidebarData.map((sidebar, key) => (
+        <Link className={styles.row} key={key} to={sidebar.link}>
+          <div className={styles.icon}>{sidebar.icon}</div>
+          <div className={styles.title}>{sidebar.title}</div>
+        </Link>
+      ))}
       <div className={styles.language}>
         <div className={setLanguage("ko", lang)} onClick={useSelectKo()}>
           Kor

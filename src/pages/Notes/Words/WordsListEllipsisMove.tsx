@@ -31,17 +31,15 @@ const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
     <div className={styles.wordsListMoveScreen}>
       <h4>Move to...</h4>
       <span>My Study Sets</span>
-      {books.data.map((book) => {
-        return (
-          <button
-            key={book._id}
-            onClick={() => moveWordData(selectedBookId, book._id, word._id)}
-            disabled={book._id === selectedBookId ? true : false}
-          >
-            <FolderOutlinedIcon /> {book.title}
-          </button>
-        );
-      })}
+      {books.data.map((book) => (
+        <button
+          key={book._id}
+          onClick={() => moveWordData(selectedBookId, book._id, word._id)}
+          disabled={book._id === selectedBookId ? true : false}
+        >
+          <FolderOutlinedIcon /> {book.title}
+        </button>
+      ))}
     </div>
   );
 };

@@ -69,17 +69,15 @@ const WordsHead = ({
           action={setIsEditLanguage}
         >
           <div className={styles.languageSelect}>
-            {StudyFolderData.map((data) => {
-              return (
-                <button
-                  key={data.id}
-                  className={styles[data.language]}
-                  onClick={() => selectLanguage(data.language)}
-                >
-                  {data.title}
-                </button>
-              );
-            })}
+            {StudyFolderData.map((data) => (
+              <button
+                key={data.id}
+                className={styles[data.language]}
+                onClick={() => selectLanguage(data.language)}
+              >
+                {data.title}
+              </button>
+            ))}
           </div>
         </Modal>
       )}

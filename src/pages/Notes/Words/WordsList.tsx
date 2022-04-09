@@ -28,20 +28,18 @@ const WordsList = ({
         </div>
         {books.data
           .find((book) => book._id === selectedBookId)
-          .words.map((word, index) => {
-            return (
-              <WordsListBody
-                key={word._id}
-                books={books}
-                isOpenModal={isOpenModal}
-                setIsOpenModal={setIsOpenModal}
-                selectedBookId={selectedBookId}
-                word={word}
-                index={index}
-                setFetch={setFetch}
-              />
-            );
-          })}
+          .words.map((word, index) => (
+            <WordsListBody
+              key={word._id}
+              books={books}
+              isOpenModal={isOpenModal}
+              setIsOpenModal={setIsOpenModal}
+              selectedBookId={selectedBookId}
+              word={word}
+              index={index}
+              setFetch={setFetch}
+            />
+          ))}
       </div>
       <button className={styles.wordsAddBtn} onClick={addWord}>
         +

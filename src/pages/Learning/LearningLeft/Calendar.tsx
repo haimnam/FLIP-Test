@@ -15,13 +15,11 @@ const Calendar = () => {
       <CalendarHeader />
       <div className={styles.calendar}>
         <div className={styles.calendarHead}>
-          {days.map((day, index) => {
-            return (
-              <div key={index} className={styles.date}>
-                {day}
-              </div>
-            );
-          })}
+          {days.map((day, index) => (
+            <div key={index} className={styles.date}>
+              {day}
+            </div>
+          ))}
         </div>
         <div>
           <div className={styles.calendarBody}>

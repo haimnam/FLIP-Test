@@ -25,37 +25,31 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
           <div>{currentPartner.major}</div>
         </div>
         <div className={styles.partnerTaste}>
-          {currentPartner.taste.map((taste) => {
-            return (
-              <div
-                key={taste.id}
-                className={
-                  taste.isValid
-                    ? styles.partnerTasteItem
-                    : styles.partnerTasteItemLighter
-                }
-              >
-                {taste.taste}
-              </div>
-            );
-          })}
+          {currentPartner.taste.map((taste) => (
+            <div
+              key={taste.id}
+              className={
+                taste.isValid
+                  ? styles.partnerTasteItem
+                  : styles.partnerTasteItemLighter
+              }
+            >
+              {taste.taste}
+            </div>
+          ))}
         </div>
       </div>
       <div className={styles.regularMeeting}>
         <div>Regular meetings on</div>
         <div className={styles.meetingContainer}>
-          {currentPartner.meetingTimes.map((time) => {
-            return (
-              <div key={time.id} className={styles.meetingItem}>
-                <h3>{time.time.format("dddd h:mm a")}</h3>
-                <div>
-                  {time.time
-                    .tz(currentPartner.timeZone)
-                    .format("dddd h:mm a z")}
-                </div>
+          {currentPartner.meetingTimes.map((time) => (
+            <div key={time.id} className={styles.meetingItem}>
+              <h3>{time.time.format("dddd h:mm a")}</h3>
+              <div>
+                {time.time.tz(currentPartner.timeZone).format("dddd h:mm a z")}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </div>

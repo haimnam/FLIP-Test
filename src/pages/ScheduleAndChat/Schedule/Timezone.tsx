@@ -47,36 +47,32 @@ const Timezone = ({
             </div>
           </div>
           <div className={styles.time}>
-            {ConverterData.time.map((t) => {
-              return (
-                <React.Fragment key={t.id}>
-                  <div>{nowUser.format(t.format)}</div>
-                  <Updown
-                    width="17px"
-                    height="15px"
-                    setUp={() => changeTime(t.unit, 1)}
-                    setDown={() => changeTime(t.unit, -1)}
-                  />
-                </React.Fragment>
-              );
-            })}
+            {ConverterData.time.map((t) => (
+              <React.Fragment key={t.id}>
+                <div>{nowUser.format(t.format)}</div>
+                <Updown
+                  width="17px"
+                  height="15px"
+                  setUp={() => changeTime(t.unit, 1)}
+                  setDown={() => changeTime(t.unit, -1)}
+                />
+              </React.Fragment>
+            ))}
             <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {ConverterData.date.map((d) => {
-              return (
-                <React.Fragment key={d.id}>
-                  <div>{nowUser.format(d.format)}</div>
-                  <Updown
-                    width="15px"
-                    height="10px"
-                    setUp={() => changeTime(d.unit, 1)}
-                    setDown={() => changeTime(d.unit, -1)}
-                  />
-                  <div>{d.slash}</div>
-                </React.Fragment>
-              );
-            })}
+            {ConverterData.date.map((d) => (
+              <React.Fragment key={d.id}>
+                <div>{nowUser.format(d.format)}</div>
+                <Updown
+                  width="15px"
+                  height="10px"
+                  setUp={() => changeTime(d.unit, 1)}
+                  setDown={() => changeTime(d.unit, -1)}
+                />
+                <div>{d.slash}</div>
+              </React.Fragment>
+            ))}
             <div className={styles.day}>{nowUser.format("dddd")}</div>
           </div>
         </div>
@@ -85,36 +81,32 @@ const Timezone = ({
             <div className={styles.cityName}>{cityPartner}</div>
           </div>
           <div className={styles.time}>
-            {ConverterData.time.map((t) => {
-              return (
-                <React.Fragment key={t.id}>
-                  <div>{nowPartner.format(t.format)}</div>
-                  <Updown
-                    width="17px"
-                    height="15px"
-                    setUp={() => changeTime(t.unit, 1)}
-                    setDown={() => changeTime(t.unit, -1)}
-                  />
-                </React.Fragment>
-              );
-            })}
+            {ConverterData.time.map((t) => (
+              <React.Fragment key={t.id}>
+                <div>{nowPartner.format(t.format)}</div>
+                <Updown
+                  width="17px"
+                  height="15px"
+                  setUp={() => changeTime(t.unit, 1)}
+                  setDown={() => changeTime(t.unit, -1)}
+                />
+              </React.Fragment>
+            ))}
             <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {ConverterData.date.map((d) => {
-              return (
-                <React.Fragment key={d.id}>
-                  <div>{nowPartner.format(d.format)}</div>
-                  <Updown
-                    width="15px"
-                    height="10px"
-                    setUp={() => changeTime(d.unit, 1)}
-                    setDown={() => changeTime(d.unit, -1)}
-                  />
-                  <div>{d.slash}</div>
-                </React.Fragment>
-              );
-            })}
+            {ConverterData.date.map((d) => (
+              <React.Fragment key={d.id}>
+                <div>{nowPartner.format(d.format)}</div>
+                <Updown
+                  width="15px"
+                  height="10px"
+                  setUp={() => changeTime(d.unit, 1)}
+                  setDown={() => changeTime(d.unit, -1)}
+                />
+                <div>{d.slash}</div>
+              </React.Fragment>
+            ))}
             <div className={styles.day}>{nowPartner.format("dddd")}</div>
           </div>
         </div>

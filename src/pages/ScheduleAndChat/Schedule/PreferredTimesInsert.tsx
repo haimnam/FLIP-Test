@@ -23,13 +23,11 @@ const PreferredTimesInsert = ({ addTime }) => {
   return (
     <div className={styles.preferredTimesInsert}>
       <div className={styles.daysRow}>
-        {dayIndex.map((dayNum, index) => {
-          return (
-            <button key={index} onClick={() => setNewDay(dayNum)}>
-              {dayjs().day(dayNum).format("dd")[0]}
-            </button>
-          );
-        })}
+        {dayIndex.map((dayNum, index) => (
+          <button key={index} onClick={() => setNewDay(dayNum)}>
+            {dayjs().day(dayNum).format("dd")[0]}
+          </button>
+        ))}
       </div>
       <hr />
       <div className={styles.hoursRow}>{renderingSetHour(0, 7)}</div>
