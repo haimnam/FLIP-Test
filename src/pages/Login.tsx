@@ -11,9 +11,8 @@ type LoginType = {
   password: string;
 };
 
-const Login = () => {
+const Login = ({ userLogin, setUserLogin }) => {
   const { setAuthTokens } = useAuth();
-  const [userLogin, setUserLogin] = useState<object>();
   const [account, setAccount] = useState<LoginType>({
     userName: "",
     password: "",
