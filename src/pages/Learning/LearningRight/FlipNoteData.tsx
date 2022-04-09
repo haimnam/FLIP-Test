@@ -1,4 +1,11 @@
-export const FlipNoteData = [
+type FlipNoteType = {
+  id: number;
+  name: string;
+  en: string;
+  ko: string;
+};
+
+export const FlipNoteData: FlipNoteType[] = [
   { id: 1, name: "OS", en: "clueless", ko: "...을 할 줄 모르는" },
   { id: 2, name: "SJ", en: "obviously", ko: "분명히" },
   {

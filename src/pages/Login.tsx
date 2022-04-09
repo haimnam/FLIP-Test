@@ -1,67 +1,78 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../scss/Login.module.scss";
 import { useAuth } from "../Store/AuthProvider.tsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+type LoginType = {
+  userName: string;
+  password: string;
+};
+
+const Login = ({ userLogin, setUserLogin }) => {
   const { setAuthTokens } = useAuth();
-
-  const userRef = useRef();
-  const errRef = useRef();
-  const [errMsg, setErrMsg] = useState("");
-
-  const [user, setUser] = useState();
+  const [account, setAccount] = useState<LoginType>({
+    userName: "",
+    password: "",
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("access_token");
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
+      setUserLogin(foundUser);
     }
   }, []);
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [userName, password]);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      axios
-        .post(
-          "https://test.flipnow.net/login",
-          { userName, password },
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
-        )
-        .then((res) => {
-          localStorage.setItem("access_token", res.data.accessToken);
-          setAuthTokens(res.data);
-          setUser(res.data);
-        });
-      setUserName("");
-      setPassword("");
+      const response = await axios.post(
+        "https://test.flipnow.net/login",
+        { userName: account.userName, password: account.password },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      localStorage.setItem("access_token", response.data.accessToken);
+      setAuthTokens(response.data);
+      setUserLogin(response.data);
+      setAccount({ userName: "", password: "" });
+      navigate("/home");
     } catch (e) {
       console.log(e);
-      errRef.current.focus();
+      toast.error("이메일 또는 비밀번호가 일치하지 않습니다", {
+        autoClose: 3000,
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
+  const loginChange = (e, unit: string) => {
+    if (unit === "userName") {
+      setAccount((acc) => {
+        return { ...acc, userName: e.target.value };
+      });
+    } else {
+      setAccount((acc) => {
+        return { ...acc, password: e.target.value };
+      });
     }
   };
 
   const logOut = () => {
-    localStorage.clear();
+    localStorage.removeItem("access_token");
+    setUserLogin(null);
   };
 
   return (
     <div>
-      {user ? (
+      {userLogin ? (
         <div className={styles.success}>
           <span>Login Success</span>
           <div>Click the menu on the sidebar.</div>
@@ -71,26 +82,21 @@ const Login = () => {
         <div className={styles.container}>
           <div className={styles.wrapper}>
             <div className={styles.title}>Login</div>
-            <div className={styles.error} ref={errRef}>
-              {errMsg}
-            </div>
             <form className={styles.loginSection} onSubmit={handleSubmit}>
               <div className={styles.username}>
                 <input
                   placeholder="Username"
                   type="text"
-                  ref={userRef}
-                  autoComplete="off"
-                  onChange={(e) => setUserName(e.target.value)}
-                  value={userName}
+                  onChange={(e) => loginChange(e, "userName")}
+                  value={account.userName}
                 ></input>
               </div>
               <div className={styles.password}>
                 <input
                   placeholder="Password"
                   type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
+                  onChange={(e) => loginChange(e, "password")}
+                  value={account.password}
                 ></input>
               </div>
               <div className={styles.signUp}>
@@ -98,6 +104,7 @@ const Login = () => {
               </div>
               <div className={styles.footer}>Forgot password?</div>
             </form>
+            <ToastContainer />
           </div>
         </div>
       )}

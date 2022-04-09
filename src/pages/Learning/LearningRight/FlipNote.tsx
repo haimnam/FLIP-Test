@@ -10,7 +10,7 @@ import {
 } from "../../../Store/FlipNoteContext.tsx";
 
 const FlipNote = () => {
-  let noteLang = useNoteLang();
+  const noteLang = useNoteLang();
 
   return (
     <div>

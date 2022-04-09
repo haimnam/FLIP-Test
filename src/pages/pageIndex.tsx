@@ -4,4 +4,4 @@ export { default as ScheduleAndChat } from "./ScheduleAndChat/ScheduleAndChat.ts
 export { default as Session } from "./Session.tsx";
 export { default as Login } from "./Login.tsx";
 export { default as MyPage } from "./MyPage.tsx";
-export { default as Words } from "./Words/Words.tsx";
+export { default as Notes } from "./Notes/Notes.tsx";

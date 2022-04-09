@@ -3,35 +3,44 @@ import styles from "../../scss/ScheduleAndChat.module.scss";
 import ScheduleHead from "./ScheduleHead.tsx";
 import Chat from "./Chat/Chat.tsx";
 import Schedule from "./Schedule/Schedule.tsx";
-import { PartnerInfoData } from "./PartnerInfoData.tsx";
+import {
+  PartnerInfoData,
+  MeetingTimesType,
+  TimesType,
+} from "./PartnerInfoData.tsx";
 import { useLocation } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
-const ScheduleAndChat = () => {
+const ScheduleAndChat = ({ myInfo }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
   const location = useLocation();
   const URLSearch = new URLSearchParams(location.search);
   const [nowPartner, setNowPartner] = useState(dayjs());
-  const [cityPartner, setCityPartner] = useState("Seoul +14hrs");
-  const selectAccount = (id) => {
+  const [cityPartner, setCityPartner] = useState<string>(
+    PartnerInfoData[0].localTime
+  );
+  const selectAccount = (id: number) => {
     setSelectedPartner(id);
-    URLSearch.set("id", id);
-    if (id === 1) {
-      setNowPartner(dayjs());
-      setCityPartner("Seoul +14hrs");
-    } else {
-      setNowPartner(dayjs().tz("America/New_York"));
-      setCityPartner("New York");
-    }
+    URLSearch.set("id", id.toString());
+    setNowPartner(
+      dayjs().tz(PartnerInfoData.find((partner) => partner.id === id).timeZone)
+    );
+    setCityPartner(
+      PartnerInfoData.find((partner) => partner.id === id).localTime
+    );
   };
 
   const [partnerInfoData, setPartnerInfoData] = useState(PartnerInfoData);
-  const [selectedPartner, setSelectedPartner] = useState(1);
-  const addMeeting = (timeId, partnerId, meeting) => {
+  const [selectedPartner, setSelectedPartner] = useState<number>(1);
+  const addMeeting = (
+    timeId: number,
+    partnerId: number,
+    meeting: MeetingTimesType[]
+  ) => {
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
@@ -48,7 +57,7 @@ const ScheduleAndChat = () => {
       )
     );
   };
-  const removeMeeting = (meetingId, partnerId) => {
+  const removeMeeting = (meetingId: number, partnerId: number) => {
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
@@ -60,7 +69,7 @@ const ScheduleAndChat = () => {
               timesData: partnerInfoData
                 .find((partner) => partner.id === partnerId)
                 .timesData.map((t) =>
-                  t.id === meetingId * 1
+                  t.id === meetingId
                     ? {
                         ...t,
                         isChecked: !t.isChecked,
@@ -74,7 +83,11 @@ const ScheduleAndChat = () => {
       )
     );
   };
-  const changeTimeState = (timeId, partnerId, state) => {
+  const changeTimeState = (
+    timeId: number,
+    partnerId: number,
+    state: string
+  ) => {
     if (state === "FINALIZE") {
       setPartnerInfoData(
         partnerInfoData.map((partner) =>
@@ -114,7 +127,7 @@ const ScheduleAndChat = () => {
       );
     }
   };
-  const uncheck = (partnerId, timeId) => {
+  const uncheck = (partnerId: number, timeId: number) => {
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
@@ -137,7 +150,7 @@ const ScheduleAndChat = () => {
       )
     );
   };
-  const addNewTime = (partnerId, newTime) => {
+  const addNewTime = (partnerId: number, newTime: TimesType) => {
     setPartnerInfoData(
       partnerInfoData.map((partner) =>
         partner.id === partnerId
@@ -161,6 +174,7 @@ const ScheduleAndChat = () => {
           partnerInfoData={partnerInfoData}
         />
         <Schedule
+          myInfo={myInfo}
           selectedPartner={selectedPartner}
           partnerInfoData={partnerInfoData}
           nowPartner={nowPartner}

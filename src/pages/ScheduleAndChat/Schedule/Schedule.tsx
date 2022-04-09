@@ -6,6 +6,7 @@ import PreferredTimesInsert from "./PreferredTimesInsert.tsx";
 import dayjs from "dayjs";
 
 const Schedule = ({
+  myInfo,
   selectedPartner,
   partnerInfoData,
   nowPartner,
@@ -17,26 +18,27 @@ const Schedule = ({
   uncheck,
   addNewTime,
 }) => {
-  const [insertToggle, setInsertToggle] = useState(false);
+  const [insertToggle, setInsertToggle] = useState<boolean>(false);
   const onInsertToggle = () => {
     setInsertToggle((prev) => !prev);
   };
 
-  const [nextId, setNextId] = useState(4);
-  const addTime = (day, hour, ampm) => {
+  const [nextId, setNextId] = useState<number>(4);
+  const addTime = (day: number, hour: number, ampm: string) => {
     if (ampm === "pm") {
       hour += 12;
     }
-    let newTime = {
+    const newTime = {
       id: nextId,
       time: dayjs()
-        .tz("America/New_York")
+        .tz(myInfo.timeZone)
         .set("day", day)
         .set("hour", hour)
         .set("minute", 0),
       isPartnerPick: false,
       isChecked: false,
       state: "Finalize",
+      print: "Finalize",
     };
     setNextId(nextId + 1);
     addNewTime(selectedPartner, newTime);
@@ -45,12 +47,14 @@ const Schedule = ({
   return (
     <div className={styles.scheduleBody}>
       <Timezone
+        myInfo={myInfo}
         selectedPartner={selectedPartner}
         nowPartner={nowPartner}
         setNowPartner={setNowPartner}
         cityPartner={cityPartner}
       />
       <PreferredTimes
+        myInfo={myInfo}
         selectedPartner={selectedPartner}
         partnerInfoData={partnerInfoData}
         addMeeting={addMeeting}

@@ -4,8 +4,10 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import Updown from "./Updown.tsx";
+import { ConverterData } from "./ConverterData.tsx";
 
 const Timezone = ({
+  myInfo,
   selectedPartner,
   nowPartner,
   setNowPartner,
@@ -14,16 +16,16 @@ const Timezone = ({
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
-  const [nowUser, setNowUser] = useState(dayjs().tz("America/New_York"));
+  const [nowUser, setNowUser] = useState(dayjs().tz(myInfo.timeZone));
   const setNow = () => {
-    setNowUser(dayjs().tz("America/New_York"));
+    setNowUser(dayjs().tz(myInfo.timeZone));
     if (selectedPartner === 1) {
       setNowPartner(dayjs());
     } else {
-      setNowPartner(dayjs().tz("America/New_York"));
+      setNowPartner(dayjs().tz(myInfo.timeZone));
     }
   };
-  const changeTime = (unit, dir) => {
+  const changeTime = (unit: string, dir: number) => {
     if (unit === "D") {
       setNowPartner(nowPartner.add(dir * 24, "h"));
       setNowUser(nowUser.add(dir * 24, "h"));
@@ -32,16 +34,6 @@ const Timezone = ({
       setNowUser(nowUser.add(dir, unit));
     }
   };
-  const converterElements = {
-    time: [
-      { id: 1, format: "hh", unit: "h" },
-      { id: 2, format: "mm", unit: "m" },
-    ],
-    date: [
-      { id: 1, format: "MM", unit: "M", slash: "/" },
-      { id: 2, format: "DD", unit: "D", slash: "" },
-    ],
-  };
 
   return (
     <div className={styles.timezone}>
@@ -49,13 +41,13 @@ const Timezone = ({
       <div className={styles.converterContainer}>
         <div className={styles.converterItemColored}>
           <div className={styles.city}>
-            <div className={styles.cityName}>New York</div>
+            <div className={styles.cityName}>{myInfo.city}</div>
             <div className={styles.now} onClick={setNow}>
               now
             </div>
           </div>
           <div className={styles.time}>
-            {converterElements.time.map((t) => {
+            {ConverterData.time.map((t) => {
               return (
                 <React.Fragment key={t.id}>
                   <div>{nowUser.format(t.format)}</div>
@@ -71,7 +63,7 @@ const Timezone = ({
             <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {converterElements.date.map((d) => {
+            {ConverterData.date.map((d) => {
               return (
                 <React.Fragment key={d.id}>
                   <div>{nowUser.format(d.format)}</div>
@@ -93,7 +85,7 @@ const Timezone = ({
             <div className={styles.cityName}>{cityPartner}</div>
           </div>
           <div className={styles.time}>
-            {converterElements.time.map((t) => {
+            {ConverterData.time.map((t) => {
               return (
                 <React.Fragment key={t.id}>
                   <div>{nowPartner.format(t.format)}</div>
@@ -109,7 +101,7 @@ const Timezone = ({
             <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
           <div className={styles.date}>
-            {converterElements.date.map((d) => {
+            {ConverterData.date.map((d) => {
               return (
                 <React.Fragment key={d.id}>
                   <div>{nowPartner.format(d.format)}</div>

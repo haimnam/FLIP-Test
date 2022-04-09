@@ -4,8 +4,11 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import { AccountData } from "../AccountData.tsx";
 
 const PreferredTimes = ({
+  myInfo,
   selectedPartner,
   partnerInfoData,
   addMeeting,
@@ -16,22 +19,20 @@ const PreferredTimes = ({
 }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
+  dayjs.extend(advancedFormat);
 
   const [checkedItems, setCheckedItems] = useState(new Set());
 
   const checkHandler = ({ target }) => {
-    checkedItemHandler(
-      target.parentNode.parentNode,
-      target.value,
-      target.checked,
-      true
-    );
+    checkedItemHandler(target.value, target.checked, true);
   };
 
-  const checkedItemHandler = (box, id, isChecked, isClicked) => {
+  const checkedItemHandler = (
+    id: number,
+    isChecked: boolean,
+    isClicked: boolean
+  ) => {
     if (isChecked) {
-      box.style.backgroundColor = "rgb(248, 243, 233)";
-      box.style.border = "2px solid black";
       checkedItems.add(id * 1);
       if (
         partnerInfoData
@@ -43,8 +44,6 @@ const PreferredTimes = ({
         changeTimeState(id, selectedPartner, "");
       }
     } else if (checkedItems.has(id * 1)) {
-      box.style.backgroundColor = "white";
-      box.style.border = "2px solid white";
       checkedItems.delete(id * 1);
       if (isClicked) {
         uncheck(selectedPartner, id);
@@ -54,9 +53,9 @@ const PreferredTimes = ({
     return checkedItems;
   };
 
-  const timeStateHandler = ({ target }, id, state) => {
+  const timeStateHandler = (id: number, state: string) => {
     if (state === "FINALIZE") {
-      let newMeeting = {
+      const newMeeting = {
         id: id * 1,
         time: partnerInfoData
           .find((partner) => partner.id === selectedPartner)
@@ -71,7 +70,7 @@ const PreferredTimes = ({
       );
     } else if (state === "Undo") {
       removeMeeting(id, selectedPartner);
-      checkedItemHandler(target.parentNode, id, false, false);
+      checkedItemHandler(id, false, false);
     }
   };
 
@@ -95,16 +94,39 @@ const PreferredTimes = ({
             .find((partner) => partner.id === selectedPartner)
             .timesData.map((time) => {
               return (
-                <div key={time.id} className={styles.row}>
+                <div
+                  key={time.id}
+                  className={time.isChecked ? styles.rowChecked : styles.row}
+                >
                   <div className={styles.overlappingTimes}>
-                    <h3>{time.time.format("dddd h:mm a")}</h3>
+                    <h3>
+                      {time.time.tz(myInfo.timeZone).format("dddd h:mm a")}
+                    </h3>
                     <div>
-                      {time.time.tz("Asia/Seoul").format("dddd h:mm a KST")}
+                      {time.time
+                        .tz(
+                          partnerInfoData.find(
+                            (partner) => partner.id === selectedPartner
+                          ).timeZone
+                        )
+                        .format("dddd h:mm a z")}
                     </div>
                   </div>
                   <div className={styles.partnerPick}>
-                    <div className={time.isPartnerPick ? styles.circle : ""}>
-                      {time.isPartnerPick ? "SJ" : ""}
+                    <div
+                      className={
+                        time.isPartnerPick
+                          ? styles[
+                              AccountData.find(
+                                (acc) => acc.id === selectedPartner
+                              ).color
+                            ]
+                          : ""
+                      }
+                    >
+                      {time.isPartnerPick &&
+                        AccountData.find((acc) => acc.id === selectedPartner)
+                          .initial}
                     </div>
                   </div>
                   <label className={styles.myPick}>
@@ -118,6 +140,7 @@ const PreferredTimes = ({
                           .timesData.find((data) => data.id === time.id)
                           .isChecked
                       }
+                      disabled={time.state === "Undo" ? true : false}
                     ></input>
                   </label>
                   <div
@@ -126,7 +149,7 @@ const PreferredTimes = ({
                         ? styles.state
                         : styles.stateFinalized
                     }
-                    onClick={(e) => timeStateHandler(e, time.id, time.state)}
+                    onClick={() => timeStateHandler(time.id, time.state)}
                   >
                     {time.print}
                   </div>

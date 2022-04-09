@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "../../../scss/Words.module.scss";
+import styles from "../../../scss/Notes.module.scss";
 
-const WordsContentsCard = ({ bookData, selectedBookId }) => {
+const WordsCard = ({ books, selectedBookId }) => {
   return (
     <div className={styles.wordsCardView}>
-      {bookData
+      {books.data
         .find((book) => book._id === selectedBookId)
         .words.map((word) => {
           return (
@@ -20,4 +20,4 @@ const WordsContentsCard = ({ bookData, selectedBookId }) => {
   );
 };
 
-export default WordsContentsCard;
+export default WordsCard;

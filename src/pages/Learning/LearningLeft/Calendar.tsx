@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import range from "lodash-es/range";
 import CalendarHeader from "./CalendarHeader.tsx";
 
-const Calendar = ({ students }) => {
+const Calendar = () => {
   const days = ["M", "T", "W", "T", "F", "S", "S"];
   const dayOfNextWeek = dayjs(
     `${dayjs().year()}-${dayjs().month() + 1}-${dayjs().date() + 7}`
@@ -12,7 +12,7 @@ const Calendar = ({ students }) => {
 
   return (
     <div>
-      <CalendarHeader students={students} />
+      <CalendarHeader />
       <div className={styles.calendar}>
         <div className={styles.calendarHead}>
           {days.map((day, index) => {
@@ -26,10 +26,10 @@ const Calendar = ({ students }) => {
         <div>
           <div className={styles.calendarBody}>
             {range(7).map((i) => {
-              let curDay = dayjs()
+              const curDay = dayjs()
                 .add(i - dayjs().day() + 1, "day")
                 .day();
-              let curDate = dayjs()
+              const curDate = dayjs()
                 .add(i - dayjs().day() + 1, "day")
                 .date();
               if (curDay === 3) {
@@ -73,10 +73,10 @@ const Calendar = ({ students }) => {
           </div>
           <div className={styles.calendarBody}>
             {range(7).map((i) => {
-              let curDay = dayOfNextWeek
+              const curDay = dayOfNextWeek
                 .add(i - dayjs().day() + 1, "day")
                 .day();
-              let curDate = dayOfNextWeek
+              const curDate = dayOfNextWeek
                 .add(i - dayjs().day() + 1, "day")
                 .date();
               if (curDay === 3) {

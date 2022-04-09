@@ -22,6 +22,17 @@ body {
   .circle {
     margin: 30px 0px 0px 10px;
     cursor: pointer;
+    .lightblue {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: lightblue;
+      text-decoration: none;
+      color: white;
+    }
     .red {
       width: 30px;
       height: 30px;
@@ -352,7 +363,7 @@ body {
         }
         .partnerPick {
           width: 15%;
-          .circle {
+          .lightblue {
             color: white;
             margin-left: 15px;
             width: 25px;
@@ -362,6 +373,18 @@ body {
             justify-content: center;
             border-radius: 50%;
             background-color: lightblue;
+            font-size: 12px;
+          }
+          .red {
+            color: white;
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: red;
             font-size: 12px;
           }
         }
@@ -381,6 +404,11 @@ body {
           color: black;
           font-weight: bold;
         }
+      }
+      .rowChecked {
+        @extend .row;
+        background-color: rgb(248, 243, 233);
+        border: 2px solid black;
       }
     }
   }

@@ -17,20 +17,21 @@ textarea {
     width: 100%;
     height: 100%;
   }
-  .studySets {
+  .books {
     padding: 70px 50px 50px 50px;
     display: flex;
     flex-direction: column;
-    .studySetsHead {
+    width: 300px;
+    .booksHead {
       display: flex;
-      width: 300px;
+      width: 280px;
       gap: 120px;
       margin-bottom: 20px;
-      .studySetsTitle {
+      .booksTitle {
         font-weight: bold;
         font-size: 20px;
       }
-      .studySetsBtn {
+      .booksBtn {
         font-size: 25px;
         color: grey;
         &:hover {
@@ -39,14 +40,13 @@ textarea {
       }
     }
 
-    .studySetsBody {
+    .booksBody {
       display: flex;
       flex-direction: column;
       gap: 15px;
-      .studySetsList {
+      .booksList {
         display: flex;
-        gap: 45px;
-        .studySetsFolder {
+        .booksFolder {
           display: flex;
           width: 200px;
           font-size: 18px;
@@ -54,26 +54,27 @@ textarea {
           align-items: center;
           font-weight: bold;
         }
-        .studySetsEllipsis {
+        .booksEllipsis {
           color: grey;
           font-weight: bold;
           font-size: 30px;
+          margin-left: 45px;
         }
-        .studySetsEllipsisBox {
+        .booksEllipsisBox {
           display: flex;
           z-index: 20;
           flex-direction: column;
           background-color: rgb(168, 168, 168);
           position: absolute;
-          margin-left: 185px;
-          margin-top: 35px;
+          margin-left: 0px;
+          margin-top: 0px;
           gap: 0px;
-          .studySetsEdit {
+          .booksEdit {
             border-bottom: 1px solid black;
             width: 100%;
             padding: 10px 30px 10px 30px;
           }
-          .studySetsDelete {
+          .booksDelete {
             padding: 10px 30px 10px 30px;
           }
         }
@@ -81,11 +82,11 @@ textarea {
     }
   }
 
-  .studySetsSelect {
+  .booksSelect {
     position: absolute;
     background-color: white;
     margin-left: 250px;
-    margin-top: 30px;
+    margin-top: -20px;
     display: flex;
     padding: 10px;
     gap: 5px;
@@ -105,10 +106,40 @@ textarea {
       background-color: orange;
     }
     .zh {
-      background-color: rgb(216, 216, 2);
+      background-color: lightblue;
     }
     .de {
+      background-color: black;
+    }
+  }
+
+  .languageSelect {
+    position: absolute;
+    background-color: white;
+    margin-left: -140px;
+    margin-top: 60px;
+    display: flex;
+    padding: 10px;
+    gap: 5px;
+    box-shadow: 0px 4px 4px 0px rgb(208, 209, 198);
+    border-radius: 10px;
+    z-index: 20;
+    button {
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    .ko {
+      background-color: blue;
+    }
+    .en {
+      background-color: orange;
+    }
+    .zh {
       background-color: lightblue;
+    }
+    .de {
       background-color: black;
     }
   }
@@ -118,7 +149,6 @@ textarea {
     .wordsHead {
       display: flex;
       width: 600px;
-      gap: 15px;
       margin-bottom: 50px;
       .wordsTitle {
         .wordsTitleName {
@@ -126,13 +156,30 @@ textarea {
         }
       }
       .wordsTitleLanguage {
+        margin-left: 15px;
         font-size: 35px;
-        background-color: orange;
         color: white;
         padding: 5px;
         border-radius: 30px;
       }
+      .koHead {
+        @extend .wordsTitleLanguage;
+        background-color: blue;
+      }
+      .enHead {
+        @extend .wordsTitleLanguage;
+        background-color: orange;
+      }
+      .zhHead {
+        @extend .wordsTitleLanguage;
+        background-color: lightblue;
+      }
+      .deHead {
+        @extend .wordsTitleLanguage;
+        background-color: black;
+      }
       .wordsChangeView {
+        margin-left: 15px;
         font-size: 25px;
         font-weight: bold;
         color: rgb(110, 110, 110);
@@ -181,8 +228,8 @@ textarea {
         flex-direction: column;
         background-color: rgb(168, 168, 168);
         position: absolute;
-        margin-left: 520px;
-        margin-top: 35px;
+        margin-left: -100px;
+        margin-top: 40px;
         gap: 0px;
         .wordsListMove {
           border-bottom: 1px solid black;

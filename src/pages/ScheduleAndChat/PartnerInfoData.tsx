@@ -4,12 +4,56 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export const PartnerInfoData = [
+type TasteType = {
+  id: number;
+  isValid: boolean;
+  taste: string;
+};
+export type MeetingTimesType = {
+  id: number;
+  time: object;
+};
+export type TimesType = {
+  id: number;
+  time: object;
+  isPartnerPick: boolean;
+  isChecked: boolean;
+  state: string;
+  print: string;
+};
+type ChatType = {
+  id: number;
+  chat: string;
+};
+type PartnerType = {
+  id: number;
+  name: string;
+  nickname: string;
+  localTime: string;
+  timeZone: string;
+  nationality: string;
+  course: string;
+  email: string;
+  univ: string;
+  major: string;
+  taste: TasteType[];
+  curWeek: number;
+  totalWeeks: number;
+  meetingTimes: MeetingTimesType[];
+  timesData: TimesType[];
+  partnerChat: ChatType[];
+  myChat: ChatType[];
+};
+
+export const PartnerInfoData: PartnerType[] = [
   {
     id: 1,
     name: "Samuel Jeong",
-    localTime: "Seoul +14hrs 4:20pm",
+    nickname: "Sam",
+    localTime: "Seoul +14hrs",
+    timeZone: "Asia/Seoul",
     nationality: "Korean",
+    course: "Korean - English",
     email: "sammy98@snu.ac.kr",
     univ: "Seoul National University",
     major: "German Education",
@@ -24,15 +68,13 @@ export const PartnerInfoData = [
       { id: 8, isValid: false, taste: "various" },
       { id: 9, isValid: true, taste: "fields" },
     ],
+    curWeek: 3,
+    totalWeeks: 6,
     meetingTimes: [],
     timesData: [
       {
         id: 1,
-        time: dayjs()
-          .set("day", 1)
-          .set("hour", 12)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 1).set("hour", 12).set("minute", 0),
         isPartnerPick: false,
         isChecked: false,
         state: "",
@@ -40,11 +82,7 @@ export const PartnerInfoData = [
       },
       {
         id: 2,
-        time: dayjs()
-          .set("day", 1)
-          .set("hour", 13)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 1).set("hour", 13).set("minute", 0),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -52,11 +90,7 @@ export const PartnerInfoData = [
       },
       {
         id: 3,
-        time: dayjs()
-          .set("day", 1)
-          .set("hour", 14)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 1).set("hour", 14).set("minute", 0),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -77,8 +111,11 @@ export const PartnerInfoData = [
   {
     id: 2,
     name: "Sungmin Choi",
-    localTime: "New York +3hrs 4:20pm",
+    nickname: "Sungmin",
+    localTime: "New York +3hrs",
+    timeZone: "America/New_York",
     nationality: "Korean",
+    course: "Korean - English",
     email: "sc98@cu.com",
     univ: "The Cooper Union",
     major: "Design",
@@ -93,15 +130,13 @@ export const PartnerInfoData = [
       { id: 8, isValid: false, taste: "various" },
       { id: 9, isValid: true, taste: "fields" },
     ],
+    curWeek: 4,
+    totalWeeks: 8,
     meetingTimes: [],
     timesData: [
       {
         id: 1,
-        time: dayjs()
-          .set("day", 3)
-          .set("hour", 8)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 3).set("hour", 8).set("minute", 0),
         isPartnerPick: false,
         isChecked: false,
         state: "",
@@ -109,11 +144,7 @@ export const PartnerInfoData = [
       },
       {
         id: 2,
-        time: dayjs()
-          .set("day", 3)
-          .set("hour", 9)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 3).set("hour", 9).set("minute", 0),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",
@@ -121,11 +152,7 @@ export const PartnerInfoData = [
       },
       {
         id: 3,
-        time: dayjs()
-          .set("day", 3)
-          .set("hour", 10)
-          .set("minute", 0)
-          .tz("America/New_York"),
+        time: dayjs().set("day", 3).set("hour", 10).set("minute", 0),
         isPartnerPick: true,
         isChecked: false,
         state: "Finalize",

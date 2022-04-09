@@ -1,24 +1,20 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styles from "../scss/App.module.scss";
-import { SidebarData } from "./SidebarData.tsx";
-import {
-  useLang,
-  useSelectKo,
-  useSelectEn,
-} from "../Store/LanguageContext.tsx";
+import SidebarList from "./SidebarList.tsx";
+import { useLang } from "../Store/LanguageContext.tsx";
 import {
   Home,
   Learning,
   ScheduleAndChat,
   Session,
   MyPage,
-  Words,
+  Notes,
   Login,
 } from "../pages/pageIndex.tsx";
 
-const Sidebar = ({ account, students, user }) => {
-  let lang = useLang();
+const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
+  const lang = useLang();
   const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
     if (lan === lang) {
       return styles.languageSelected;
@@ -34,43 +30,22 @@ const Sidebar = ({ account, students, user }) => {
         <Link className={styles.switch} to="/home">
           switch to FLIP Class
         </Link>
-        <ul className={styles.sidebarList}>
-          {SidebarData.map((sidebar, key) => {
-            return (
-              <Link className={styles.row} key={key} to={sidebar.link}>
-                <div className={styles.icon}>{sidebar.icon}</div>
-                <div className={styles.title}>{sidebar.title}</div>
-              </Link>
-            );
-          })}
-          <div className={styles.language}>
-            <div className={setLanguage("ko", lang)} onClick={useSelectKo()}>
-              Kor
-            </div>
-            <div className={setLanguage("en", lang)} onClick={useSelectEn()}>
-              Eng
-            </div>
-          </div>
-          <Link className={styles.login} to="/login">
-            LOGIN
-          </Link>
-          <div className={styles.account}>
-            <div className={styles.myCircle}>{account.initial}</div>
-            <div>{account.name}</div>
-          </div>
-        </ul>
+        <SidebarList userLogin={userLogin} myInfo={myInfo} />
       </div>
       <Routes>
         <Route path="/home" element={<Home />} />
+        <Route path="/learning/*" element={<Learning myInfo={myInfo} />} />
         <Route
-          path="/learning"
-          element={<Learning account={account} students={students} />}
+          path="/schedule/*"
+          element={<ScheduleAndChat myInfo={myInfo} />}
         />
-        <Route path="/schedule/*" element={<ScheduleAndChat />} />
         <Route path="/session" element={<Session />} />
         <Route path="/myPage" element={<MyPage />} />
-        <Route path="/word" element={<Words />} />
-        <Route path="/login" element={<Login user={user} />} />
+        <Route path="/notes" element={<Notes />} />
+        <Route
+          path="/login"
+          element={<Login userLogin={userLogin} setUserLogin={setUserLogin} />}
+        />
       </Routes>
     </React.Fragment>
   );
