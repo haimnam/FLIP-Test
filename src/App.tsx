@@ -4,6 +4,7 @@ import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./Store/UserContext.tsx";
+import { ToastContainer } from "react-toastify";
 
 type MyInfoType = {
   initial: string;
@@ -42,6 +43,7 @@ const App = () => {
               setUserLogin={setUserLogin}
               myInfo={myInfo}
             />
+            <ToastContainer />
           </div>
         </LanguageContext>
       </BrowserRouter>

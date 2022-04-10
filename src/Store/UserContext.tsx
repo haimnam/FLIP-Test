@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useReducer } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const instance = axios.create({
   baseURL: "https://test.flipnow.net/",
@@ -7,14 +9,20 @@ const instance = axios.create({
 export const setApiToken = (token: string) => {
   instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
+const showError = () => {
+  toast.error("Error occurred", {
+    autoClose: 3000,
+    position: toast.POSITION.TOP_RIGHT,
+  });
+};
 
-export const getUser = async (dispatch: Function, accessToken: string) => {
+export const getUser = async (dispatch: Function) => {
   dispatch({ type: "GET_USER" });
   try {
     const response = await instance.get("auth/check");
     dispatch({ type: "GET_USER_SUCCESS", data: response.data });
   } catch (e) {
-    console.log(e);
+    showError();
     dispatch({ type: "GET_USER_ERROR", error: e });
   }
 };
@@ -25,7 +33,7 @@ export const getBooks = async (dispatch: Function) => {
     const response = await instance.get("word");
     dispatch({ type: "GET_BOOKS_SUCCESS", data: response.data });
   } catch (e) {
-    console.log(e);
+    showError();
     dispatch({ type: "GET_BOOKS_ERROR", error: e });
   }
 };
@@ -39,7 +47,7 @@ export const addBook = async (
     await instance.post("word", { title, language });
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -52,7 +60,7 @@ export const putBook = async (
     await instance.put(`word/book/${bookId}`, { title });
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -65,7 +73,7 @@ export const putLanguage = async (
     await instance.put(`word/language/${bookId}`, { language });
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -74,7 +82,7 @@ export const deleteBook = async (bookId: string, setFetch: Function) => {
     await instance.delete(`word/book/${bookId}`);
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -85,7 +93,7 @@ export const postWord = async (bookId: string, setFetch: Function) => {
     });
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -102,7 +110,7 @@ export const putWord = async (
     });
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -119,13 +127,13 @@ export const moveWord = async (
       wordInfo: [{ text, meaning }],
     });
   } catch (e) {
-    console.log(e);
+    showError();
   }
   try {
     await instance.delete(`word/${srcBookId}/${wordId}`);
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
@@ -138,7 +146,7 @@ export const deleteWord = async (
     await instance.delete(`word/${bookId}/${wordId}`);
     setFetch((prev) => !prev);
   } catch (e) {
-    console.log(e);
+    showError();
   }
 };
 
