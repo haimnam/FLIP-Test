@@ -115,22 +115,29 @@ export const putWord = async (
 };
 
 export const moveWord = async (
+  books,
   srcBookId: string,
   desBookId: string,
   wordId: string,
-  text: string,
-  meaning: string,
   setFetch: Function
 ) => {
+  const promise = [
+    instance.post(`word/book/${desBookId}`, {
+      wordInfo: [
+        {
+          text: books
+            .find((book) => book._id === srcBookId)
+            .words.find((word) => word._id === wordId).text,
+          meaning: books
+            .find((book) => book._id === srcBookId)
+            .words.find((word) => word._id === wordId).meaning,
+        },
+      ],
+    }),
+    instance.delete(`word/${srcBookId}/${wordId}`),
+  ];
   try {
-    await instance.post(`word/book/${desBookId}`, {
-      wordInfo: [{ text, meaning }],
-    });
-  } catch (e) {
-    showError();
-  }
-  try {
-    await instance.delete(`word/${srcBookId}/${wordId}`);
+    await Promise.all(promise);
     setFetch((prev) => !prev);
   } catch (e) {
     showError();

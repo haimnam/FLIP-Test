@@ -9,18 +9,7 @@ const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
     desBookId: string,
     wordId: string
   ) => {
-    moveWord(
-      srcBookId,
-      desBookId,
-      wordId,
-      books.data
-        .find((book) => book._id === srcBookId)
-        .words.find((word) => word._id === wordId).text,
-      books.data
-        .find((book) => book._id === srcBookId)
-        .words.find((word) => word._id === wordId).meaning,
-      setFetch
-    );
+    moveWord(books.data, srcBookId, desBookId, wordId, setFetch);
   };
 
   return (
