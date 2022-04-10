@@ -40,7 +40,7 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
           element={<ScheduleAndChat myInfo={myInfo} />}
         />
         <Route path="/session" element={<Session />} />
-        <Route path="/myPage" element={<MyPage />} />
+        <Route path="/myPage" element={<MyPage userLogin={userLogin} />} />
         <Route path="/notes" element={<Notes />} />
         <Route
           path="/login"

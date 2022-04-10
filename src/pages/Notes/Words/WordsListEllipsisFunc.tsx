@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListEllipsisMove from "./WordsListEllipsisMove.tsx";
 import Modal from "../../../Components/Modal.tsx";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { deleteWord } from "../../../Store/UserContext.tsx";
 
 const WordsListEllipsisFunc = ({
@@ -14,14 +13,12 @@ const WordsListEllipsisFunc = ({
   setFetch,
 }) => {
   const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const clickMove = () => {
     setIsMoveClicked(true);
     setIsOpenModal(true);
   };
   const deleteWordData = (wordId: string) => {
-    deleteWord(accessToken, selectedBookId, wordId, setFetch);
+    deleteWord(selectedBookId, wordId, setFetch);
   };
 
   return (

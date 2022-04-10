@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import Modal from "../../../Components/Modal.tsx";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { putBook, deleteBook } from "../../../Store/UserContext.tsx";
 
 const BooksList = ({
@@ -13,8 +12,6 @@ const BooksList = ({
   setVoca,
   setFetch,
 }) => {
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
   const [tempTitle, setTempTitle] = useState(book.title);
@@ -25,14 +22,14 @@ const BooksList = ({
     setSelectedBookId(book._id);
   };
   const editOnBlur = () => {
-    putBook(accessToken, tempTitle, book._id, setFetch);
+    putBook(tempTitle, book._id, setFetch);
     setIsEdit(false);
   };
   const textOnChange = (e) => {
     setTempTitle(e.target.value);
   };
   const deleteStudySet = () => {
-    deleteBook(accessToken, book._id, setFetch);
+    deleteBook(book._id, setFetch);
     setVoca(false);
   };
   const onClickEllipsis = () => {

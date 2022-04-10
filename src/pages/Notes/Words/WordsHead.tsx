@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from "../../../scss/Notes.module.scss";
 import Modal from "../../../Components/Modal.tsx";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { putLanguage } from "../../../Store/UserContext.tsx";
 import { StudyFolderData } from "../Books/StudyFolderData.tsx";
 
@@ -26,10 +25,8 @@ const WordsHead = ({
     setIsOpenModal(true);
   };
 
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const selectLanguage = (language: string) => {
-    putLanguage(accessToken, language, selectedBookId, setFetch);
+    putLanguage(language, selectedBookId, setFetch);
     setIsEditLanguage(false);
   };
 

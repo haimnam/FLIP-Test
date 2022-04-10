@@ -3,7 +3,6 @@ import styles from "./scss/App.module.scss";
 import Sidebar from "./Components/Sidebar.tsx";
 import LanguageContext from "./Store/LanguageContext.tsx";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./Store/AuthProvider.tsx";
 import { UserProvider } from "./Store/UserContext.tsx";
 
 type MyInfoType = {
@@ -34,21 +33,19 @@ const App = () => {
   ];
 
   return (
-    <AuthProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <LanguageContext>
-            <div className={styles.App}>
-              <Sidebar
-                userLogin={userLogin}
-                setUserLogin={setUserLogin}
-                myInfo={myInfo}
-              />
-            </div>
-          </LanguageContext>
-        </BrowserRouter>
-      </UserProvider>
-    </AuthProvider>
+    <UserProvider>
+      <BrowserRouter>
+        <LanguageContext>
+          <div className={styles.App}>
+            <Sidebar
+              userLogin={userLogin}
+              setUserLogin={setUserLogin}
+              myInfo={myInfo}
+            />
+          </div>
+        </LanguageContext>
+      </BrowserRouter>
+    </UserProvider>
   );
 };
 

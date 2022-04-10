@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
 import WordsListBody from "./WordsListBody.tsx";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { postWord } from "../../../Store/UserContext.tsx";
 
 const WordsList = ({
@@ -11,10 +10,8 @@ const WordsList = ({
   selectedBookId,
   setFetch,
 }) => {
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const addWord = () => {
-    postWord(accessToken, selectedBookId, setFetch);
+    postWord(selectedBookId, setFetch);
   };
 
   return (

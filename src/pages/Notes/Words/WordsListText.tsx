@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../scss/Notes.module.scss";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { putWord } from "../../../Store/UserContext.tsx";
 
 const WordsListText = ({
@@ -13,28 +12,12 @@ const WordsListText = ({
 }) => {
   const [tempText, setTempText] = useState<string>("");
   const [tempMeaning, setTempMeaning] = useState<string>("");
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   useEffect(() => {
     const fetchGet = async () => {
       if (tempText !== "") {
-        putWord(
-          accessToken,
-          selectedBookId,
-          word._id,
-          tempText,
-          word.meaning,
-          setFetch
-        );
+        putWord(selectedBookId, word._id, tempText, word.meaning, setFetch);
       } else if (tempMeaning !== "") {
-        putWord(
-          accessToken,
-          selectedBookId,
-          word._id,
-          word.text,
-          tempMeaning,
-          setFetch
-        );
+        putWord(selectedBookId, word._id, word.text, tempMeaning, setFetch);
       }
       setTempText("");
       setTempMeaning("");

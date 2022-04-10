@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../scss/Login.module.scss";
-import { useAuth } from "../Store/AuthProvider.tsx";
+import { setApiToken } from "../Store/UserContext.tsx";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 
 type LoginType = {
   userName: string;
@@ -12,20 +12,11 @@ type LoginType = {
 };
 
 const Login = ({ userLogin, setUserLogin }) => {
-  const { setAuthTokens } = useAuth();
+  const navigate = useNavigate();
   const [account, setAccount] = useState<LoginType>({
     userName: "",
     password: "",
   });
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("access_token");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUserLogin(foundUser);
-    }
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,14 +29,12 @@ const Login = ({ userLogin, setUserLogin }) => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
       localStorage.setItem("access_token", response.data.accessToken);
-      setAuthTokens(response.data);
+      setApiToken(response.data.accessToken);
       setUserLogin(response.data);
       setAccount({ userName: "", password: "" });
       navigate("/home");
     } catch (e) {
-      console.log(e);
       toast.error("이메일 또는 비밀번호가 일치하지 않습니다", {
         autoClose: 3000,
         position: toast.POSITION.TOP_RIGHT,

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "../../scss/Notes.module.scss";
 import Books from "./Books/Books.tsx";
 import Words from "./Words/Words.tsx";
-import { useAuth } from "../../Store/AuthProvider.tsx";
 import {
   useUserState,
   useUserDispatch,
@@ -10,14 +9,12 @@ import {
 } from "../../Store/UserContext.tsx";
 
 const Notes = () => {
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const state = useUserState();
   const dispatch = useUserDispatch();
   const { data: books, loading, error } = state.books;
   const [fetch, setFetch] = useState<boolean>(true);
   const fetchData = () => {
-    getBooks(dispatch, accessToken);
+    getBooks(dispatch);
   };
   useEffect(() => {
     fetchData();

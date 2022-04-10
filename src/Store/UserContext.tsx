@@ -2,39 +2,41 @@ import React, { createContext, useContext, useReducer } from "react";
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://test.flipnow.net/word",
+  baseURL: "https://test.flipnow.net/",
 });
+export const setApiToken = (token: string) => {
+  instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
 
-export const getBooks = async (dispatch: Function, accessToken: string) => {
+export const getUser = async (dispatch: Function, accessToken: string) => {
+  dispatch({ type: "GET_USER" });
+  try {
+    const response = await instance.get("auth/check");
+    dispatch({ type: "GET_USER_SUCCESS", data: response.data });
+  } catch (e) {
+    console.log(e);
+    dispatch({ type: "GET_USER_ERROR", error: e });
+  }
+};
+
+export const getBooks = async (dispatch: Function) => {
   dispatch({ type: "GET_BOOKS" });
   try {
-    const response = await instance.get("", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await instance.get("word");
     dispatch({ type: "GET_BOOKS_SUCCESS", data: response.data });
   } catch (e) {
+    console.log(e);
     dispatch({ type: "GET_BOOKS_ERROR", error: e });
   }
 };
 
 export const addBook = async (
-  accessToken: string,
   title: string,
   language: string,
   setFetch: Function
 ) => {
   try {
-    await instance.post(
-      "",
-      { title, language },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    await instance.post("word", { title, language });
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
@@ -42,21 +44,12 @@ export const addBook = async (
 };
 
 export const putBook = async (
-  accessToken: string,
   title: string,
   bookId: string,
   setFetch: Function
 ) => {
   try {
-    await instance.put(
-      `/book/${bookId}`,
-      { title },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    await instance.put(`word/book/${bookId}`, { title });
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
@@ -64,37 +57,31 @@ export const putBook = async (
 };
 
 export const putLanguage = async (
-  accessToken: string,
   language: string,
   bookId: string,
   setFetch: Function
 ) => {
   try {
-    await instance.put(
-      `/language/${bookId}`,
-      { language },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    await instance.put(`word/language/${bookId}`, { language });
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
   }
 };
 
-export const deleteBook = async (
-  accessToken: string,
-  bookId: string,
-  setFetch: Function
-) => {
+export const deleteBook = async (bookId: string, setFetch: Function) => {
   try {
-    await instance.delete(`/book/${bookId}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
+    await instance.delete(`word/book/${bookId}`);
+    setFetch((prev) => !prev);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const postWord = async (bookId: string, setFetch: Function) => {
+  try {
+    await instance.post(`word/book/${bookId}`, {
+      wordInfo: [{ text: "", meaning: "" }],
     });
     setFetch((prev) => !prev);
   } catch (e) {
@@ -102,31 +89,7 @@ export const deleteBook = async (
   }
 };
 
-export const postWord = async (
-  accessToken: string,
-  bookId: string,
-  setFetch: Function
-) => {
-  try {
-    await instance.post(
-      `/book/${bookId}`,
-      {
-        wordInfo: [{ text: "", meaning: "" }],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    setFetch((prev) => !prev);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 export const putWord = async (
-  accessToken: string,
   bookId: string,
   wordId: string,
   text: string,
@@ -134,15 +97,9 @@ export const putWord = async (
   setFetch: Function
 ) => {
   try {
-    await instance.put(
-      `/${bookId}/${wordId}`,
-      { wordInfo: { text, meaning } },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    await instance.put(`word/${bookId}/${wordId}`, {
+      wordInfo: { text, meaning },
+    });
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
@@ -150,7 +107,6 @@ export const putWord = async (
 };
 
 export const moveWord = async (
-  accessToken: string,
   srcBookId: string,
   desBookId: string,
   wordId: string,
@@ -159,24 +115,14 @@ export const moveWord = async (
   setFetch: Function
 ) => {
   try {
-    await instance.post(
-      `/book/${desBookId}`,
-      { wordInfo: [{ text, meaning }] },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    await instance.post(`word/book/${desBookId}`, {
+      wordInfo: [{ text, meaning }],
+    });
   } catch (e) {
     console.log(e);
   }
   try {
-    await instance.delete(`/${srcBookId}/${wordId}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    await instance.delete(`word/${srcBookId}/${wordId}`);
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
@@ -184,17 +130,12 @@ export const moveWord = async (
 };
 
 export const deleteWord = async (
-  accessToken: string,
   bookId: string,
   wordId: string,
   setFetch: Function
 ) => {
   try {
-    await instance.delete(`/${bookId}/${wordId}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    await instance.delete(`word/${bookId}/${wordId}`);
     setFetch((prev) => !prev);
   } catch (e) {
     console.log(e);
@@ -230,9 +171,22 @@ const error = (error) => ({
 });
 
 const userReducer = (state, action) => {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
+    case "GET_USER":
+      return {
+        ...state,
+        user: loadingState,
+      };
+    case "GET_USER_SUCCESS":
+      return {
+        ...state,
+        user: success(action.data),
+      };
+    case "GET_USER_ERROR":
+      return {
+        ...state,
+        user: error(action.error),
+      };
     case "GET_BOOKS":
       return {
         ...state,

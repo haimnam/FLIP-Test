@@ -1,19 +1,15 @@
 import React from "react";
 import styles from "../../../scss/Notes.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
-import { useAuth } from "../../../Store/AuthProvider.tsx";
 import { moveWord } from "../../../Store/UserContext.tsx";
 
 const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
   const moveWordData = async (
     srcBookId: string,
     desBookId: string,
     wordId: string
   ) => {
     moveWord(
-      accessToken,
       srcBookId,
       desBookId,
       wordId,

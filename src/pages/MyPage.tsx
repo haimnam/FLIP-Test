@@ -1,57 +1,34 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useAuth } from "../Store/AuthProvider.tsx";
+import React, { useEffect } from "react";
+import {
+  useUserState,
+  useUserDispatch,
+  getUser,
+} from "../Store/UserContext.tsx";
 
-type MyInfoType = {
-  firstName: string;
-  lastName: string;
-  school: string;
-  schoolEmail: string;
-};
-
-const MyPage = () => {
-  const [myInfo, setMyInfo] = useState<MyInfoType>({
-    firstName: "",
-    lastName: "",
-    school: "",
-    schoolEmail: "",
-  });
-  const { authTokens } = useAuth();
-  const accessToken = authTokens.accessToken;
-
+const MyPage = ({ userLogin }) => {
+  const state = useUserState();
+  const dispatch = useUserDispatch();
+  const { data: user, loading, error } = state.user;
+  const fetchData = () => {
+    getUser(dispatch);
+  };
   useEffect(() => {
-    const fetchGet = async () => {
-      try {
-        const response = await axios.get(
-          "https://test.flipnow.net/auth/check",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        const myData = response.data.myInfo;
-        setMyInfo({
-          firstName: myData.firstName,
-          lastName: myData.lastName,
-          school: myData.school,
-          schoolEmail: myData.schoolEmail,
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchGet();
-  }, [accessToken]);
-  if (authTokens && localStorage.getItem("access_token")) {
+    fetchData();
+  }, []);
+
+  if (loading) return <div>loading...</div>;
+  if (error) return <div>error</div>;
+  if (!user) return <button onClick={fetchData}>fetching</button>;
+
+  if (userLogin) {
     return (
       <div>
-        <h1>Hello, {myInfo.firstName}!</h1>
+        <h1>Hello, {user.myInfo.firstName}!</h1>
         <p>
-          Name: {myInfo.firstName} {myInfo.lastName}
+          Name: {user.myInfo.firstName} {user.myInfo.lastName}
         </p>
-        <p>School: {myInfo.school}</p>
-        <p>School Email: {myInfo.schoolEmail}</p>
+        <p>School: {user.myInfo.school}</p>
+        <p>School Email: {user.myInfo.schoolEmail}</p>
       </div>
     );
   } else {
