@@ -1,0 +1,103 @@
+.preferredTimes {
+  height: 350px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px 20px;
+  box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  .preferredTimesHead {
+    display: flex;
+    justify-content: space-between;
+    .addBtn {
+      color: rgb(208, 209, 198);
+      cursor: pointer;
+      font-size: 30px;
+    }
+  }
+  .timeTable {
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    .tableHead {
+      display: flex;
+      font-size: 13px;
+      align-items: center;
+      padding: 3px;
+      .overlappingTimes {
+        width: 50%;
+      }
+      .partnerPick {
+        width: 15%;
+      }
+      .myPick {
+        width: 15%;
+      }
+    }
+    .tableBody {
+      font-size: 10px;
+      color: grey;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+        padding: 6px;
+        border-radius: 10px;
+        .overlappingTimes {
+          width: 50%;
+        }
+        .partnerPick {
+          width: 15%;
+          .lightblue {
+            color: white;
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: lightblue;
+            font-size: 12px;
+          }
+          .red {
+            color: white;
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: red;
+            font-size: 12px;
+          }
+        }
+        .myPick {
+          width: 15%;
+          input {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        .state {
+          width: 25%;
+          color: rgb(172, 172, 172);
+        }
+        .stateFinalized {
+          @extend .state;
+          color: black;
+          font-weight: bold;
+        }
+      }
+      .rowChecked {
+        @extend .row;
+        background-color: rgb(248, 243, 233);
+        border: 2px solid black;
+      }
+    }
+  }
+}

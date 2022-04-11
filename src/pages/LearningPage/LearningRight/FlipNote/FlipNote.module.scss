@@ -1,0 +1,52 @@
+.flipNote {
+  display: flex;
+  .languageSelect {
+    margin-left: 20px;
+    font-weight: lighter;
+    color: rgb(66, 65, 65);
+    font-size: 13px;
+    display: flex;
+    margin-top: 5px;
+    .arrowCircle {
+      background-color: rgb(201, 177, 146);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      color: rgb(75, 73, 73);
+      justify-content: center;
+      margin-right: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+  }
+}
+.itemsContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  .item {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    background-color: lightblue;
+    padding: 10px 10px;
+    font-size: 11px;
+    border-radius: 5px;
+    color: navy;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+.circle {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  margin-right: 5px;
+}

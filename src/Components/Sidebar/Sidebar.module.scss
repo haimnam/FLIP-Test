@@ -1,0 +1,94 @@
+.sidebar {
+  height: 100%;
+  background-color: rgb(222, 223, 215);
+  text-align: center;
+}
+
+.switch {
+  font-weight: bold;
+  font-size: 15px;
+  &:link {
+    text-align: center;
+    text-decoration: none;
+    color: rgb(133, 130, 130);
+  }
+}
+
+.sidebarList {
+  height: 100%;
+  padding: 0;
+  width: 200px;
+  .row {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(208, 209, 198);
+    }
+    .icon {
+      margin-left: 40px;
+      margin-right: 5px;
+    }
+  }
+  .language {
+    margin-top: 100px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    color: rgb(133, 130, 130);
+    .languageSelected {
+      background-color: rgb(184, 185, 174);
+      color: black;
+      padding: 5px;
+    }
+    .languages {
+      padding: 5px;
+    }
+  }
+  .login {
+    font-weight: bold;
+    &:link {
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+  .account {
+    background-color: white;
+    text-align: center;
+    padding: 5px 25px;
+    border-radius: 5px;
+    color: rgb(133, 130, 130);
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    width: 100px;
+    margin: 25px 0px 0px 25px;
+    .green {
+      background-color: yellowgreen;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      color: white;
+      justify-content: center;
+      margin-right: 5px;
+    }
+  }
+}
+
+.circle {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  margin-right: 5px;
+}

@@ -1,0 +1,136 @@
+.chatBody {
+  width: 650px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
+  .chatInfo {
+    font-weight: bold;
+    font-size: 13px;
+    .partnerInfo {
+      height: 70px;
+      display: flex;
+      color: rgb(196, 193, 193);
+      padding-bottom: 10px;
+      .partnerMain {
+        width: 25%;
+        color: black;
+        padding: 10px 0px;
+      }
+      .partnerSub {
+        width: 25%;
+        padding: 10px 0px;
+      }
+      .partnerUniv {
+        width: 25%;
+        padding: 10px 0px;
+      }
+      .partnerTaste {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1px 1px;
+        .partnerTasteItem {
+          border: 1px solid rgb(196, 193, 193);
+          padding: 0px 5px;
+          border-radius: 20px;
+        }
+        .partnerTasteItemLighter {
+          border: 1px solid rgb(223, 223, 223);
+          color: rgb(223, 223, 223);
+          padding: 0px 5px;
+          border-radius: 20px;
+        }
+      }
+    }
+    .regularMeeting {
+      border-top: 2px solid lightgrey;
+      text-align: center;
+      padding-top: 10px;
+      .meetingContainer {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        .meetingItem {
+          margin-top: 10px;
+          border: 2px solid black;
+          padding: 0px 10px;
+          padding-bottom: 5px;
+          color: grey;
+          font-size: 10px;
+          border-radius: 10px;
+          background-color: rgb(248, 243, 233);
+        }
+      }
+    }
+  }
+  .chatScreen {
+    height: 350px;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    .chatContainer {
+      height: 330px;
+      padding-top: 10px;
+      .chatItem {
+        .chatBox {
+          display: flex;
+          gap: 5px;
+          margin-bottom: 5px;
+          .chatMessage {
+            background-color: rgb(248, 243, 233);
+            padding: 8px;
+            border-radius: 5px;
+          }
+          .chatTime {
+            padding-top: 20px;
+            font-size: 10px;
+            color: rgb(99, 99, 99);
+          }
+        }
+      }
+      .chatMyItem {
+        .chatBox {
+          display: flex;
+          flex-direction: row-reverse;
+          gap: 5px;
+          margin-bottom: 5px;
+          .chatMessage {
+            background-color: orange;
+            padding: 8px;
+            border-radius: 5px;
+          }
+          .chatTime {
+            padding-top: 20px;
+            font-size: 10px;
+            margin-left: auto;
+            color: rgb(99, 99, 99);
+          }
+        }
+      }
+    }
+
+    .chatInput {
+      height: 30px;
+      display: flex;
+      input {
+        width: 95%;
+        height: 100%;
+        border-radius: 5px 0px 0px 5px;
+        background-color: rgb(248, 243, 233);
+        border-style: none;
+        padding: 0px 10px;
+        font-weight: bold;
+      }
+      .sendIcon {
+        color: orange;
+        border: none;
+        background-color: rgb(248, 243, 233);
+        cursor: pointer;
+      }
+    }
+  }
+}

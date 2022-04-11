@@ -1,0 +1,70 @@
+.wordsLanguageSelect {
+  position: absolute;
+  background-color: white;
+  margin-left: -140px;
+  margin-top: 60px;
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+  box-shadow: 0px 4px 4px 0px rgb(208, 209, 198);
+  border-radius: 10px;
+  z-index: 20;
+  button {
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .ko {
+    background-color: blue;
+  }
+  .en {
+    background-color: orange;
+  }
+  .zh {
+    background-color: lightblue;
+  }
+  .de {
+    background-color: black;
+  }
+}
+
+.wordsHead {
+  display: flex;
+  width: 600px;
+  margin-bottom: 50px;
+  .wordsTitle {
+    .wordsTitleName {
+      font-size: 40px;
+    }
+  }
+  .wordsTitleLanguage {
+    margin-left: 15px;
+    font-size: 35px;
+    color: white;
+    padding: 5px;
+    border-radius: 30px;
+  }
+  .koHead {
+    @extend .wordsTitleLanguage;
+    background-color: blue;
+  }
+  .enHead {
+    @extend .wordsTitleLanguage;
+    background-color: orange;
+  }
+  .zhHead {
+    @extend .wordsTitleLanguage;
+    background-color: lightblue;
+  }
+  .deHead {
+    @extend .wordsTitleLanguage;
+    background-color: black;
+  }
+  .wordsChangeView {
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(110, 110, 110);
+  }
+}

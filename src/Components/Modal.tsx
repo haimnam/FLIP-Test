@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import styles from "../scss/App.module.scss";
 
 const Modal = ({ isOpenModal, setIsOpenModal, action, children }) => {
   const wrapperRef = useRef();
@@ -21,7 +20,7 @@ const Modal = ({ isOpenModal, setIsOpenModal, action, children }) => {
   };
 
   return (
-    <div ref={wrapperRef} value={isOpenModal} className={styles.modal}>
+    <div ref={wrapperRef} value={isOpenModal}>
       {children}
     </div>
   );
