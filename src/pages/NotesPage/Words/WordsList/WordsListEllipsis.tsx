@@ -10,7 +10,7 @@ const WordsListEllipsis = ({
   isEllipsis,
   setIsEllipsis,
   word,
-  setFetch,
+  mutate,
 }) => {
   return (
     <React.Fragment>
@@ -26,7 +26,7 @@ const WordsListEllipsis = ({
             setIsOpenModal={setIsOpenModal}
             selectedBookId={selectedBookId}
             word={word}
-            setFetch={setFetch}
+            mutate={mutate}
           />
         </Modal>
       )}

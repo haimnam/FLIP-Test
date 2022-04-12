@@ -11,7 +11,7 @@ const WordsHead = ({
   setIsOpenModal,
   selectedBookId,
   setIsListView,
-  setFetch,
+  mutate,
 }) => {
   const [isEditLanguage, setIsEditLanguage] = useState(false);
   const languageSet = {
@@ -25,8 +25,9 @@ const WordsHead = ({
     setIsOpenModal(true);
   };
 
-  const selectLanguage = (language: string) => {
-    putLanguage(language, selectedBookId, setFetch);
+  const selectLanguage = async (language: string) => {
+    await putLanguage(language, selectedBookId);
+    mutate();
     setIsEditLanguage(false);
   };
 

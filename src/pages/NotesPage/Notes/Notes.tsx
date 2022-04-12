@@ -1,32 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Notes.module.scss";
 import Books from "../Books/Books/Books.tsx";
 import Words from "../Words/Words/Words.tsx";
-import {
-  useUserState,
-  useUserDispatch,
-  getBooks,
-} from "../../../Store/UserContext.tsx";
+import { fetcher } from "../../../Store/UserContext.tsx";
+import useSWR from "swr";
 
 const Notes = () => {
-  const state = useUserState();
-  const dispatch = useUserDispatch();
-  const { data: books, loading, error } = state.books;
-  const [fetch, setFetch] = useState<boolean>(true);
-  const fetchData = () => {
-    getBooks(dispatch);
-  };
-  useEffect(() => {
-    fetchData();
-  }, [fetch]);
-
+  const { data: books, error, mutate } = useSWR("word", fetcher);
   const [selectedBookId, setSelectedBookId] = useState<string>("0");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
   const [voca, setVoca] = useState<boolean>(false);
 
-  if (loading) return <div>loading...</div>;
   if (error) return <div>error</div>;
-  if (!books) return <button onClick={fetchData}>fetching</button>;
+  if (!books) return <div>loading...</div>;
 
   return (
     <div className={styles.notes}>
@@ -36,7 +22,7 @@ const Notes = () => {
         setIsOpenModal={setIsOpenModal}
         setVoca={setVoca}
         setSelectedBookId={setSelectedBookId}
-        setFetch={setFetch}
+        mutate={mutate}
       />
       <hr />
       {voca ? (
@@ -45,7 +31,7 @@ const Notes = () => {
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          setFetch={setFetch}
+          mutate={mutate}
         />
       ) : (
         <div className={styles.noWords}>

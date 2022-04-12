@@ -8,10 +8,11 @@ const WordsList = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  setFetch,
+  mutate,
 }) => {
-  const addWord = () => {
-    postWord(selectedBookId, setFetch);
+  const addWord = async () => {
+    await postWord(selectedBookId);
+    mutate();
   };
 
   return (
@@ -34,7 +35,7 @@ const WordsList = ({
               selectedBookId={selectedBookId}
               word={word}
               index={index}
-              setFetch={setFetch}
+              mutate={mutate}
             />
           ))}
       </div>

@@ -9,7 +9,7 @@ const Words = ({
   isOpenModal,
   setIsOpenModal,
   selectedBookId,
-  setFetch,
+  mutate,
 }) => {
   const [isListView, setIsListView] = useState<boolean>(true);
 
@@ -21,7 +21,7 @@ const Words = ({
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
         setIsListView={setIsListView}
-        setFetch={setFetch}
+        mutate={mutate}
       />
       {isListView ? (
         <WordsList
@@ -29,7 +29,7 @@ const Words = ({
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          setFetch={setFetch}
+          mutate={mutate}
         />
       ) : (
         <WordsCard books={books} selectedBookId={selectedBookId} />

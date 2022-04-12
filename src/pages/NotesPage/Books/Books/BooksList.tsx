@@ -10,26 +10,24 @@ const BooksList = ({
   setIsOpenModal,
   setSelectedBookId,
   setVoca,
-  setFetch,
+  mutate,
 }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
-  const [tempTitle, setTempTitle] = useState(book.title);
 
   const getStudySet = () => {
     setIsEllipsisClicked(false);
     setVoca(true);
     setSelectedBookId(book._id);
   };
-  const editOnBlur = () => {
-    putBook(tempTitle, book._id, setFetch);
+  const editOnBlur = async (e) => {
+    await putBook(e.target.value, book._id);
+    mutate();
     setIsEdit(false);
   };
-  const textOnChange = (e) => {
-    setTempTitle(e.target.value);
-  };
-  const deleteStudySet = () => {
-    deleteBook(book._id, setFetch);
+  const deleteStudySet = async () => {
+    await deleteBook(book._id);
+    mutate();
     setVoca(false);
   };
   const onClickEllipsis = () => {
@@ -42,8 +40,7 @@ const BooksList = ({
       {isEdit ? (
         <input
           type="text"
-          value={tempTitle}
-          onChange={textOnChange}
+          defaultValue={book.title}
           onBlur={editOnBlur}
         ></input>
       ) : (

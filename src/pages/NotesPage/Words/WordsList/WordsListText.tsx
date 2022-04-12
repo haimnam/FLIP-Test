@@ -8,30 +8,15 @@ const WordsListText = ({
   setIsEllipsis,
   word,
   index,
-  setFetch,
+  mutate,
 }) => {
-  const [tempText, setTempText] = useState<string>("");
-  const [tempMeaning, setTempMeaning] = useState<string>("");
-  useEffect(() => {
-    const fetchGet = async () => {
-      if (tempText !== "") {
-        putWord(selectedBookId, word._id, tempText, word.meaning, setFetch);
-      } else if (tempMeaning !== "") {
-        putWord(selectedBookId, word._id, word.text, tempMeaning, setFetch);
-      }
-      setTempText("");
-      setTempMeaning("");
-    };
-    if (tempText !== "" || tempMeaning !== "") {
-      fetchGet();
-    }
-  }, [tempText, tempMeaning]);
   const inputWord = async (e, unit: string) => {
     if (unit === "text") {
-      setTempText(e);
+      await putWord(selectedBookId, word._id, e, word.meaning);
     } else {
-      setTempMeaning(e);
+      await putWord(selectedBookId, word._id, word.text, e);
     }
+    mutate();
   };
   const clickWordEllipsis = () => {
     setIsEllipsis(true);
@@ -41,6 +26,7 @@ const WordsListText = ({
   return (
     <React.Fragment key={index}>
       <div className={styles.wordsListId}>{index + 1}</div>
+      {console.log(word)}
       <textarea
         className={styles.wordsListTerm}
         placeholder="Write down the words"

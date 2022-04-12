@@ -8,10 +8,11 @@ const BooksBody = ({
   setIsOpenModal,
   setVoca,
   setSelectedBookId,
-  setFetch,
+  mutate,
 }) => {
   return (
     <div className={styles.booksBody}>
+      {console.log(books)}
       {books.data.map((book) => (
         <div key={book._id} className={styles.booksList}>
           <BooksList
@@ -20,7 +21,7 @@ const BooksBody = ({
             setIsOpenModal={setIsOpenModal}
             setSelectedBookId={setSelectedBookId}
             setVoca={setVoca}
-            setFetch={setFetch}
+            mutate={mutate}
           />
         </div>
       ))}

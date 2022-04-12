@@ -27,71 +27,54 @@ export const getUser = async (dispatch: Function) => {
   }
 };
 
-export const getBooks = async (dispatch: Function) => {
-  dispatch({ type: "GET_BOOKS" });
+export const fetcher = async (url: string) => {
   try {
-    const response = await instance.get("word");
-    dispatch({ type: "GET_BOOKS_SUCCESS", data: response.data });
+    console.log("yes");
+    const response = await instance.get(url);
+    console.log(response);
+    return response.data;
   } catch (e) {
     showError();
-    dispatch({ type: "GET_BOOKS_ERROR", error: e });
   }
 };
 
-export const addBook = async (
-  title: string,
-  language: string,
-  setFetch: Function
-) => {
+export const addBook = async (title: string, language: string) => {
   try {
     await instance.post("word", { title, language });
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
 };
 
-export const putBook = async (
-  title: string,
-  bookId: string,
-  setFetch: Function
-) => {
+export const putBook = async (title: string, bookId: string) => {
   try {
     await instance.put(`word/book/${bookId}`, { title });
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
 };
 
-export const putLanguage = async (
-  language: string,
-  bookId: string,
-  setFetch: Function
-) => {
+export const putLanguage = async (language: string, bookId: string) => {
   try {
     await instance.put(`word/language/${bookId}`, { language });
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
 };
 
-export const deleteBook = async (bookId: string, setFetch: Function) => {
+export const deleteBook = async (bookId: string) => {
   try {
     await instance.delete(`word/book/${bookId}`);
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
 };
 
-export const postWord = async (bookId: string, setFetch: Function) => {
+export const postWord = async (bookId: string) => {
   try {
     await instance.post(`word/book/${bookId}`, {
       wordInfo: [{ text: "", meaning: "" }],
     });
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
@@ -101,14 +84,12 @@ export const putWord = async (
   bookId: string,
   wordId: string,
   text: string,
-  meaning: string,
-  setFetch: Function
+  meaning: string
 ) => {
   try {
     await instance.put(`word/${bookId}/${wordId}`, {
       wordInfo: { text, meaning },
     });
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
@@ -118,8 +99,7 @@ export const moveWord = async (
   books,
   srcBookId: string,
   desBookId: string,
-  wordId: string,
-  setFetch: Function
+  wordId: string
 ) => {
   const promise = [
     instance.post(`word/book/${desBookId}`, {
@@ -138,20 +118,14 @@ export const moveWord = async (
   ];
   try {
     await Promise.all(promise);
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }
 };
 
-export const deleteWord = async (
-  bookId: string,
-  wordId: string,
-  setFetch: Function
-) => {
+export const deleteWord = async (bookId: string, wordId: string) => {
   try {
     await instance.delete(`word/${bookId}/${wordId}`);
-    setFetch((prev) => !prev);
   } catch (e) {
     showError();
   }

@@ -3,13 +3,14 @@ import styles from "./WordsList.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import { moveWord } from "../../../../Store/UserContext.tsx";
 
-const WordsListEllipsisMove = ({ books, selectedBookId, word, setFetch }) => {
+const WordsListEllipsisMove = ({ books, selectedBookId, word, mutate }) => {
   const moveWordData = async (
     srcBookId: string,
     desBookId: string,
     wordId: string
   ) => {
-    moveWord(books.data, srcBookId, desBookId, wordId, setFetch);
+    await moveWord(books.data, srcBookId, desBookId, wordId);
+    mutate();
   };
 
   return (

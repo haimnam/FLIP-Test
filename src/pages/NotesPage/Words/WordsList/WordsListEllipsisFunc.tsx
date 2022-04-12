@@ -10,15 +10,16 @@ const WordsListEllipsisFunc = ({
   setIsOpenModal,
   selectedBookId,
   word,
-  setFetch,
+  mutate,
 }) => {
   const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
   const clickMove = () => {
     setIsMoveClicked(true);
     setIsOpenModal(true);
   };
-  const deleteWordData = (wordId: string) => {
-    deleteWord(selectedBookId, wordId, setFetch);
+  const deleteWordData = async (wordId: string) => {
+    await deleteWord(selectedBookId, wordId);
+    mutate();
   };
 
   return (
@@ -36,7 +37,7 @@ const WordsListEllipsisFunc = ({
             books={books}
             selectedBookId={selectedBookId}
             word={word}
-            setFetch={setFetch}
+            mutate={mutate}
           />
         </Modal>
       )}
