@@ -12,7 +12,6 @@ const BooksBody = ({
 }) => {
   return (
     <div className={styles.booksBody}>
-      {console.log(books)}
       {books.data.map((book) => (
         <div key={book._id} className={styles.booksList}>
           <BooksList

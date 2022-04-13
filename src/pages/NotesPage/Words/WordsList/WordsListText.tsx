@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./WordsList.module.scss";
 import { putWord } from "../../../../Store/UserContext.tsx";
 
@@ -26,7 +26,6 @@ const WordsListText = ({
   return (
     <React.Fragment key={index}>
       <div className={styles.wordsListId}>{index + 1}</div>
-      {console.log(word)}
       <textarea
         className={styles.wordsListTerm}
         placeholder="Write down the words"

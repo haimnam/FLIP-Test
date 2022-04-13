@@ -1,26 +1,13 @@
-import React, { useEffect } from "react";
-import {
-  useUserState,
-  useUserDispatch,
-  getUser,
-} from "../../Store/UserContext.tsx";
+import React from "react";
+import useSWR from "swr";
+import { userFetcher } from "../../Store/UserContext.tsx";
 
 const MyPage = ({ userLogin }) => {
-  const state = useUserState();
-  const dispatch = useUserDispatch();
-  const { data: user, loading, error } = state.user;
-  const fetchData = () => {
-    getUser(dispatch);
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { data: user, error } = useSWR("auth/check", userFetcher);
 
-  if (loading) return <div>loading...</div>;
   if (error) return <div>error</div>;
-  if (!user) return <button onClick={fetchData}>fetching</button>;
-
-  if (userLogin) {
+  else if (!user) return <div>loading...</div>;
+  else if (userLogin) {
     return (
       <div>
         <h1>Hello, {user.myInfo.firstName}!</h1>

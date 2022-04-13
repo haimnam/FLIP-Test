@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,22 +16,17 @@ const showError = () => {
   });
 };
 
-export const getUser = async (dispatch: Function) => {
-  dispatch({ type: "GET_USER" });
+export const userFetcher = async (url: string) => {
   try {
-    const response = await instance.get("auth/check");
-    dispatch({ type: "GET_USER_SUCCESS", data: response.data });
+    const response = await instance.get(url);
+    return response.data;
   } catch (e) {
     showError();
-    dispatch({ type: "GET_USER_ERROR", error: e });
   }
 };
-
-export const fetcher = async (url: string) => {
+export const booksFetcher = async (url: string) => {
   try {
-    console.log("yes");
     const response = await instance.get(url);
-    console.log(response);
     return response.data;
   } catch (e) {
     showError();
@@ -45,7 +40,6 @@ export const addBook = async (title: string, language: string) => {
     showError();
   }
 };
-
 export const putBook = async (title: string, bookId: string) => {
   try {
     await instance.put(`word/book/${bookId}`, { title });
@@ -53,7 +47,6 @@ export const putBook = async (title: string, bookId: string) => {
     showError();
   }
 };
-
 export const putLanguage = async (language: string, bookId: string) => {
   try {
     await instance.put(`word/language/${bookId}`, { language });
@@ -61,7 +54,6 @@ export const putLanguage = async (language: string, bookId: string) => {
     showError();
   }
 };
-
 export const deleteBook = async (bookId: string) => {
   try {
     await instance.delete(`word/book/${bookId}`);
@@ -69,7 +61,6 @@ export const deleteBook = async (bookId: string) => {
     showError();
   }
 };
-
 export const postWord = async (bookId: string) => {
   try {
     await instance.post(`word/book/${bookId}`, {
@@ -79,7 +70,6 @@ export const postWord = async (bookId: string) => {
     showError();
   }
 };
-
 export const putWord = async (
   bookId: string,
   wordId: string,
@@ -94,7 +84,6 @@ export const putWord = async (
     showError();
   }
 };
-
 export const moveWord = async (
   books,
   srcBookId: string,
@@ -122,7 +111,6 @@ export const moveWord = async (
     showError();
   }
 };
-
 export const deleteWord = async (bookId: string, wordId: string) => {
   try {
     await instance.delete(`word/${bookId}/${wordId}`);
@@ -131,98 +119,8 @@ export const deleteWord = async (bookId: string, wordId: string) => {
   }
 };
 
-const initialState = {
-  books: {
-    loading: false,
-    data: null,
-    error: null,
-  },
-  user: {
-    loading: false,
-    data: null,
-    error: null,
-  },
-};
-const loadingState = {
-  loading: true,
-  data: null,
-  error: null,
-};
-const success = (data) => ({
-  loading: false,
-  data,
-  error: null,
-});
-const error = (error) => ({
-  loading: false,
-  data: null,
-  error: error,
-});
-
-const userReducer = (state, action) => {
-  switch (action.type) {
-    case "GET_USER":
-      return {
-        ...state,
-        user: loadingState,
-      };
-    case "GET_USER_SUCCESS":
-      return {
-        ...state,
-        user: success(action.data),
-      };
-    case "GET_USER_ERROR":
-      return {
-        ...state,
-        user: error(action.error),
-      };
-    case "GET_BOOKS":
-      return {
-        ...state,
-        books: loadingState,
-      };
-    case "GET_BOOKS_SUCCESS":
-      return {
-        ...state,
-        books: success(action.data),
-      };
-    case "GET_BOOKS_ERROR":
-      return {
-        ...state,
-        books: error(action.error),
-      };
-    default:
-      throw new Error(`invalid action type: ${action.type}`);
-  }
-};
-
-const UserStateContext = createContext(null);
-const UserDispatchContext = createContext(null);
-
+const UserContext = createContext(null);
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
-
-  return (
-    <UserStateContext.Provider value={state}>
-      <UserDispatchContext.Provider value={dispatch}>
-        {children}
-      </UserDispatchContext.Provider>
-    </UserStateContext.Provider>
-  );
-};
-
-export const useUserState = () => {
-  const state = useContext(UserStateContext);
-  if (!state) {
-    throw new Error("UserContext error occurred");
-  }
-  return state;
-};
-
-export const useUserDispatch = () => {
-  const dispatch = useContext(UserDispatchContext);
-  if (!dispatch) {
-    throw new Error("UserContext error occurred");
-  }
-  return dispatch;
+  const user = useContext(UserContext);
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
