@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
 import SidebarList from "./SidebarList.tsx";
-import { useLang } from "../../Store/LanguageContext.tsx";
 import {
   Home,
   Learning,
@@ -14,15 +13,6 @@ import {
 } from "../../pages/pageIndex.tsx";
 
 const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
-  const lang = useLang();
-  const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
-    if (lan === lang) {
-      return styles.languageSelected;
-    } else {
-      return styles.languages;
-    }
-  };
-
   return (
     <React.Fragment>
       <div className={styles.sidebar}>

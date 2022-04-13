@@ -5,14 +5,14 @@ import CommentIcon from "@mui/icons-material/Comment";
 import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 
 export const SidebarData = [
-  { icon: <HomeIcon />, title: "Home", link: "/home" },
-  { icon: <ArticleIcon />, title: "Learning", link: "/learning" },
+  { icon: <HomeIcon />, title: "Home", path: "/home" },
+  { icon: <ArticleIcon />, title: "Learning", path: "/learning" },
   {
     icon: <CommentIcon />,
     title: "Schedule & Chat",
-    link: "/schedule/account?id=1",
+    path: "/schedule/account",
   },
-  { icon: <VideoCameraFrontIcon />, title: "Session", link: "/session" },
-  { icon: <HomeIcon />, title: "My Page", link: "/myPage" },
-  { icon: <ArticleIcon />, title: "Notes", link: "./notes" },
+  { icon: <VideoCameraFrontIcon />, title: "Session", path: "/session" },
+  { icon: <HomeIcon />, title: "My Page", path: "/myPage" },
+  { icon: <ArticleIcon />, title: "Notes", path: "/notes" },
 ];

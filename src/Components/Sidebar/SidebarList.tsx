@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
+import SidebarItem from "./SidebarItem.tsx";
+import { Link, useLocation } from "react-router-dom";
 import { SidebarData } from "./SidebarData.tsx";
 import {
   useLang,
@@ -9,8 +10,9 @@ import {
 } from "../../Store/LanguageContext.tsx";
 
 const SidebarList = ({ userLogin, myInfo }) => {
+  const pathName = useLocation().pathname;
   const lang = useLang();
-  const setLanguage = (lan: "en" | "ko", lang: "en" | "ko") => {
+  const selectLang = (lan: "en" | "ko", lang: "en" | "ko") => {
     if (lan === lang) {
       return styles.languageSelected;
     } else {
@@ -21,16 +23,18 @@ const SidebarList = ({ userLogin, myInfo }) => {
   return (
     <ul className={styles.sidebarList}>
       {SidebarData.map((sidebar, key) => (
-        <Link className={styles.row} key={key} to={sidebar.link}>
-          <div className={styles.icon}>{sidebar.icon}</div>
-          <div className={styles.title}>{sidebar.title}</div>
+        <Link className={styles.sidebarLink} key={key} to={sidebar.path}>
+          <SidebarItem
+            sidebar={sidebar}
+            isActive={pathName === sidebar.path ? true : false}
+          />
         </Link>
       ))}
       <div className={styles.language}>
-        <div className={setLanguage("ko", lang)} onClick={useSelectKo()}>
+        <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
           Kor
         </div>
-        <div className={setLanguage("en", lang)} onClick={useSelectEn()}>
+        <div className={selectLang("en", lang)} onClick={useSelectEn()}>
           Eng
         </div>
       </div>
