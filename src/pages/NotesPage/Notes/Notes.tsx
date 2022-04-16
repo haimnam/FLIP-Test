@@ -2,11 +2,29 @@ import React, { useState } from "react";
 import styles from "./Notes.module.scss";
 import Books from "../Books/Books/Books.tsx";
 import Words from "../Words/Words/Words.tsx";
-import useSWR from "swr";
+import useSWR, { Key, Fetcher } from "swr";
 import { booksFetcher } from "../../../Store/UserContext.tsx";
 
+type wordsType = {
+  _id: string;
+  text: string;
+  meaning: string;
+};
+type bookType = {
+  _id: string;
+  memberId: string;
+  title: string;
+  language: string;
+  words: wordsType[];
+};
+type fetcherType = {
+  data: bookType[];
+};
+
 const Notes = () => {
-  const { data: books, error, mutate } = useSWR("word", booksFetcher);
+  const uid: Key = "word";
+  const fetcher: Fetcher<fetcherType> = (url) => booksFetcher(url);
+  const { data: books, error, mutate } = useSWR(uid, fetcher);
   const [selectedBookId, setSelectedBookId] = useState<string>("0");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
   const [voca, setVoca] = useState<boolean>(false);
