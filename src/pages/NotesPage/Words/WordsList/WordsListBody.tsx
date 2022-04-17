@@ -10,7 +10,6 @@ const WordsListBody = ({
   selectedBookId,
   word,
   index,
-  mutate,
 }) => {
   const [isEllipsis, setIsEllipsis] = useState<boolean>(false);
   return (
@@ -21,7 +20,6 @@ const WordsListBody = ({
         setIsEllipsis={setIsEllipsis}
         word={word}
         index={index}
-        mutate={mutate}
       />
       <WordsListEllipsis
         books={books}
@@ -31,7 +29,6 @@ const WordsListBody = ({
         isEllipsis={isEllipsis}
         setIsEllipsis={setIsEllipsis}
         word={word}
-        mutate={mutate}
       />
     </div>
   );

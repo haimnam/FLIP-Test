@@ -2,17 +2,13 @@ import React from "react";
 import styles from "./WordsList.module.scss";
 import WordsListBody from "./WordsListBody.tsx";
 import { postWord } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
-const WordsList = ({
-  books,
-  isOpenModal,
-  setIsOpenModal,
-  selectedBookId,
-  mutate,
-}) => {
+const WordsList = ({ books, isOpenModal, setIsOpenModal, selectedBookId }) => {
+  const { mutate } = useSWRConfig();
   const addWord = async () => {
     await postWord(selectedBookId);
-    mutate();
+    mutate("word");
   };
 
   return (
@@ -35,7 +31,6 @@ const WordsList = ({
               selectedBookId={selectedBookId}
               word={word}
               index={index}
-              mutate={mutate}
             />
           ))}
       </div>

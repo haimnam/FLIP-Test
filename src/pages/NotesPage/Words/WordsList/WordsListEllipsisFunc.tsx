@@ -3,6 +3,7 @@ import styles from "./WordsList.module.scss";
 import WordsListEllipsisMove from "./WordsListEllipsisMove.tsx";
 import Modal from "../../../../Components/Modal.tsx";
 import { deleteWord } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
 const WordsListEllipsisFunc = ({
   books,
@@ -10,8 +11,8 @@ const WordsListEllipsisFunc = ({
   setIsOpenModal,
   selectedBookId,
   word,
-  mutate,
 }) => {
+  const { mutate } = useSWRConfig();
   const [isMoveClicked, setIsMoveClicked] = useState<boolean>(false);
   const clickMove = () => {
     setIsMoveClicked(true);
@@ -19,7 +20,7 @@ const WordsListEllipsisFunc = ({
   };
   const deleteWordData = async (wordId: string) => {
     await deleteWord(selectedBookId, wordId);
-    mutate();
+    mutate("word");
   };
 
   return (
@@ -37,7 +38,6 @@ const WordsListEllipsisFunc = ({
             books={books}
             selectedBookId={selectedBookId}
             word={word}
-            mutate={mutate}
           />
         </Modal>
       )}

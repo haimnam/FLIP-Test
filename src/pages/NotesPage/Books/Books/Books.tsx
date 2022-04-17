@@ -10,7 +10,6 @@ const Books = ({
   setIsOpenModal,
   setVoca,
   setSelectedBookId,
-  mutate,
 }) => {
   const [addSet, setAddSet] = useState<boolean>(false);
 
@@ -22,7 +21,6 @@ const Books = ({
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           setAddSet={setAddSet}
-          mutate={mutate}
         />
       )}
       <BooksBody
@@ -31,7 +29,6 @@ const Books = ({
         setIsOpenModal={setIsOpenModal}
         setVoca={setVoca}
         setSelectedBookId={setSelectedBookId}
-        mutate={mutate}
       />
     </div>
   );

@@ -24,7 +24,7 @@ type fetcherType = {
 const Notes = () => {
   const uid: Key = "word";
   const fetcher: Fetcher<fetcherType> = (url) => booksFetcher(url);
-  const { data: books, error, mutate } = useSWR(uid, fetcher);
+  const { data: books, error } = useSWR(uid, fetcher);
   const [selectedBookId, setSelectedBookId] = useState<string>("0");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
   const [voca, setVoca] = useState<boolean>(false);
@@ -40,7 +40,6 @@ const Notes = () => {
         setIsOpenModal={setIsOpenModal}
         setVoca={setVoca}
         setSelectedBookId={setSelectedBookId}
-        mutate={mutate}
       />
       <hr />
       {voca ? (
@@ -49,7 +48,6 @@ const Notes = () => {
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          mutate={mutate}
         />
       ) : (
         <div className={styles.noWords}>

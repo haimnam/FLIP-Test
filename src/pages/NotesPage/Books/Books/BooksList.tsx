@@ -3,6 +3,7 @@ import styles from "./Books.module.scss";
 import Modal from "../../../../Components/Modal.tsx";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import { putBook, deleteBook } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
 const BooksList = ({
   book,
@@ -10,8 +11,8 @@ const BooksList = ({
   setIsOpenModal,
   setSelectedBookId,
   setVoca,
-  mutate,
 }) => {
+  const { mutate } = useSWRConfig();
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
 
@@ -22,12 +23,12 @@ const BooksList = ({
   };
   const editOnBlur = async (e) => {
     await putBook(e.target.value, book._id);
-    mutate();
+    mutate("word");
     setIsEdit(false);
   };
   const deleteStudySet = async () => {
     await deleteBook(book._id);
-    mutate();
+    mutate("word");
     setVoca(false);
   };
   const onClickEllipsis = () => {

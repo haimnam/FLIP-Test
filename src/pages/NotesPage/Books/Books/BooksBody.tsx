@@ -8,7 +8,6 @@ const BooksBody = ({
   setIsOpenModal,
   setVoca,
   setSelectedBookId,
-  mutate,
 }) => {
   return (
     <div className={styles.booksBody}>
@@ -20,7 +19,6 @@ const BooksBody = ({
             setIsOpenModal={setIsOpenModal}
             setSelectedBookId={setSelectedBookId}
             setVoca={setVoca}
-            mutate={mutate}
           />
         </div>
       ))}
