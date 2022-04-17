@@ -1,0 +1,13 @@
+.scheduleBody {
+  width: 400px;
+  margin: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  h2 {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    font-size: 22px;
+  }
+}
