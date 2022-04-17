@@ -13,6 +13,7 @@ const BooksList = ({
   setIsVoca,
 }) => {
   const { mutate } = useSWRConfig();
+  const [title, setTitle] = useState<string>(book.title);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
 
@@ -20,6 +21,9 @@ const BooksList = ({
     setIsEllipsisClicked(false);
     setIsVoca(true);
     setSelectedBookId(book._id);
+  };
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
   };
   const editOnBlur = async (e) => {
     await putBook(e.target.value, book._id);
@@ -41,7 +45,8 @@ const BooksList = ({
       {isEdit ? (
         <input
           type="text"
-          defaultValue={book.title}
+          value={title}
+          onChange={changeTitle}
           onBlur={editOnBlur}
         ></input>
       ) : (
