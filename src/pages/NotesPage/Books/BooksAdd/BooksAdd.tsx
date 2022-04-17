@@ -15,7 +15,7 @@ const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet }) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={styles.booksAdd}>
       {isOpenModal && (
         <Modal
           isOpenModal={isOpenModal}
@@ -35,7 +35,7 @@ const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet }) => {
           </div>
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -14,7 +14,7 @@ import {
 
 const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
   return (
-    <React.Fragment>
+    <div className={styles.sidebarWrapper}>
       <div className={styles.sidebar}>
         <h2>FLIP</h2>
         <Link className={styles.switch} to="/home">
@@ -37,7 +37,7 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
           element={<Login userLogin={userLogin} setUserLogin={setUserLogin} />}
         />
       </Routes>
-    </React.Fragment>
+    </div>
   );
 };
 

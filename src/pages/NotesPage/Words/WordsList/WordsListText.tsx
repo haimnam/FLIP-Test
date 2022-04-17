@@ -25,7 +25,7 @@ const WordsListText = ({
   };
 
   return (
-    <React.Fragment key={index}>
+    <div key={index} className={styles.wordsListText}>
       <div className={styles.wordsListId}>{index + 1}</div>
       <textarea
         className={styles.wordsListTerm}
@@ -42,7 +42,7 @@ const WordsListText = ({
       <button className={styles.wordsListEllipsis} onClick={clickWordEllipsis}>
         ···
       </button>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./WordsList.module.scss";
 import WordsListEllipsisFunc from "./WordsListEllipsisFunc.tsx";
 import Modal from "../../../../Components/Modal.tsx";
 
@@ -12,7 +13,7 @@ const WordsListEllipsis = ({
   word,
 }) => {
   return (
-    <React.Fragment>
+    <div className={styles.wordsListEllipsisWrapper}>
       {isEllipsis && isOpenModal && (
         <Modal
           isOpenModal={isOpenModal}
@@ -28,7 +29,7 @@ const WordsListEllipsis = ({
           />
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

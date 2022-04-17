@@ -97,10 +97,12 @@
         }
       }
     }
+    .upDown {
+      cursor: pointer;
+      color: grey;
+    }
+    .updownWrapper {
+      display: flex;
+    }
   }
-}
-
-.upDown {
-  cursor: pointer;
-  color: grey;
 }

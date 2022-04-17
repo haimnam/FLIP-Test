@@ -8,7 +8,7 @@ const Books = ({
   books,
   isOpenModal,
   setIsOpenModal,
-  setVoca,
+  setIsVoca,
   setSelectedBookId,
 }) => {
   const [addSet, setAddSet] = useState<boolean>(false);
@@ -27,7 +27,7 @@ const Books = ({
         books={books}
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
-        setVoca={setVoca}
+        setIsVoca={setIsVoca}
         setSelectedBookId={setSelectedBookId}
       />
     </div>

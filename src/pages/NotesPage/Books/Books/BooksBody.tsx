@@ -6,7 +6,7 @@ const BooksBody = ({
   books,
   isOpenModal,
   setIsOpenModal,
-  setVoca,
+  setIsVoca,
   setSelectedBookId,
 }) => {
   return (
@@ -18,7 +18,7 @@ const BooksBody = ({
             isOpenModal={isOpenModal}
             setIsOpenModal={setIsOpenModal}
             setSelectedBookId={setSelectedBookId}
-            setVoca={setVoca}
+            setIsVoca={setIsVoca}
           />
         </div>
       ))}

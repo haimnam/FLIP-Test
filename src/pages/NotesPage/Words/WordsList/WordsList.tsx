@@ -12,7 +12,7 @@ const WordsList = ({ books, isOpenModal, setIsOpenModal, selectedBookId }) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={styles.wordsListWrapper}>
       <div className={styles.wordsListView}>
         <div className={styles.wordsList}>
           <div className={styles.wordsListHead}>
@@ -37,7 +37,7 @@ const WordsList = ({ books, isOpenModal, setIsOpenModal, selectedBookId }) => {
       <button className={styles.wordsAddBtn} onClick={addWord}>
         +
       </button>
-    </React.Fragment>
+    </div>
   );
 };
 

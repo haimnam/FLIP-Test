@@ -10,7 +10,7 @@ const BooksList = ({
   isOpenModal,
   setIsOpenModal,
   setSelectedBookId,
-  setVoca,
+  setIsVoca,
 }) => {
   const { mutate } = useSWRConfig();
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -18,7 +18,7 @@ const BooksList = ({
 
   const getStudySet = () => {
     setIsEllipsisClicked(false);
-    setVoca(true);
+    setIsVoca(true);
     setSelectedBookId(book._id);
   };
   const editOnBlur = async (e) => {
@@ -29,7 +29,7 @@ const BooksList = ({
   const deleteStudySet = async () => {
     await deleteBook(book._id);
     mutate("word");
-    setVoca(false);
+    setIsVoca(false);
   };
   const onClickEllipsis = () => {
     setIsEllipsisClicked(true);
@@ -37,7 +37,7 @@ const BooksList = ({
   };
 
   return (
-    <React.Fragment>
+    <div className={styles.booksListWrapper}>
       {isEdit ? (
         <input
           type="text"
@@ -78,7 +78,7 @@ const BooksList = ({
           </div>
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
