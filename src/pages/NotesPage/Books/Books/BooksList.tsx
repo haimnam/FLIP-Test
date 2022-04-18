@@ -3,32 +3,37 @@ import styles from "./Books.module.scss";
 import Modal from "../../../../Components/Modal.tsx";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import { putBook, deleteBook } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
 const BooksList = ({
   book,
   isOpenModal,
   setIsOpenModal,
   setSelectedBookId,
-  setVoca,
-  mutate,
+  setIsVoca,
 }) => {
+  const { mutate } = useSWRConfig();
+  const [title, setTitle] = useState<string>(book.title);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isEllipsisClicked, setIsEllipsisClicked] = useState<boolean>(false);
 
   const getStudySet = () => {
     setIsEllipsisClicked(false);
-    setVoca(true);
+    setIsVoca(true);
     setSelectedBookId(book._id);
+  };
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
   };
   const editOnBlur = async (e) => {
     await putBook(e.target.value, book._id);
-    mutate();
+    mutate("word");
     setIsEdit(false);
   };
   const deleteStudySet = async () => {
     await deleteBook(book._id);
-    mutate();
-    setVoca(false);
+    mutate("word");
+    setIsVoca(false);
   };
   const onClickEllipsis = () => {
     setIsEllipsisClicked(true);
@@ -36,11 +41,12 @@ const BooksList = ({
   };
 
   return (
-    <React.Fragment>
+    <div className={styles.booksListWrapper}>
       {isEdit ? (
         <input
           type="text"
-          defaultValue={book.title}
+          value={title}
+          onChange={changeTitle}
           onBlur={editOnBlur}
         ></input>
       ) : (
@@ -77,7 +83,7 @@ const BooksList = ({
           </div>
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -27,36 +27,39 @@
     gap: 15px;
     .booksList {
       display: flex;
-      .booksFolder {
+      .booksListWrapper {
         display: flex;
-        width: 200px;
-        font-size: 18px;
-        gap: 10px;
-        align-items: center;
-        font-weight: bold;
-      }
-      .booksEllipsis {
-        color: grey;
-        font-weight: bold;
-        font-size: 30px;
-        margin-left: 45px;
-      }
-      .booksEllipsisBox {
-        display: flex;
-        z-index: 20;
-        flex-direction: column;
-        background-color: rgb(168, 168, 168);
-        position: absolute;
-        margin-left: 0px;
-        margin-top: 0px;
-        gap: 0px;
-        .booksEdit {
-          border-bottom: 1px solid black;
-          width: 100%;
-          padding: 10px 30px 10px 30px;
+        .booksFolder {
+          display: flex;
+          width: 200px;
+          font-size: 18px;
+          gap: 10px;
+          align-items: center;
+          font-weight: bold;
         }
-        .booksDelete {
-          padding: 10px 30px 10px 30px;
+        .booksEllipsis {
+          color: grey;
+          font-weight: bold;
+          font-size: 30px;
+          margin-left: 45px;
+        }
+        .booksEllipsisBox {
+          display: flex;
+          z-index: 20;
+          flex-direction: column;
+          background-color: rgb(168, 168, 168);
+          position: absolute;
+          margin-left: 0px;
+          margin-top: 0px;
+          gap: 0px;
+          .booksEdit {
+            border-bottom: 1px solid black;
+            width: 100%;
+            padding: 10px 30px 10px 30px;
+          }
+          .booksDelete {
+            padding: 10px 30px 10px 30px;
+          }
         }
       }
     }

@@ -1,9 +1,28 @@
 import React from "react";
-import useSWR from "swr";
+import useSWR, { Key, Fetcher } from "swr";
 import { userFetcher } from "../../Store/UserContext.tsx";
 
+type myInfoType = {
+  firstName: string;
+  lastName: string;
+  _id: string;
+  school: string;
+  schoolEmail: string;
+  isClass: string;
+  isMatching: boolean;
+};
+type fetcherType = {
+  msg: string;
+  myInfo: myInfoType;
+  firstName: string;
+  lastName: string;
+  id: string;
+};
+
 const MyPage = ({ userLogin }) => {
-  const { data: user, error } = useSWR("auth/check", userFetcher);
+  const uid: Key = "auth/check";
+  const fetcher: Fetcher<fetcherType> = (url) => userFetcher(url);
+  const { data: user, error } = useSWR(uid, fetcher);
 
   if (error) return <div>error</div>;
   else if (!user) return <div>loading...</div>;

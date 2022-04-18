@@ -2,15 +2,17 @@ import React from "react";
 import styles from "./WordsList.module.scss";
 import FolderOutlinedIcon from "@mui/icons-material/FolderOutlined";
 import { moveWord } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
-const WordsListEllipsisMove = ({ books, selectedBookId, word, mutate }) => {
+const WordsListEllipsisMove = ({ books, selectedBookId, word }) => {
+  const { mutate } = useSWRConfig();
   const moveWordData = async (
     srcBookId: string,
     desBookId: string,
     wordId: string
   ) => {
     await moveWord(books.data, srcBookId, desBookId, wordId);
-    mutate();
+    mutate("word");
   };
 
   return (

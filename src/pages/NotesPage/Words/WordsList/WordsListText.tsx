@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./WordsList.module.scss";
 import { putWord } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
 const WordsListText = ({
   setIsOpenModal,
@@ -8,15 +9,15 @@ const WordsListText = ({
   setIsEllipsis,
   word,
   index,
-  mutate,
 }) => {
+  const { mutate } = useSWRConfig();
   const inputWord = async (e, unit: string) => {
     if (unit === "text") {
       await putWord(selectedBookId, word._id, e, word.meaning);
     } else {
       await putWord(selectedBookId, word._id, word.text, e);
     }
-    mutate();
+    mutate("word");
   };
   const clickWordEllipsis = () => {
     setIsEllipsis(true);
@@ -24,7 +25,7 @@ const WordsListText = ({
   };
 
   return (
-    <React.Fragment key={index}>
+    <div key={index} className={styles.wordsListText}>
       <div className={styles.wordsListId}>{index + 1}</div>
       <textarea
         className={styles.wordsListTerm}
@@ -41,7 +42,7 @@ const WordsListText = ({
       <button className={styles.wordsListEllipsis} onClick={clickWordEllipsis}>
         ···
       </button>
-    </React.Fragment>
+    </div>
   );
 };
 

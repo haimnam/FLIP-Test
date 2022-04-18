@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./WordsList.module.scss";
 import WordsListEllipsisFunc from "./WordsListEllipsisFunc.tsx";
 import Modal from "../../../../Components/Modal.tsx";
 
@@ -10,10 +11,9 @@ const WordsListEllipsis = ({
   isEllipsis,
   setIsEllipsis,
   word,
-  mutate,
 }) => {
   return (
-    <React.Fragment>
+    <div className={styles.wordsListEllipsisWrapper}>
       {isEllipsis && isOpenModal && (
         <Modal
           isOpenModal={isOpenModal}
@@ -26,11 +26,10 @@ const WordsListEllipsis = ({
             setIsOpenModal={setIsOpenModal}
             selectedBookId={selectedBookId}
             word={word}
-            mutate={mutate}
           />
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

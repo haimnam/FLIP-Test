@@ -6,6 +6,12 @@ import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "../Store/UserContext.tsx";
 import { ToastContainer } from "react-toastify";
 
+type loginType = {
+  accessToken: string;
+  firstName: string;
+  id: string;
+  msg: string;
+};
 type MyInfoType = {
   initial: string;
   name: string;
@@ -15,7 +21,7 @@ type MyInfoType = {
 };
 
 const App = () => {
-  const [userLogin, setUserLogin] = useState<object>(null);
+  const [userLogin, setUserLogin] = useState<loginType>(null);
   const myInfo: MyInfoType[] = [
     {
       initial: "HN",

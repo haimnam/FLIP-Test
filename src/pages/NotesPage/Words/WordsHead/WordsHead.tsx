@@ -4,6 +4,7 @@ import Modal from "../../../../Components/Modal.tsx";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import { putLanguage } from "../../../../Store/UserContext.tsx";
 import { StudyFolderData } from "../../StudyFolderData.tsx";
+import { useSWRConfig } from "swr";
 
 const WordsHead = ({
   books,
@@ -11,8 +12,8 @@ const WordsHead = ({
   setIsOpenModal,
   selectedBookId,
   setIsListView,
-  mutate,
 }) => {
+  const { mutate } = useSWRConfig();
   const [isEditLanguage, setIsEditLanguage] = useState(false);
   const languageSet = {
     ko: "Korean",
@@ -27,7 +28,7 @@ const WordsHead = ({
 
   const selectLanguage = async (language: string) => {
     await putLanguage(language, selectedBookId);
-    mutate();
+    mutate("word");
     setIsEditLanguage(false);
   };
 

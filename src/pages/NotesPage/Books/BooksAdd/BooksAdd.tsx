@@ -4,16 +4,18 @@ import Modal from "../../../../Components/Modal.tsx";
 import dayjs from "dayjs";
 import { StudyFolderData } from "../../StudyFolderData.tsx";
 import { addBook } from "../../../../Store/UserContext.tsx";
+import { useSWRConfig } from "swr";
 
-const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet, mutate }) => {
+const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet }) => {
+  const { mutate } = useSWRConfig();
   const addStudySet = async (title: string, language: string) => {
     await addBook(title + " " + dayjs().format("MM/DD"), language);
-    mutate();
+    mutate("word");
     setAddSet(false);
   };
 
   return (
-    <React.Fragment>
+    <div className={styles.booksAdd}>
       {isOpenModal && (
         <Modal
           isOpenModal={isOpenModal}
@@ -33,7 +35,7 @@ const BooksAdd = ({ isOpenModal, setIsOpenModal, setAddSet, mutate }) => {
           </div>
         </Modal>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

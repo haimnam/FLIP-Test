@@ -4,13 +4,7 @@ import WordsHead from "../WordsHead/WordsHead.tsx";
 import WordsList from "../WordsList/WordsList.tsx";
 import WordsCard from "../WordsCard/WordsCard.tsx";
 
-const Words = ({
-  books,
-  isOpenModal,
-  setIsOpenModal,
-  selectedBookId,
-  mutate,
-}) => {
+const Words = ({ books, isOpenModal, setIsOpenModal, selectedBookId }) => {
   const [isListView, setIsListView] = useState<boolean>(true);
 
   return (
@@ -21,7 +15,6 @@ const Words = ({
         setIsOpenModal={setIsOpenModal}
         selectedBookId={selectedBookId}
         setIsListView={setIsListView}
-        mutate={mutate}
       />
       {isListView ? (
         <WordsList
@@ -29,7 +22,6 @@ const Words = ({
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           selectedBookId={selectedBookId}
-          mutate={mutate}
         />
       ) : (
         <WordsCard books={books} selectedBookId={selectedBookId} />
