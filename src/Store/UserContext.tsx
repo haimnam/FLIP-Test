@@ -19,7 +19,7 @@ export const userFetcher = async (url: string) => {
     const response = await instance.get(url);
     return response.data;
   } catch (e) {
-    toast.error("Error occurred while fetching user data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const booksFetcher = async (url: string) => {
@@ -27,7 +27,7 @@ export const booksFetcher = async (url: string) => {
     const response = await instance.get(url);
     return response.data;
   } catch (e) {
-    toast.error("Error occurred while fetching book data", showError);
+    toast.error(e.message, showError);
   }
 };
 
@@ -35,28 +35,28 @@ export const addBook = async (title: string, language: string) => {
   try {
     await instance.post("word", { title, language });
   } catch (e) {
-    toast.error("Error occurred while adding book data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const putBook = async (title: string, bookId: string) => {
   try {
     await instance.put(`word/book/${bookId}`, { title });
   } catch (e) {
-    toast.error("Error occurred while putting book data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const putLanguage = async (language: string, bookId: string) => {
   try {
     await instance.put(`word/language/${bookId}`, { language });
   } catch (e) {
-    toast.error("Error occurred while putting language data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const deleteBook = async (bookId: string) => {
   try {
     await instance.delete(`word/book/${bookId}`);
   } catch (e) {
-    toast.error("Error occurred while deleting book data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const postWord = async (bookId: string) => {
@@ -65,7 +65,7 @@ export const postWord = async (bookId: string) => {
       wordInfo: [{ text: "", meaning: "" }],
     });
   } catch (e) {
-    toast.error("Error occurred while adding word data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const putWord = async (
@@ -79,7 +79,7 @@ export const putWord = async (
       wordInfo: { text, meaning },
     });
   } catch (e) {
-    toast.error("Error occurred while putting word data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const moveWord = async (
@@ -106,14 +106,14 @@ export const moveWord = async (
   try {
     await Promise.all(promise);
   } catch (e) {
-    toast.error("Error occurred while moving word data", showError);
+    toast.error(e.message, showError);
   }
 };
 export const deleteWord = async (bookId: string, wordId: string) => {
   try {
     await instance.delete(`word/${bookId}/${wordId}`);
   } catch (e) {
-    toast.error("Error occurred while deleting word data", showError);
+    toast.error(e.message, showError);
   }
 };
 

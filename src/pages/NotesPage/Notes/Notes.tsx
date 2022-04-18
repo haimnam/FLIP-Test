@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Notes.module.scss";
 import Books from "../Books/Books/Books.tsx";
 import Words from "../Words/Words/Words.tsx";
-import useSWR, { Key, Fetcher } from "swr";
+import useSWR from "swr";
 import { booksFetcher } from "../../../Store/UserContext.tsx";
 
 type wordsType = {
@@ -22,9 +22,10 @@ type fetcherType = {
 };
 
 const Notes = () => {
-  const uid: Key = "word";
-  const fetcher: Fetcher<fetcherType> = (url) => booksFetcher(url);
-  const { data: books, error } = useSWR(uid, fetcher);
+  const { data: books, error } = useSWR<fetcherType, boolean>(
+    "word",
+    booksFetcher
+  );
   const [selectedBookId, setSelectedBookId] = useState<string>("0");
   const [isOpenModal, setIsOpenModal] = useState<boolean>(true);
   const [isVoca, setIsVoca] = useState<boolean>(false);

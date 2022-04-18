@@ -1,5 +1,5 @@
 import React from "react";
-import useSWR, { Key, Fetcher } from "swr";
+import useSWR from "swr";
 import { userFetcher } from "../../Store/UserContext.tsx";
 
 type myInfoType = {
@@ -20,9 +20,10 @@ type fetcherType = {
 };
 
 const MyPage = ({ userLogin }) => {
-  const uid: Key = "auth/check";
-  const fetcher: Fetcher<fetcherType> = (url) => userFetcher(url);
-  const { data: user, error } = useSWR(uid, fetcher);
+  const { data: user, error } = useSWR<fetcherType, boolean>(
+    "auth/check",
+    userFetcher
+  );
 
   if (error) return <div>error</div>;
   else if (!user) return <div>loading...</div>;
