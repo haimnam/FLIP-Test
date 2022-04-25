@@ -13,6 +13,5 @@ export const SidebarData = [
     path: "/schedule/account",
   },
   { icon: <VideoCameraFrontIcon />, title: "Session", path: "/session" },
-  { icon: <HomeIcon />, title: "My Page", path: "/myPage" },
-  { icon: <ArticleIcon />, title: "Notes", path: "/notes" },
+  { icon: <ArticleIcon />, title: "My Page", path: "/myPage" },
 ];

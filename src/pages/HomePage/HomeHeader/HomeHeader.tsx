@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./LearningHeader.module.scss";
+import styles from "./HomeHeader.module.scss";
 
-const LearningHeader = ({ myInfo }) => {
+const HomeHeader = ({ myInfo }) => {
   return (
     <div className={styles.frameHeader}>
-      <span className={styles.hello}>Hello, Haim!</span>
+      <span className={styles.hello}>Hello, {myInfo.firstName}!</span>
       <span className={styles.welcome}>
         <span className={styles.text1}>Welcome to </span>
         <span className={styles.text2}>336 3rd Year Korean</span>
@@ -13,4 +13,4 @@ const LearningHeader = ({ myInfo }) => {
   );
 };
 
-export default LearningHeader;
+export default HomeHeader;

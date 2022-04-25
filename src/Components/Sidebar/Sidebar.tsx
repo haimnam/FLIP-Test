@@ -8,7 +8,6 @@ import {
   ScheduleAndChat,
   Session,
   MyPage,
-  Notes,
   Login,
 } from "../../pages/pageIndex.tsx";
 
@@ -29,15 +28,17 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
         <SidebarList userLogin={userLogin} myInfo={myInfo} />
       </div>
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/learning/*" element={<Learning myInfo={myInfo} />} />
+        <Route
+          path="/home"
+          element={<Home userLogin={userLogin} myInfo={myInfo} />}
+        />
+        <Route path="/learning/*" element={<Learning />} />
         <Route
           path="/schedule/*"
           element={<ScheduleAndChat myInfo={myInfo} />}
         />
         <Route path="/session" element={<Session />} />
         <Route path="/myPage" element={<MyPage userLogin={userLogin} />} />
-        <Route path="/notes" element={<Notes />} />
         <Route
           path="/login"
           element={<Login userLogin={userLogin} setUserLogin={setUserLogin} />}
