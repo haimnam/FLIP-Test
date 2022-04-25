@@ -16,10 +16,16 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
   return (
     <div className={styles.sidebarWrapper}>
       <div className={styles.sidebar}>
-        <h2>FLIP</h2>
-        <Link className={styles.switch} to="/home">
-          switch to FLIP Class
-        </Link>
+        <div className={styles.frameLogo}>
+          <img src="img/logo/Logo.png" className={styles.logo}></img>
+          <div className={styles.class}>Class</div>
+        </div>
+        <div className={styles.frameSwitch}>
+          <Link className={styles.switch} to="/home">
+            switch to FLIP Class
+          </Link>
+        </div>
+
         <SidebarList userLogin={userLogin} myInfo={myInfo} />
       </div>
       <Routes>

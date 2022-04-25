@@ -16,7 +16,7 @@ const SidebarList = ({ userLogin, myInfo }) => {
     if (lan === lang) {
       return styles.languageSelected;
     } else {
-      return styles.languages;
+      return styles.language;
     }
   };
 
@@ -25,22 +25,23 @@ const SidebarList = ({ userLogin, myInfo }) => {
       {SidebarData.map((sidebar, key) => (
         <Link className={styles.sidebarLink} key={key} to={sidebar.path}>
           <SidebarItem
+            className={styles.vector}
             sidebar={sidebar}
             isActive={pathName === sidebar.path ? true : false}
           />
         </Link>
       ))}
-      <div className={styles.language}>
-        <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
-          Kor
-        </div>
-        <div className={selectLang("en", lang)} onClick={useSelectEn()}>
-          Eng
-        </div>
-      </div>
       <Link className={styles.login} to="/login">
         LOGIN
       </Link>
+      <div className={styles.languages}>
+        <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
+          <div className={styles.lang}>Kor</div>
+        </div>
+        <div className={selectLang("en", lang)} onClick={useSelectEn()}>
+          <div className={styles.lang}>Eng</div>
+        </div>
+      </div>
       {userLogin && (
         <div className={styles.account}>
           <div
@@ -50,9 +51,11 @@ const SidebarList = ({ userLogin, myInfo }) => {
               ]
             }
           >
-            {myInfo.find((info) => info.name === userLogin.firstName).initial}
+            <div className={styles.initial}>
+              {myInfo.find((info) => info.name === userLogin.firstName).initial}
+            </div>
           </div>
-          <div>
+          <div className={styles.name}>
             {myInfo.find((info) => info.name === userLogin.firstName).name}
           </div>
         </div>

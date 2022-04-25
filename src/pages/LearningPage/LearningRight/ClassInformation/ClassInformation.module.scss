@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
+$black-shade: #292929;
+
+.classInfo {
+  width: 369px;
+  height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 47px 16px 14px;
+  padding: 16px 16px 16px 24px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px 0 rgba(233, 236, 242, 0.5);
+  background-color: white;
+  .information {
+    width: 160px;
+    height: 270px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 0;
+    .classTitle {
+      height: 24px;
+      flex-grow: 0;
+      opacity: 0.2;
+      font-family: ProximaNova;
+      font-size: 16px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-align: left;
+      color: $black-shade;
+    }
+    .classBody {
+      height: 222px;
+      align-self: stretch;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 0;
+      .infoTitle {
+        height: 17px;
+        flex-grow: 0;
+        opacity: 0.8;
+        font-family: ProximaNova;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $black-shade;
+      }
+      .infoContent {
+        height: 16px;
+        flex-grow: 0;
+        opacity: 0.5;
+        font-family: ProximaNova;
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $black-shade;
+      }
+      .classFrame {
+        height: 40px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 0;
+      }
+      .professorFrame {
+        height: 39px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 0;
+      }
+      .timeFrame {
+        height: 83px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 0;
+      }
+    }
+  }
+  .hr {
+    width: 1px;
+    align-self: stretch;
+    flex-grow: 0;
+    opacity: 0.1;
+    background-color: $black-shade;
+  }
+  .attendance {
+    align-self: stretch;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+    padding: 0;
+    border-radius: 24px;
+    .attendanceHead {
+      height: 123px;
+      align-self: stretch;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 16px;
+      padding: 0;
+      .weekInfo {
+        margin-top: 37.5px;
+        height: 43px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        padding: 0;
+        .week {
+          height: 22px;
+          flex-grow: 0;
+          font-family: ProximaNova;
+          font-size: 18px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: left;
+          color: #1472ff;
+        }
+        .weekDate {
+          height: 17px;
+          flex-grow: 0;
+          font-family: ProximaNova;
+          font-size: 14px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: left;
+          color: #1472ff;
+        }
+      }
+      .button {
+        width: 120px;
+        height: 40px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px 0 rgba(20, 114, 255, 0.2);
+        background-color: #1472ff;
+        .checkAttendance {
+          height: 30px;
+          flex-grow: 0;
+          font-family: ProximaNova;
+          font-size: 12px;
+          font-weight: 600;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: white;
+        }
+      }
+      .daysLeft {
+        height: 16px;
+        flex-grow: 0;
+        font-family: ProximaNova;
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: #1472ff;
+      }
+    }
+    .checkFrame {
+      margin-top: 48px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      .checkRow {
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 0;
+        .check {
+          width: 16px;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 10px;
+          padding: 3px 10px 0;
+          border-radius: 24px;
+          border: 1px solid blue;
+        }
+      }
+    }
+  }
+}

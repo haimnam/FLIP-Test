@@ -1,75 +1,259 @@
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
+$black-shade: #292929;
+
 .sidebarWrapper {
   display: flex;
   .sidebar {
-    height: 100%;
-    background-color: rgb(222, 223, 215);
-    text-align: center;
-    .switch {
-      font-weight: bold;
-      font-size: 15px;
-      &:link {
+    width: 168px;
+    height: 760px;
+    margin: 0 24px 0 0;
+    padding: 40px 0;
+    background-color: #ffffff;
+    .frameLogo {
+      width: 77.6px;
+      height: 24px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0px;
+      margin: 0 45.2px 40px 45.2px;
+      padding: 3px 0;
+      img.logo {
+        width: 35.4px;
+        height: 9.6px;
+        margin: 4px 3.9px 4.4px 0;
+        object-fit: contain;
+      }
+      .class {
+        width: 38.3px;
+        height: 22px;
+        margin: 0 0 0 3.9px;
+        font-family: ProximaNova;
+        font-size: 15px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.82px;
         text-align: center;
-        text-decoration: none;
-        color: rgb(133, 130, 130);
+        color: $black-shade;
+      }
+    }
+    .frameSwitch {
+      width: 113px;
+      height: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 27.5px 37px;
+      padding: 2px 0;
+      opacity: 0.5;
+      .switch {
+        width: 113px;
+        height: 12px;
+        flex-grow: 0;
+        opacity: 0.5;
+        font-family: ProximaNova;
+        font-size: 10px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: $black-shade;
+        &:link {
+          text-decoration: none;
+        }
       }
     }
 
     .sidebarList {
       height: 100%;
       padding: 0;
-      width: 200px;
       .sidebarLink {
         text-decoration: none;
         .row {
-          height: 50px;
           display: flex;
-          align-items: center;
-          color: black;
+          width: 168px;
+          height: 37px;
+          margin: 14px 0;
+          opacity: 0.3;
           &:hover {
             cursor: pointer;
-            background-color: rgb(174, 175, 165);
+            background: linear-gradient(
+              to left,
+              #fafbfc,
+              rgba(255, 255, 255, 0) 95%,
+              #66a2ff 100%
+            );
           }
           .icon {
-            margin: 0px 5px 0px 30px;
+            width: 18px;
+            height: 18px;
+            margin: 7px 4px 9px 28.5px;
+            padding: 2.3px 0.6px 1.7px 0.6px;
+          }
+          .title {
+            width: 79px;
+            height: 32px;
+            margin: 10px 0 0px 4px;
+            font-family: ProximaNova;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            color: #599aff;
           }
         }
         .rowActive {
-          height: 50px;
           display: flex;
-          align-items: center;
-          color: white;
-          font-weight: bold;
-          background-color: rgb(174, 175, 165);
+          width: 168px;
+          height: 37px;
+          margin: 14px 0;
+          background: linear-gradient(
+            to left,
+            #fafbfc,
+            rgba(255, 255, 255, 0) 95%,
+            #66a2ff 100%
+          );
           .icon {
-            margin: 0px 5px 0px 30px;
+            width: 18px;
+            height: 18px;
+            margin: 7px 4px 9px 28.5px;
+            padding: 2.3px 0.6px 1.7px 0.6px;
+          }
+          .title {
+            width: 79px;
+            height: 32px;
+            margin: 10px 0 0px 4px;
+            font-family: ProximaNova;
+            font-size: 14px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            color: #599aff;
           }
         }
       }
 
-      .language {
-        margin-top: 100px;
+      .login {
+        display: flex;
+        margin: 75px 0px 25px 60px;
+        text-align: center;
+        align-items: center;
+        &:link {
+          text-decoration: none;
+        }
+      }
+
+      .languages {
         margin-bottom: 25px;
         cursor: pointer;
         display: flex;
         justify-content: center;
-        color: rgb(133, 130, 130);
+        gap: 5px;
         .languageSelected {
-          background-color: rgb(184, 185, 174);
-          color: black;
-          padding: 5px;
+          width: 24px;
+          height: 20px;
+          border-radius: 4px;
+          background-color: rgba(89, 154, 255, 0.2);
+          .lang {
+            width: 16px;
+            height: 12px;
+            flex-grow: 0;
+            font-family: ProximaNova;
+            font-size: 10px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #599aff;
+            margin: 3px 3px 0 3px;
+          }
         }
-        .languages {
-          padding: 5px;
+        .language {
+          .lang {
+            width: 18px;
+            height: 12px;
+            opacity: 0.5;
+            font-family: ProximaNova;
+            font-size: 10px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #599aff;
+            margin: 3px 3px 0 3px;
+          }
         }
       }
-      .login {
-        font-weight: bold;
-        &:link {
-          text-align: center;
-          text-decoration: none;
-        }
-      }
+
       .account {
+        display: flex;
+        width: 135px;
+        height: 40px;
+        flex-grow: 0;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.4);
+        margin-left: 16.5px;
+        .green {
+          background-color: yellowgreen;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          color: white;
+          justify-content: center;
+          .initial {
+            width: 24px;
+            height: 13px;
+            opacity: 0.9;
+            font-family: ProximaNova;
+            font-size: 10px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: white;
+          }
+        }
+        .name {
+          width: 42px;
+          height: 17px;
+          flex-grow: 0;
+          font-family: ProximaNova;
+          font-size: 14px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          text-align: center;
+          color: $black-shade;
+        }
+      }
+
+      .accounts {
         background-color: white;
         text-align: center;
         padding: 5px 25px;

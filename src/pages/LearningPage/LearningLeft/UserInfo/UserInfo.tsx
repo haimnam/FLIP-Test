@@ -15,37 +15,50 @@ const UserInfo = () => {
 
   return (
     <div className={styles.userInfos}>
-      {PartnerInfoData.map((partner) => (
-        <div key={partner.id} className={styles.userInfo}>
-          <div className={styles.userInfoHead}>
-            <div className={styles.languageInfo}>{partner.course}</div>
-            <div className={styles.weekInfo}>
-              week {partner.curWeek}/{partner.totalWeeks}
+      <div className={styles.partner}>Your Partners</div>
+      <div className={styles.userInfoFrame}>
+        {PartnerInfoData.map((partner) => (
+          <div key={partner.id} className={styles.userInfo}>
+            <div className={styles.partnerCard}>
+              <div className={styles.partnerFrame}>
+                <div className={styles.partnerInfoHead}>
+                  <div className={styles.partnerIcon}>
+                    <span className={styles.initial}>SJ</span>
+                  </div>
+                  <span className={styles.languageInfo}>
+                    native <span className={styles.languageBold}>KOR</span>
+                    <br />
+                    learning <span className={styles.languageBold}>ENG</span>
+                  </span>
+                </div>
+                <span className={styles.name}>{partner.nickname}</span>
+                <div className={styles.partnerInfoFrame}>
+                  <span className={styles.university}>{partner.univ}</span>
+                  <div className={styles.curTime}>
+                    <span className={styles.localTime}>
+                      {partner.localTime}
+                    </span>
+                    <span className={styles.time}>
+                      {dayjs().tz(partner.timeZone).format("h:mm a")}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.linkFrame}>
+                <Link
+                  className={styles.chatInfo}
+                  to={`/schedule/account?id=${partner.id}`}
+                >
+                  <ChatBubbleOutlineIcon />
+                </Link>
+                <Link className={styles.sessionInfo} to="/session">
+                  <VideoCameraFrontIcon />
+                </Link>
+              </div>
             </div>
           </div>
-          <h3>{partner.nickname}</h3>
-          <p className={styles.university}>{partner.univ}</p>
-          <p className={styles.localTimeDiff}>{partner.localTime}</p>
-          <p className={styles.curTime}>
-            {dayjs().tz(partner.timeZone).format("h:mm a")}
-          </p>
-          <Link
-            className={styles.chatInfo}
-            to={`/schedule/account?id=${partner.id}`}
-          >
-            <ChatBubbleOutlineIcon />
-            <span className={styles.chat}>Chat</span>
-          </Link>
-          <div className={styles.sessionInfo}>
-            <Link className={styles.startSession} to="/session">
-              <VideoCameraFrontIcon />
-              <span className={styles.startSessionContents}>Start Session</span>
-            </Link>
-            <p className={styles.upcomingSession}>{partner.meetingTimes[0]}</p>
-            <p>{partner.meetingTimes[1]}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <Routes>
         <Route path="/schedule/*" element={<ScheduleAndChat />} />
         <Route path="/session" element={<Session />} />

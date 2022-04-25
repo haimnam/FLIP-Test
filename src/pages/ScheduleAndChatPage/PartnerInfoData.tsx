@@ -49,7 +49,7 @@ export const PartnerInfoData: PartnerType[] = [
   {
     id: 1,
     name: "Samuel Jeong",
-    nickname: "Sam",
+    nickname: "Samuel",
     localTime: "Seoul +14hrs",
     timeZone: "Asia/Seoul",
     nationality: "Korean",

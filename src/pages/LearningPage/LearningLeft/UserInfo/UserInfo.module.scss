@@ -1,83 +1,245 @@
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
+$teal-blue: #75d2e4;
+
 .userInfos {
+  width: 372px;
+  height: 277px;
   display: flex;
-  .userInfo {
-    background-color: white;
-    margin-right: 20px;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 12px;
-    width: 180px;
-    box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
-    .userInfoHead {
-      display: flex;
-      padding: 2px;
-      .weekInfo {
-        background-color: rgb(186, 240, 240);
-        margin-left: 10px;
-        font-weight: bold;
-        color: blue;
-      }
-    }
-    .university {
-      margin-top: 2px;
-      font-weight: bold;
-    }
-    .curTime {
-      margin-top: -7px;
-      font-weight: bold;
-    }
-    .chatInfo {
-      align-items: center;
-      text-align: center;
-      background-color: antiquewhite;
-      padding: 10px;
-      margin: 2px 5px;
-      border-radius: 5px;
-      font-size: 15px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: rgb(255, 94, 0);
-      &:link {
-        text-align: center;
-        text-decoration: none;
-        color: inherit;
-      }
-      .chat {
-        margin-left: 10px;
-      }
-    }
-    .sessionInfo {
-      align-items: center;
-      text-align: center;
-      color: rgb(104, 98, 98);
-      background-color: antiquewhite;
-      padding: 1px;
-      margin: 1px 5px;
-      border-radius: 5px;
-      font-size: 10px;
-      cursor: pointer;
-      .startSession {
-        font-weight: bold;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 48px 20px 18px 19px;
+  padding: 0;
+  .partner {
+    height: 19px;
+    flex-grow: 0;
+    opacity: 0.2;
+    font-family: ProximaNova;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #292929;
+  }
+  .userInfoFrame {
+    width: 372px;
+    height: 246px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 0;
+    .userInfo {
+      width: 178px;
+      height: 226.4px;
+      margin: 0 0 19.6px;
+      padding: 16px 16px 15.4px;
+      object-fit: contain;
+      border-radius: 24px;
+      background-color: lightgrey;
+      .partnerCard {
+        width: 146px;
+        height: 195px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-top: 10px;
-        font-size: 15px;
-        color: rgb(104, 98, 98);
-        &:link {
-          text-align: center;
-          text-decoration: none;
-          color: inherit;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 0;
+        gap: 40px;
+        .partnerFrame {
+          height: 115px;
+          align-self: stretch;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 8px;
+          padding: 0;
+          .partnerInfoHead {
+            height: 30px;
+            align-self: stretch;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            padding: 0;
+            .partnerIcon {
+              width: 30px;
+              height: 30px;
+              margin: 0 16px 0 0;
+              border: solid 2px white;
+              background-color: $teal-blue;
+              border-radius: 50%;
+              display: flex;
+              text-align: center;
+              align-items: center;
+              .initial {
+                width: 30px;
+                height: 16.3px;
+                opacity: 0.8;
+                font-family: ProximaNova;
+                font-size: 12px;
+                font-weight: 600;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                color: white;
+              }
+            }
+            .languageInfo {
+              height: 30px;
+              flex-grow: 1;
+              font-family: ProximaNova;
+              font-size: 12px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: right;
+              color: #292929;
+              .languageBold {
+                font-weight: bold;
+              }
+            }
+          }
+          .name {
+            width: 79px;
+            height: 29px;
+            flex-grow: 0;
+            font-family: ProximaNova;
+            font-size: 24px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: left;
+            color: #292929;
+          }
+          .partnerInfoFrame {
+            width: 143px;
+            height: 40px;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 0;
+            .university {
+              width: 149px;
+              height: 16px;
+              flex-grow: 0;
+              font-family: ProximaNova;
+              font-size: 13px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: left;
+              color: #292929;
+            }
+            .curTime {
+              width: 200px;
+              height: 16px;
+              flex-grow: 0;
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: flex-start;
+              gap: 4px;
+              padding: 0;
+              .localTime {
+                height: 16px;
+                flex-grow: 0;
+                font-family: ProximaNova;
+                font-size: 13px;
+                font-weight: normal;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: left;
+                color: #292929;
+              }
+              .time {
+                height: 16px;
+                flex-grow: 0;
+                font-family: ProximaNova;
+                font-size: 13px;
+                font-weight: bold;
+                font-stretch: normal;
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: normal;
+                text-align: left;
+                color: #292929;
+              }
+            }
+          }
         }
-        .startSessionContents {
-          margin-left: 10px;
+        .linkFrame {
+          height: 40px;
+          align-self: stretch;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 8px;
+          padding: 0;
+          .chatInfo {
+            width: 40px;
+            height: 40px;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 6px;
+            object-fit: contain;
+            border-radius: 16px;
+            background-color: rgba(41, 41, 41, 0.05);
+            &:link {
+              text-align: center;
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+          .sessionInfo {
+            height: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 24px;
+            object-fit: contain;
+            border-radius: 16px;
+            background-color: rgba(41, 41, 41, 0.05);
+            .startSession {
+              &:link {
+                text-align: center;
+                text-decoration: none;
+                color: inherit;
+              }
+            }
+          }
         }
-      }
-      .upcomingSession {
-        font-size: 13px;
       }
     }
   }

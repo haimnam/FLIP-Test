@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
+$black-shade: #292929;
+
+.frameHeader {
+  width: 347px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  margin: 65px 30px 0px 40px;
+  padding: 0;
+  .hello {
+    width: 106px;
+    height: 22px;
+    flex-grow: 0;
+    font-family: ProximaNova;
+    font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: $black-shade;
+  }
+  .welcome {
+    width: 397px;
+    height: 29px;
+    flex-grow: 0;
+    font-family: ProximaNova;
+    font-size: 24px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: var(--blackShade);
+    .text1 {
+      font-weight: 300;
+    }
+    .text2 {
+      font-weight: bold;
+    }
+  }
+}

@@ -9,7 +9,7 @@ export const SidebarData = [
   { icon: <ArticleIcon />, title: "Learning", path: "/learning" },
   {
     icon: <CommentIcon />,
-    title: "Schedule & Chat",
+    title: "Schedule",
     path: "/schedule/account",
   },
   { icon: <VideoCameraFrontIcon />, title: "Session", path: "/session" },
