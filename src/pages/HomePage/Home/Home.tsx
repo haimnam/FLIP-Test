@@ -3,6 +3,7 @@ import styles from "./Home.module.scss";
 import HomeHeader from "../HomeHeader/HomeHeader.tsx";
 import Calendar from "../HomeLeft/Calendar/Calendar.tsx";
 import UserInfo from "../HomeLeft/UserInfo/UserInfo.tsx";
+import Notes from "../HomeLeft/Notes/Notes.tsx";
 import ClassInformation from "../HomeRight/ClassInformation/ClassInformation.tsx";
 import ClassAnnouncements from "../HomeRight/ClassAnnouncements/ClassAnnouncements.tsx";
 import Classmates from "../HomeRight/Classmates/Classmates.tsx";
@@ -46,62 +47,7 @@ const Home = ({ userLogin }) => {
                 <Calendar />
                 <UserInfo />
               </div>
-              <div className={styles.notes}>
-                <div className={styles.notesHead}>
-                  <span className={styles.title}>
-                    Notes from other classmates
-                  </span>
-                  <span className={styles.native}>native language</span>
-                  <div className={styles.selected}>
-                    <span className={styles.selectedLang}>KOR</span>
-                  </div>
-                  <span className={styles.lang}>ENG</span>
-                </div>
-                <div className={styles.note}>
-                  <div className={styles.noteHead}>
-                    <div className={styles.noteHeadFrame}>
-                      <div className={styles.icons}>
-                        <div className={styles.icon}>
-                          <span className={styles.initial}>S</span>
-                        </div>
-                        <div className={styles.icon}>
-                          <span className={styles.initial}>N</span>
-                        </div>
-                      </div>
-                      <span className={styles.uploadDate}>3 days ago</span>
-                    </div>
-                    <div className={styles.noteRightFrame}>
-                      <span className={styles.uploadNum}>10</span>
-                      <div className={styles.iconFrame}>
-                        <span className={styles.uploadIcon}>i</span>
-                      </div>
-                    </div>
-                  </div>
-                  <span className={styles.word}>looking forward to it</span>
-                </div>
-                <div className={styles.note}>
-                  <div className={styles.noteHead}>
-                    <div className={styles.noteHeadFrame}>
-                      <div className={styles.icons}>
-                        <div className={styles.icon}>
-                          <span className={styles.initial}>S</span>
-                        </div>
-                        <div className={styles.icon}>
-                          <span className={styles.initial}>N</span>
-                        </div>
-                      </div>
-                      <span className={styles.uploadDate}>3 days ago</span>
-                    </div>
-                    <div className={styles.noteRightFrame}>
-                      <span className={styles.uploadNum}>10</span>
-                      <div className={styles.iconFrame}>
-                        <span className={styles.uploadIcon}>i</span>
-                      </div>
-                    </div>
-                  </div>
-                  <span className={styles.word}>looking forward to it</span>
-                </div>
-              </div>
+              <Notes />
             </div>
             <div className={styles.homeRight}>
               <div className={styles.classNotification}>

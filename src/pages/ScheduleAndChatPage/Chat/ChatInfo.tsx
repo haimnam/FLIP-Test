@@ -13,7 +13,9 @@ const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
     <div className={styles.chatInfo}>
       <div className={styles.partnerInfo}>
         <div className={styles.partnerMain}>
-          <h3>{currentPartner.name}</h3>
+          <h3>
+            {currentPartner.firstName} {currentPartner.lastName}
+          </h3>
           <div>{currentPartner.localTime}</div>
         </div>
         <div className={styles.partnerSub}>

@@ -37,12 +37,13 @@ $teal-blue: #75d2e4;
     padding: 0;
     .userInfo {
       width: 178px;
-      height: 226.4px;
+      height: 196.4px;
       margin: 0 0 19.6px;
       padding: 16px 16px 15.4px;
       object-fit: contain;
       border-radius: 24px;
-      background-color: lightgrey;
+      background-image: url("../../../../../public/img/partnerBackground/day.png");
+      color: #292929;
       .partnerCard {
         width: 146px;
         height: 195px;
@@ -107,7 +108,6 @@ $teal-blue: #75d2e4;
               line-height: normal;
               letter-spacing: normal;
               text-align: right;
-              color: #292929;
               .languageBold {
                 font-weight: bold;
               }
@@ -125,7 +125,6 @@ $teal-blue: #75d2e4;
             line-height: normal;
             letter-spacing: normal;
             text-align: left;
-            color: #292929;
           }
           .partnerInfoFrame {
             width: 143px;
@@ -149,7 +148,6 @@ $teal-blue: #75d2e4;
               line-height: normal;
               letter-spacing: normal;
               text-align: left;
-              color: #292929;
             }
             .curTime {
               width: 200px;
@@ -172,7 +170,6 @@ $teal-blue: #75d2e4;
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: left;
-                color: #292929;
               }
               .time {
                 height: 16px;
@@ -185,7 +182,6 @@ $teal-blue: #75d2e4;
                 line-height: normal;
                 letter-spacing: normal;
                 text-align: left;
-                color: #292929;
               }
             }
           }
@@ -200,47 +196,13 @@ $teal-blue: #75d2e4;
           align-items: flex-start;
           gap: 8px;
           padding: 0;
-          .chatInfo {
-            width: 40px;
-            height: 40px;
-            flex-grow: 0;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 6px;
-            object-fit: contain;
-            border-radius: 16px;
-            background-color: rgba(41, 41, 41, 0.05);
-            &:link {
-              text-align: center;
-              text-decoration: none;
-              color: inherit;
-            }
-          }
-          .sessionInfo {
-            height: 40px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 24px;
-            object-fit: contain;
-            border-radius: 16px;
-            background-color: rgba(41, 41, 41, 0.05);
-            .startSession {
-              &:link {
-                text-align: center;
-                text-decoration: none;
-                color: inherit;
-              }
-            }
-          }
         }
       }
+    }
+    .userInfoNight {
+      @extend .userInfo;
+      background-image: url("../../../../../public/img/partnerBackground/night.png");
+      color: white;
     }
   }
 }

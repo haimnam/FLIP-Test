@@ -3,8 +3,6 @@ import styles from "./UserInfo.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import VideoCameraFrontIcon from "@mui/icons-material/VideoCameraFront";
 import { Routes, Route, Link } from "react-router-dom";
 import { ScheduleAndChat, Session } from "../../../pageIndex.tsx";
 import { PartnerInfoData } from "../../../ScheduleAndChatPage/PartnerInfoData.tsx";
@@ -18,20 +16,34 @@ const UserInfo = () => {
       <div className={styles.partner}>Your Partners</div>
       <div className={styles.userInfoFrame}>
         {PartnerInfoData.map((partner) => (
-          <div key={partner.id} className={styles.userInfo}>
+          <div
+            key={partner.id}
+            className={
+              dayjs().tz(partner.timeZone).get("hour") > 6 &&
+              dayjs().tz(partner.timeZone).get("hour") < 18
+                ? styles.userInfo
+                : styles.userInfoNight
+            }
+          >
             <div className={styles.partnerCard}>
               <div className={styles.partnerFrame}>
                 <div className={styles.partnerInfoHead}>
                   <div className={styles.partnerIcon}>
-                    <span className={styles.initial}>SJ</span>
+                    <span className={styles.initial}>{partner.initial}</span>
                   </div>
                   <span className={styles.languageInfo}>
-                    native <span className={styles.languageBold}>KOR</span>
+                    native{" "}
+                    <span className={styles.languageBold}>
+                      {partner.native}
+                    </span>
                     <br />
-                    learning <span className={styles.languageBold}>ENG</span>
+                    learning{" "}
+                    <span className={styles.languageBold}>
+                      {partner.learning}
+                    </span>
                   </span>
                 </div>
-                <span className={styles.name}>{partner.nickname}</span>
+                <span className={styles.name}>{partner.firstName}</span>
                 <div className={styles.partnerInfoFrame}>
                   <span className={styles.university}>{partner.univ}</span>
                   <div className={styles.curTime}>
@@ -45,14 +57,11 @@ const UserInfo = () => {
                 </div>
               </div>
               <div className={styles.linkFrame}>
-                <Link
-                  className={styles.chatInfo}
-                  to={`/schedule/account?id=${partner.id}`}
-                >
-                  <ChatBubbleOutlineIcon />
+                <Link to={`/schedule/account?id=${partner.id}`}>
+                  <img src="img/partnerCard/chat.png" />
                 </Link>
-                <Link className={styles.sessionInfo} to="/session">
-                  <VideoCameraFrontIcon />
+                <Link to="/session">
+                  <img src="img/partnerCard/video.png" />
                 </Link>
               </div>
             </div>

@@ -40,20 +40,17 @@ $black-shade: #292929;
       }
     }
     .frameSwitch {
-      width: 113px;
       height: 16px;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin: 40px 27.5px 37px;
+      margin: 40px 18.5px 37px;
       padding: 2px 0;
       opacity: 0.5;
       .switch {
-        width: 113px;
         height: 12px;
         flex-grow: 0;
-        opacity: 0.5;
         font-family: ProximaNova;
         font-size: 10px;
         font-weight: 600;
@@ -64,7 +61,7 @@ $black-shade: #292929;
         text-align: center;
         color: $black-shade;
         &:link {
-          text-decoration: none;
+          text-decoration: underline;
         }
       }
     }
@@ -214,21 +211,20 @@ $black-shade: #292929;
         background-color: rgba(255, 255, 255, 0.4);
         margin-left: 16.5px;
         .green {
-          background-color: yellowgreen;
-          width: 24px;
-          height: 24px;
+          width: 30px;
+          height: 30px;
+          background-color: #89d041;
           border-radius: 50%;
           display: flex;
           align-items: center;
-          color: white;
           justify-content: center;
           .initial {
-            width: 24px;
-            height: 13px;
-            opacity: 0.9;
+            width: 30px;
+            height: 16.3px;
+            opacity: 0.8;
             font-family: ProximaNova;
-            font-size: 10px;
-            font-weight: bold;
+            font-size: 12px;
+            font-weight: 600;
             font-stretch: normal;
             font-style: normal;
             line-height: normal;
@@ -239,7 +235,7 @@ $black-shade: #292929;
         }
         .name {
           width: 42px;
-          height: 17px;
+          height: 19px;
           flex-grow: 0;
           font-family: ProximaNova;
           font-size: 14px;

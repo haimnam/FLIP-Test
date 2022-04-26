@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./ClassInformation.module.scss";
-import InfoIcon from "@mui/icons-material/Info";
 
 const ClassInformation = () => {
   return (
@@ -39,22 +37,22 @@ const ClassInformation = () => {
         </div>
         <div className={styles.checkFrame}>
           <div className={styles.checkRow}>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
           </div>
           <div className={styles.checkRow}>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
           </div>
           <div className={styles.checkRow}>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
-            <div className={styles.check}>C</div>
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
+            <img src="img/check/attendance.png" className={styles.logo} />
           </div>
         </div>
       </div>

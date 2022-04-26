@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import useSWR from "swr";
+import { userFetcher } from "../../../Store/UserContext.tsx";
 import styles from "./ScheduleAndChat.module.scss";
 import ScheduleAndChatHead from "./ScheduleAndChatHead.tsx";
 import Chat from "../Chat/Chat.tsx";
@@ -13,7 +15,24 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 
-const ScheduleAndChat = ({ myInfo }) => {
+type myInfoType = {
+  firstName: string;
+  lastName: string;
+  _id: string;
+  school: string;
+  schoolEmail: string;
+  isClass: string;
+  isMatching: boolean;
+};
+type fetcherType = {
+  msg: string;
+  myInfo: myInfoType;
+  firstName: string;
+  lastName: string;
+  id: string;
+};
+
+const ScheduleAndChat = ({ userLogin, myInfo }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
@@ -165,30 +184,41 @@ const ScheduleAndChat = ({ myInfo }) => {
     );
   };
 
-  return (
-    <div className={styles.scheduleAndChat}>
-      <ScheduleAndChatHead selectAccount={selectAccount} />
-      <div className={styles.scheduleAndChatBody}>
-        <Chat
-          selectedPartner={selectedPartner}
-          partnerInfoData={partnerInfoData}
-        />
-        <Schedule
-          myInfo={myInfo}
-          selectedPartner={selectedPartner}
-          partnerInfoData={partnerInfoData}
-          nowPartner={nowPartner}
-          setNowPartner={setNowPartner}
-          cityPartner={cityPartner}
-          addMeeting={addMeeting}
-          removeMeeting={removeMeeting}
-          changeTimeState={changeTimeState}
-          uncheck={uncheck}
-          addNewTime={addNewTime}
-        />
-      </div>
-    </div>
+  const { data: user, error } = useSWR<fetcherType, boolean>(
+    "auth/check",
+    userFetcher
   );
+
+  if (error) return <div>error</div>;
+  else if (!user) return <div>loading...</div>;
+  else if (userLogin) {
+    return (
+      <div className={styles.scheduleAndChat}>
+        <ScheduleAndChatHead selectAccount={selectAccount} />
+        <div className={styles.scheduleAndChatBody}>
+          <Chat
+            selectedPartner={selectedPartner}
+            partnerInfoData={partnerInfoData}
+          />
+          <Schedule
+            myInfo={myInfo}
+            selectedPartner={selectedPartner}
+            partnerInfoData={partnerInfoData}
+            nowPartner={nowPartner}
+            setNowPartner={setNowPartner}
+            cityPartner={cityPartner}
+            addMeeting={addMeeting}
+            removeMeeting={removeMeeting}
+            changeTimeState={changeTimeState}
+            uncheck={uncheck}
+            addNewTime={addNewTime}
+          />
+        </div>
+      </div>
+    );
+  } else {
+    return <div>You do not have access.</div>;
+  }
 };
 
 export default ScheduleAndChat;

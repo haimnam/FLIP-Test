@@ -16,12 +16,12 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
     <div className={styles.sidebarWrapper}>
       <div className={styles.sidebar}>
         <div className={styles.frameLogo}>
-          <img src="img/logo/Logo.png" className={styles.logo}></img>
+          <img src="img/logo/Logo.png" className={styles.logo} />
           <div className={styles.class}>Class</div>
         </div>
         <div className={styles.frameSwitch}>
           <Link className={styles.switch} to="/home">
-            switch to FLIP Class
+            switch to FLIP 3rd edition
           </Link>
         </div>
 
@@ -35,9 +35,9 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
         <Route path="/learning/*" element={<Learning />} />
         <Route
           path="/schedule/*"
-          element={<ScheduleAndChat myInfo={myInfo} />}
+          element={<ScheduleAndChat userLogin={userLogin} myInfo={myInfo} />}
         />
-        <Route path="/session" element={<Session />} />
+        <Route path="/session" element={<Session userLogin={userLogin} />} />
         <Route path="/myPage" element={<MyPage userLogin={userLogin} />} />
         <Route
           path="/login"

@@ -31,15 +31,6 @@ const CalendarFooter = () => {
         </span>
         <span className={styles.meetingLocal}>Wed 5:00 am KST</span>
       </div>
-      {/*<span className={styles.upcoming}>Upcoming with</span>
-      <div
-        className={upcoming ? styles.upcomingStudent2 : styles.upcomingStudent1}
-      >
-        <span className={styles.nickname}>
-          {PartnerInfoData[upcoming].nickname}
-        </span>
-      </div>
-      <span className={styles.upcoming}>in {daysLeft} days</span>*/}
     </div>
   );
 };

@@ -27,18 +27,18 @@ type ChatType = {
 };
 type PartnerType = {
   id: number;
-  name: string;
-  nickname: string;
+  firstName: string;
+  lastName: string;
+  initial: string;
+  native: string;
+  learning: string;
   localTime: string;
   timeZone: string;
   nationality: string;
-  course: string;
   email: string;
   univ: string;
   major: string;
   taste: TasteType[];
-  curWeek: number;
-  totalWeeks: number;
   meetingTimes: MeetingTimesType[];
   timesData: TimesType[];
   partnerChat: ChatType[];
@@ -48,12 +48,14 @@ type PartnerType = {
 export const PartnerInfoData: PartnerType[] = [
   {
     id: 1,
-    name: "Samuel Jeong",
-    nickname: "Samuel",
+    firstName: "Samuel",
+    lastName: "Jeong",
+    initial: "SJ",
+    native: "KOR",
+    learning: "ENG",
     localTime: "Seoul +14hrs",
     timeZone: "Asia/Seoul",
     nationality: "Korean",
-    course: "Korean - English",
     email: "sammy98@snu.ac.kr",
     univ: "Seoul National University",
     major: "German Education",
@@ -68,8 +70,6 @@ export const PartnerInfoData: PartnerType[] = [
       { id: 8, isValid: false, taste: "various" },
       { id: 9, isValid: true, taste: "fields" },
     ],
-    curWeek: 3,
-    totalWeeks: 6,
     meetingTimes: [],
     timesData: [
       {
@@ -110,12 +110,14 @@ export const PartnerInfoData: PartnerType[] = [
 
   {
     id: 2,
-    name: "Sungmin Choi",
-    nickname: "Sungmin",
+    firstName: "Sungmin",
+    lastName: "Choi",
+    initial: "SC",
+    native: "KOR",
+    learning: "ENG",
     localTime: "New York +3hrs",
     timeZone: "America/New_York",
     nationality: "Korean",
-    course: "Korean - English",
     email: "sc98@cu.com",
     univ: "The Cooper Union",
     major: "Design",
@@ -130,8 +132,6 @@ export const PartnerInfoData: PartnerType[] = [
       { id: 8, isValid: false, taste: "various" },
       { id: 9, isValid: true, taste: "fields" },
     ],
-    curWeek: 4,
-    totalWeeks: 8,
     meetingTimes: [],
     timesData: [
       {

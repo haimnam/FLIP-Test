@@ -136,64 +136,6 @@ $black-shade: #292929;
             }
           }
         }
-        /*.calendarRow2 {
-          width: 248px;
-          height: 32px;
-          flex-grow: 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          gap: 4px;
-          padding: 0;
-          .date {
-            width: 32px;
-            height: 32px;
-            flex-grow: 0;
-            font-family: ProximaNova;
-            font-size: 12px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: rgba(41, 41, 41, 0.8);
-          }
-          .selectedDate {
-            width: 32px;
-            height: 32px;
-            flex-grow: 0;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            .scheduledDate {
-              width: 20px;
-              height: 20px;
-              flex-grow: 0;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              border-radius: 8px;
-              background-color: $tealBlue;
-            }
-            .scheduledDateDark {
-              width: 20px;
-              height: 20px;
-              flex-grow: 0;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              border-radius: 8px;
-              background-color: darkBlue;
-            }
-          }
-        }*/
         .number {
           width: 15px;
           height: 15px;
@@ -228,7 +170,7 @@ $black-shade: #292929;
         justify-content: center;
         align-items: center;
         gap: 2px;
-        padding: 0;
+        padding: 11px 0 5px 0;
         .upcoming {
           height: 16px;
           flex-grow: 0;
@@ -244,7 +186,7 @@ $black-shade: #292929;
         }
       }
       .sessionFrame {
-        height: 84px;
+        height: 64px;
         align-self: stretch;
         flex-grow: 0;
         display: flex;
@@ -280,128 +222,6 @@ $black-shade: #292929;
           color: $black-shade;
         }
       }
-
-      .upcomingStudent1 {
-        height: 15px;
-        flex-grow: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 0 2px;
-        border-radius: 4px;
-        background-color: $tealBlue;
-      }
-      .upcomingStudent2 {
-        height: 15px;
-        flex-grow: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 0 2px;
-        border-radius: 4px;
-        background-color: darkBlue;
-      }
-      .nickname {
-        height: 15px;
-        flex-grow: 0;
-        font-family: ProximaNova;
-        font-size: 12px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: right;
-        color: white;
-      }
     }
   }
 }
-
-.calendarFootera {
-  .calendarDesc {
-    font-size: 11px;
-    padding-top: 4px;
-    .upcomingStudent1 {
-      background-color: rgb(174, 174, 253);
-      border-radius: 5px;
-      margin: 0px 3px;
-      padding: 0px 2px;
-      color: white;
-      font-weight: bold;
-    }
-    .upcomingStudent2 {
-      background-color: rgb(102, 102, 209);
-      border-radius: 5px;
-      margin: 0px 3px;
-      padding: 0px 2px;
-      color: white;
-      font-weight: bold;
-    }
-  }
-}
-
-.calendarHeadera {
-  .calendarMonth {
-    font-weight: bold;
-    font-size: 17px;
-    padding-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 10px;
-  }
-}
-
-/*.calendar {
-  .date {
-    padding: 8px 0px;
-    font-size: 12px;
-    width: 50px;
-  }
-  .calendarHead {
-    font-weight: bold;
-    display: flex;
-  }
-  .calendarBody {
-    display: flex;
-    .scheduledDate {
-      background-color: rgb(174, 174, 253);
-      border-radius: 50%;
-      padding: 3px 4px;
-      color: white;
-      font-weight: bold;
-    }
-    .scheduledDateShort {
-      background-color: rgb(174, 174, 253);
-      border-radius: 50%;
-      padding: 3px 7px;
-      color: white;
-      font-weight: bold;
-    }
-    .scheduledDateDark {
-      background-color: rgb(102, 102, 209);
-      border-radius: 50%;
-      padding: 3px 4px;
-      color: white;
-      font-weight: bold;
-    }
-    .scheduledDateDarkShort {
-      background-color: rgb(102, 102, 209);
-      border-radius: 50%;
-      padding: 3px 7px;
-      color: white;
-      font-weight: bold;
-    }
-    .scheduledStudent {
-      color: rgb(174, 174, 253);
-      font-size: 8px;
-      margin: 0px;
-    }
-    .scheduledStudentDark {
-      color: rgb(102, 102, 209);
-      font-size: 8px;
-      margin: 0px;
-    }
-  }
-}*/
