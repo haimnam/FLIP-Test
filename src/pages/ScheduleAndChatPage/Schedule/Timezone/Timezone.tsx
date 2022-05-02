@@ -3,8 +3,6 @@ import styles from "./Timezone.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import Updown from "./Updown.tsx";
-import { ConverterData } from "./ConverterData.tsx";
 
 const Timezone = ({
   myInfo,
@@ -37,77 +35,100 @@ const Timezone = ({
 
   return (
     <div className={styles.timezone}>
-      <h2>Timezone converter</h2>
+      <div className={styles.timezoneHead}>
+        <span className={styles.title}>Timezone converter</span>
+        <div className={styles.options}>
+          <span className={styles.ampm}>am/pm</span>
+          <span className={styles.now} onClick={setNow}>
+            now
+          </span>
+        </div>
+      </div>
       <div className={styles.converterContainer}>
-        <div className={styles.converterItemColored}>
+        <div className={styles.converterItem}>
           <div className={styles.city}>
-            <div className={styles.cityName}>{myInfo.city}</div>
-            <div className={styles.now} onClick={setNow}>
-              now
-            </div>
+            <div className={styles.initial}>SJ</div>
+            <span className={styles.cityName}>A{myInfo.city}</span>
           </div>
           <div className={styles.time}>
-            {ConverterData.time.map((t) => (
-              <div key={t.id} className={styles.updownWrapper}>
-                <div>{nowUser.format(t.format)}</div>
-                <Updown
-                  width="17px"
-                  height="15px"
-                  setUp={() => changeTime(t.unit, 1)}
-                  setDown={() => changeTime(t.unit, -1)}
-                />
-              </div>
-            ))}
+            <div className={styles.updown}>
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.upArrow}
+                onClick={() => changeTime("h", 1)}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.downArrow}
+                onClick={() => changeTime("h", -1)}
+              />
+            </div>
+            <span className={styles.hour}>{nowUser.format("hh")}</span>
+            <span className={styles.min}>{nowUser.format("mm")}</span>
+            <div className={styles.updown}>
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.upArrow}
+                onClick={() => changeTime("m", 1)}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.downArrow}
+                onClick={() => changeTime("m", -1)}
+              />
+            </div>
             <div className={styles.ampm}>{nowUser.format("a")}</div>
           </div>
-          <div className={styles.date}>
-            {ConverterData.date.map((d) => (
-              <div key={d.id} className={styles.updownWrapper}>
-                <div>{nowUser.format(d.format)}</div>
-                <Updown
-                  width="15px"
-                  height="10px"
-                  setUp={() => changeTime(d.unit, 1)}
-                  setDown={() => changeTime(d.unit, -1)}
-                />
-                <div>{d.slash}</div>
-              </div>
-            ))}
-            <div className={styles.day}>{nowUser.format("dddd")}</div>
+          <div className={styles.dateWrapper}>
+            <div className={styles.dateInfo}>
+              <span className={styles.date}>
+                {nowUser.format("MM")}/{nowUser.format("DD")}
+              </span>
+              <span className={styles.day}>{nowUser.format("dddd")}</span>
+            </div>
           </div>
         </div>
         <div className={styles.converterItem}>
           <div className={styles.city}>
-            <div className={styles.cityName}>{cityPartner}</div>
+            <div className={styles.initial}>SJ</div>
+            <span className={styles.cityName}>A{myInfo.city}</span>
           </div>
           <div className={styles.time}>
-            {ConverterData.time.map((t) => (
-              <div key={t.id} className={styles.updownWrapper}>
-                <div>{nowPartner.format(t.format)}</div>
-                <Updown
-                  width="17px"
-                  height="15px"
-                  setUp={() => changeTime(t.unit, 1)}
-                  setDown={() => changeTime(t.unit, -1)}
-                />
-              </div>
-            ))}
+            <div className={styles.updown}>
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.upArrow}
+                onClick={() => changeTime("h", 1)}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.downArrow}
+                onClick={() => changeTime("h", -1)}
+              />
+            </div>
+            <span className={styles.hour}>{nowPartner.format("hh")}</span>
+            <span className={styles.min}>{nowPartner.format("mm")}</span>
+            <div className={styles.updown}>
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.upArrow}
+                onClick={() => changeTime("m", 1)}
+              />
+              <img
+                src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+                className={styles.downArrow}
+                onClick={() => changeTime("m", -1)}
+              />
+            </div>
             <div className={styles.ampm}>{nowPartner.format("a")}</div>
           </div>
-          <div className={styles.date}>
-            {ConverterData.date.map((d) => (
-              <div key={d.id} className={styles.updownWrapper}>
-                <div>{nowPartner.format(d.format)}</div>
-                <Updown
-                  width="15px"
-                  height="10px"
-                  setUp={() => changeTime(d.unit, 1)}
-                  setDown={() => changeTime(d.unit, -1)}
-                />
-                <div>{d.slash}</div>
-              </div>
-            ))}
-            <div className={styles.day}>{nowPartner.format("dddd")}</div>
+          <div className={styles.dateWrapper}>
+            <div className={styles.dateInfo}>
+              <span className={styles.date}>
+                {nowPartner.format("MM")}/{nowPartner.format("DD")}
+              </span>
+              <span className={styles.day}>{nowPartner.format("dddd")}</span>
+            </div>
           </div>
         </div>
       </div>

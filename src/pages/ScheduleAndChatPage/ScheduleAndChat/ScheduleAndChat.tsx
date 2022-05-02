@@ -194,9 +194,10 @@ const ScheduleAndChat = ({ userLogin, myInfo }) => {
   else if (userLogin) {
     return (
       <div className={styles.scheduleAndChat}>
-        <ScheduleAndChatHead selectAccount={selectAccount} />
+        <ScheduleAndChatHead />
         <div className={styles.scheduleAndChatBody}>
           <Chat
+            selectAccount={selectAccount}
             selectedPartner={selectedPartner}
             partnerInfoData={partnerInfoData}
           />

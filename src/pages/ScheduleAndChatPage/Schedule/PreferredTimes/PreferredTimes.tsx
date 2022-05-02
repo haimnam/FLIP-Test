@@ -6,6 +6,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import { AccountData } from "../../AccountData.tsx";
+import InfoIcon from "@mui/icons-material/Info";
 
 const PreferredTimes = ({
   myInfo,
@@ -76,20 +77,18 @@ const PreferredTimes = ({
 
   return (
     <div className={styles.preferredTimes}>
-      <div className={styles.preferredTimesHead}>
-        <h2>Select your preferred times</h2>
-        <AddCircleOutlineIcon
-          className={styles.addBtn}
-          onClick={onInsertToggle}
-        />
-      </div>
-      <div className={styles.timeTable}>
-        <div className={styles.tableHead}>
-          <div className={styles.overlappingTimes}>Overlapping times</div>
-          <div className={styles.partnerPick}>Samuel's pick</div>
-          <div className={styles.myPick}>Your pick</div>
+      <div className={styles.preferredTimesFrame}>
+        <div className={styles.preferredTimesHead}>
+          <span className={styles.title}>Meeting Time</span>
+          <div className={styles.infoIcon}>
+            <InfoIcon />
+          </div>
+          <AddCircleOutlineIcon
+            className={styles.addBtn}
+            onClick={onInsertToggle}
+          />
         </div>
-        <div className={styles.tableBody}>
+        <div className={styles.timeTable}>
           {partnerInfoData
             .find((partner) => partner.id === selectedPartner)
             .timesData.map((time) => (
@@ -98,8 +97,10 @@ const PreferredTimes = ({
                 className={time.isChecked ? styles.rowChecked : styles.row}
               >
                 <div className={styles.overlappingTimes}>
-                  <h3>{time.time.tz(myInfo.timeZone).format("dddd h:mm a")}</h3>
-                  <div>
+                  <span className={styles.userTime}>
+                    {time.time.tz(myInfo.timeZone).format("dddd h:mm a")}
+                  </span>
+                  <span className={styles.partnerTime}>
                     {time.time
                       .tz(
                         partnerInfoData.find(
@@ -107,7 +108,7 @@ const PreferredTimes = ({
                         ).timeZone
                       )
                       .format("dddd h:mm a z")}
-                  </div>
+                  </span>
                 </div>
                 <div className={styles.partnerPick}>
                   <div
@@ -126,6 +127,16 @@ const PreferredTimes = ({
                         .initial}
                   </div>
                 </div>
+                <div
+                  className={
+                    time.state === "Finalize"
+                      ? styles.state
+                      : styles.stateFinalized
+                  }
+                  onClick={() => timeStateHandler(time.id, time.state)}
+                >
+                  <span className={styles.statePrinted}>{time.print}</span>
+                </div>
                 <label className={styles.myPick}>
                   <input
                     type="checkbox"
@@ -139,16 +150,6 @@ const PreferredTimes = ({
                     disabled={time.state === "Undo" ? true : false}
                   ></input>
                 </label>
-                <div
-                  className={
-                    time.state === "Finalize"
-                      ? styles.state
-                      : styles.stateFinalized
-                  }
-                  onClick={() => timeStateHandler(time.id, time.state)}
-                >
-                  {time.print}
-                </div>
               </div>
             ))}
         </div>

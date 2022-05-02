@@ -4,11 +4,6 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type TasteType = {
-  id: number;
-  isValid: boolean;
-  taste: string;
-};
 export type MeetingTimesType = {
   id: number;
   time: object;
@@ -38,7 +33,6 @@ type PartnerType = {
   email: string;
   univ: string;
   major: string;
-  taste: TasteType[];
   meetingTimes: MeetingTimesType[];
   timesData: TimesType[];
   partnerChat: ChatType[];
@@ -54,22 +48,11 @@ export const PartnerInfoData: PartnerType[] = [
     native: "KOR",
     learning: "ENG",
     localTime: "Seoul +14hrs",
-    timeZone: "Asia/Seoul",
+    timeZone: "America/New_York",
     nationality: "Korean",
     email: "sammy98@snu.ac.kr",
     univ: "Seoul National University",
     major: "German Education",
-    taste: [
-      { id: 1, isValid: true, taste: "reading" },
-      { id: 2, isValid: true, taste: "for" },
-      { id: 3, isValid: true, taste: "fun" },
-      { id: 4, isValid: false, taste: "interests" },
-      { id: 5, isValid: false, taste: "are" },
-      { id: 6, isValid: true, taste: "various" },
-      { id: 7, isValid: true, taste: "are" },
-      { id: 8, isValid: false, taste: "various" },
-      { id: 9, isValid: true, taste: "fields" },
-    ],
     meetingTimes: [],
     timesData: [
       {
@@ -121,17 +104,6 @@ export const PartnerInfoData: PartnerType[] = [
     email: "sc98@cu.com",
     univ: "The Cooper Union",
     major: "Design",
-    taste: [
-      { id: 1, isValid: true, taste: "cooking" },
-      { id: 2, isValid: true, taste: "for" },
-      { id: 3, isValid: true, taste: "fun" },
-      { id: 4, isValid: false, taste: "interests" },
-      { id: 5, isValid: false, taste: "are" },
-      { id: 6, isValid: true, taste: "various" },
-      { id: 7, isValid: true, taste: "are" },
-      { id: 8, isValid: false, taste: "various" },
-      { id: 9, isValid: true, taste: "fields" },
-    ],
     meetingTimes: [],
     timesData: [
       {
@@ -160,13 +132,13 @@ export const PartnerInfoData: PartnerType[] = [
       },
     ],
     partnerChat: [
-      { id: 1, chat: "a" },
-      { id: 2, chat: "b" },
-      { id: 3, chat: "c" },
+      { id: 1, chat: "how" },
+      { id: 2, chat: "are" },
+      { id: 3, chat: "you?" },
     ],
     myChat: [
-      { id: 1, chat: "d" },
-      { id: 2, chat: "e" },
+      { id: 1, chat: "I'm" },
+      { id: 2, chat: "okay" },
     ],
   },
 ];
