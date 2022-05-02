@@ -28,9 +28,10 @@ const Notes = () => {
             </div>
             <div className={styles.noteRightFrame}>
               <span className={styles.uploadNum}>{note.num}</span>
-              <div className={styles.iconFrame}>
-                <span className={styles.uploadIcon}>i</span>
-              </div>
+              <img
+                src={process.env.PUBLIC_URL + "/img/bookmark/bookmark.png"}
+                className={styles.uploadIcon}
+              />
             </div>
           </div>
           <span className={styles.word}>{note.word}</span>

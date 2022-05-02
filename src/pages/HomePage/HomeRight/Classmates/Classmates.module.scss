@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
-$black-shade: #292929;
 $tealBlue: #75d2e4;
 
 .classmates {
@@ -20,48 +18,27 @@ $tealBlue: #75d2e4;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     gap: 24px;
-    padding: 0;
     .classmatesHead {
       width: 122px;
       height: 24px;
-      flex-grow: 0;
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
       gap: 8px;
-      padding: 0;
       .title {
         width: 84px;
         height: 24px;
-        flex-grow: 0;
         opacity: 0.2;
-        font-family: ProximaNova;
         font-size: 16px;
         font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.5;
-        letter-spacing: normal;
-        text-align: left;
-        color: $black-shade;
       }
       .number {
         width: 30px;
         height: 18px;
-        flex-grow: 0;
-        font-family: ProximaNova;
         font-size: 12px;
         font-weight: 600;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.5;
-        letter-spacing: normal;
-        text-align: left;
-        color: $black-shade;
         .blue {
           color: #1472ff;
         }
@@ -70,23 +47,16 @@ $tealBlue: #75d2e4;
     .classmatesBody {
       height: 494px;
       align-self: stretch;
-      flex-grow: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
       gap: 24px;
-      padding: 0;
       .classmate {
         width: 116px;
         height: 32px;
-        flex-grow: 0;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 8px;
-        padding: 0;
         .icon {
           width: 30px;
           height: 30px;
@@ -102,10 +72,6 @@ $tealBlue: #75d2e4;
             font-family: ProximaNova;
             font-size: 12px;
             font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
             text-align: center;
             color: white;
           }
@@ -115,37 +81,16 @@ $tealBlue: #75d2e4;
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
-          padding: 0;
           border-radius: 24px;
           .name {
             width: 63px;
             height: 17px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 14px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
-            color: $black-shade;
           }
           .lang {
             height: 15px;
-            flex-grow: 0;
             opacity: 0.3;
-            font-family: ProximaNova;
             font-size: 12px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
-            color: $black-shade;
             .bold {
               font-weight: bold;
             }

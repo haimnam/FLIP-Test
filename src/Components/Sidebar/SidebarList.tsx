@@ -44,20 +44,10 @@ const SidebarList = ({ userLogin, myInfo }) => {
       </div>
       {userLogin && (
         <div className={styles.account}>
-          <div
-            className={
-              styles[
-                myInfo.find((info) => info.name === userLogin.firstName).color
-              ]
-            }
-          >
-            <div className={styles.initial}>
-              {myInfo.find((info) => info.name === userLogin.firstName).initial}
-            </div>
+          <div className={styles[myInfo.color]}>
+            <div className={styles.initial}>{myInfo.initial}</div>
           </div>
-          <div className={styles.name}>
-            {myInfo.find((info) => info.name === userLogin.firstName).name}
-          </div>
+          <div className={styles.name}>{myInfo.name}</div>
         </div>
       )}
     </ul>

@@ -1,11 +1,8 @@
-$black-shade: #292929;
-
 .preferredTimes {
   width: 420px;
   height: 333px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: stretch;
   gap: 11px;
   padding: 24px;
@@ -15,34 +12,21 @@ $black-shade: #292929;
   .preferredTimesFrame {
     height: 338px;
     align-self: stretch;
-    flex-grow: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: stretch;
     gap: 24px;
-    padding: 0;
     .preferredTimesHead {
       height: 24px;
       align-self: stretch;
-      flex-grow: 0;
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
       gap: 8px;
       padding: 0 16px;
       .title {
         height: 19px;
-        flex-grow: 0;
-        font-family: ProximaNova;
         font-size: 16px;
         font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: left;
         color: #000;
       }
       .infoIcon {
@@ -55,20 +39,15 @@ $black-shade: #292929;
         width: 24px;
         height: 24px;
         margin: 10px 0 0 220px;
-        flex-grow: 0;
         object-fit: contain;
         opacity: 0.1;
       }
     }
     .timeTable {
       align-self: stretch;
-      flex-grow: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
       gap: 11px;
-      padding: 0;
       .row {
         height: 44px;
         flex-grow: 1;
@@ -81,52 +60,30 @@ $black-shade: #292929;
         .overlappingTimes {
           width: 120px;
           height: 23px;
-          flex-grow: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: flex-start;
           gap: 4px;
-          padding: 0;
           .userTime {
             width: 148px;
             height: 17px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 14px;
             font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
             color: #000;
           }
           .partnerTime {
-            width: 99px;
+            width: 109px;
             height: 12px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 10px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
             color: rgba(0, 0, 0, 0.5);
           }
         }
         .partnerPick {
           width: 104px;
           height: 24px;
-          flex-grow: 0;
           display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
           align-items: center;
           gap: 10px;
-          padding: 0;
           .lightblue {
             color: white;
             margin-left: 15px;
@@ -140,40 +97,21 @@ $black-shade: #292929;
             font-size: 12px;
           }
           .red {
-            color: white;
-            margin-left: 15px;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+            @extend .lightblue;
             background-color: red;
-            font-size: 12px;
           }
         }
         .state {
           width: 68px;
           height: 24px;
-          flex-grow: 0;
           display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
           align-items: center;
           gap: 10px;
-          padding: 0;
           .statePrinted {
             width: 42px;
             height: 15px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 12px;
             font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
             color: rgba(0, 0, 0, 0.3);
           }
         }

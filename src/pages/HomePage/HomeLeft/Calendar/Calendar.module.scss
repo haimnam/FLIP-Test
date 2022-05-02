@@ -1,14 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
 $tealBlue: #75d2e4;
 $darkGrey: #707070;
-$black-shade: #292929;
+$blackShade: #292929;
 
 .calendar {
   width: 253px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
   gap: 10px;
   margin: 47px 19px 16px 0px;
   padding: 24px 16px 16px;
@@ -16,60 +13,34 @@ $black-shade: #292929;
   box-shadow: 0 8px 24px 0 rgba(233, 236, 242, 0.5);
   background-color: white;
   .calendarFrame {
-    align-self: stretch;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0;
     .calendarBody {
       width: 242px;
       height: 115px;
-      flex-grow: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 0;
       border-radius: 8px;
       gap: 8px;
       .calendarTitle {
         width: 89px;
         height: 19px;
         margin: 0px 0px 16px 15px;
-        flex-grow: 0;
         opacity: 0.2;
-        font-family: ProximaNova;
         font-size: 16px;
         font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: left;
-        color: #292929;
+        color: $blackShade;
       }
       .calendarDays {
         width: 242px;
         height: 20px;
-        flex-grow: 0;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 0;
         .day {
           width: 36px;
           height: 20px;
-          flex-grow: 0;
-          font-family: ProximaNova;
           font-size: 12px;
           font-weight: bold;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
           text-align: center;
           color: rgba(41, 41, 41, 0.8);
         }
@@ -79,32 +50,18 @@ $black-shade: #292929;
           width: 242px;
           height: 20px;
           margin-bottom: 8px;
-          flex-grow: 0;
           display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start;
-          padding: 0;
           .date {
             width: 36px;
             height: 30px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 12px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
             text-align: center;
             color: rgba(41, 41, 41, 0.8);
           }
           .selectedDate {
             width: 36px;
             height: 30px;
-            flex-grow: 0;
             display: flex;
-            flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 10px;
@@ -112,7 +69,6 @@ $black-shade: #292929;
               width: 20px;
               height: 20px;
               margin-top: -16px;
-              flex-grow: 0;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -122,16 +78,7 @@ $black-shade: #292929;
               background-color: $tealBlue;
             }
             .scheduledDateDark {
-              width: 20px;
-              height: 20px;
-              margin-top: -16px;
-              flex-grow: 0;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              gap: 10px;
-              border-radius: 8px;
+              @extend .scheduledDate;
               background-color: darkBlue;
             }
           }
@@ -139,56 +86,38 @@ $black-shade: #292929;
         .number {
           width: 15px;
           height: 15px;
-          flex-grow: 0;
-          font-family: ProximaNova;
           font-size: 12px;
           font-weight: 600;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
           text-align: center;
           color: white;
         }
       }
     }
     .calendarFooter {
-      align-self: stretch;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: stretch;
       gap: 4px;
-      padding: 0;
+      color: $blackShade;
       .upcomingFrame {
         height: 16px;
         align-self: stretch;
-        flex-grow: 0;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 2px;
         padding: 11px 0 5px 0;
         .upcoming {
           height: 16px;
-          flex-grow: 0;
           opacity: 0.5;
-          font-family: ProximaNova;
           font-size: 13px;
-          font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          color: $black-shade;
         }
       }
       .sessionFrame {
         height: 64px;
         align-self: stretch;
-        flex-grow: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -197,29 +126,13 @@ $black-shade: #292929;
         padding: 16px;
         border-radius: 16px;
         background-color: #f8f9fb;
-        font-family: ProximaNova;
         .meeting {
-          flex-grow: 0;
           font-size: 14px;
           font-weight: 600;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          text-align: left;
-          color: $black-shade;
         }
         .meetingLocal {
-          flex-grow: 0;
           opacity: 0.5;
           font-size: 13px;
-          font-weight: normal;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          text-align: left;
-          color: $black-shade;
         }
       }
     }

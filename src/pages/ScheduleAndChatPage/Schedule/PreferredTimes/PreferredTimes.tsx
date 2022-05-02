@@ -5,13 +5,13 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { AccountData } from "../../AccountData.tsx";
 import InfoIcon from "@mui/icons-material/Info";
+import { PartnerInfoData } from "../../PartnerInfoData.tsx";
 
 const PreferredTimes = ({
   myInfo,
-  selectedPartner,
-  partnerInfoData,
+  meetingTimesData,
+  timesData,
   addMeeting,
   removeMeeting,
   changeTimeState,
@@ -35,19 +35,16 @@ const PreferredTimes = ({
   ) => {
     if (isChecked) {
       checkedItems.add(id * 1);
-      if (
-        partnerInfoData
-          .find((partner) => partner.id === selectedPartner)
-          .timesData.find((data) => data.id === id * 1).isPartnerPick
-      ) {
-        changeTimeState(id, selectedPartner, "FINALIZE");
+      console.log(timesData);
+      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
+        changeTimeState(id, "FINALIZE");
       } else {
-        changeTimeState(id, selectedPartner, "");
+        changeTimeState(id, "");
       }
     } else if (checkedItems.has(id * 1)) {
       checkedItems.delete(id * 1);
       if (isClicked) {
-        uncheck(selectedPartner, id);
+        uncheck(id);
       }
     }
     setCheckedItems(checkedItems);
@@ -58,19 +55,11 @@ const PreferredTimes = ({
     if (state === "FINALIZE") {
       const newMeeting = {
         id: id * 1,
-        time: partnerInfoData
-          .find((partner) => partner.id === selectedPartner)
-          .timesData.find((time) => time.id === id).time,
+        time: timesData.find((time) => time.id === id).time,
       };
-      addMeeting(
-        id,
-        selectedPartner,
-        partnerInfoData
-          .find((partner) => partner.id === selectedPartner)
-          .meetingTimes.concat(newMeeting)
-      );
+      addMeeting(id, meetingTimesData.concat(newMeeting));
     } else if (state === "Undo") {
-      removeMeeting(id, selectedPartner);
+      removeMeeting(id);
       checkedItemHandler(id, false, false);
     }
   };
@@ -89,69 +78,53 @@ const PreferredTimes = ({
           />
         </div>
         <div className={styles.timeTable}>
-          {partnerInfoData
-            .find((partner) => partner.id === selectedPartner)
-            .timesData.map((time) => (
-              <div
-                key={time.id}
-                className={time.isChecked ? styles.rowChecked : styles.row}
-              >
-                <div className={styles.overlappingTimes}>
-                  <span className={styles.userTime}>
-                    {time.time.tz(myInfo.timeZone).format("dddd h:mm a")}
-                  </span>
-                  <span className={styles.partnerTime}>
-                    {time.time
-                      .tz(
-                        partnerInfoData.find(
-                          (partner) => partner.id === selectedPartner
-                        ).timeZone
-                      )
-                      .format("dddd h:mm a z")}
-                  </span>
-                </div>
-                <div className={styles.partnerPick}>
-                  <div
-                    className={
-                      time.isPartnerPick
-                        ? styles[
-                            AccountData.find(
-                              (acc) => acc.id === selectedPartner
-                            ).color
-                          ]
-                        : ""
-                    }
-                  >
-                    {time.isPartnerPick &&
-                      AccountData.find((acc) => acc.id === selectedPartner)
-                        .initial}
-                  </div>
-                </div>
+          {timesData.map((time) => (
+            <div
+              key={time.id}
+              className={time.isChecked ? styles.rowChecked : styles.row}
+            >
+              <div className={styles.overlappingTimes}>
+                <span className={styles.userTime}>
+                  {time.time.tz(myInfo.timeZone).format("dddd h:mm a")}
+                </span>
+                <span className={styles.partnerTime}>
+                  {time.time
+                    .tz(PartnerInfoData[0].timeZone)
+                    .format("dddd h:mm a z")}
+                </span>
+              </div>
+              <div className={styles.partnerPick}>
                 <div
                   className={
-                    time.state === "Finalize"
-                      ? styles.state
-                      : styles.stateFinalized
+                    time.isPartnerPick ? styles[PartnerInfoData[0].color] : null
                   }
-                  onClick={() => timeStateHandler(time.id, time.state)}
                 >
-                  <span className={styles.statePrinted}>{time.print}</span>
+                  {time.isPartnerPick && PartnerInfoData[0].initial}
                 </div>
-                <label className={styles.myPick}>
-                  <input
-                    type="checkbox"
-                    value={time.id}
-                    onChange={(e) => checkHandler(e)}
-                    checked={
-                      partnerInfoData
-                        .find((partner) => partner.id === selectedPartner)
-                        .timesData.find((data) => data.id === time.id).isChecked
-                    }
-                    disabled={time.state === "Undo" ? true : false}
-                  ></input>
-                </label>
               </div>
-            ))}
+              <div
+                className={
+                  time.state === "Finalize"
+                    ? styles.state
+                    : styles.stateFinalized
+                }
+                onClick={() => timeStateHandler(time.id, time.state)}
+              >
+                <span className={styles.statePrinted}>{time.print}</span>
+              </div>
+              <label className={styles.myPick}>
+                <input
+                  type="checkbox"
+                  value={time.id}
+                  onChange={(e) => checkHandler(e)}
+                  checked={
+                    timesData.find((data) => data.id === time.id).isChecked
+                  }
+                  disabled={time.state === "Undo" ? true : false}
+                ></input>
+              </label>
+            </div>
+          ))}
         </div>
       </div>
     </div>

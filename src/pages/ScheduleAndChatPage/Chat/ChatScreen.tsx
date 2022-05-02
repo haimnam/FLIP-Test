@@ -1,40 +1,49 @@
 import React from "react";
 import styles from "./Chat.module.scss";
-import { PartnerInfoData } from "../PartnerInfoData.tsx";
+import { ChatData } from "../ChatData.tsx";
+import dayjs from "dayjs";
 
-const ChatScreen = ({ chat, selectedPartner }) => {
+const ChatScreen = ({ chat }) => {
   return (
     <div className={styles.chatContainer}>
-      <div className={styles.partnerChat}>
-        {PartnerInfoData.find(
-          (partner) => partner.id === selectedPartner
-        ).partnerChat.map((c) => (
-          <div key={c.id} className={styles.chatItem}>
-            <div className={styles.initial}>NH</div>
-            <div className={styles.chatBox}>
-              <span className={styles.chatMessage}>{c.chat}</span>
+      {ChatData.map((c) =>
+        c.user === "user" ? (
+          <div key={c.id} className={styles.myChat}>
+            <div className={styles.chatItem}>
+              <div className={styles.numberTime}>
+                <span className={styles.number}>
+                  {c.number ? c.number : null}
+                </span>
+                <span className={styles.time}></span>
+              </div>
+              <div className={styles.chatBox}>
+                <div className={styles.chatMessage}>{c.chat}</div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-      <div className={styles.myChat}>
-        {PartnerInfoData.find(
-          (partner) => partner.id === selectedPartner
-        ).myChat.map((c) => (
-          <div key={c.id} className={styles.chatMyItem}>
-            <div className={styles.numberTime}>
-              <span className={styles.number}>1</span>
-              <span className={styles.time}>09:00 pm</span>
-            </div>
-            <div className={styles.chatBox}>
-              <div className={styles.chatMessage}>{c.chat}</div>
+        ) : (
+          <div key={c.id} className={styles.partnerChat}>
+            <div className={styles.chatItem}>
+              <div className={styles.initial}>{c.user}</div>
+              <div className={styles.chatBox}>
+                <span className={styles.chatMessage}>{c.chat}</span>
+              </div>
+              <span className={styles.number}>
+                {c.number ? c.number : null}
+              </span>
             </div>
           </div>
-        ))}
-      </div>
+        )
+      )}
       <div className={styles.myChat}>
         {chat.chats.map((c) => (
-          <div key={c.id} className={styles.chatMyItem}>
+          <div key={c.id} className={styles.chatItem}>
+            <div className={styles.numberTime}>
+              <span className={styles.number}>1</span>
+              <span className={styles.time}>
+                {dayjs().format("MM/DD hh:mm a")}
+              </span>
+            </div>
             <div className={styles.chatBox}>
               <div className={styles.chatMessage}>{c.chat}</div>
             </div>

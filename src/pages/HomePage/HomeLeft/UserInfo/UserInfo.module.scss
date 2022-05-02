@@ -1,34 +1,22 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
-$teal-blue: #75d2e4;
+$tealBlue: #75d2e4;
 
 .userInfos {
   width: 372px;
   height: 277px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 12px;
   margin: 48px 20px 18px 19px;
-  padding: 0;
+  color: #292929;
   .partner {
     height: 19px;
-    flex-grow: 0;
     opacity: 0.2;
-    font-family: ProximaNova;
     font-size: 16px;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    text-align: left;
-    color: #292929;
   }
   .userInfoFrame {
     width: 372px;
     height: 246px;
-    flex-grow: 0;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -43,42 +31,32 @@ $teal-blue: #75d2e4;
       object-fit: contain;
       border-radius: 24px;
       background-image: url("../../../../../public/img/partnerBackground/day.png");
-      color: #292929;
       .partnerCard {
         width: 146px;
         height: 195px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
         align-items: stretch;
-        padding: 0;
         gap: 40px;
         .partnerFrame {
           height: 115px;
           align-self: stretch;
-          flex-grow: 0;
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
           gap: 8px;
-          padding: 0;
           .partnerInfoHead {
             height: 30px;
             align-self: stretch;
-            flex-grow: 0;
             display: flex;
-            flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 16px;
-            padding: 0;
             .partnerIcon {
               width: 30px;
               height: 30px;
               margin: 0 16px 0 0;
               border: solid 2px white;
-              background-color: $teal-blue;
+              background-color: $tealBlue;
               border-radius: 50%;
               display: flex;
               text-align: center;
@@ -87,26 +65,15 @@ $teal-blue: #75d2e4;
                 width: 30px;
                 height: 16.3px;
                 opacity: 0.8;
-                font-family: ProximaNova;
                 font-size: 12px;
                 font-weight: 600;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: normal;
-                letter-spacing: normal;
                 color: white;
               }
             }
             .languageInfo {
               height: 30px;
               flex-grow: 1;
-              font-family: ProximaNova;
               font-size: 12px;
-              font-weight: normal;
-              font-stretch: normal;
-              font-style: normal;
-              line-height: normal;
-              letter-spacing: normal;
               text-align: right;
               .languageBold {
                 font-weight: bold;
@@ -116,72 +83,33 @@ $teal-blue: #75d2e4;
           .name {
             width: 79px;
             height: 29px;
-            flex-grow: 0;
-            font-family: ProximaNova;
             font-size: 24px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
           }
           .partnerInfoFrame {
             width: 143px;
             height: 40px;
-            flex-grow: 0;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
             gap: 8px;
-            padding: 0;
             .university {
               width: 149px;
               height: 16px;
-              flex-grow: 0;
-              font-family: ProximaNova;
               font-size: 13px;
-              font-weight: normal;
-              font-stretch: normal;
-              font-style: normal;
-              line-height: normal;
-              letter-spacing: normal;
-              text-align: left;
             }
             .curTime {
               width: 200px;
               height: 16px;
-              flex-grow: 0;
               display: flex;
               flex-direction: row;
-              justify-content: flex-start;
-              align-items: flex-start;
               gap: 4px;
-              padding: 0;
               .localTime {
                 height: 16px;
-                flex-grow: 0;
-                font-family: ProximaNova;
                 font-size: 13px;
-                font-weight: normal;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: left;
               }
               .time {
                 height: 16px;
-                flex-grow: 0;
-                font-family: ProximaNova;
                 font-size: 13px;
                 font-weight: bold;
-                font-stretch: normal;
-                font-style: normal;
-                line-height: normal;
-                letter-spacing: normal;
-                text-align: left;
               }
             }
           }
@@ -189,13 +117,8 @@ $teal-blue: #75d2e4;
         .linkFrame {
           height: 40px;
           align-self: stretch;
-          flex-grow: 0;
           display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start;
           gap: 8px;
-          padding: 0;
         }
       }
     }

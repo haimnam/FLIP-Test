@@ -1,5 +1,3 @@
-$black-shade: #292929;
-
 .chatBody {
   width: 834px;
   height: 573px;
@@ -15,21 +13,14 @@ $black-shade: #292929;
     .accounts {
       height: 20px;
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
       gap: 16px;
       margin: 13px 141px 29px 15px;
-      padding: 0;
       .accountFrame {
         height: 70px;
-        flex-grow: 0;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         gap: 4px;
-        padding: 0;
         .lightblue {
           width: 20px;
           height: 20px;
@@ -40,7 +31,6 @@ $black-shade: #292929;
           background-color: lightblue;
           text-decoration: none;
           color: white;
-          margin: 0 0 0 0;
           padding: 3px;
           border: solid 2px rgba(255, 255, 255, 0.6);
         }
@@ -60,28 +50,16 @@ $black-shade: #292929;
         .initial {
           width: 20px;
           opacity: 0.9;
-          font-family: ProximaNova;
           font-size: 10px;
           font-weight: bold;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
           text-align: center;
           color: white;
         }
         .name {
           height: 23px;
           margin: 0 8px 0 0;
-          flex-grow: 0;
-          font-family: ProximaNova;
           font-size: 16px;
           font-weight: bold;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          text-align: left;
           color: #000;
         }
       }
@@ -94,14 +72,7 @@ $black-shade: #292929;
         height: 15px;
         margin: 28px 0px 16px 71px;
         opacity: 0.5;
-        font-family: ProximaNova;
         font-size: 12px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: left;
         color: #000;
       }
       .meetingItem {
@@ -119,28 +90,16 @@ $black-shade: #292929;
         .localTime {
           width: 140px;
           height: 17px;
-          flex-grow: 0;
-          font-family: ProximaNova;
           font-size: 14px;
           font-weight: 600;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
           text-align: center;
           color: #000;
         }
         .convertedTime {
           width: 140px;
           height: 12px;
-          flex-grow: 0;
-          font-family: ProximaNova;
           font-size: 10px;
           font-weight: 600;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
           text-align: center;
           color: rgba(0, 0, 0, 0.5);
         }
@@ -152,151 +111,80 @@ $black-shade: #292929;
     height: 1px;
     margin: 15px 0 13px;
     opacity: 0.1;
-    background-color: $black-shade;
+    background-color: #292929;
   }
   .chatScreen {
-    height: 350px;
     padding: 5px;
     font-size: 13px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: column;
     .chatContainer {
       width: 834px;
-      height: 365px;
+      height: 370px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      gap: 40px;
+      gap: 10px;
       margin: 13px 16px;
-      padding: 0;
       border-radius: 8px;
       .partnerChat {
-        flex-grow: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         gap: 12px;
-        padding: 0;
+        .chatItem {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          .chatBox {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: solid 1px rgba(41, 41, 41, 0.1);
+            .chatMessage {
+              font-size: 13px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: left;
+              color: #292929;
+            }
+          }
+          .number {
+            width: 6px;
+            height: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: right;
+          }
+        }
       }
       .myChat {
+        @extend .partnerChat;
         width: 802px;
-        height: 132px;
-        flex-grow: 0;
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: flex-end;
-        gap: 4px;
-        padding: 0;
-      }
-      .chatItem {
-        flex-grow: 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 6px;
-        padding: 0;
-        .chatBox {
-          flex-grow: 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start;
-          gap: 10px;
-          padding: 10px;
-          border-radius: 8px;
-          border: solid 1px rgba(41, 41, 41, 0.1);
-          .chatMessage {
-            flex-grow: 0;
-            font-family: ProximaNova;
-            font-size: 13px;
-            font-weight: normal;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
-            color: #292929;
-          }
-        }
-        .number {
-          width: 6px;
-          height: 12px;
-          flex-grow: 0;
-          font-family: ProximaNova;
-          font-size: 10px;
-          font-weight: 600;
-          font-stretch: normal;
-          font-style: normal;
-          line-height: normal;
-          letter-spacing: normal;
-          text-align: right;
-          color: $black-shade;
-        }
-      }
-      .chatMyItem {
-        flex-grow: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 4px;
-        padding: 0;
-        .numberTime {
-          flex-grow: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
+        .chatItem {
           align-items: flex-end;
-          padding: 0;
-          .number {
-            flex-grow: 0;
-            font-family: ProximaNova;
-            font-size: 10px;
-            font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: right;
-            color: $black-shade;
+          .numberTime {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            .time {
+              opacity: 0.5;
+              font-size: 10px;
+              font-weight: 600;
+              text-align: right;
+            }
           }
-          .time {
-            flex-grow: 0;
-            opacity: 0.5;
-            font-family: ProximaNova;
-            font-size: 10px;
-            font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: right;
-            color: $black-shade;
-          }
-        }
-        .chatBox {
-          flex-grow: 0;
-          display: flex;
-          flex-direction: row;
-          justify-content: flex-start;
-          align-items: flex-start;
-          gap: 10px;
-          padding: 10px;
-          border-radius: 8px;
-          background-color: #f2f4f7;
-          .chatMessage {
-            flex-grow: 0;
-            font-family: ProximaNova;
-            font-size: 13px;
-            font-weight: 600;
-            font-stretch: normal;
-            font-style: normal;
-            line-height: normal;
-            letter-spacing: normal;
-            text-align: left;
-            color: $black-shade;
+          .chatBox {
+            background-color: #f2f4f7;
+            border: none;
           }
         }
       }
@@ -306,19 +194,14 @@ $black-shade: #292929;
       width: 802px;
       height: 36px;
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
       align-items: center;
       gap: 10px;
-      margin: 13px 16px 0;
+      margin: 16px 16px 0;
       padding: 0 2px 0 0;
       border-radius: 8px;
       input {
         flex-grow: 1;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
         gap: 10px;
         padding: 10px 8px 10px 16px;
         border-radius: 8px;
@@ -328,7 +211,6 @@ $black-shade: #292929;
       .sendIcon {
         width: 24px;
         height: 24px;
-        flex-grow: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;

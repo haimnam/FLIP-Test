@@ -16,7 +16,10 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
     <div className={styles.sidebarWrapper}>
       <div className={styles.sidebar}>
         <div className={styles.frameLogo}>
-          <img src="img/logo/Logo.png" className={styles.logo} />
+          <img
+            src={process.env.PUBLIC_URL + "/img/logo/Logo.png"}
+            className={styles.logo}
+          />
           <div className={styles.class}>Class</div>
         </div>
         <div className={styles.frameSwitch}>

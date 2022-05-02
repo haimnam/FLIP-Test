@@ -36,24 +36,14 @@ const ClassInformation = () => {
           <span className={styles.daysLeft}>2 days 5 hours left</span>
         </div>
         <div className={styles.checkFrame}>
-          <div className={styles.checkRow}>
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-          </div>
-          <div className={styles.checkRow}>
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-          </div>
-          <div className={styles.checkRow}>
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-            <img src="img/check/attendance.png" className={styles.logo} />
-          </div>
+          {[...Array(3)].map(() => (
+            <div className={styles.checkRow}>
+              <img src="img/check/attendance.png" className={styles.logo} />
+              <img src="img/check/attendance.png" className={styles.logo} />
+              <img src="img/check/attendance.png" className={styles.logo} />
+              <img src="img/check/attendance.png" className={styles.logo} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

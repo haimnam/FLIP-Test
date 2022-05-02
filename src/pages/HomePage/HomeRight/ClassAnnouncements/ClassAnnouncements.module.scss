@@ -1,12 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
-$black-shade: #292929;
-
 .classAnnouncements {
   width: 361px;
   height: 180px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: stretch;
   gap: 16px;
   margin: 14px 16px 19px;
@@ -17,33 +13,21 @@ $black-shade: #292929;
   .announcementsHead {
     height: 24px;
     align-self: stretch;
-    flex-grow: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
     gap: 32px;
-    padding: 0;
     .title {
       height: 24px;
       flex-grow: 1;
       opacity: 0.2;
-      font-family: ProximaNova;
       font-size: 16px;
       font-weight: bold;
-      font-stretch: normal;
-      font-style: normal;
       line-height: 1.5;
-      letter-spacing: normal;
-      text-align: left;
-      color: $black-shade;
     }
     .classBtn {
       width: 49px;
       height: 20px;
-      flex-grow: 0;
       display: flex;
-      flex-direction: row;
       justify-content: center;
       align-items: center;
       gap: 10px;
@@ -52,24 +36,15 @@ $black-shade: #292929;
       background-color: rgba(219, 219, 219, 0);
       .seeAll {
         height: 16px;
-        flex-grow: 0;
         opacity: 0.1;
-        font-family: ProximaNova;
         font-size: 13px;
         font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        text-align: left;
-        color: $black-shade;
       }
     }
   }
   .announcementsBody {
     height: 120px;
     align-self: stretch;
-    flex-grow: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,53 +56,29 @@ $black-shade: #292929;
     .announcementsContents {
       height: 63px;
       align-self: stretch;
-      flex-grow: 0;
-      font-family: ProximaNova;
       font-size: 14px;
-      font-weight: normal;
-      font-stretch: normal;
-      font-style: normal;
       line-height: 1.5;
-      letter-spacing: normal;
-      text-align: left;
       color: rgba(41, 41, 41, 0.8);
     }
     .footer {
       height: 21px;
       align-self: stretch;
-      flex-grow: 0;
       display: flex;
-      flex-direction: row;
       justify-content: flex-end;
       align-items: center;
       gap: 8px;
-      padding: 0;
       .flip {
         width: 27px;
         height: 21px;
-        flex-grow: 0;
-        font-family: ProximaNova;
         font-size: 14px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.5;
-        letter-spacing: normal;
-        text-align: left;
         color: rgba(41, 41, 41, 0.8);
       }
       .announcedDate {
         width: 117px;
         height: 21px;
-        flex-grow: 0;
-        font-family: ProximaNova;
         font-size: 14px;
-        font-weight: normal;
-        font-stretch: normal;
-        font-style: normal;
         line-height: 1.5;
-        letter-spacing: normal;
-        text-align: left;
         color: rgba(41, 41, 41, 0.8);
       }
     }

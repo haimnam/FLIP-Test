@@ -2,48 +2,38 @@ import React from "react";
 import styles from "./Chat.module.scss";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { AccountData } from "../AccountData.tsx";
-import { Link, Routes, Route } from "react-router-dom";
+import { PartnerInfoData } from "../PartnerInfoData.tsx";
 
-const ChatInfo = ({ selectAccount, partnerInfoData, selectedPartner }) => {
+const ChatInfo = ({ meetingTimesData }) => {
   dayjs.extend(advancedFormat);
-  const currentPartner = partnerInfoData.find(
-    (partner) => partner.id === selectedPartner
-  );
 
   return (
     <div className={styles.chatInfo}>
       <div className={styles.accounts}>
-        {AccountData.map((account) => (
-          <div key={account.id} className={styles.accountFrame}>
-            <Link
-              to={`/schedule/account?id=${account.id}`}
-              className={styles[account.color]}
-              onClick={() => selectAccount(account.id)}
-            >
-              <span className={styles.initial}>{account.initial}</span>
-            </Link>
-            <span className={styles.name}>{account.name}</span>
+        {PartnerInfoData.map((partner) => (
+          <div key={partner.id} className={styles.accountFrame}>
+            <div className={styles[partner.color]}>
+              <span className={styles.initial}>{partner.initial}</span>
+            </div>
+            <span className={styles.name}>{partner.firstName}</span>
           </div>
         ))}
         <div className={styles.meeting}>
           <span className={styles.weekly}>Weekly meetings on</span>
-          {currentPartner.meetingTimes.map((time) => (
+          {meetingTimesData.map((time) => (
             <div key={time.id} className={styles.meetingItem}>
               <span className={styles.localTime}>
                 {time.time.format("dddd h:mm a")}
               </span>
               <span className={styles.convertedTime}>
-                {time.time.tz(currentPartner.timeZone).format("dddd h:mm a z")}
+                {time.time
+                  .tz(PartnerInfoData[0].timeZone)
+                  .format("dddd h:mm a z")}
               </span>
             </div>
           ))}
         </div>
       </div>
-
-      <Routes>
-        <Route path="/schedule/account?id=:accountId" />
-      </Routes>
     </div>
   );
 };

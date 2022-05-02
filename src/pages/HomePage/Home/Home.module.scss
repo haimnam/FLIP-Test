@@ -9,18 +9,17 @@
   background-color: #fafbfc;
   .home {
     display: flex;
+    .homeLeft {
+      width: 700px;
+      height: 100%;
+      .calendarUser {
+        display: flex;
+      }
+    }
+    .homeRight {
+      width: 600px;
+      height: 100%;
+      display: flex;
+    }
   }
-}
-
-.homeLeft {
-  width: 700px;
-  height: 100%;
-  .calendarUser {
-    display: flex;
-  }
-}
-.homeRight {
-  width: 600px;
-  height: 100%;
-  display: flex;
 }
