@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Chat.module.scss";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import Profile from "../../../Components/Profile/Profile.tsx";
 import { PartnerInfoData } from "../PartnerInfoData.tsx";
 
 const ChatInfo = ({ meetingTimesData }) => {
@@ -12,9 +13,7 @@ const ChatInfo = ({ meetingTimesData }) => {
       <div className={styles.accounts}>
         {PartnerInfoData.map((partner) => (
           <div key={partner.id} className={styles.accountFrame}>
-            <div className={styles[partner.color]}>
-              <span className={styles.initial}>{partner.initial}</span>
-            </div>
+            <Profile color={partner.color} initial={partner.initial} />
             <span className={styles.name}>{partner.firstName}</span>
           </div>
         ))}

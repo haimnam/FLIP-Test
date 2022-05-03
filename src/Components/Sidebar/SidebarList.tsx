@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.scss";
 import SidebarItem from "./SidebarItem.tsx";
+import Profile from "../Profile/Profile.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { SidebarData } from "./SidebarData.tsx";
 import {
@@ -44,9 +45,7 @@ const SidebarList = ({ userLogin, myInfo }) => {
       </div>
       {userLogin && (
         <div className={styles.account}>
-          <div className={styles[myInfo.color]}>
-            <div className={styles.initial}>{myInfo.initial}</div>
-          </div>
+          <Profile color={myInfo.color} initial={myInfo.initial} />
           <div className={styles.name}>{myInfo.name}</div>
         </div>
       )}

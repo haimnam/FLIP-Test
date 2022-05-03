@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Chat.module.scss";
+import Profile from "../../../Components/Profile/Profile.tsx";
 import { ChatData } from "../ChatData.tsx";
 import dayjs from "dayjs";
 
@@ -24,7 +25,7 @@ const ChatScreen = ({ chat }) => {
         ) : (
           <div key={c.id} className={styles.partnerChat}>
             <div className={styles.chatItem}>
-              <div className={styles.initial}>{c.user}</div>
+              <Profile color={c.color} initial={c.user} />
               <div className={styles.chatBox}>
                 <span className={styles.chatMessage}>{c.chat}</span>
               </div>

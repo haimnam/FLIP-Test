@@ -3,6 +3,7 @@ import styles from "./Timezone.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 import Updown from "./Updown.tsx";
 import { PartnerInfoData } from "../../PartnerInfoData.tsx";
 
@@ -49,7 +50,11 @@ const Timezone = ({ myInfo }) => {
         {users.map((user) => (
           <div className={styles.converterItem}>
             <div className={styles.city}>
-              <div className={styles.initial}>{user.user.initial}</div>
+              <Profile
+                color={user.user.color}
+                initial={user.user.initial}
+                size="small"
+              />
               <span className={styles.cityName}>{user.user.city}</span>
             </div>
             <div className={styles.time}>

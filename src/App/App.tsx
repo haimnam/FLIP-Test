@@ -27,7 +27,7 @@ const App = () => {
     name: "Haim",
     city: "Seoul",
     timeZone: "Asia/Seoul",
-    color: "green",
+    color: "yellowGreen",
   };
 
   return (

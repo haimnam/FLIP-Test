@@ -6,6 +6,7 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import InfoIcon from "@mui/icons-material/Info";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 import { PartnerInfoData } from "../../PartnerInfoData.tsx";
 
 const PreferredTimes = ({
@@ -36,7 +37,10 @@ const PreferredTimes = ({
     if (isChecked) {
       checkedItems.add(id * 1);
       console.log(timesData);
-      if (timesData.find((data) => data.id === id * 1).isPartnerPick) {
+      if (
+        timesData.find((data) => data.id === id * 1).isPartnerPick[0] &&
+        timesData.find((data) => data.id === id * 1).isPartnerPick[1]
+      ) {
         changeTimeState(id, "FINALIZE");
       } else {
         changeTimeState(id, "");
@@ -94,13 +98,19 @@ const PreferredTimes = ({
                 </span>
               </div>
               <div className={styles.partnerPick}>
-                <div
-                  className={
-                    time.isPartnerPick ? styles[PartnerInfoData[0].color] : null
-                  }
-                >
-                  {time.isPartnerPick && PartnerInfoData[0].initial}
-                </div>
+                {time.isPartnerPick[0] ? (
+                  <Profile
+                    color={PartnerInfoData[0].color}
+                    initial={PartnerInfoData[0].initial}
+                  />
+                ) : null}
+                {time.isPartnerPick[1] ? (
+                  <Profile
+                    color={PartnerInfoData[1].color}
+                    initial={PartnerInfoData[1].initial}
+                    position={true}
+                  />
+                ) : null}
               </div>
               <div
                 className={

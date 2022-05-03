@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Notes.module.scss";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 import { NotesData } from "./NotesData.tsx";
 
 const Notes = () => {
@@ -18,10 +19,13 @@ const Notes = () => {
           <div className={styles.noteHead}>
             <div className={styles.noteHeadFrame}>
               <div className={styles.icons}>
-                {note.accounts.map((account) => (
-                  <div className={styles.icon}>
-                    <span className={styles.initial}>{account}</span>
-                  </div>
+                {note.accounts.map((account, index) => (
+                  <Profile
+                    color={account.color}
+                    initial={account.initial}
+                    size="small"
+                    position={index === 0 ? true : false}
+                  />
                 ))}
               </div>
               <span className={styles.uploadDate}>{note.date}</span>

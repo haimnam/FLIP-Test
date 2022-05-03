@@ -38,7 +38,7 @@ export const PartnerInfoData: PartnerType[] = [
     firstName: "Samuel",
     lastName: "Jeong",
     initial: "SJ",
-    color: "lightblue",
+    color: "tealBlue",
     native: "KOR",
     learning: "ENG",
     localTime: "Seoul +14hrs",

@@ -83,23 +83,6 @@
           height: 24px;
           display: flex;
           align-items: center;
-          gap: 10px;
-          .lightblue {
-            color: white;
-            margin-left: 15px;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: lightblue;
-            font-size: 12px;
-          }
-          .red {
-            @extend .lightblue;
-            background-color: red;
-          }
         }
         .state {
           width: 68px;

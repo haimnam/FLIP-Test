@@ -7,7 +7,7 @@ dayjs.extend(timezone);
 export type TimesType = {
   id: number;
   time: object;
-  isPartnerPick: boolean;
+  isPartnerPick: boolean[];
   isChecked: boolean;
   state: string;
   print: string;
@@ -17,7 +17,7 @@ export const TimesData: TimesType[] = [
   {
     id: 1,
     time: dayjs().set("day", 1).set("hour", 12).set("minute", 0),
-    isPartnerPick: false,
+    isPartnerPick: [true, false],
     isChecked: false,
     state: "",
     print: "",
@@ -25,7 +25,7 @@ export const TimesData: TimesType[] = [
   {
     id: 2,
     time: dayjs().set("day", 1).set("hour", 13).set("minute", 0),
-    isPartnerPick: true,
+    isPartnerPick: [true, true],
     isChecked: false,
     state: "Finalize",
     print: "Finalize",
@@ -33,7 +33,7 @@ export const TimesData: TimesType[] = [
   {
     id: 3,
     time: dayjs().set("day", 1).set("hour", 14).set("minute", 0),
-    isPartnerPick: true,
+    isPartnerPick: [true, true],
     isChecked: false,
     state: "Finalize",
     print: "Finalize",

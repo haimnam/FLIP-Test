@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Classmates.module.scss";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 
 const Classmates = () => {
   return (
@@ -14,9 +15,7 @@ const Classmates = () => {
         <div className={styles.classmatesBody}>
           {[...Array(9)].map(() => (
             <div className={styles.classmate}>
-              <div className={styles.icon}>
-                <span className={styles.initial}>SJ</span>
-              </div>
+              <Profile color="brown" initial="AR" />
               <div className={styles.classmateInfo}>
                 <span className={styles.name}>Annabelle</span>
                 <span className={styles.lang}>

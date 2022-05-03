@@ -3,6 +3,7 @@ import styles from "./UserInfo.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 import { Routes, Route, Link } from "react-router-dom";
 import { ScheduleAndChat, Session } from "../../../pageIndex.tsx";
 import { PartnerInfoData } from "../../../ScheduleAndChatPage/PartnerInfoData.tsx";
@@ -28,9 +29,7 @@ const UserInfo = () => {
             <div className={styles.partnerCard}>
               <div className={styles.partnerFrame}>
                 <div className={styles.partnerInfoHead}>
-                  <div className={styles.partnerIcon}>
-                    <span className={styles.initial}>{partner.initial}</span>
-                  </div>
+                  <Profile color={partner.color} initial={partner.initial} />
                   <span className={styles.languageInfo}>
                     native{" "}
                     <span className={styles.languageBold}>

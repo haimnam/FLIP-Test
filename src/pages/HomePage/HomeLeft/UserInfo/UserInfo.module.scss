@@ -51,30 +51,12 @@ $tealBlue: #75d2e4;
             justify-content: center;
             align-items: center;
             gap: 16px;
-            .partnerIcon {
-              width: 30px;
-              height: 30px;
-              margin: 0 16px 0 0;
-              border: solid 2px white;
-              background-color: $tealBlue;
-              border-radius: 50%;
-              display: flex;
-              text-align: center;
-              align-items: center;
-              .initial {
-                width: 30px;
-                height: 16.3px;
-                opacity: 0.8;
-                font-size: 12px;
-                font-weight: 600;
-                color: white;
-              }
-            }
             .languageInfo {
               height: 30px;
               flex-grow: 1;
               font-size: 12px;
               text-align: right;
+              margin: 0 0 0 16px;
               .languageBold {
                 font-weight: bold;
               }
