@@ -1,9 +1,22 @@
-.contents {
-  display: flex;
-  padding: 50px;
+button {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+textarea {
+  resize: none;
 }
 
-.learnings {
-  width: 500px;
-  height: 100%;
+.learning {
+  display: flex;
+}
+
+.noWords {
+  color: grey;
+  font-weight: bold;
+  margin-top: 400px;
+  width: 600px;
+  margin-left: 50px;
+  font-size: 25px;
 }

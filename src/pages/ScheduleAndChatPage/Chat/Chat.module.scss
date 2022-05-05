@@ -1,135 +1,190 @@
 .chatBody {
-  width: 650px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
+  width: 834px;
+  height: 573px;
+  margin: 20px -30px 24px 0px;
+  padding: 0 0 16px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px 0 rgba(233, 236, 242, 0.5);
   background-color: white;
-  padding: 10px;
-  box-shadow: 4px 4px 4px 4px rgb(208, 209, 198);
   .chatInfo {
+    height: 64px;
     font-weight: bold;
     font-size: 13px;
-    .partnerInfo {
-      height: 70px;
+    .accounts {
+      height: 20px;
       display: flex;
-      color: rgb(196, 193, 193);
-      padding-bottom: 10px;
-      .partnerMain {
-        width: 25%;
-        color: black;
-        padding: 10px 0px;
-      }
-      .partnerSub {
-        width: 25%;
-        padding: 10px 0px;
-      }
-      .partnerUniv {
-        width: 25%;
-        padding: 10px 0px;
-      }
-      .partnerTaste {
-        width: 25%;
+      gap: 16px;
+      margin: 13px 141px 29px 15px;
+      .accountFrame {
+        height: 70px;
         display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 1px 1px;
-        .partnerTasteItem {
-          border: 1px solid rgb(196, 193, 193);
-          padding: 0px 5px;
-          border-radius: 20px;
-        }
-        .partnerTasteItemLighter {
-          border: 1px solid rgb(223, 223, 223);
-          color: rgb(223, 223, 223);
-          padding: 0px 5px;
-          border-radius: 20px;
+        align-items: center;
+        gap: 4px;
+        .name {
+          height: 23px;
+          margin: 0 8px 0 0;
+          font-size: 16px;
+          font-weight: bold;
+          color: #000;
         }
       }
     }
-    .regularMeeting {
-      border-top: 2px solid lightgrey;
-      text-align: center;
-      padding-top: 10px;
-      .meetingContainer {
+
+    .meeting {
+      display: flex;
+      .weekly {
+        width: 120px;
+        height: 15px;
+        margin: 28px 0px 16px 71px;
+        opacity: 0.5;
+        font-size: 12px;
+        color: #000;
+      }
+      .meetingItem {
+        width: 140px;
+        height: 47px;
         display: flex;
-        gap: 5px;
+        flex-direction: column;
         justify-content: center;
-        .meetingItem {
-          margin-top: 10px;
-          border: 2px solid black;
-          padding: 0px 10px;
-          padding-bottom: 5px;
-          color: grey;
+        align-items: center;
+        gap: 2px;
+        margin: 0 0 15px 15px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: solid 2px #000;
+        .localTime {
+          width: 140px;
+          height: 17px;
+          font-size: 14px;
+          font-weight: 600;
+          text-align: center;
+          color: #000;
+        }
+        .convertedTime {
+          width: 140px;
+          height: 12px;
           font-size: 10px;
-          border-radius: 10px;
-          background-color: rgb(248, 243, 233);
+          font-weight: 600;
+          text-align: center;
+          color: rgba(0, 0, 0, 0.5);
         }
       }
     }
   }
+  .line {
+    width: 834px;
+    height: 1px;
+    margin: 15px 0 13px;
+    opacity: 0.1;
+    background-color: #292929;
+  }
   .chatScreen {
-    height: 350px;
     padding: 5px;
     font-size: 13px;
-    font-weight: bold;
+    display: flex;
+    flex-direction: column;
     .chatContainer {
-      height: 330px;
-      padding-top: 10px;
-      .chatItem {
-        .chatBox {
+      width: 834px;
+      height: 370px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 13px 16px;
+      border-radius: 8px;
+      .partnerChat {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 12px;
+        .chatItem {
           display: flex;
-          gap: 5px;
-          margin-bottom: 5px;
-          .chatMessage {
-            background-color: rgb(248, 243, 233);
-            padding: 8px;
-            border-radius: 5px;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          .chatBox {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: solid 1px rgba(41, 41, 41, 0.1);
+            .chatMessage {
+              font-size: 13px;
+              font-weight: normal;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              text-align: left;
+              color: #292929;
+            }
           }
-          .chatTime {
-            padding-top: 20px;
+          .number {
+            width: 6px;
+            height: 12px;
             font-size: 10px;
-            color: rgb(99, 99, 99);
+            font-weight: 600;
+            text-align: right;
           }
         }
       }
-      .chatMyItem {
-        .chatBox {
-          display: flex;
-          flex-direction: row-reverse;
-          gap: 5px;
-          margin-bottom: 5px;
-          .chatMessage {
-            background-color: orange;
-            padding: 8px;
-            border-radius: 5px;
+      .myChat {
+        @extend .partnerChat;
+        width: 802px;
+        justify-content: center;
+        align-items: flex-end;
+        .chatItem {
+          align-items: flex-end;
+          .numberTime {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            .time {
+              opacity: 0.5;
+              font-size: 10px;
+              font-weight: 600;
+              text-align: right;
+            }
           }
-          .chatTime {
-            padding-top: 20px;
-            font-size: 10px;
-            margin-left: auto;
-            color: rgb(99, 99, 99);
+          .chatBox {
+            background-color: #f2f4f7;
+            border: none;
           }
         }
       }
     }
 
     .chatInput {
-      height: 30px;
+      width: 802px;
+      height: 36px;
       display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 16px 0;
+      padding: 0 2px 0 0;
+      border-radius: 8px;
       input {
-        width: 95%;
-        height: 100%;
-        border-radius: 5px 0px 0px 5px;
-        background-color: rgb(248, 243, 233);
+        flex-grow: 1;
+        display: flex;
+        gap: 10px;
+        padding: 10px 8px 10px 16px;
+        border-radius: 8px;
         border-style: none;
-        padding: 0px 10px;
-        font-weight: bold;
+        background-color: #f2f4f7;
       }
       .sendIcon {
-        color: orange;
-        border: none;
-        background-color: rgb(248, 243, 233);
-        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        object-fit: contain;
+        color: #f2f4f7;
       }
     }
   }

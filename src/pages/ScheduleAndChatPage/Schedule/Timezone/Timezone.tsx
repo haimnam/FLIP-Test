@@ -3,113 +3,83 @@ import styles from "./Timezone.module.scss";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import Profile from "../../../../Components/Profile/Profile.tsx";
 import Updown from "./Updown.tsx";
-import { ConverterData } from "./ConverterData.tsx";
+import { PartnerInfoData } from "../../PartnerInfoData.tsx";
 
-const Timezone = ({
-  myInfo,
-  selectedPartner,
-  nowPartner,
-  setNowPartner,
-  cityPartner,
-}) => {
+const Timezone = ({ myInfo }) => {
   dayjs.extend(utc);
   dayjs.extend(timezone);
 
   const [nowUser, setNowUser] = useState(dayjs().tz(myInfo.timeZone));
+  const [nowPartner1, setNowPartner1] = useState(
+    dayjs().tz(PartnerInfoData[0].timeZone)
+  );
+  const [nowPartner2, setNowPartner2] = useState(
+    dayjs().tz(PartnerInfoData[1].timeZone)
+  );
+  const users = [
+    { user: myInfo, now: nowUser },
+    { user: PartnerInfoData[0], now: nowPartner1 },
+    { user: PartnerInfoData[1], now: nowPartner2 },
+  ];
+
   const setNow = () => {
     setNowUser(dayjs().tz(myInfo.timeZone));
-    if (selectedPartner === 1) {
-      setNowPartner(dayjs());
-    } else {
-      setNowPartner(dayjs().tz(myInfo.timeZone));
-    }
+    setNowPartner1(dayjs().tz(PartnerInfoData[0].timeZone));
+    setNowPartner2(dayjs().tz(PartnerInfoData[1].timeZone));
   };
   const changeTime = (unit: string, dir: number) => {
-    if (unit === "D") {
-      setNowPartner(nowPartner.add(dir * 24, "h"));
-      setNowUser(nowUser.add(dir * 24, "h"));
-    } else {
-      setNowPartner(nowPartner.add(dir, unit));
-      setNowUser(nowUser.add(dir, unit));
-    }
+    setNowUser(nowUser.add(dir, unit));
+    setNowPartner1(nowPartner1.add(dir, unit));
+    setNowPartner2(nowPartner2.add(dir, unit));
   };
 
   return (
     <div className={styles.timezone}>
-      <h2>Timezone converter</h2>
+      <div className={styles.timezoneHead}>
+        <span className={styles.title}>Timezone converter</span>
+        <div className={styles.options}>
+          <span className={styles.option}>am/pm</span>
+          <span className={styles.option} onClick={setNow}>
+            now
+          </span>
+        </div>
+      </div>
       <div className={styles.converterContainer}>
-        <div className={styles.converterItemColored}>
-          <div className={styles.city}>
-            <div className={styles.cityName}>{myInfo.city}</div>
-            <div className={styles.now} onClick={setNow}>
-              now
+        {users.map((user) => (
+          <div className={styles.converterItem}>
+            <div className={styles.city}>
+              <Profile
+                color={user.user.color}
+                initial={user.user.initial}
+                size="small"
+              />
+              <span className={styles.cityName}>{user.user.city}</span>
+            </div>
+            <div className={styles.time}>
+              <Updown
+                setUp={() => changeTime("h", 1)}
+                setDown={() => changeTime("h", -1)}
+              />
+              <span className={styles.hour}>{user.now.format("hh")}</span>
+              <span className={styles.min}>{user.now.format("mm")}</span>
+              <Updown
+                setUp={() => changeTime("m", 1)}
+                setDown={() => changeTime("m", -1)}
+              />
+              <div className={styles.ampm}>{user.now.format("a")}</div>
+            </div>
+            <div className={styles.dateWrapper}>
+              <div className={styles.dateInfo}>
+                <span className={styles.date}>
+                  {user.now.format("MM")}/{user.now.format("DD")}
+                </span>
+                <span className={styles.day}>{user.now.format("dddd")}</span>
+              </div>
             </div>
           </div>
-          <div className={styles.time}>
-            {ConverterData.time.map((t) => (
-              <div key={t.id} className={styles.updownWrapper}>
-                <div>{nowUser.format(t.format)}</div>
-                <Updown
-                  width="17px"
-                  height="15px"
-                  setUp={() => changeTime(t.unit, 1)}
-                  setDown={() => changeTime(t.unit, -1)}
-                />
-              </div>
-            ))}
-            <div className={styles.ampm}>{nowUser.format("a")}</div>
-          </div>
-          <div className={styles.date}>
-            {ConverterData.date.map((d) => (
-              <div key={d.id} className={styles.updownWrapper}>
-                <div>{nowUser.format(d.format)}</div>
-                <Updown
-                  width="15px"
-                  height="10px"
-                  setUp={() => changeTime(d.unit, 1)}
-                  setDown={() => changeTime(d.unit, -1)}
-                />
-                <div>{d.slash}</div>
-              </div>
-            ))}
-            <div className={styles.day}>{nowUser.format("dddd")}</div>
-          </div>
-        </div>
-        <div className={styles.converterItem}>
-          <div className={styles.city}>
-            <div className={styles.cityName}>{cityPartner}</div>
-          </div>
-          <div className={styles.time}>
-            {ConverterData.time.map((t) => (
-              <div key={t.id} className={styles.updownWrapper}>
-                <div>{nowPartner.format(t.format)}</div>
-                <Updown
-                  width="17px"
-                  height="15px"
-                  setUp={() => changeTime(t.unit, 1)}
-                  setDown={() => changeTime(t.unit, -1)}
-                />
-              </div>
-            ))}
-            <div className={styles.ampm}>{nowPartner.format("a")}</div>
-          </div>
-          <div className={styles.date}>
-            {ConverterData.date.map((d) => (
-              <div key={d.id} className={styles.updownWrapper}>
-                <div>{nowPartner.format(d.format)}</div>
-                <Updown
-                  width="15px"
-                  height="10px"
-                  setUp={() => changeTime(d.unit, 1)}
-                  setDown={() => changeTime(d.unit, -1)}
-                />
-                <div>{d.slash}</div>
-              </div>
-            ))}
-            <div className={styles.day}>{nowPartner.format("dddd")}</div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

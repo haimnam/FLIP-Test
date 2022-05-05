@@ -4,22 +4,9 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type TasteType = {
-  id: number;
-  isValid: boolean;
-  taste: string;
-};
 export type MeetingTimesType = {
   id: number;
   time: object;
-};
-export type TimesType = {
-  id: number;
-  time: object;
-  isPartnerPick: boolean;
-  isChecked: boolean;
-  state: string;
-  print: string;
 };
 type ChatType = {
   id: number;
@@ -27,20 +14,20 @@ type ChatType = {
 };
 type PartnerType = {
   id: number;
-  name: string;
-  nickname: string;
+  firstName: string;
+  lastName: string;
+  initial: string;
+  color: string;
+  native: string;
+  learning: string;
   localTime: string;
+  city: string;
   timeZone: string;
   nationality: string;
-  course: string;
   email: string;
   univ: string;
   major: string;
-  taste: TasteType[];
-  curWeek: number;
-  totalWeeks: number;
   meetingTimes: MeetingTimesType[];
-  timesData: TimesType[];
   partnerChat: ChatType[];
   myChat: ChatType[];
 };
@@ -48,55 +35,20 @@ type PartnerType = {
 export const PartnerInfoData: PartnerType[] = [
   {
     id: 1,
-    name: "Samuel Jeong",
-    nickname: "Sam",
+    firstName: "Samuel",
+    lastName: "Jeong",
+    initial: "SJ",
+    color: "tealBlue",
+    native: "KOR",
+    learning: "ENG",
     localTime: "Seoul +14hrs",
-    timeZone: "Asia/Seoul",
+    city: "New York",
+    timeZone: "America/New_York",
     nationality: "Korean",
-    course: "Korean - English",
     email: "sammy98@snu.ac.kr",
     univ: "Seoul National University",
     major: "German Education",
-    taste: [
-      { id: 1, isValid: true, taste: "reading" },
-      { id: 2, isValid: true, taste: "for" },
-      { id: 3, isValid: true, taste: "fun" },
-      { id: 4, isValid: false, taste: "interests" },
-      { id: 5, isValid: false, taste: "are" },
-      { id: 6, isValid: true, taste: "various" },
-      { id: 7, isValid: true, taste: "are" },
-      { id: 8, isValid: false, taste: "various" },
-      { id: 9, isValid: true, taste: "fields" },
-    ],
-    curWeek: 3,
-    totalWeeks: 6,
     meetingTimes: [],
-    timesData: [
-      {
-        id: 1,
-        time: dayjs().set("day", 1).set("hour", 12).set("minute", 0),
-        isPartnerPick: false,
-        isChecked: false,
-        state: "",
-        print: "",
-      },
-      {
-        id: 2,
-        time: dayjs().set("day", 1).set("hour", 13).set("minute", 0),
-        isPartnerPick: true,
-        isChecked: false,
-        state: "Finalize",
-        print: "Finalize",
-      },
-      {
-        id: 3,
-        time: dayjs().set("day", 1).set("hour", 14).set("minute", 0),
-        isPartnerPick: true,
-        isChecked: false,
-        state: "Finalize",
-        print: "Finalize",
-      },
-    ],
     partnerChat: [
       { id: 1, chat: "hello! how are you doing?" },
       { id: 2, chat: "it is really nice to meet you!" },
@@ -110,63 +62,28 @@ export const PartnerInfoData: PartnerType[] = [
 
   {
     id: 2,
-    name: "Sungmin Choi",
-    nickname: "Sungmin",
+    firstName: "Sungmin",
+    lastName: "Choi",
+    initial: "SC",
+    color: "red",
+    native: "KOR",
+    learning: "ENG",
     localTime: "New York +3hrs",
+    city: "New York",
     timeZone: "America/New_York",
     nationality: "Korean",
-    course: "Korean - English",
     email: "sc98@cu.com",
     univ: "The Cooper Union",
     major: "Design",
-    taste: [
-      { id: 1, isValid: true, taste: "cooking" },
-      { id: 2, isValid: true, taste: "for" },
-      { id: 3, isValid: true, taste: "fun" },
-      { id: 4, isValid: false, taste: "interests" },
-      { id: 5, isValid: false, taste: "are" },
-      { id: 6, isValid: true, taste: "various" },
-      { id: 7, isValid: true, taste: "are" },
-      { id: 8, isValid: false, taste: "various" },
-      { id: 9, isValid: true, taste: "fields" },
-    ],
-    curWeek: 4,
-    totalWeeks: 8,
     meetingTimes: [],
-    timesData: [
-      {
-        id: 1,
-        time: dayjs().set("day", 3).set("hour", 8).set("minute", 0),
-        isPartnerPick: false,
-        isChecked: false,
-        state: "",
-        print: "",
-      },
-      {
-        id: 2,
-        time: dayjs().set("day", 3).set("hour", 9).set("minute", 0),
-        isPartnerPick: true,
-        isChecked: false,
-        state: "Finalize",
-        print: "Finalize",
-      },
-      {
-        id: 3,
-        time: dayjs().set("day", 3).set("hour", 10).set("minute", 0),
-        isPartnerPick: true,
-        isChecked: false,
-        state: "Finalize",
-        print: "Finalize",
-      },
-    ],
     partnerChat: [
-      { id: 1, chat: "a" },
-      { id: 2, chat: "b" },
-      { id: 3, chat: "c" },
+      { id: 1, chat: "how" },
+      { id: 2, chat: "are" },
+      { id: 3, chat: "you?" },
     ],
     myChat: [
-      { id: 1, chat: "d" },
-      { id: 2, chat: "e" },
+      { id: 1, chat: "I'm" },
+      { id: 2, chat: "okay" },
     ],
   },
 ];

@@ -1,0 +1,99 @@
+.partnerIcon {
+  width: 30px;
+  height: 30px;
+  border: solid 2px white;
+  border-radius: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background-color: black;
+  position: relative;
+  z-index: 20;
+  .initial {
+    width: 30px;
+    height: 16.3px;
+    opacity: 0.8;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+.tealBlue {
+  @extend .partnerIcon;
+  background-color: #75d2e4;
+}
+.red {
+  @extend .partnerIcon;
+  background-color: red;
+}
+.yellowGreen {
+  @extend .partnerIcon;
+  background-color: yellowgreen;
+}
+.brown {
+  @extend .partnerIcon;
+  background-color: brown;
+}
+
+.tealBlueSmall {
+  @extend .tealBlue;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}
+.redSmall {
+  @extend .red;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}
+.yellowGreenSmall {
+  @extend .yellowGreen;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}
+.brownSmall {
+  @extend .brown;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}
+
+.tealBlueAbs {
+  @extend .tealBlue;
+  position: absolute;
+  margin: 0 0 0 10px;
+}
+.redAbs {
+  @extend .red;
+  position: absolute;
+  margin: 0 0 0 20px;
+  z-index: 10;
+}
+
+.tealBlueAbsSmall {
+  @extend .tealBlueAbs;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}
+.redAbsSmall {
+  @extend .redAbs;
+  width: 15px;
+  height: 15px;
+  .initial {
+    font-size: 6px;
+  }
+}

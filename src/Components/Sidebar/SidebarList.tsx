@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Sidebar.module.scss";
 import SidebarItem from "./SidebarItem.tsx";
+import Profile from "../Profile/Profile.tsx";
 import { Link, useLocation } from "react-router-dom";
 import { SidebarData } from "./SidebarData.tsx";
 import {
@@ -16,7 +17,7 @@ const SidebarList = ({ userLogin, myInfo }) => {
     if (lan === lang) {
       return styles.languageSelected;
     } else {
-      return styles.languages;
+      return styles.language;
     }
   };
 
@@ -25,36 +26,27 @@ const SidebarList = ({ userLogin, myInfo }) => {
       {SidebarData.map((sidebar, key) => (
         <Link className={styles.sidebarLink} key={key} to={sidebar.path}>
           <SidebarItem
+            className={styles.vector}
             sidebar={sidebar}
             isActive={pathName === sidebar.path ? true : false}
           />
         </Link>
       ))}
-      <div className={styles.language}>
-        <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
-          Kor
-        </div>
-        <div className={selectLang("en", lang)} onClick={useSelectEn()}>
-          Eng
-        </div>
-      </div>
       <Link className={styles.login} to="/login">
         LOGIN
       </Link>
+      <div className={styles.languages}>
+        <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
+          <div className={styles.lang}>Kor</div>
+        </div>
+        <div className={selectLang("en", lang)} onClick={useSelectEn()}>
+          <div className={styles.lang}>Eng</div>
+        </div>
+      </div>
       {userLogin && (
         <div className={styles.account}>
-          <div
-            className={
-              styles[
-                myInfo.find((info) => info.name === userLogin.firstName).color
-              ]
-            }
-          >
-            {myInfo.find((info) => info.name === userLogin.firstName).initial}
-          </div>
-          <div>
-            {myInfo.find((info) => info.name === userLogin.firstName).name}
-          </div>
+          <Profile color={myInfo.color} initial={myInfo.initial} />
+          <div className={styles.name}>{myInfo.name}</div>
         </div>
       )}
     </ul>

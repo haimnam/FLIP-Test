@@ -22,22 +22,13 @@ type MyInfoType = {
 
 const App = () => {
   const [userLogin, setUserLogin] = useState<loginType>(null);
-  const myInfo: MyInfoType[] = [
-    {
-      initial: "HN",
-      name: "Haim",
-      city: "Seoul",
-      timeZone: "Asia/Seoul",
-      color: "green",
-    },
-    {
-      initial: "NH",
-      name: "Nahee",
-      city: "New York",
-      timeZone: "America/New_York",
-      color: "brown",
-    },
-  ];
+  const myInfo: MyInfoType = {
+    initial: "HN",
+    name: "Haim",
+    city: "Seoul",
+    timeZone: "Asia/Seoul",
+    color: "yellowGreen",
+  };
 
   return (
     <UserProvider>

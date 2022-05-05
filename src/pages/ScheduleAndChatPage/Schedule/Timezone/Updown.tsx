@@ -1,31 +1,19 @@
 import React from "react";
 import styles from "./Timezone.module.scss";
-import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
-const Updown = ({ width, height, setUp, setDown }) => {
+const Updown = ({ setUp, setDown }) => {
   return (
-    <div className={styles.upDown}>
-      <div style={{ height }}>
-        <KeyboardArrowUp
-          style={{
-            width,
-            overflow: "hidden",
-            marginTop: "-50%",
-          }}
-          onClick={setUp}
-        />
-      </div>
-      <div style={{ height }}>
-        <KeyboardArrowDown
-          style={{
-            width,
-            overflow: "hidden",
-            marginTop: "-50%",
-          }}
-          onClick={setDown}
-        />
-      </div>
+    <div className={styles.updown}>
+      <img
+        src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+        className={styles.upArrow}
+        onClick={setUp}
+      />
+      <img
+        src={process.env.PUBLIC_URL + "/img/arrow/arrow.png"}
+        className={styles.downArrow}
+        onClick={setDown}
+      />
     </div>
   );
 };

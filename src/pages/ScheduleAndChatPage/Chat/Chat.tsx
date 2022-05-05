@@ -13,8 +13,8 @@ type ChatType = {
   chats: Array<ChatsType>;
 };
 
-const Chat = ({ selectedPartner, partnerInfoData }) => {
-  const [nextId, setNextId] = useState<number>(1);
+const Chat = ({ meetingTimesData }) => {
+  const [nextId, setNextId] = useState<number>(6);
   const [chat, setChat] = useState<ChatType>({ input: "", chats: [] });
 
   const onChangeChat = (e) => {
@@ -38,12 +38,10 @@ const Chat = ({ selectedPartner, partnerInfoData }) => {
 
   return (
     <div className={styles.chatBody}>
-      <ChatInfo
-        partnerInfoData={partnerInfoData}
-        selectedPartner={selectedPartner}
-      />
+      <ChatInfo meetingTimesData={meetingTimesData} />
+      <div className={styles.line} />
       <div className={styles.chatScreen}>
-        <ChatScreen chat={chat} selectedPartner={selectedPartner} />
+        <ChatScreen chat={chat} />
         <ChatInput
           chat={chat}
           onChangeChat={onChangeChat}

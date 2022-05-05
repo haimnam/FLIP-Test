@@ -1,0 +1,86 @@
+.classAnnouncements {
+  width: 361px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  margin: 14px 16px 19px;
+  padding: 16px 24px 24px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px 0 rgba(233, 236, 242, 0.5);
+  background-color: white;
+  .announcementsHead {
+    height: 24px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    .title {
+      height: 24px;
+      flex-grow: 1;
+      opacity: 0.2;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    .classBtn {
+      width: 49px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      background-color: rgba(219, 219, 219, 0);
+      .seeAll {
+        height: 16px;
+        opacity: 0.1;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+  }
+  .announcementsBody {
+    height: 120px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 4px;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: rgba(230, 236, 242, 0.3);
+    .announcementsContents {
+      height: 63px;
+      align-self: stretch;
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(41, 41, 41, 0.8);
+    }
+    .footer {
+      height: 21px;
+      align-self: stretch;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      .flip {
+        width: 27px;
+        height: 21px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(41, 41, 41, 0.8);
+      }
+      .announcedDate {
+        width: 117px;
+        height: 21px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(41, 41, 41, 0.8);
+      }
+    }
+  }
+}

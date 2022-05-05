@@ -2,52 +2,33 @@ import React from "react";
 import styles from "./Chat.module.scss";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import Profile from "../../../Components/Profile/Profile.tsx";
+import { PartnerInfoData } from "../PartnerInfoData.tsx";
 
-const ChatInfo = ({ partnerInfoData, selectedPartner }) => {
+const ChatInfo = ({ meetingTimesData }) => {
   dayjs.extend(advancedFormat);
-  const currentPartner = partnerInfoData.find(
-    (partner) => partner.id === selectedPartner
-  );
 
   return (
     <div className={styles.chatInfo}>
-      <div className={styles.partnerInfo}>
-        <div className={styles.partnerMain}>
-          <h3>{currentPartner.name}</h3>
-          <div>{currentPartner.localTime}</div>
-        </div>
-        <div className={styles.partnerSub}>
-          <div>{currentPartner.nationality}</div>
-          <div>{currentPartner.email}</div>
-        </div>
-        <div className={styles.partnerUniv}>
-          <div>{currentPartner.univ}</div>
-          <div>{currentPartner.major}</div>
-        </div>
-        <div className={styles.partnerTaste}>
-          {currentPartner.taste.map((taste) => (
-            <div
-              key={taste.id}
-              className={
-                taste.isValid
-                  ? styles.partnerTasteItem
-                  : styles.partnerTasteItemLighter
-              }
-            >
-              {taste.taste}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.regularMeeting}>
-        <div>Regular meetings on</div>
-        <div className={styles.meetingContainer}>
-          {currentPartner.meetingTimes.map((time) => (
+      <div className={styles.accounts}>
+        {PartnerInfoData.map((partner) => (
+          <div key={partner.id} className={styles.accountFrame}>
+            <Profile color={partner.color} initial={partner.initial} />
+            <span className={styles.name}>{partner.firstName}</span>
+          </div>
+        ))}
+        <div className={styles.meeting}>
+          <span className={styles.weekly}>Weekly meetings on</span>
+          {meetingTimesData.map((time) => (
             <div key={time.id} className={styles.meetingItem}>
-              <h3>{time.time.format("dddd h:mm a")}</h3>
-              <div>
-                {time.time.tz(currentPartner.timeZone).format("dddd h:mm a z")}
-              </div>
+              <span className={styles.localTime}>
+                {time.time.format("dddd h:mm a")}
+              </span>
+              <span className={styles.convertedTime}>
+                {time.time
+                  .tz(PartnerInfoData[0].timeZone)
+                  .format("dddd h:mm a z")}
+              </span>
             </div>
           ))}
         </div>

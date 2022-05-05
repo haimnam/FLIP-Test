@@ -1,0 +1,25 @@
+.contents {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  width: 1320px;
+  height: 760px;
+  flex-grow: 0;
+  padding: 0 24px 0 0;
+  background-color: #fafbfc;
+  .home {
+    display: flex;
+    .homeLeft {
+      width: 700px;
+      height: 100%;
+      .calendarUser {
+        display: flex;
+      }
+    }
+    .homeRight {
+      width: 600px;
+      height: 100%;
+      display: flex;
+    }
+  }
+}

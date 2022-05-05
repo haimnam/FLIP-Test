@@ -1,0 +1,155 @@
+.classInfo {
+  width: 369px;
+  height: 300px;
+  display: flex;
+  gap: 16px;
+  margin: 47px 16px 14px;
+  padding: 16px 16px 16px 24px;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px 0 rgba(233, 236, 242, 0.5);
+  background-color: white;
+  .information {
+    width: 160px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .classTitle {
+      height: 24px;
+      opacity: 0.2;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    .classBody {
+      height: 222px;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .infoTitle {
+        height: 17px;
+        opacity: 0.8;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+      }
+      .infoContent {
+        height: 16px;
+        opacity: 0.5;
+        font-size: 13px;
+        text-align: center;
+      }
+      .classFrame {
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .professorFrame {
+        height: 39px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .timeFrame {
+        height: 83px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+    }
+  }
+  .hr {
+    width: 1px;
+    align-self: stretch;
+    opacity: 0.1;
+    background-color: #292929;
+  }
+  .attendance {
+    align-self: stretch;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    border-radius: 24px;
+    color: #1472ff;
+    .attendanceHead {
+      height: 123px;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      .weekInfo {
+        margin-top: 37.5px;
+        height: 43px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        .week {
+          height: 22px;
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .weekDate {
+          height: 17px;
+          font-size: 14px;
+        }
+      }
+      .button {
+        width: 120px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px 0 rgba(20, 114, 255, 0.2);
+        background-color: #1472ff;
+        .checkAttendance {
+          height: 30px;
+          font-family: ProximaNova;
+          font-size: 12px;
+          font-weight: 600;
+          text-align: center;
+          color: white;
+        }
+      }
+      .daysLeft {
+        height: 16px;
+        font-size: 13px;
+      }
+    }
+    .checkFrame {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      .checkRow {
+        display: flex;
+        gap: 4px;
+        .check {
+          width: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          padding: 3px 10px 0;
+          border-radius: 24px;
+          border: 1px solid blue;
+        }
+      }
+    }
+  }
+}
