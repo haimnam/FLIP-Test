@@ -33,7 +33,7 @@ const SidebarList = ({ userLogin, myInfo }) => {
         </Link>
       ))}
       <Link className={styles.login} to="/login">
-        LOGIN
+        LOG IN
       </Link>
       <div className={styles.languages}>
         <div className={selectLang("ko", lang)} onClick={useSelectKo()}>
