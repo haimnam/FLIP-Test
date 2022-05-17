@@ -24,7 +24,7 @@ const Sidebar = ({ userLogin, setUserLogin, myInfo }) => {
         </div>
         <div className={styles.frameSwitch}>
           <Link className={styles.switch} to="/home">
-            switch to FLIP 3rd edition
+            switch to FLIP 4th edition
           </Link>
         </div>
 
